@@ -226,6 +226,30 @@ footer{margin-top:auto;text-align:center;color:var(--mute);font-size:.9rem;paddi
 .info summary::after{content:"+";color:var(--brand);font-size:1.2rem;font-weight:700;line-height:1;transition:transform .2s}
 .info details[open] summary::after{transform:rotate(45deg)}
 .info details p{padding:0 0 12px}
+.info .terms{border-top:1px solid var(--line);padding-top:20px}
+.info .terms h2{margin-bottom:4px}
+.info .terms .updated{font-size:.85rem;color:var(--mute);margin:0 0 16px}
+.info .terms h3{font-size:1rem;margin:18px 0 6px;color:var(--ink)}
+.info .terms p,.info .terms li{margin:0 0 8px}
+.info .terms ul{margin:0 0 8px;padding-left:1.2rem}
+.info .terms ul li{margin-top:2px}
+footer a.terms-link{color:inherit;font-weight:700;text-decoration:underline;opacity:.9;cursor:pointer}
+footer a.terms-link:hover{opacity:1}
+/* Terms modal */
+.modal-overlay{position:fixed;inset:0;background:rgba(10,10,30,.55);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);z-index:1000;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;visibility:hidden;transition:opacity .25s ease,visibility .25s ease}
+.modal-overlay.open{opacity:1;visibility:visible}
+.modal{background:var(--card);border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow),0 20px 60px rgba(0,0,0,.25);width:100%;max-width:560px;max-height:min(85vh,720px);display:flex;flex-direction:column;transform:translateY(16px) scale(.97);transition:transform .28s cubic-bezier(.2,1.1,.3,1);overflow:hidden}
+.modal-overlay.open .modal{transform:none}
+.modal-header{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:18px 20px 12px;border-bottom:1px solid var(--line);flex-shrink:0}
+.modal-header h2{margin:0;font-size:1.15rem;letter-spacing:-.01em}
+.modal-close{flex:none;width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:var(--field);color:var(--ink);font-size:1.25rem;line-height:1;cursor:pointer;display:grid;place-items:center;transition:background .15s,border-color .15s,transform .15s}
+.modal-close:hover{background:var(--line);transform:scale(1.05)}
+.modal-body{padding:16px 20px 24px;overflow-y:auto;-webkit-overflow-scrolling:touch;font-size:.95rem;line-height:1.6;color:var(--mute)}
+.modal-body h3{font-size:1rem;margin:16px 0 6px;color:var(--ink)}
+.modal-body h3:first-child{margin-top:4px}
+.modal-body p,.modal-body li{margin:0 0 8px}
+.modal-body ul{margin:0 0 8px;padding-left:1.2rem}
+.modal-body .updated{font-size:.85rem;margin:0 0 12px}
 @media(max-width:700px){.info .ranges{grid-template-columns:1fr;gap:14px}}
 .lang{padding:0 8px;text-align:center;appearance:auto;-webkit-appearance:menulist}
 .lang option{background:var(--card);color:var(--ink)}
@@ -279,12 +303,12 @@ footer{margin-top:auto;text-align:center;color:var(--mute);font-size:.9rem;paddi
 @keyframes cIdle{from{transform:translateY(2px) rotateZ(-.6deg)}to{transform:translateY(-4px) rotateZ(.6deg)}}
 .cscene.shiver .cdeck{animation:cShiver .08s linear infinite}
 @keyframes cShiver{0%,100%{transform:translate(-1px,0) rotateZ(-.5deg)}50%{transform:translate(1px,-1px) rotateZ(.5deg)}}
-.dc{position:absolute;left:0;top:0;width:108px;height:152px;margin:-76px 0 0 -54px;border-radius:12px;transform:translate(calc(var(--i)*-1.3px),calc(var(--i)*-1.7px));transition:transform .4s cubic-bezier(.3,1,.4,1);background:repeating-linear-gradient(45deg,rgba(255,255,255,.12) 0 1.5px,transparent 1.5px 9px),repeating-linear-gradient(-45deg,rgba(255,255,255,.12) 0 1.5px,transparent 1.5px 9px),linear-gradient(155deg,var(--brand),var(--brand2));border:1px solid rgba(255,255,255,.3);box-shadow:1px 3px 6px rgba(20,20,70,.22)}
-.cscene.lift .dc{transform:translate(calc(var(--i)*-2.2px),calc(var(--i)*-3.4px))}
+.dc{position:absolute;left:0;top:0;width:108px;height:152px;margin:-76px 0 0 -54px;border-radius:12px;transform:translate(calc(var(--i)*-1.5px),calc(var(--i)*-2px));transition:transform .4s cubic-bezier(.3,1,.4,1);background:repeating-linear-gradient(45deg,rgba(255,255,255,.12) 0 1.5px,transparent 1.5px 9px),repeating-linear-gradient(-45deg,rgba(255,255,255,.12) 0 1.5px,transparent 1.5px 9px),linear-gradient(155deg,var(--brand),var(--brand2));border:1px solid rgba(255,255,255,.3);box-shadow:1px 3px 6px rgba(20,20,70,.22);will-change:transform}
+.cscene.lift .dc{transform:translate(calc(var(--i)*-2.4px),calc(var(--i)*-3.6px))}
 .dc:nth-child(odd){filter:brightness(.86)}
 .dc::after{content:"";position:absolute;inset:7px;border:1.5px solid rgba(255,255,255,.45);border-radius:8px}
 .cdraw{position:absolute;left:0;top:0;width:108px;height:152px;margin:-76px 0 0 -54px;transform-style:preserve-3d;transform:translate3d(-14.3px,-18.7px,3px);transition:transform .55s cubic-bezier(.25,.8,.25,1)}
-.cscene.lift .cdraw{transform:translate3d(-24.2px,-37.4px,3px)}
+.cscene.lift .cdraw{transform:translate3d(-26.4px,-39.6px,3px)}
 .cscene.peel .cdraw{transform:translate3d(-6px,-36px,14px) rotateZ(4deg) rotateX(-2deg);transition-duration:.38s;transition-timing-function:cubic-bezier(.25,.8,.25,1)}
 .cscene.s1 .cdraw{transform:translate3d(-6px,-72px,28px) rotateZ(-2.5deg) rotateX(-5deg);transition-duration:.58s;transition-timing-function:cubic-bezier(.22,.85,.3,1)}
 .cscene.s2 .cdraw{transform:translate3d(0,-18px,130px) rotateZ(0deg) rotateX(0deg);transition-duration:.65s;transition-timing-function:cubic-bezier(.2,.8,.25,1)}
@@ -316,7 +340,7 @@ footer{margin-top:auto;text-align:center;color:var(--mute);font-size:.9rem;paddi
 <body>
 <div class="wrap">
 <header><div class="brand"><span class="logo">Randomly</span><span class="tag" data-tr="tag">Let chance decide</span></div>
-<div class="hbtns"><select class="theme lang" id="lang" aria-label="Language" title="Language" data-tra="aria-label:lang;title:lang"><option value="en">EN</option><option value="fr">FR</option><option value="ru">RU</option></select><button class="theme" id="snd" type="button" aria-label="Mute sound" title="Mute sound"><span id="sicon" aria-hidden="true">🔊</span></button><button class="theme" id="theme" type="button" aria-label="Switch to dark mode" title="Switch to dark mode"><span class="ticon" aria-hidden="true"><svg class="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><svg class="moon" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></span><span id="tlabel">Light</span></button></div></header>
+<div class="hbtns"><select class="theme lang" id="lang" aria-label="Language" title="Language" data-tra="aria-label:lang;title:lang"><option value="en">EN</option><option value="fr">FR</option><option value="ru">RU</option><option value="ja">JA</option><option value="fil">FIL</option></select><button class="theme" id="snd" type="button" aria-label="Mute sound" title="Mute sound"><span id="sicon" aria-hidden="true">🔊</span></button><button class="theme" id="theme" type="button" aria-label="Switch to dark mode" title="Switch to dark mode"><span class="ticon" aria-hidden="true"><svg class="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><svg class="moon" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></span><span id="tlabel">Light</span></button></div></header>
 <main>
 <section class="hero">
 <h1 data-tr="h1">Random Number Generator</h1>
@@ -430,11 +454,87 @@ footer{margin-top:auto;text-align:center;color:var(--mute);font-size:.9rem;paddi
 
 </main>
 </div>
-<footer data-tr="foot">Randomly by RithyVerse Studio</footer>
+<footer><span data-tr="foot">Randomly by RithyVerse Studio</span>. <a href="#" class="terms-link" id="open-terms" role="button">Terms and Conditions</a></footer>
+
+<div class="modal-overlay" id="terms-modal" role="dialog" aria-modal="true" aria-labelledby="terms-modal-title" hidden>
+  <div class="modal">
+    <div class="modal-header">
+      <h2 id="terms-modal-title">Terms and Conditions</h2>
+      <button type="button" class="modal-close" id="close-terms" aria-label="Close">×</button>
+    </div>
+    <div class="modal-body">
+      <p class="updated">Last updated: September 2026</p>
+      <p>Welcome to Randomly. By accessing or using the Randomly website, you agree to these Terms and Conditions. If you do not agree with these terms, please do not use the website.</p>
+
+      <h3>1. About Randomly</h3>
+      <p>Randomly is a free online random number generator that allows users to select a numerical range and generate a randomly selected whole number.</p>
+      <p>The website may provide different visual methods for revealing generated numbers, including interactive animations and other presentation features.</p>
+
+      <h3>2. Use of the Website</h3>
+      <p>You may use Randomly for lawful purposes, including:</p>
+      <ul>
+        <li>Games and recreational activities</li>
+        <li>Education and learning</li>
+        <li>Testing and development</li>
+        <li>Decision-making where a simple random selection is appropriate</li>
+        <li>Other personal or commercial purposes that comply with applicable laws</li>
+      </ul>
+      <p>You agree not to use the website for unlawful activities or in a way that could damage, disable, overburden, or interfere with the website or its services.</p>
+
+      <h3>3. Random Number Generation</h3>
+      <p>Randomly provides numbers generated through software-based randomization.</p>
+      <p>The results are provided for general-purpose use and should not be considered guaranteed, certified, cryptographically secure, or suitable for applications where security, financial value, legal compliance, safety, or other high-stakes requirements depend on true randomness.</p>
+      <p>You are responsible for determining whether Randomly is appropriate for your particular use.</p>
+
+      <h3>4. No Guarantee of Results</h3>
+      <p>Randomly does not guarantee that generated numbers will meet a user's specific requirements or expectations.</p>
+      <p>The website is provided on an "as is" and "as available" basis. We do not guarantee that the website will always be available, uninterrupted, error-free, or free from technical issues.</p>
+
+      <h3>5. No Gambling or Prize System</h3>
+      <p>Randomly is intended as a general-purpose randomization tool.</p>
+      <p>The website does not provide betting, gambling, wagering, lotteries, jackpots, prizes, or monetary rewards. Users are responsible for ensuring that their use of generated numbers complies with all applicable laws and regulations.</p>
+
+      <h3>6. Intellectual Property</h3>
+      <p>Unless otherwise stated, the Randomly website, including its design, branding, interface, original graphics, animations, text, and software, is owned by or licensed to the website operator.</p>
+      <p>You may use the website for its intended purpose, but you may not copy, reproduce, modify, distribute, sell, or commercially exploit substantial portions of the website without permission.</p>
+
+      <h3>7. Third-Party Services and Advertising</h3>
+      <p>Randomly may use third-party services, including advertising, analytics, hosting, or other technology services.</p>
+      <p>Third-party services may have their own terms, policies, and privacy practices. Randomly is not responsible for the content, availability, or practices of third-party websites or services.</p>
+      <p>If advertising is displayed on Randomly, advertisements may be provided by third-party advertising services such as Google AdSense. The appearance of an advertisement does not constitute an endorsement or recommendation by Randomly.</p>
+
+      <h3>8. Website Availability</h3>
+      <p>We may modify, update, suspend, or discontinue any part of the website at any time without prior notice.</p>
+      <p>We are not responsible for interruptions caused by maintenance, technical problems, hosting providers, internet service providers, or circumstances beyond our reasonable control.</p>
+
+      <h3>9. Limitation of Liability</h3>
+      <p>To the maximum extent permitted by applicable law, Randomly and its operators shall not be liable for any direct, indirect, incidental, consequential, or other damages resulting from:</p>
+      <ul>
+        <li>Your use or inability to use the website</li>
+        <li>Reliance on generated numbers</li>
+        <li>Errors or interruptions in the service</li>
+        <li>Loss of data</li>
+        <li>Third-party services or advertisements</li>
+        <li>Any other use of or reliance on the website</li>
+      </ul>
+
+      <h3>10. Changes to These Terms</h3>
+      <p>We may update these Terms and Conditions from time to time.</p>
+      <p>When changes are made, the updated version will be posted on this page with a revised "Last updated" date. Your continued use of Randomly after changes are posted means that you accept the updated terms.</p>
+
+      <h3>11. Privacy</h3>
+      <p>Your use of Randomly is also subject to our Privacy Policy, which explains how information may be collected, used, stored, and shared through the website and third-party services.</p>
+
+      <h3>12. Contact</h3>
+      <p>If you have questions, concerns, or requests regarding these Terms and Conditions, please contact us through the contact information provided on the Randomly website.</p>
+      <p>By using Randomly, you acknowledge that you have read, understood, and agreed to these Terms and Conditions.</p>
+    </div>
+  </div>
+</div>
 
 <script>
 window.RL=(function(){
-var D={"title":["Random Number Generator — Randomly","Générateur de nombres aléatoires — Randomly","Генератор случайных чисел — Randomly"],"desc":["Generate a random number from 1 to 1,000,000 with customizable ranges and satisfying reveal animations.","Générez un nombre aléatoire de 1 à 1 000 000 avec des plages personnalisables et des animations de révélation.","Сгенерируйте случайное число от 1 до 1 000 000 с настраиваемым диапазоном и эффектными анимациями."],"tag":["Let chance decide","Laissez le hasard décider","Пусть решает случай"],"h1":["Random Number Generator","Générateur de nombres aléatoires","Генератор случайных чисел"],"sub":["Pick a range. Let randomness choose.","Choisissez une plage. Laissez le hasard choisir.","Выберите диапазон. Пусть выберет случай."],"result":["Result","Résultat","Результат"],"ready":["Ready when you are","Prêt quand vous l'êtes","Готово, когда вы готовы"],"hint0":["Choose a range and a reveal mode to begin.","Choisissez une plage et un mode de révélation pour commencer.","Выберите диапазон и режим показа, чтобы начать."],"go":["REVEAL RANDOM NUMBER","RÉVÉLER UN NOMBRE ALÉATOIRE","ПОКАЗАТЬ СЛУЧАЙНОЕ ЧИСЛО"],"settings":["Range and reveal settings","Paramètres de plage et de révélation","Настройки диапазона и показа"],"min":["Minimum","Minimum","Минимум"],"max":["Maximum","Maximum","Максимум"],"quick":["Quick ranges","Plages rapides","Быстрые диапазоны"],"r1k":["1–1,000","1–1 000","1–1 000"],"r1m":["1–1,000,000","1–1 000 000","1–1 000 000"],"modelbl":["Reveal mode","Mode de révélation","Режим показа"],"wheel":["🎡 Wheel","🎡 Roue","🎡 Колесо"],"crate":["📦 Mystery Crate","📦 Caisse mystère","📦 Загадочный ящик"],"machine":["⚡ Number Machine","⚡ Machine à nombres","⚡ Числовая машина"],"foot":["Randomly by RithyVerse Studio","Randomly by RithyVerse Studio","Randomly by RithyVerse Studio"],"lang":["Language","Langue","Язык"],"light":["Light","Clair","Светлая"],"dark":["Dark","Sombre","Тёмная"],"tolight":["Switch to light mode","Passer en mode clair","Включить светлую тему"],"todark":["Switch to dark mode","Passer en mode sombre","Включить тёмную тему"],"mute":["Mute sound","Couper le son","Выключить звук"],"unmute":["Unmute sound","Activer le son","Включить звук"],"e1":["Enter both a minimum and a maximum.","Saisissez un minimum et un maximum.","Введите минимум и максимум."],"e2":["Please enter valid whole numbers.","Veuillez saisir des nombres entiers valides.","Введите корректные целые числа."],"nround":["rounded to whole numbers","arrondi à des nombres entiers","округлено до целых чисел"],"nclamp":["kept within 1–1,000,000","limité à 1–1 000 000","ограничено диапазоном 1–1 000 000"],"nswap":["swapped so minimum ≤ maximum","inversés pour que minimum ≤ maximum","поменяны местами, чтобы минимум ≤ максимум"],"adj":["Range adjusted: ","Plage ajustée : ","Диапазон изменён: "],"one":["Only one possibility…","Une seule possibilité…","Возможен только один вариант…"],"choosing":["Choosing a number between {0} and {1}…","Choix d'un nombre entre {0} et {1}…","Выбираем число от {0} до {1}…"],"between":["Between {0} and {1}","Entre {0} et {1}","От {0} до {1}"],"about_p":["Randomly is an online random number generator. Set a minimum and maximum, and generate a random number instantly, from 1 to 100 or all the way up to 1,000,000.","Randomly est un générateur de nombres aléatoires en ligne. Définissez un minimum et un maximum et obtenez instantanément un nombre aléatoire, de 1 à 100 ou jusqu'à 1 000 000.","Randomly — это онлайн-генератор случайных чисел. Задайте минимум и максимум и мгновенно получите случайное число: от 1 до 100 или даже до 1 000 000."],"how_h":["How to Generate a Random Number","Comment générer un nombre aléatoire","Как сгенерировать случайное число"],"s1":["Enter the <strong>minimum<\/strong> number.","Saisissez le nombre <strong>minimum<\/strong>.","Введите <strong>минимальное<\/strong> число."],"s2":["Enter the <strong>maximum<\/strong> number.","Saisissez le nombre <strong>maximum<\/strong>.","Введите <strong>максимальное<\/strong> число."],"s3":["Choose a <strong>reveal animation<\/strong>.","Choisissez une <strong>animation de révélation<\/strong>.","Выберите <strong>анимацию показа<\/strong>."],"s4":["Click <strong>Reveal Random Number<\/strong>.","Cliquez sur <strong>Révéler un nombre aléatoire<\/strong>.","Нажмите <strong>«Показать случайное число»<\/strong>."],"s_note":["You'll get a random whole number within your range.","Vous obtiendrez un nombre entier aléatoire dans votre plage.","Вы получите случайное целое число в выбранном диапазоне."],"use_h":["What Can You Use a Random Number Generator For?","À quoi sert un générateur de nombres aléatoires ?","Для чего нужен генератор случайных чисел?"],"u1":["Games","Jeux","Игры"],"u2":["Classroom activities","Activités en classe","Занятия в классе"],"u3":["Random selections","Sélections aléatoires","Случайный выбор"],"u4":["Picking a number between two values","Un nombre entre deux valeurs","Число между двумя значениями"],"u5":["Making decisions","Prise de décision","Принятие решений"],"u6":["Drawing a random participant","Tirer un participant au hasard","Выбор случайного участника"],"u7":["Generating test values","Valeurs de test","Тестовые значения"],"u8":["Everyday choices","Choix du quotidien","Повседневный выбор"],"r100_h":["Random Number Generator 1–100","Générateur de nombres aléatoires 1–100","Генератор случайных чисел 1–100"],"r100_p":["Use the built-in 1–100 range for a quick pick.","Utilisez la plage 1–100 intégrée pour un tirage rapide.","Используйте встроенный диапазон 1–100 для быстрого выбора."],"r1k_h":["Random Number Generator 1–1,000","Générateur de nombres aléatoires 1–1 000","Генератор случайных чисел 1–1 000"],"r1k_p":["Select a random whole number from 1 to 1,000.","Sélectionnez un nombre entier aléatoire de 1 à 1 000.","Выберите случайное целое число от 1 до 1 000."],"r1m_h":["Random Number Generator 1–1,000,000","Générateur de nombres aléatoires 1–1 000 000","Генератор случайных чисел 1–1 000 000"],"r1m_p":["Supports whole numbers up to 1,000,000 for larger ranges.","Prend en charge les nombres entiers jusqu'à 1 000 000 pour les grandes plages.","Поддерживаются целые числа до 1 000 000 для больших диапазонов."],"faq_h":["Frequently Asked Questions","Questions fréquentes","Часто задаваемые вопросы"],"q1":["What is a random number generator?","Qu'est-ce qu'un générateur de nombres aléatoires ?","Что такое генератор случайных чисел?"],"a1":["A tool that picks a number with no predictable pattern. Randomly picks a whole number between a minimum and maximum you choose.","Un outil qui choisit un nombre sans schéma prévisible. Randomly choisit un nombre entier entre le minimum et le maximum que vous définissez.","Инструмент, который выбирает число без предсказуемой закономерности. Randomly выбирает целое число между заданными вами минимумом и максимумом."],"q2":["How does a random number generator work?","Comment fonctionne un générateur de nombres aléatoires ?","Как работает генератор случайных чисел?"],"a2":["Randomly uses your browser's built-in cryptographic random source, so every whole number in your range has an equal chance.","Randomly utilise la source aléatoire cryptographique intégrée à votre navigateur : chaque nombre entier de votre plage a donc la même probabilité.","Randomly использует встроенный в браузер криптографический источник случайности, поэтому у каждого целого числа в диапазоне одинаковые шансы."],"q3":["Can I generate a random number between two numbers?","Puis-je générer un nombre aléatoire entre deux nombres ?","Можно ли сгенерировать случайное число между двумя числами?"],"a3":["Yes. Enter any minimum and maximum from 1 to 1,000,000. Both endpoints can be picked.","Oui. Saisissez un minimum et un maximum entre 1 et 1 000 000. Les deux bornes peuvent être tirées.","Да. Введите любые минимум и максимум от 1 до 1 000 000. Обе границы могут выпасть."],"q4":["Can I generate a random number from 1 to 100?","Puis-je générer un nombre aléatoire de 1 à 100 ?","Можно ли получить случайное число от 1 до 100?"],"a4":["Yes. Tap the 1–100 quick range, then reveal your number.","Oui. Touchez la plage rapide 1–100, puis révélez votre nombre.","Да. Нажмите быстрый диапазон 1–100 и покажите число."],"q5":["Can I generate a random number from 1 to 1,000,000?","Puis-je générer un nombre aléatoire de 1 à 1 000 000 ?","Можно ли получить случайное число от 1 до 1 000 000?"],"a5":["Yes. Tap the 1–1,000,000 quick range to get a whole number up to one million.","Oui. Touchez la plage rapide 1–1 000 000 pour obtenir un nombre entier jusqu'à un million.","Да. Нажмите быстрый диапазон 1–1 000 000, чтобы получить целое число до миллиона."],"q6":["Is Randomly free to use?","Randomly est-il gratuit ?","Randomly бесплатный?"],"a6":["Yes. It's free and works in your browser with no sign-up.","Oui. Il est gratuit et fonctionne dans votre navigateur, sans inscription.","Да. Он бесплатный и работает в браузере без регистрации."],"card":["🃏 Card Draw","🃏 Tirage de carte","🃏 Вытянуть карту"]},LS=['en','fr','ru'],LOC={en:'en-US',fr:'fr-FR',ru:'ru-RU'},lang='en',api={onChange:null};
+var D={"title":["Random Number Generator — Randomly","Générateur de nombres aléatoires — Randomly","Генератор случайных чисел — Randomly","乱数ジェネレーター — Randomly","Random Number Generator — Randomly"],"desc":["Generate a random number from 1 to 1,000,000 with customizable ranges and satisfying reveal animations.","Générez un nombre aléatoire de 1 à 1 000 000 avec des plages personnalisables et des animations de révélation.","Сгенерируйте случайное число от 1 до 1 000 000 с настраиваемым диапазоном и эффектными анимациями.","1から1,000,000までの乱数を、カスタム範囲と楽しい演出アニメーションで生成します。","Bumuo ng random na numero mula 1 hanggang 1,000,000 na may customizable na range at nakakaakit na reveal animation."],"tag":["Let chance decide","Laissez le hasard décider","Пусть решает случай","偶然に任せよう","Hayaan ang tsansa ang magdesisyon"],"h1":["Random Number Generator","Générateur de nombres aléatoires","Генератор случайных чисел","乱数ジェネレーター","Random Number Generator"],"sub":["Pick a range. Let randomness choose.","Choisissez une plage. Laissez le hasard choisir.","Выберите диапазон. Пусть выберет случай.","範囲を選んで、偶然に任せて。","Pumili ng saklaw. Hayaan ang randomness ang pumili."],"result":["Result","Résultat","Результат","結果","Resulta"],"ready":["Ready when you are","Prêt quand vous l'êtes","Готово, когда вы готовы","いつでも準備OK","Handa na kapag handa ka na"],"hint0":["Choose a range and a reveal mode to begin.","Choisissez une plage et un mode de révélation pour commencer.","Выберите диапазон и режим показа, чтобы начать.","範囲と表示モードを選んでスタート。","Pumili ng saklaw at reveal mode para magsimula."],"go":["REVEAL RANDOM NUMBER","RÉVÉLER UN NOMBRE ALÉATOIRE","ПОКАЗАТЬ СЛУЧАЙНОЕ ЧИСЛО","乱数を表示","IPAKITA ANG RANDOM NUMBER"],"settings":["Range and reveal settings","Paramètres de plage et de révélation","Настройки диапазона и показа","範囲と表示の設定","Mga setting ng saklaw at reveal"],"min":["Minimum","Minimum","Минимум","最小","Minimum"],"max":["Maximum","Maximum","Максимум","最大","Maximum"],"quick":["Quick ranges","Plages rapides","Быстрые диапазоны","クイック範囲","Mabilis na saklaw"],"r1k":["1–1,000","1–1 000","1–1 000","1–1,000","1–1,000"],"r1m":["1–1,000,000","1–1 000 000","1–1 000 000","1–1,000,000","1–1,000,000"],"modelbl":["Reveal mode","Mode de révélation","Режим показа","表示モード","Reveal mode"],"wheel":["🎡 Wheel","🎡 Roue","🎡 Колесо","🎡 ルーレット","🎡 Gulong"],"crate":["📦 Mystery Crate","📦 Caisse mystère","📦 Загадочный ящик","📦 ミステリークレート","📦 Mystery Crate"],"machine":["⚡ Number Machine","⚡ Machine à nombres","⚡ Числовая машина","⚡ ナンバーマシン","⚡ Number Machine"],"card":["🃏 Card Draw","🃏 Tirage de carte","🃏 Вытянуть карту","🃏 カードドロー","🃏 Card Draw"],"foot":["Randomly by RithyVerse Studio","Randomly by RithyVerse Studio","Randomly by RithyVerse Studio","Randomly by RithyVerse Studio","Randomly by RithyVerse Studio"],"lang":["Language","Langue","Язык","言語","Wika"],"light":["Light","Clair","Светлая","ライト","Maliwanag"],"dark":["Dark","Sombre","Тёмная","ダーク","Madilim"],"tolight":["Switch to light mode","Passer en mode clair","Включить светлую тему","ライトモードに切り替え","Lumipat sa light mode"],"todark":["Switch to dark mode","Passer en mode sombre","Включить тёмную тему","ダークモードに切り替え","Lumipat sa dark mode"],"mute":["Mute sound","Couper le son","Выключить звук","サウンドをミュート","I-mute ang tunog"],"unmute":["Unmute sound","Activer le son","Включить звук","サウンドをオン","I-unmute ang tunog"],"e1":["Enter both a minimum and a maximum.","Saisissez un minimum et un maximum.","Введите минимум и максимум.","最小値と最大値の両方を入力してください。","Ilagay ang minimum at maximum."],"e2":["Please enter valid whole numbers.","Veuillez saisir des nombres entiers valides.","Введите корректные целые числа.","有効な整数を入力してください。","Mangyaring maglagay ng wastong buong numero."],"nround":["rounded to whole numbers","arrondi à des nombres entiers","округлено до целых чисел","整数に丸めました","na-round sa buong numero"],"nclamp":["kept within 1–1,000,000","limité à 1–1 000 000","ограничено диапазоном 1–1 000 000","1〜1,000,000の範囲内に制限","nanatili sa 1–1,000,000"],"nswap":["swapped so minimum ≤ maximum","inversés pour que minimum ≤ maximum","поменяны местами, чтобы минимум ≤ максимум","最小≤最大になるよう入れ替え","pinagpalit para minimum ≤ maximum"],"adj":["Range adjusted: ","Plage ajustée : ","Диапазон изменён: ","範囲を調整しました: ","Na-adjust ang saklaw: "],"one":["Only one possibility…","Une seule possibilité…","Возможен только один вариант…","可能性はひとつだけ…","Isang posibilidad lang…"],"choosing":["Choosing a number between {0} and {1}…","Choix d'un nombre entre {0} et {1}…","Выбираем число от {0} до {1}…","{0}から{1}の間の数を選んでいます…","Pumipili ng numero sa pagitan ng {0} at {1}…"],"between":["Between {0} and {1}","Entre {0} et {1}","От {0} до {1}","{0}から{1}の間","Sa pagitan ng {0} at {1}"],"about_p":["Randomly is an online random number generator. Set a minimum and maximum, and generate a random number instantly, from 1 to 100 or all the way up to 1,000,000.","Randomly est un générateur de nombres aléatoires en ligne. Définissez un minimum et un maximum et obtenez instantanément un nombre aléatoire, de 1 à 100 ou jusqu'à 1 000 000.","Randomly — это онлайн-генератор случайных чисел. Задайте минимум и максимум и мгновенно получите случайное число: от 1 до 100 или даже до 1 000 000.","Randomlyはオンライン乱数ジェネレーターです。最小値と最大値を設定するだけで、1から100、最大1,000,000までの乱数をすぐに生成できます。","Ang Randomly ay isang online random number generator. Mag-set ng minimum at maximum, at agad na bumuo ng random number, mula 1 hanggang 100 o hanggang 1,000,000."],"how_h":["How to Generate a Random Number","Comment générer un nombre aléatoire","Как сгенерировать случайное число","乱数の生成方法","Paano Bumuo ng Random Number"],"s1":["Enter the <strong>minimum</strong> number.","Saisissez le nombre <strong>minimum</strong>.","Введите <strong>минимальное</strong> число.","<strong>最小値</strong>を入力します。","Ilagay ang <strong>minimum</strong> na numero."],"s2":["Enter the <strong>maximum</strong> number.","Saisissez le nombre <strong>maximum</strong>.","Введите <strong>максимальное</strong> число.","<strong>最大値</strong>を入力します。","Ilagay ang <strong>maximum</strong> na numero."],"s3":["Choose a <strong>reveal animation</strong>.","Choisissez une <strong>animation de révélation</strong>.","Выберите <strong>анимацию показа</strong>.","<strong>表示アニメーション</strong>を選びます。","Pumili ng <strong>reveal animation</strong>."],"s4":["Click <strong>Reveal Random Number</strong>.","Cliquez sur <strong>Révéler un nombre aléatoire</strong>.","Нажмите <strong>«Показать случайное число»</strong>.","<strong>乱数を表示</strong>をクリックします。","I-click ang <strong>Ipakita ang Random Number</strong>."],"s_note":["You'll get a random whole number within your range.","Vous obtiendrez un nombre entier aléatoire dans votre plage.","Вы получите случайное целое число в выбранном диапазоне.","範囲内のランダムな整数が得られます。","Makakakuha ka ng random na buong numero sa loob ng iyong saklaw."],"use_h":["What Can You Use a Random Number Generator For?","À quoi sert un générateur de nombres aléatoires ?","Для чего нужен генератор случайных чисел?","乱数ジェネレーターの使い道は？","Para saan Mo Magagamit ang Random Number Generator?"],"u1":["Games","Jeux","Игры","ゲーム","Mga Laro"],"u2":["Classroom activities","Activités en classe","Занятия в классе","授業・学習活動","Mga aktibidad sa klase"],"u3":["Random selections","Sélections aléatoires","Случайный выбор","ランダムな選出","Random na pagpili"],"u4":["Picking a number between two values","Un nombre entre deux valeurs","Число между двумя значениями","2つの値の間の数を選ぶ","Pagpili ng numero sa pagitan ng dalawang value"],"u5":["Making decisions","Prise de décision","Принятие решений","意思決定","Pagdedesisyon"],"u6":["Drawing a random participant","Tirer un participant au hasard","Выбор случайного участника","参加者をランダムに選ぶ","Pagpili ng random na kalahok"],"u7":["Generating test values","Valeurs de test","Тестовые значения","テスト用の値の生成","Pagbuo ng test values"],"u8":["Everyday choices","Choix du quotidien","Повседневный выбор","日常の選択","Araw-araw na pagpili"],"r100_h":["Random Number Generator 1–100","Générateur de nombres aléatoires 1–100","Генератор случайных чисел 1–100","乱数ジェネレーター 1–100","Random Number Generator 1–100"],"r100_p":["Use the built-in 1–100 range for a quick pick.","Utilisez la plage 1–100 intégrée pour un tirage rapide.","Используйте встроенный диапазон 1–100 для быстрого выбора.","内蔵の1〜100の範囲ですばやく選べます。","Gamitin ang built-in na 1–100 range para sa mabilis na pagpili."],"r1k_h":["Random Number Generator 1–1,000","Générateur de nombres aléatoires 1–1 000","Генератор случайных чисел 1–1 000","乱数ジェネレーター 1–1,000","Random Number Generator 1–1,000"],"r1k_p":["Select a random whole number from 1 to 1,000.","Sélectionnez un nombre entier aléatoire de 1 à 1 000.","Выберите случайное целое число от 1 до 1 000.","1から1,000までのランダムな整数を選びます。","Pumili ng random na buong numero mula 1 hanggang 1,000."],"r1m_h":["Random Number Generator 1–1,000,000","Générateur de nombres aléatoires 1–1 000 000","Генератор случайных чисел 1–1 000 000","乱数ジェネレーター 1–1,000,000","Random Number Generator 1–1,000,000"],"r1m_p":["Supports whole numbers up to 1,000,000 for larger ranges.","Prend en charge les nombres entiers jusqu'à 1 000 000 pour les grandes plages.","Поддерживаются целые числа до 1 000 000 для больших диапазонов.","最大1,000,000までの整数に対応しています。","Sumusuporta sa buong numero hanggang 1,000,000 para sa mas malalaking saklaw."],"faq_h":["Frequently Asked Questions","Questions fréquentes","Часто задаваемые вопросы","よくある質問","Mga Madalas Itanong"],"q1":["What is a random number generator?","Qu'est-ce qu'un générateur de nombres aléatoires ?","Что такое генератор случайных чисел?","乱数ジェネレーターとは？","Ano ang random number generator?"],"a1":["A tool that picks a number with no predictable pattern. Randomly picks a whole number between a minimum and maximum you choose.","Un outil qui choisit un nombre sans schéma prévisible. Randomly choisit un nombre entier entre le minimum et le maximum que vous définissez.","Инструмент, который выбирает число без предсказуемой закономерности. Randomly выбирает целое число между заданными вами минимумом и максимумом.","予測可能なパターンのない数を選ぶツールです。設定した最小値と最大値の間の整数をランダムに選びます。","Isang tool na pumipili ng numero nang walang predictable na pattern. Ang Randomly ay pumipili ng buong numero sa pagitan ng minimum at maximum na iyong pinili."],"q2":["How does a random number generator work?","Comment fonctionne un générateur de nombres aléatoires ?","Как работает генератор случайных чисел?","乱数ジェネレーターの仕組みは？","Paano gumagana ang random number generator?"],"a2":["Randomly uses your browser's built-in cryptographic random source, so every whole number in your range has an equal chance.","Randomly utilise la source aléatoire cryptographique intégrée à votre navigateur : chaque nombre entier de votre plage a donc la même probabilité.","Randomly использует встроенный в браузер криптографический источник случайности, поэтому у каждого целого числа в диапазоне одинаковые шансы.","Randomlyはブラウザ内蔵の暗号学的乱数源を使うため、範囲内のどの整数も等しい確率で選ばれます。","Gumagamit ang Randomly ng built-in cryptographic random source ng iyong browser, kaya pantay ang tsansa ng bawat buong numero sa iyong saklaw."],"q3":["Can I generate a random number between two numbers?","Puis-je générer un nombre aléatoire entre deux nombres ?","Можно ли сгенерировать случайное число между двумя числами?","2つの数の間の乱数を生成できますか？","Maaari ba akong bumuo ng random number sa pagitan ng dalawang numero?"],"a3":["Yes. Enter any minimum and maximum from 1 to 1,000,000. Both endpoints can be picked.","Oui. Saisissez un minimum et un maximum entre 1 et 1 000 000. Les deux bornes peuvent être tirées.","Да. Введите любые минимум и максимум от 1 до 1 000 000. Обе границы могут выпасть.","はい。1から1,000,000までの任意の最小値と最大値を入力できます。両端も選ばれる可能性があります。","Oo. Maglagay ng anumang minimum at maximum mula 1 hanggang 1,000,000. Maaaring mapili ang parehong dulo."],"q4":["Can I generate a random number from 1 to 100?","Puis-je générer un nombre aléatoire de 1 à 100 ?","Можно ли получить случайное число от 1 до 100?","1から100の乱数を生成できますか？","Maaari ba akong bumuo ng random number mula 1 hanggang 100?"],"a4":["Yes. Tap the 1–100 quick range, then reveal your number.","Oui. Touchez la plage rapide 1–100, puis révélez votre nombre.","Да. Нажмите быстрый диапазон 1–100 и покажите число.","はい。1–100のクイック範囲をタップしてから数を表示してください。","Oo. I-tap ang 1–100 quick range, pagkatapos ipakita ang iyong numero."],"q5":["Can I generate a random number from 1 to 1,000,000?","Puis-je générer un nombre aléatoire de 1 à 1 000 000 ?","Можно ли получить случайное число от 1 до 1 000 000?","1から1,000,000の乱数を生成できますか？","Maaari ba akong bumuo ng random number mula 1 hanggang 1,000,000?"],"a5":["Yes. Tap the 1–1,000,000 quick range to get a whole number up to one million.","Oui. Touchez la plage rapide 1–1 000 000 pour obtenir un nombre entier jusqu'à un million.","Да. Нажмите быстрый диапазон 1–1 000 000, чтобы получить целое число до миллиона.","はい。1–1,000,000のクイック範囲をタップすると、最大100万の整数が得られます。","Oo. I-tap ang 1–1,000,000 quick range para makakuha ng buong numero hanggang isang milyon."],"q6":["Is Randomly free to use?","Randomly est-il gratuit ?","Randomly бесплатный?","Randomlyは無料ですか？","Libre ba ang Randomly?"],"a6":["Yes. It's free and works in your browser with no sign-up.","Oui. Il est gratuit et fonctionne dans votre navigateur, sans inscription.","Да. Он бесплатный и работает в браузере без регистрации.","はい。無料で、登録なしにブラウザですぐ使えます。","Oo. Libre ito at gumagana sa iyong browser nang walang sign-up."]},LS=['en','fr','ru','ja','fil'],LOC={en:'en-US',fr:'fr-FR',ru:'ru-RU',ja:'ja-JP',fil:'fil-PH'},lang='en',api={onChange:null};
 function pick(){var v=null;try{v=localStorage.getItem('randomly-lang')}catch(e){}
   if(v&&LS.indexOf(v)>-1)return v;
   var n=String(navigator.language||'en').slice(0,2).toLowerCase();return LS.indexOf(n)>-1?n:'en'}
@@ -720,59 +820,57 @@ function cardShow(n){
 var cardBag=null;
 function cardShuffle(){
   var L=document.querySelectorAll('#cdeck .dc'),dkm=dk();
-  var amp=Math.min(1,Math.max(.6,$('stage').clientWidth/440));
+  var amp=Math.min(1,Math.max(.55,$('stage').clientWidth/440));
   var sh0='1px 3px 6px '+(dkm?'rgba(0,0,0,.35)':'rgba(20,20,70,.22)');
-  var sh1='8px 16px 24px '+(dkm?'rgba(0,0,0,.5)':'rgba(60,60,140,.32)');
+  var sh1='10px 18px 28px '+(dkm?'rgba(0,0,0,.55)':'rgba(60,60,140,.35)');
   // L has 11 .dc (indices 0-10); keep bottom card (0) static, animate 1-10 + draw card
   var refs=[];for(var i=1;i<=11;i++)refs.push({i:i,el:i===11?$('cdraw'):L[i],top:i===11,used:0,busy:0});
   function pick(n,t){
-    var c=refs.map(function(r){return {r:r,k:(r.busy>t?1000:0)+r.used*10+Math.random()}});
+    var c=refs.map(function(r){return {r:r,k:(r.busy>t?1000:0)+r.used*12+Math.random()}});
     c.sort(function(a,b){return a.k-b.k});
     return c.slice(0,n).map(function(x){return x.r});
   }
-  // t0/dur in ms; n cards; spread = fan width; stag = stagger; blur px
-  // Each card gets a unique horizontal lane so paths never collide
+  // Wider unique lanes + higher z so cards never visually stack on top of each other
   function round(t0,dur,n,spread,stag,blur){
     var cards=pick(n,t0).sort(function(a,b){return a.i-b.i});
     var first=Math.random()<.5?1:-1;
-    // Pre-assign unique lanes: alternate L/R, increasing distance from center
     cards.forEach(function(c,k){
       var side=(k%2===0)?first:-first;
-      var rank=Math.floor(k/2); // 0,0,1,1,... → same-side cards get different distances
-      var bx=-c.i*2.2,by=-c.i*3.4,bz=c.top?3:0;
-      // Fixed spacing per rank so cards on the same side stay clear of each other
-      var dist=amp*spread*(36+rank*30+Math.random()*8);
+      var rank=Math.floor(k/2);
+      var bx=-c.i*2.4,by=-c.i*3.6,bz=c.top?3:0;
+      // Much larger horizontal separation so paths stay clear
+      var dist=amp*spread*(52+rank*42+Math.random()*6);
       var x=bx+side*dist;
-      var y=by-12-rank*10+(Math.random()*14);
-      var z=12+k*10;
-      var rz=side*(9+rank*8+Math.random()*4);
-      var rx=(Math.random()-.5)*8;
-      var ry=side*(3+Math.random()*6);
-      // Slight outward drift on the return path (still same lane)
-      var x2=x+side*(5+Math.random()*5);
-      var rz2=rz+side*(2+Math.random()*3);
+      var y=by-18-rank*14+(Math.random()*10);
+      var z=20+k*18+rank*8;          // higher unique z-order while flying
+      var rz=side*(11+rank*9+Math.random()*3);
+      var rx=(Math.random()-.5)*6;
+      var ry=side*(4+Math.random()*5);
+      var x2=x+side*(8+Math.random()*6);
+      var rz2=rz+side*(3+Math.random()*3);
       var T=function(x,y,z,rz,rx,ry){return 'translate3d('+x.toFixed(1)+'px,'+y.toFixed(1)+'px,'+z+'px) rotateZ('+rz.toFixed(1)+'deg) rotateX('+rx.toFixed(1)+'deg) rotateY('+ry.toFixed(1)+'deg)'};
       var rest=T(bx,by,bz,0,0,0);
       var kf=[{transform:rest,offset:0,easing:'cubic-bezier(.25,.8,.25,1)'},
-              {transform:T(x,y,z,rz,rx,ry),offset:.45,easing:'ease-in-out'},
-              {transform:T(x2,y-3,z,rz2,rx,ry),offset:.62,easing:'cubic-bezier(.4,0,.25,1)'},
+              {transform:T(x,y,z,rz,rx,ry),offset:.42,easing:'ease-in-out'},
+              {transform:T(x2,y-4,z,rz2,rx,ry),offset:.6,easing:'cubic-bezier(.4,0,.25,1)'},
               {transform:rest,offset:1}];
       if(!c.top){
         var b=c.i%2===0?.86:1;
-        var f0='brightness('+b+') blur(0px)',f1='brightness('+(b*1.15).toFixed(2)+') blur('+blur+'px)';
-        kf[0].filter=kf[3].filter=f0;kf[1].filter=f1;kf[2].filter='brightness('+(b*1.08).toFixed(2)+') blur('+(blur*.5).toFixed(1)+'px)';
+        var f0='brightness('+b+') blur(0px)',f1='brightness('+(b*1.12).toFixed(2)+') blur('+blur+'px)';
+        kf[0].filter=kf[3].filter=f0;kf[1].filter=f1;kf[2].filter='brightness('+(b*1.06).toFixed(2)+') blur('+(blur*.4).toFixed(1)+'px)';
         kf[0].boxShadow=kf[3].boxShadow=sh0;kf[1].boxShadow=kf[2].boxShadow=sh1;
       }
+      // Raise stacking context while the card is in the air
       var d=t0+k*stag;
       c.el.animate(kf,{duration:dur,delay:d,fill:'none'});
-      c.used++;c.busy=d+dur;
+      c.used++;c.busy=d+dur+40;
     });
   }
-  // lighter shuffle — fewer cards per round, gentler motion
-  round(0,380,2,0.9,50,1.0);
-  round(280,400,2,1.0,55,0.9);
-  round(560,420,2,1.1,60,0.7);
-  round(880,400,2,1.15,70,0.4);
+  // Fewer cards per round + wider spread + more stagger = clean non-overlapping shuffle
+  round(0,400,2,1.15,70,0.8);
+  round(300,420,2,1.25,75,0.7);
+  round(620,440,2,1.3,80,0.5);
+  round(960,400,2,1.2,85,0.35);
 }
 async function runCard(min,max){
   var sc=$('cscene'),fl=$('cflip');
@@ -880,6 +978,33 @@ sb.addEventListener('click',function(){soundOn=!soundOn;try{localStorage.setItem
 paintSnd();
 RL.onChange=function(){loadNames();say('');setStage();$('hint').textContent=hintFn?hintFn():RL.t('hint0');paint();paintSnd()};
 RL.onChange();
+
+// Terms modal
+(function(){
+  var overlay=document.getElementById('terms-modal');
+  var openBtn=document.getElementById('open-terms');
+  var closeBtn=document.getElementById('close-terms');
+  if(!overlay||!openBtn)return;
+  function openModal(e){
+    if(e)e.preventDefault();
+    overlay.hidden=false;
+    requestAnimationFrame(function(){overlay.classList.add('open')});
+    document.body.style.overflow='hidden';
+    closeBtn&&closeBtn.focus();
+  }
+  function closeModal(){
+    overlay.classList.remove('open');
+    document.body.style.overflow='';
+    setTimeout(function(){overlay.hidden=true},250);
+    openBtn.focus();
+  }
+  openBtn.addEventListener('click',openModal);
+  closeBtn&&closeBtn.addEventListener('click',closeModal);
+  overlay.addEventListener('click',function(e){if(e.target===overlay)closeModal()});
+  document.addEventListener('keydown',function(e){
+    if(e.key==='Escape'&&overlay.classList.contains('open'))closeModal();
+  });
+})();
 })();
 </script>
 </body>
