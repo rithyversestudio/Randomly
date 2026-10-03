@@ -315,15 +315,19 @@ footer a.terms-link:hover{opacity:1}
 @keyframes cIdle{from{transform:translateY(2px) rotateZ(-.6deg)}to{transform:translateY(-4px) rotateZ(.6deg)}}
 .cscene.shiver .cdeck{animation:cShiver .08s linear infinite}
 @keyframes cShiver{0%,100%{transform:translate(-1px,0) rotateZ(-.5deg)}50%{transform:translate(1px,-1px) rotateZ(.5deg)}}
-.dc{position:absolute;left:0;top:0;width:108px;height:152px;margin:-76px 0 0 -54px;border-radius:12px;transform:translate(calc(var(--i)*-1.5px),calc(var(--i)*-2px));transition:transform .4s cubic-bezier(.3,1,.4,1);background:repeating-linear-gradient(45deg,rgba(255,255,255,.12) 0 1.5px,transparent 1.5px 9px),repeating-linear-gradient(-45deg,rgba(255,255,255,.12) 0 1.5px,transparent 1.5px 9px),linear-gradient(155deg,var(--brand),var(--brand2));border:1px solid rgba(255,255,255,.3);box-shadow:1px 3px 6px rgba(20,20,70,.22);will-change:transform}
-.cscene.lift .dc{transform:translate(calc(var(--i)*-2.4px),calc(var(--i)*-3.6px))}
+.dc{position:absolute;left:0;top:0;width:108px;height:152px;margin:-76px 0 0 -54px;border-radius:12px;transform:rotateZ(0deg) translate3d(calc(var(--i)*-1.5px),calc(var(--i)*-2px),0px);transform-origin:50% 118%;transition:transform .4s cubic-bezier(.3,1,.4,1),opacity .45s,filter .25s;background:repeating-linear-gradient(45deg,rgba(255,255,255,.12) 0 1.5px,transparent 1.5px 9px),repeating-linear-gradient(-45deg,rgba(255,255,255,.12) 0 1.5px,transparent 1.5px 9px),linear-gradient(155deg,var(--brand),var(--brand2));border:1px solid rgba(255,255,255,.3);box-shadow:1px 3px 6px rgba(20,20,70,.22);will-change:transform}
 .dc:nth-child(odd){filter:brightness(.86)}
 .dc::after{content:"";position:absolute;inset:7px;border:1.5px solid rgba(255,255,255,.45);border-radius:8px}
-.cdraw{position:absolute;left:0;top:0;width:108px;height:152px;margin:-76px 0 0 -54px;transform-style:preserve-3d;transform:translate3d(-14.3px,-18.7px,3px);transition:transform .55s cubic-bezier(.25,.8,.25,1)}
-.cscene.lift .cdraw{transform:translate3d(-26.4px,-39.6px,3px)}
-.cscene.peel .cdraw{transform:translate3d(-6px,-36px,14px) rotateZ(4deg) rotateX(-2deg);transition-duration:.38s;transition-timing-function:cubic-bezier(.25,.8,.25,1)}
-.cscene.s1 .cdraw{transform:translate3d(-6px,-72px,28px) rotateZ(-2.5deg) rotateX(-5deg);transition-duration:.58s;transition-timing-function:cubic-bezier(.22,.85,.3,1)}
-.cscene.s2 .cdraw{transform:translate3d(0,-18px,130px) rotateZ(0deg) rotateX(0deg);transition-duration:.65s;transition-timing-function:cubic-bezier(.2,.8,.25,1)}
+.cdraw{position:absolute;left:0;top:0;width:108px;height:152px;margin:-76px 0 0 -54px;transform-style:preserve-3d;transform:rotateZ(0deg) translate3d(-14.3px,-18.7px,3px);transform-origin:50% 118%;transition:transform .55s cubic-bezier(.25,.8,.25,1),opacity .45s}
+/* --- new draw: the deck blooms into a fan, a light hops across it, the chosen card rises out --- */
+.cscene.fan .dc,.cscene.fan .cdraw{--ly:0px;--lz:0px;transform:rotateZ(calc((var(--p) - 5.5)*5.4deg)) translate3d(0,var(--ly),calc(var(--p)*1.5px + var(--lz)));transition:transform .62s cubic-bezier(.22,1.1,.3,1) calc(var(--p)*26ms),opacity .45s,filter .25s}
+.cscene.fan.armed .dc,.cscene.fan.armed .cdraw{transition:transform .2s cubic-bezier(.3,1.25,.4,1),opacity .45s,filter .2s}
+.cscene.fan .dc.hot,.cscene.fan .cdraw.hot{--ly:-22px;--lz:40px}
+.cscene.fan .dc.hot{filter:brightness(1.28) saturate(1.25);box-shadow:0 0 0 2px rgba(255,255,255,.8),0 0 20px var(--glow),6px 12px 20px rgba(20,20,70,.35)}
+.cscene.fan .cdraw.hot .cback{box-shadow:0 0 0 2px rgba(255,255,255,.8),0 0 24px var(--glow)}
+.cscene.fan.pick .dc{--ly:56px;opacity:0;filter:brightness(.7);transition:transform .55s cubic-bezier(.4,0,.6,1),opacity .4s,filter .4s}
+.cscene.fan.pick .cdraw{transform:rotateZ(0deg) translate3d(0,-46px,70px);transition:transform .56s cubic-bezier(.2,.9,.25,1)}
+.cscene.s2 .cdraw,.cscene.fan.s2 .cdraw{transform:rotateZ(0deg) translate3d(0,-18px,130px);transition:transform .62s cubic-bezier(.2,.8,.25,1)}
 .cflip{position:absolute;inset:0;transform-style:preserve-3d}
 .cflip.go{animation:cFlip .45s cubic-bezier(.33,.1,.2,1) forwards}
 .cflip.done{transform:rotateY(180deg)}
@@ -771,7 +775,7 @@ function sfxCrate(){
   noise({t:2.77,d:.7,v:.28,f:400,f2:7000,type:'highpass',a:.15});tone({f:140,f2:45,t:2.77,d:.6,v:.5});
   [660,880,1320].forEach(function(f,i){tone({f:f,t:2.8+i*.06,d:.7,v:.05})});
   tone({f:300,f2:900,t:3.42,d:.65,v:.07});
-  tone({f:90,f2:60,t:4.07,d:.25,v:.25});chime(4.07);
+  tone({f:90,f2:60,t:4.07,d:.25,v:.25});sfxReveal(4.07);
 }
 function sfxMachine(){
   // power-up
@@ -789,31 +793,32 @@ function sfxMachine(){
   // lock
   tone({f:120,f2:40,t:3.55,d:.35,v:.35});
   tone({f:1600,t:3.58,d:.06,v:.12,type:'square'});
-  chime(3.7);
 }
 function sfxCard(){
-  // prep: soft hum while the deck lifts
-  tone({f:110,f2:190,d:.5,v:.04,type:'triangle'});
-  noise({t:.05,d:.35,v:.03,f:500,f2:1400,a:.5});
-  // fast shuffle: dense riffle flutter with a thwip at each round
-  [.45,.64,.83].forEach(function(t){noise({t:t,d:.22,v:.05,f:900,f2:2800,type:'bandpass',a:.3})});
-  for(var t=.47;t<1.3;t+=.05)noise({t:t,d:.035,v:.028,f:2600+Math.random()*1800,type:'highpass',a:.3});
-  // slowdown
-  [1.2,1.38].forEach(function(t){noise({t:t,d:.3,v:.045,f:700,f2:1900,type:'bandpass',a:.35})});
-  for(var g=1.3,st=.07;g<1.8;g+=st,st+=.015)noise({t:g,d:.04,v:.02,f:2200+Math.random()*1200,type:'highpass',a:.3});
-  // settle
-  tone({f:180,f2:110,t:1.85,d:.18,v:.05,type:'triangle'});noise({t:1.85,d:.12,v:.03,f:400,f2:900,a:.4});
-  // card separates, slides up, moves toward the viewer
-  noise({t:2.2,d:.2,v:.04,f:1200,f2:2400,a:.3});
-  noise({t:2.4,d:.4,v:.07,f:700,f2:2600,type:'bandpass',a:.4});
-  noise({t:2.8,d:.45,v:.06,f:500,f2:1800,type:'bandpass',a:.4});
-  tone({f:220,f2:330,t:2.8,d:.4,v:.03,type:'triangle'});
-  // flip
-  noise({t:3.58,d:.6,v:.06,f:900,f2:2400,type:'bandpass',a:.35});
-  tone({f:1200,t:4.05,d:.03,v:.05,type:'square'});
-  // soft impact + shimmer
-  tone({f:140,f2:50,t:4.3,d:.45,v:.28});
-  [660,990,1320].forEach(function(f,i){tone({f:f,t:4.32+i*.05,d:.7,v:.035})});
+  var t=1.42;
+  // deck gathers
+  tone({f:110,f2:190,d:.42,v:.04,type:'triangle'});
+  noise({t:.05,d:.3,v:.03,f:500,f2:1400,a:.5});
+  // the fan opens: a quick riffle across 12 cards
+  noise({t:.42,d:.55,v:.05,f:900,f2:3400,type:'bandpass',a:.4});
+  for(var i=0;i<12;i++)noise({t:.42+i*.026,d:.04,v:.03,f:2200+i*160,type:'highpass',a:.3});
+  tone({f:200,f2:420,t:.42,d:.5,v:.025,type:'triangle'});
+  // the light hopping across the fan: a tick per hop, pitch follows the card
+  CARD_HOPS.forEach(function(h){
+    tone({f:420+h[0]*58,t:t,d:.05,v:.035,type:'triangle'});
+    noise({t:t,d:.03,v:.02,f:3000,type:'highpass',a:.3});
+    t+=h[1]/1000;
+  });
+  // chosen: lock-in ping, the rest drops away, card rises
+  tone({f:880,f2:1320,t:t,d:.22,v:.05,type:'triangle'});tone({f:150,f2:60,t:t,d:.3,v:.18});
+  noise({t:t,d:.5,v:.06,f:500,f2:3000,type:'bandpass',a:.4});
+  // card sweeps toward the viewer
+  noise({t:t+.56,d:.5,v:.07,f:400,f2:2200,type:'bandpass',a:.4});
+  tone({f:220,f2:330,t:t+.56,d:.4,v:.03,type:'triangle'});
+  // flip + soft impact as the number lands
+  var f=t+.56+.62+.06;
+  noise({t:f,d:.45,v:.06,f:900,f2:2400,type:'bandpass',a:.35});
+  tone({f:140,f2:50,t:f+.46,d:.45,v:.28});
 }
 function build(){
   function f(c,t,w,h,mx,my){return '<i class="cf '+c+'" style="--t:'+t+';width:'+w+'px;height:'+h+'px;margin:'+my+'px 0 0 '+mx+'px"></i>'}
@@ -941,12 +946,15 @@ async function runMachine(n,min,max){
   panels.forEach(function(p){p.classList.add('lit')});
   await sleep(550);
 }
+var cardEls=[];
 function cardReset(){
   var sc=$('cscene'),nf=$('cnumf');
   document.querySelectorAll('#cdeck .dc,#cdraw').forEach(function(e){if(e.getAnimations)e.getAnimations().forEach(function(a){a.cancel()})});
   sc.className='cscene nt ready idle';
   $('cflip').className='cflip';
   nf.className='cnumf';nf.textContent='';nf.style.fontSize='';
+  var dcs=document.querySelectorAll('#cdeck .dc'),k=0;cardEls=[];
+  for(var p=0;p<12;p++){var e=(p===6)?$('cdraw'):dcs[k++];e.style.setProperty('--p',p);e.classList.remove('hot');cardEls[p]=e}
   void sc.offsetWidth;
   sc.classList.remove('nt');
 }
@@ -955,87 +963,37 @@ function cardShow(n){
   nf.style.fontSize=Math.max(15,Math.min(44,Math.floor(88/(t.length*.6))))+'px';
   nf.textContent=t;nf.classList.add('show');
 }
-var cardBag=null;
-function cardShuffle(){
-  var L=document.querySelectorAll('#cdeck .dc'),dkm=dk();
-  var amp=Math.min(1,Math.max(.55,$('stage').clientWidth/440));
-  var sh0='1px 3px 6px '+(dkm?'rgba(0,0,0,.35)':'rgba(20,20,70,.22)');
-  var sh1='10px 18px 28px '+(dkm?'rgba(0,0,0,.55)':'rgba(60,60,140,.35)');
-  // L has 11 .dc (indices 0-10); keep bottom card (0) static, animate 1-10 + draw card
-  var refs=[];for(var i=1;i<=11;i++)refs.push({i:i,el:i===11?$('cdraw'):L[i],top:i===11,used:0,busy:0});
-  function pick(n,t){
-    var c=refs.map(function(r){return {r:r,k:(r.busy>t?1000:0)+r.used*12+Math.random()}});
-    c.sort(function(a,b){return a.k-b.k});
-    return c.slice(0,n).map(function(x){return x.r});
-  }
-  // Wider unique lanes + higher z so cards never visually stack on top of each other
-  function round(t0,dur,n,spread,stag,blur){
-    var cards=pick(n,t0).sort(function(a,b){return a.i-b.i});
-    var first=Math.random()<.5?1:-1;
-    cards.forEach(function(c,k){
-      var side=(k%2===0)?first:-first;
-      var rank=Math.floor(k/2);
-      var bx=-c.i*2.4,by=-c.i*3.6,bz=c.top?3:0;
-      // Much larger horizontal separation so paths stay clear
-      var dist=amp*spread*(52+rank*42+Math.random()*6);
-      var x=bx+side*dist;
-      var y=by-18-rank*14+(Math.random()*10);
-      var z=20+k*18+rank*8;          // higher unique z-order while flying
-      var rz=side*(11+rank*9+Math.random()*3);
-      var rx=(Math.random()-.5)*6;
-      var ry=side*(4+Math.random()*5);
-      var x2=x+side*(8+Math.random()*6);
-      var rz2=rz+side*(3+Math.random()*3);
-      var T=function(x,y,z,rz,rx,ry){return 'translate3d('+x.toFixed(1)+'px,'+y.toFixed(1)+'px,'+z+'px) rotateZ('+rz.toFixed(1)+'deg) rotateX('+rx.toFixed(1)+'deg) rotateY('+ry.toFixed(1)+'deg)'};
-      var rest=T(bx,by,bz,0,0,0);
-      var kf=[{transform:rest,offset:0,easing:'cubic-bezier(.25,.8,.25,1)'},
-              {transform:T(x,y,z,rz,rx,ry),offset:.42,easing:'ease-in-out'},
-              {transform:T(x2,y-4,z,rz2,rx,ry),offset:.6,easing:'cubic-bezier(.4,0,.25,1)'},
-              {transform:rest,offset:1}];
-      if(!c.top){
-        var b=c.i%2===0?.86:1;
-        var f0='brightness('+b+') blur(0px)',f1='brightness('+(b*1.12).toFixed(2)+') blur('+blur+'px)';
-        kf[0].filter=kf[3].filter=f0;kf[1].filter=f1;kf[2].filter='brightness('+(b*1.06).toFixed(2)+') blur('+(blur*.4).toFixed(1)+'px)';
-        kf[0].boxShadow=kf[3].boxShadow=sh0;kf[1].boxShadow=kf[2].boxShadow=sh1;
-      }
-      // Raise stacking context while the card is in the air
-      var d=t0+k*stag;
-      c.el.animate(kf,{duration:dur,delay:d,fill:'none'});
-      c.used++;c.busy=d+dur+40;
-    });
-  }
-  // Fewer cards per round + wider spread + more stagger = clean non-overlapping shuffle
-  round(0,400,2,1.15,70,0.8);
-  round(300,420,2,1.25,75,0.7);
-  round(620,440,2,1.3,80,0.5);
-  round(960,400,2,1.2,85,0.35);
-}
+// [fan position, ms the light stays there]: a fast sweep across all 12 cards, then it rocks back and settles on position 6 (the drawn card)
+var CARD_HOPS=[[0,48],[1,48],[2,48],[3,48],[4,48],[5,48],[6,48],[7,48],[8,48],[9,48],[10,48],[11,48],[10,70],[9,85],[8,105],[7,130],[6,170],[5,240],[6,330]];
 async function runCard(min,max){
-  var sc=$('cscene'),fl=$('cflip');
+  var sc=$('cscene'),fl=$('cflip'),hot=null;
   cardReset();
+  var T=performance.now();function till(ms){return sleep(Math.max(0,ms-(performance.now()-T)))}   // absolute timeline so the sound stays in sync
   dust(10);
-  // deck prepares: lifts and separates, camera pushes in
-  sc.classList.remove('idle');sc.classList.add('push','lift');
-  await sleep(520);
-  // shuffle phase
-  sc.classList.add('shuf');
-  cardShuffle();
-  await sleep(1380);
-  // deck settles smoothly
-  sc.classList.remove('lift','shuf');
-  await sleep(420);
-  // card peels off, rises, then drifts toward the viewer
-  sc.classList.add('peel');
-  await sleep(380);
-  sc.classList.add('s1');
-  await sleep(560);
+  // camera pushes in on the resting deck
+  sc.classList.remove('idle');sc.classList.add('push');
+  await till(420);
+  // the deck blooms into a fan, one card after another
+  sc.classList.add('fan','shuf');
+  await till(1420);
+  sc.classList.add('armed');
+  // a light hops across the fan, then rocks back and forth before settling on the chosen card
+  var at=1420;
+  for(var i=0;i<CARD_HOPS.length;i++){
+    if(hot)hot.classList.remove('hot');
+    hot=cardEls[CARD_HOPS[i][0]];hot.classList.add('hot');
+    at+=CARD_HOPS[i][1];await till(at);
+  }
+  // chosen: the rest of the fan sinks away, the card rises out, camera straightens
+  sc.classList.add('pick','s1');sparks(8,1);
+  await till(at+560);
+  // the card sweeps toward the viewer
   sc.classList.add('s2');
-  await sleep(650);
-  // brief hold, then smooth 3D flip
-  await sleep(100);
+  await till(at+560+620+60);
+  // smooth 3D flip
   fl.classList.add('go');
-  await sleep(460);
-  // number fades in gently
+  await till(at+560+620+60+460);
+  // number fades in
   var n=rnd(min,max);
   cardShow(n);
   sc.classList.add('final');
@@ -1046,26 +1004,93 @@ async function runCard(min,max){
 
 /* ===== Cloud Rain reveal (animation only; reveal() picks the number BEFORE this runs) ===== */
 var R={run:false,off:false,cur:0,t0:0,last:0,w:0,h:0,dpr:1,drops:[],bolts:[],raf:0},rainState='idle',rainSkip=null,rainSnd=null;
+var BN=null,TIR=null;
+function brownBuf(a){if(BN)return BN;var n=a.sampleRate*4,l=0;BN=a.createBuffer(1,n,a.sampleRate);var x=BN.getChannelData(0);for(var i=0;i<n;i++){l=(l+.02*(Math.random()*2-1))/1.02;x[i]=l*3.5}return BN}
+function thunderIR(a){if(TIR)return TIR;var n=Math.floor(a.sampleRate*3);TIR=a.createBuffer(2,n,a.sampleRate);for(var c=0;c<2;c++){var x=TIR.getChannelData(c),lp=0;for(var i=0;i<n;i++){lp+=.12*((Math.random()*2-1)-lp);x[i]=lp*Math.pow(1-i/n,2.6)*2.2}}return TIR}
+// One realistic thunderclap: sharp crack + crackle, then a deep rolling rumble that swells and fades unevenly
+function thunder(a,out,t,vol,dur){
+  var nb=NB,bn=brownBuf(a);
+  function src(buf,loop){var s=a.createBufferSource();s.buffer=buf;s.loop=!!loop;return s}
+  // 1) the crack: very short broadband snap
+  var c=src(nb,true),cf=a.createBiquadFilter(),cg=a.createGain();
+  cf.type='highpass';cf.frequency.setValueAtTime(1200,t);cf.frequency.exponentialRampToValueAtTime(400,t+.25);
+  cg.gain.setValueAtTime(.0001,t);cg.gain.exponentialRampToValueAtTime(vol*1.3,t+.004);cg.gain.exponentialRampToValueAtTime(.0001,t+.28);
+  c.connect(cf);cf.connect(cg);cg.connect(out);c.start(t,Math.random());c.stop(t+.3);
+  // 2) ripping crackle right after the crack
+  for(var i=0;i<7;i++){var ct=t+.03+Math.random()*.4,cs=src(nb,true),cb=a.createBiquadFilter(),cgn=a.createGain();
+    cb.type='bandpass';cb.frequency.value=700+Math.random()*2600;cb.Q.value=.8;
+    cgn.gain.setValueAtTime(.0001,ct);cgn.gain.exponentialRampToValueAtTime(vol*(.25+Math.random()*.4),ct+.004);cgn.gain.exponentialRampToValueAtTime(.0001,ct+.05+Math.random()*.06);
+    cs.connect(cb);cb.connect(cgn);cgn.connect(out);cs.start(ct,Math.random());cs.stop(ct+.14)}
+  // 3) the rolling rumble: brown noise, filter closing from mids down to deep bass, uneven swelling
+  var rt=t+.07,r=src(bn,true),rf=a.createBiquadFilter(),rg=a.createGain(),top=vol*1.5;
+  rf.type='lowpass';rf.Q.value=.8;rf.frequency.setValueAtTime(1000,rt);rf.frequency.exponentialRampToValueAtTime(80,t+dur);
+  rg.gain.setValueAtTime(0,rt);rg.gain.linearRampToValueAtTime(top,rt+.15);
+  var k=rt+.15;
+  while(k<t+dur-.8){k+=.12+Math.random()*.35;var p=(k-rt)/dur,pk=top*Math.exp(-2.1*p)*(.5+.5*Math.random());rg.gain.linearRampToValueAtTime(pk,k);k+=.1+Math.random()*.2;rg.gain.linearRampToValueAtTime(pk*.45,k)}
+  rg.gain.linearRampToValueAtTime(0,t+dur);
+  r.connect(rf);rf.connect(rg);rg.connect(out);r.start(rt,Math.random()*2);r.stop(t+dur+.1);
+  // 4) sub-bass boom you feel in your chest
+  var o=a.createOscillator(),og=a.createGain();
+  o.type='sine';o.frequency.setValueAtTime(75,rt);o.frequency.exponentialRampToValueAtTime(32,rt+dur*.7);
+  og.gain.setValueAtTime(.0001,rt);og.gain.exponentialRampToValueAtTime(vol*1.1,rt+.08);og.gain.exponentialRampToValueAtTime(.0001,rt+dur*.7);
+  o.connect(og);og.connect(out);o.start(rt);o.stop(rt+dur*.7+.05);
+}
+var HIR=null,RAINM=null;
+function hallIR(a){if(HIR&&HIR.sampleRate===a.sampleRate)return HIR;var sr=a.sampleRate,n=Math.floor(sr*3.4);HIR=a.createBuffer(2,n,sr);for(var c=0;c<2;c++){var x=HIR.getChannelData(c),lp=0;for(var i=0;i<n;i++){var p=i/n;lp+=(.6-.52*p)*((Math.random()*2-1)-lp);x[i]=lp*Math.pow(1-p,2.4)*Math.min(1,i/(sr*.015))*1.6}}return HIR}
+// Cinematic number-reveal hit: sub impact + thump, air burst, warm Dadd9 pad bloom, bell sparkle, all through a hall reverb + limiter
+function sfxReveal(t0,duck){
+  var a=ac();if(!a)return;
+  if(!NB){NB=a.createBuffer(1,a.sampleRate,a.sampleRate);var q=NB.getChannelData(0);for(var i=0;i<q.length;i++)q[i]=Math.random()*2-1}
+  var t=a.currentTime+(t0||0);
+  // duck the storm under the hit, then let it swell back
+  if(duck&&RAINM&&RAINM.gain.value>.9){var g0=RAINM.gain;g0.cancelScheduledValues(t);g0.setValueAtTime(1,t);g0.linearRampToValueAtTime(.3,t+.1);g0.linearRampToValueAtTime(1,t+2.8)}
+  var comp=a.createDynamicsCompressor();comp.threshold.value=-12;comp.knee.value=12;comp.ratio.value=5;comp.attack.value=.002;comp.release.value=.25;
+  var mst=a.createGain();mst.gain.value=.85;comp.connect(mst);mst.connect(a.destination);
+  var dry=a.createGain();dry.connect(comp);
+  var send=a.createGain(),cv=a.createConvolver(),wet=a.createGain();cv.buffer=hallIR(a);wet.gain.value=.5;send.connect(cv);cv.connect(wet);wet.connect(comp);
+  function wire(n,pan,rv){var l=n;if(pan&&a.createStereoPanner){var p=a.createStereoPanner();p.pan.value=pan;n.connect(p);l=p}l.connect(dry);if(rv){var sg=a.createGain();sg.gain.value=rv;l.connect(sg);sg.connect(send)}}
+  function V(type,f,st,d,v,pan,at,rv,f2){var o=a.createOscillator(),g=a.createGain();o.type=type;o.frequency.setValueAtTime(f,st);if(f2)o.frequency.exponentialRampToValueAtTime(f2,st+d);
+    g.gain.setValueAtTime(.0001,st);g.gain.exponentialRampToValueAtTime(v,st+(at||.02));g.gain.exponentialRampToValueAtTime(.0001,st+d);o.connect(g);wire(g,pan,rv);o.start(st);o.stop(st+d+.05)}
+  function N(type,f,f2,st,d,v,at,q2,rv,pan){var s=a.createBufferSource(),fl=a.createBiquadFilter(),g=a.createGain();s.buffer=NB;s.loop=true;fl.type=type;fl.Q.value=q2||.7;fl.frequency.setValueAtTime(f,st);if(f2)fl.frequency.exponentialRampToValueAtTime(f2,st+d);
+    g.gain.setValueAtTime(.0001,st);g.gain.exponentialRampToValueAtTime(v,st+d*(at||.2));g.gain.exponentialRampToValueAtTime(.0001,st+d);s.connect(fl);fl.connect(g);wire(g,pan,rv);s.start(st,Math.random());s.stop(st+d+.05)}
+  // 1) impact: sub drop, punch harmonic, soft thump
+  V('sine',82,t,1.5,.4,0,.01,0,32);
+  V('sine',164,t,.45,.13,0,.008,0,70);
+  N('lowpass',2600,140,t,.5,.3,.04,.8,.25);
+  // 1b) soft braam: detuned saws through a filter that blooms open, for trailer-style weight
+  [[73.42,0],[73.42*1.007,-.3],[146.83*.996,.3]].forEach(function(b){
+    var o=a.createOscillator(),fl=a.createBiquadFilter(),g=a.createGain();
+    o.type='sawtooth';o.frequency.setValueAtTime(b[0],t);
+    fl.type='lowpass';fl.Q.value=2;fl.frequency.setValueAtTime(260,t);fl.frequency.exponentialRampToValueAtTime(1600,t+.18);fl.frequency.exponentialRampToValueAtTime(220,t+1.6);
+    g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(.05,t+.04);g.gain.exponentialRampToValueAtTime(.0001,t+1.7);
+    o.connect(fl);fl.connect(g);wire(g,b[1],.5);o.start(t);o.stop(t+1.75)});
+  // 2) air burst / sheen that opens up and falls away
+  N('bandpass',9000,500,t,1.5,.1,.12,.6,.55);
+  // 3) warm pad bloom, D major add9, slightly detuned and spread across the stereo field
+  [[146.83,.1,0],[220,.08,0],[293.66,.085,-.25],[369.99,.07,.3],[440,.06,-.35],[659.25,.04,.4]].forEach(function(n,i){
+    var st=t+.02+i*.018,ty=n[0]<300?'sine':'triangle';
+    V(ty,n[0],st,3,n[1],n[2],.06,.7);V(ty,n[0]*1.004,st,3,n[1]*.7,-n[2],.06,.7)});
+  // 4) bell sparkle rising up the chord (with inharmonic partials for the metallic ring)
+  [587.33,739.99,880,1174.66,1479.98].forEach(function(f,i){
+    var st=t+.07+i*.08,p=i%2?.5:-.5;
+    V('sine',f,st,2,.075-i*.008,p,.005,.9);V('sine',f*2.76,st,.8,.022,-p,.004,.9);V('sine',f*5.4,st,.35,.008,p,.003,.9)});
+  // 5) faint high shimmer that lingers after the hit
+  V('sine',2349.3,t+.5,2.2,.02,.2,.25,1);V('sine',1760,t+.45,2.4,.02,-.2,.25,1);
+}
 function sfxRain(){
   var a=ac();if(!a)return null;
   if(!NB){NB=a.createBuffer(1,a.sampleRate,a.sampleRate);var x=NB.getChannelData(0);for(var i=0;i<x.length;i++)x[i]=Math.random()*2-1}
-  var t=a.currentTime,m=a.createGain();m.gain.value=1;m.connect(a.destination);
+  var t=a.currentTime,m=a.createGain();m.gain.value=1;m.connect(a.destination);RAINM=m;
   var s=a.createBufferSource(),f=a.createBiquadFilter(),g=a.createGain();
   s.buffer=NB;s.loop=true;f.type='bandpass';f.frequency.value=3500;f.Q.value=.4;
   g.gain.setValueAtTime(.0001,t);g.gain.setValueAtTime(.0001,t+.5);g.gain.exponentialRampToValueAtTime(.012,t+.7);
   g.gain.exponentialRampToValueAtTime(.11,t+3.6);g.gain.exponentialRampToValueAtTime(.0001,t+4.6);
   s.connect(f);f.connect(g);g.connect(m);s.start(t+.5);s.stop(t+4.7);
-  // thunder rumbles, each a little after its lightning strike
-  [[2.15,.08,1.3],[2.85,.12,1.5],[3.35,.2,1.7],[3.65,.16,1.5],[4.15,.34,2.6]].forEach(function(r){
-    var s3=a.createBufferSource(),f3=a.createBiquadFilter(),g3=a.createGain(),ct=t+r[0]-.15;   // sharp crack as the bolt hits
-    s3.buffer=NB;f3.type='highpass';f3.frequency.value=1800;
-    g3.gain.setValueAtTime(.0001,ct);g3.gain.exponentialRampToValueAtTime(r[1]*1.1,ct+.01);g3.gain.exponentialRampToValueAtTime(.0001,ct+.16);
-    s3.connect(f3);f3.connect(g3);g3.connect(m);s3.start(ct);s3.stop(ct+.2);
-    var s2=a.createBufferSource(),f2=a.createBiquadFilter(),g2=a.createGain(),st=t+r[0];
-    s2.buffer=NB;s2.loop=true;f2.type='lowpass';f2.frequency.setValueAtTime(240,st);f2.frequency.exponentialRampToValueAtTime(70,st+r[2]);
-    g2.gain.setValueAtTime(.0001,st);g2.gain.exponentialRampToValueAtTime(r[1],st+.18);g2.gain.exponentialRampToValueAtTime(.0001,st+r[2]);
-    s2.connect(f2);f2.connect(g2);g2.connect(m);s2.start(st);s2.stop(st+r[2]+.1);
-  });
+  // thunder: a limiter + distant-room reverb, then one clap per lightning strike (times match the visual strikes)
+  var comp=a.createDynamicsCompressor();comp.threshold.value=-14;comp.ratio.value=6;comp.attack.value=.003;comp.release.value=.3;comp.connect(m);
+  var tbus=a.createGain();tbus.connect(comp);
+  var cvb=a.createConvolver();cvb.buffer=thunderIR(a);var wet=a.createGain();wet.gain.value=.6;tbus.connect(cvb);cvb.connect(wet);wet.connect(comp);
+  [[2.0,.12,2.0],[2.7,.16,2.2],[3.2,.22,2.4],[3.5,.2,2.2],[4.0,.38,4.2]].forEach(function(r){thunder(a,tbus,t+r[0],r[1],r[2])});
   return {stop:function(){try{var n=a.currentTime;m.gain.cancelScheduledValues(n);m.gain.setValueAtTime(m.gain.value,n);m.gain.linearRampToValueAtTime(0,n+.2)}catch(e){}}};
 }
 function rainSize(){
@@ -1212,7 +1237,7 @@ async function reveal(){
   last=n;lastMode=m;
   $('method').textContent=names[m];
   big.className='big';void big.offsetWidth;big.classList.add('pop');
-  big.textContent=fmt(n);if(m!=='crate'||reduce.matches)chime(0);
+  big.textContent=fmt(n);if(m==='rain')sfxReveal(0,true);else if(m!=='crate'||reduce.matches)sfxReveal(0);
   setHint(function(){return RL.t('between',fmt(r.min),fmt(r.max))});
   lock(false);setTimeout(function(){$('stage').classList.remove('focus')},700);
 }
