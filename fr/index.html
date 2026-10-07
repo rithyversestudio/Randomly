@@ -318,6 +318,28 @@ footer.site-footer{margin-top:auto;padding:0;text-align:left;color:var(--mute);f
 .faq-toggle .t-less{display:none}
 .faq-toggle[aria-expanded="true"] .t-all{display:none}
 .faq-toggle[aria-expanded="true"] .t-less{display:inline}
+/* ===== Collapsible sections ===== */
+.info details.sec{border-bottom:0;border-top:1px solid var(--line)}
+.info section.block:first-child details.sec,.info .ranges details.sec:first-child{border-top:0}
+.info details.sec>summary{padding:16px 0;gap:16px;cursor:pointer;border-radius:8px}
+.info details.sec>summary h2{margin:0;font-size:1.15rem;line-height:1.3;letter-spacing:-.01em;font-weight:700;color:var(--ink)}
+.info details.sec>summary::after{content:"";flex:none;width:9px;height:9px;border-right:2px solid var(--brand);border-bottom:2px solid var(--brand);transform:translateY(-2px) rotate(45deg);transition:transform .25s;font-size:0}
+.info details.sec[open]>summary::after{transform:translateY(2px) rotate(-135deg)}
+.info details.sec>summary:hover h2{color:var(--brand)}
+.info details.sec>summary:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
+.info details.sec>.sec-body{padding:0 0 20px;animation:secIn .25s ease}
+.info details.sec>.sec-body>p{padding:0}
+.info .ranges.sec-list{display:block;padding:0;border-top:1px solid var(--line)}
+.info .ranges .rcard{border:0}
+.info .ranges .rcard details.sec{border-top:1px solid var(--line)}
+.info .ranges .rcard:first-child details.sec{border-top:0}
+.info .ranges details.sec>summary h2{font-size:1.05rem}
+.info .ranges details.sec>.sec-body{padding-bottom:16px}
+.info .block{padding:0;border-top:0}
+.info .faq{border-top:0;padding-top:0}
+.info .faq details.sec .faq-more{margin-top:18px}
+.info .faq details:not(.sec)>summary{font-size:.95rem}
+@keyframes secIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
 .info .terms{border-top:1px solid var(--line);padding-top:20px}
 .info .terms h2{margin-bottom:4px}
 .info .terms .updated{font-size:.85rem;color:var(--mute);margin:0 0 16px}
@@ -660,37 +682,41 @@ html[dir=rtl] body{font-family:system-ui,-apple-system,'Segoe UI',Tahoma,'Noto S
 
 <div class="info">
 <section class="block" aria-labelledby="about-h">
-<h2 id="about-h" data-tr="h1">Générateur de nombres aléatoires</h2>
-<p data-tr="about_p">Randomly est un générateur de nombres aléatoires gratuit, utilisable en ligne dans n'importe quel navigateur. Définissez un minimum et un maximum et générez instantanément des nombres aléatoires, d'un tirage rapide de 1 à 100 jusqu'à 1 000 000.</p>
-<p style="margin-top:8px" data-trh="about_p2">Utilisez-le comme sélecteur de nombres aléatoires en ligne pour des jeux, des tours de parole en classe, des activités de groupe ou des décisions du quotidien. Choisissez une animation de révélation, appuyez une fois et découvrez le résultat sur téléphone, tablette ou ordinateur, en mode clair ou sombre. Nouveau dans le domaine ? Lisez le <a href="/fr/guide/" data-page="guide">guide du générateur de nombres aléatoires</a>.</p>
+<details class="sec"><summary><h2 id="about-h" data-tr="h1">Générateur de nombres aléatoires</h2></summary>
+<div class="sec-body"><p data-tr="about_p">Randomly est un générateur de nombres aléatoires gratuit, utilisable en ligne dans n'importe quel navigateur. Définissez un minimum et un maximum et générez instantanément des nombres aléatoires, d'un tirage rapide de 1 à 100 jusqu'à 1 000 000.</p>
+<p style="margin-top:8px" data-trh="about_p2">Utilisez-le comme sélecteur de nombres aléatoires en ligne pour des jeux, des tours de parole en classe, des activités de groupe ou des décisions du quotidien. Choisissez une animation de révélation, appuyez une fois et découvrez le résultat sur téléphone, tablette ou ordinateur, en mode clair ou sombre. Nouveau dans le domaine ? Lisez le <a href="/fr/guide/" data-page="guide">guide du générateur de nombres aléatoires</a>.</p></div>
+</details>
 </section>
 
 <section class="block" aria-labelledby="how-h">
-<h2 id="how-h" data-tr="how_h">Comment générer un nombre aléatoire</h2>
-<ol>
+<details class="sec"><summary><h2 id="how-h" data-tr="how_h">Comment générer un nombre aléatoire</h2></summary>
+<div class="sec-body"><ol>
 <li data-trh="s1">Saisissez le nombre <strong>minimum</strong>.</li>
 <li data-trh="s2">Saisissez le nombre <strong>maximum</strong>.</li>
 <li data-trh="s3">Choisissez une <strong>animation de révélation</strong>.</li>
 <li data-trh="s4">Cliquez sur <strong>Révéler un nombre aléatoire</strong>.</li>
 </ol>
-<p style="margin-top:8px" data-tr="s_note">Vous obtiendrez un nombre entier aléatoire dans votre plage.</p>
+<p style="margin-top:8px" data-tr="s_note">Vous obtiendrez un nombre entier aléatoire dans votre plage.</p></div>
+</details>
 </section>
 
 <section class="block" aria-labelledby="use-h">
-<h2 id="use-h" data-tr="use_h">À quoi sert un générateur de nombres aléatoires ?</h2>
-<ul class="tags">
+<details class="sec"><summary><h2 id="use-h" data-tr="use_h">À quoi sert un générateur de nombres aléatoires ?</h2></summary>
+<div class="sec-body"><ul class="tags">
 <li data-tr="u1">Jeux</li><li data-tr="u2">Activités en classe</li><li data-tr="u3">Sélections aléatoires</li><li data-tr="u4">Un nombre entre deux valeurs</li><li data-tr="u5">Prise de décision</li><li data-tr="u6">Tirer un participant au hasard</li><li data-tr="u7">Valeurs de test</li><li data-tr="u8">Choix du quotidien</li>
-</ul>
+</ul></div>
+</details>
 </section>
 
-<div class="ranges">
-<section class="rcard" aria-labelledby="r100-h"><h2 id="r100-h" data-tr="r100_h">Générateur de nombres aléatoires 1–100</h2><p data-tr="r100_p">Appuyez sur la plage rapide 1–100 pour un tirage immédiat, pratique pour les jeux, les quiz et les tours de classe.</p></section>
-<section class="rcard" aria-labelledby="r1k-h"><h2 id="r1k-h" data-tr="r1k_h">Générateur de nombres aléatoires 1–1 000</h2><p data-tr="r1k_p">Tirez un nombre entier aléatoire de 1 à 1 000, pratique pour les grands groupes, les jeux plus vastes et les valeurs de test.</p></section>
-<section class="rcard" aria-labelledby="r1m-h"><h2 id="r1m-h" data-tr="r1m_h">Générateur de nombres aléatoires 1–1 000 000</h2><p data-tr="r1m_p">Générez des nombres aléatoires jusqu'à 1 000 000, ou définissez n'importe quel minimum et maximum.</p></section>
+<div class="ranges sec-list">
+<section class="rcard" aria-labelledby="r100-h"><details class="sec"><summary><h2 id="r100-h" data-tr="r100_h">Générateur de nombres aléatoires 1–100</h2></summary><div class="sec-body"><p data-tr="r100_p">Appuyez sur la plage rapide 1–100 pour un tirage immédiat, pratique pour les jeux, les quiz et les tours de classe.</p></div></details></section>
+<section class="rcard" aria-labelledby="r1k-h"><details class="sec"><summary><h2 id="r1k-h" data-tr="r1k_h">Générateur de nombres aléatoires 1–1 000</h2></summary><div class="sec-body"><p data-tr="r1k_p">Tirez un nombre entier aléatoire de 1 à 1 000, pratique pour les grands groupes, les jeux plus vastes et les valeurs de test.</p></div></details></section>
+<section class="rcard" aria-labelledby="r1m-h"><details class="sec"><summary><h2 id="r1m-h" data-tr="r1m_h">Générateur de nombres aléatoires 1–1 000 000</h2></summary><div class="sec-body"><p data-tr="r1m_p">Générez des nombres aléatoires jusqu'à 1 000 000, ou définissez n'importe quel minimum et maximum.</p></div></details></section>
 </div>
 
 <section class="faq" aria-labelledby="faq-h">
-<h2 id="faq-h" data-tr="faq_h">Questions fréquentes</h2>
+<details class="sec"><summary><h2 id="faq-h" data-tr="faq_h">Questions fréquentes</h2></summary>
+<div class="sec-body">
 <details><summary data-tr="q1">Qu'est-ce qu'un générateur de nombres aléatoires ?</summary><p data-tr="a1">Un outil qui choisit un nombre sans schéma prévisible. Randomly choisit un nombre entier entre le minimum et le maximum que vous définissez.</p></details>
 <details><summary data-tr="q7">Qu'est-ce qui distingue ce générateur de nombres aléatoires ?</summary><p data-tr="a7">La plupart des générateurs se contentent d'afficher un nombre. Randomly transforme le tirage en une courte révélation, avec cinq styles d'animation (Roue, Caisse mystère, Machine à nombres, Tirage de carte et Pluie de nuages), tout en gardant un résultat équitable. Il est aussi rapide, s'adapte à tous les écrans, et vous pouvez passer l'animation à tout moment.</p></details>
 <details><summary data-tr="q8">Pourquoi utiliser ce générateur de nombres aléatoires plutôt que d'autres outils en ligne ?</summary><p data-tr="a8">Il fait peu de choses, mais bien : un résultat équitable grâce à la source aléatoire cryptographique de votre navigateur, une interface moderne et épurée, une réponse instantanée et des animations facultatives qui rendent le tirage plus agréable. Rien à installer, aucun compte à créer.</p></details>
@@ -711,6 +737,8 @@ html[dir=rtl] body{font-family:system-ui,-apple-system,'Segoe UI',Tahoma,'Noto S
 </div>
 <div class="faq-more"><button type="button" class="faq-toggle" id="faq-toggle" aria-expanded="false" aria-controls="faq-extra" hidden><span class="t-all" data-tr="faq_all">Afficher toutes les questions</span><span class="t-less" data-tr="faq_less">Afficher moins de questions</span></button></div>
 <script>(function(){var box=document.getElementById("faq-extra"),btn=document.getElementById("faq-toggle");if(!box||!btn)return;box.hidden=true;btn.hidden=false;btn.addEventListener("click",function(){var open=btn.getAttribute("aria-expanded")!=="true";box.hidden=!open;btn.setAttribute("aria-expanded",open?"true":"false");if(!open){var o=box.querySelectorAll("details[open]");for(var i=0;i<o.length;i++)o[i].removeAttribute("open");try{btn.scrollIntoView({block:"nearest"})}catch(e){}}});})();</script>
+</div>
+</details>
 </section>
 </div>
 

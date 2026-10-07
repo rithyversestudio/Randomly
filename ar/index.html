@@ -318,6 +318,28 @@ footer.site-footer{margin-top:auto;padding:0;text-align:left;color:var(--mute);f
 .faq-toggle .t-less{display:none}
 .faq-toggle[aria-expanded="true"] .t-all{display:none}
 .faq-toggle[aria-expanded="true"] .t-less{display:inline}
+/* ===== Collapsible sections ===== */
+.info details.sec{border-bottom:0;border-top:1px solid var(--line)}
+.info section.block:first-child details.sec,.info .ranges details.sec:first-child{border-top:0}
+.info details.sec>summary{padding:16px 0;gap:16px;cursor:pointer;border-radius:8px}
+.info details.sec>summary h2{margin:0;font-size:1.15rem;line-height:1.3;letter-spacing:-.01em;font-weight:700;color:var(--ink)}
+.info details.sec>summary::after{content:"";flex:none;width:9px;height:9px;border-right:2px solid var(--brand);border-bottom:2px solid var(--brand);transform:translateY(-2px) rotate(45deg);transition:transform .25s;font-size:0}
+.info details.sec[open]>summary::after{transform:translateY(2px) rotate(-135deg)}
+.info details.sec>summary:hover h2{color:var(--brand)}
+.info details.sec>summary:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
+.info details.sec>.sec-body{padding:0 0 20px;animation:secIn .25s ease}
+.info details.sec>.sec-body>p{padding:0}
+.info .ranges.sec-list{display:block;padding:0;border-top:1px solid var(--line)}
+.info .ranges .rcard{border:0}
+.info .ranges .rcard details.sec{border-top:1px solid var(--line)}
+.info .ranges .rcard:first-child details.sec{border-top:0}
+.info .ranges details.sec>summary h2{font-size:1.05rem}
+.info .ranges details.sec>.sec-body{padding-bottom:16px}
+.info .block{padding:0;border-top:0}
+.info .faq{border-top:0;padding-top:0}
+.info .faq details.sec .faq-more{margin-top:18px}
+.info .faq details:not(.sec)>summary{font-size:.95rem}
+@keyframes secIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
 .info .terms{border-top:1px solid var(--line);padding-top:20px}
 .info .terms h2{margin-bottom:4px}
 .info .terms .updated{font-size:.85rem;color:var(--mute);margin:0 0 16px}
@@ -660,37 +682,41 @@ html[dir=rtl] body{font-family:system-ui,-apple-system,'Segoe UI',Tahoma,'Noto S
 
 <div class="info">
 <section class="block" aria-labelledby="about-h">
-<h2 id="about-h" data-tr="h1">مولد الأرقام العشوائية</h2>
-<p data-tr="about_p">Randomly مولد أرقام عشوائية مجاني يعمل عبر الإنترنت في أي متصفح. حدّد حدًا أدنى وحدًا أقصى وأنشئ أرقامًا عشوائية فورًا، من اختيار سريع بين 1 و100 إلى نطاق يصل إلى 1,000,000.</p>
-<p style="margin-top:8px" data-trh="about_p2">استخدمه كأداة لاختيار رقم عشوائي عبر الإنترنت في الألعاب، وأدوار الطلاب في الصف، والأنشطة الجماعية، والقرارات اليومية. اختر حركة الكشف، واضغط مرة واحدة، وشاهد النتيجة على أي هاتف أو جهاز لوحي أو حاسوب، في الوضع الفاتح أو الداكن. جديد على الأرقام العشوائية؟ اقرأ <a href="/ar/guide/" data-page="guide">دليل مولد الأرقام العشوائية</a>.</p>
+<details class="sec"><summary><h2 id="about-h" data-tr="h1">مولد الأرقام العشوائية</h2></summary>
+<div class="sec-body"><p data-tr="about_p">Randomly مولد أرقام عشوائية مجاني يعمل عبر الإنترنت في أي متصفح. حدّد حدًا أدنى وحدًا أقصى وأنشئ أرقامًا عشوائية فورًا، من اختيار سريع بين 1 و100 إلى نطاق يصل إلى 1,000,000.</p>
+<p style="margin-top:8px" data-trh="about_p2">استخدمه كأداة لاختيار رقم عشوائي عبر الإنترنت في الألعاب، وأدوار الطلاب في الصف، والأنشطة الجماعية، والقرارات اليومية. اختر حركة الكشف، واضغط مرة واحدة، وشاهد النتيجة على أي هاتف أو جهاز لوحي أو حاسوب، في الوضع الفاتح أو الداكن. جديد على الأرقام العشوائية؟ اقرأ <a href="/ar/guide/" data-page="guide">دليل مولد الأرقام العشوائية</a>.</p></div>
+</details>
 </section>
 
 <section class="block" aria-labelledby="how-h">
-<h2 id="how-h" data-tr="how_h">كيف تُنشئ رقمًا عشوائيًا</h2>
-<ol>
+<details class="sec"><summary><h2 id="how-h" data-tr="how_h">كيف تُنشئ رقمًا عشوائيًا</h2></summary>
+<div class="sec-body"><ol>
 <li data-trh="s1">أدخل الرقم <strong>الأدنى</strong>.</li>
 <li data-trh="s2">أدخل الرقم <strong>الأقصى</strong>.</li>
 <li data-trh="s3">اختر <strong>حركة الكشف</strong>.</li>
 <li data-trh="s4">اضغط على <strong>اكشف رقمًا عشوائيًا</strong>.</li>
 </ol>
-<p style="margin-top:8px" data-tr="s_note">ستحصل على عدد صحيح عشوائي ضمن نطاقك.</p>
+<p style="margin-top:8px" data-tr="s_note">ستحصل على عدد صحيح عشوائي ضمن نطاقك.</p></div>
+</details>
 </section>
 
 <section class="block" aria-labelledby="use-h">
-<h2 id="use-h" data-tr="use_h">فيمَ يمكن استخدام مولد الأرقام العشوائية؟</h2>
-<ul class="tags">
+<details class="sec"><summary><h2 id="use-h" data-tr="use_h">فيمَ يمكن استخدام مولد الأرقام العشوائية؟</h2></summary>
+<div class="sec-body"><ul class="tags">
 <li data-tr="u1">الألعاب</li><li data-tr="u2">أنشطة الصف</li><li data-tr="u3">الاختيارات العشوائية</li><li data-tr="u4">اختيار رقم بين قيمتين</li><li data-tr="u5">اتخاذ القرارات</li><li data-tr="u6">سحب مشارك عشوائي</li><li data-tr="u7">إنشاء قيم اختبار</li><li data-tr="u8">الاختيارات اليومية</li>
-</ul>
+</ul></div>
+</details>
 </section>
 
-<div class="ranges">
-<section class="rcard" aria-labelledby="r100-h"><h2 id="r100-h" data-tr="r100_h">مولد الأرقام العشوائية من 1 إلى 100</h2><p data-tr="r100_p">اضغط على النطاق السريع 1–100 للحصول على اختيار فوري، مناسب للألعاب والمسابقات وأدوار الصف.</p></section>
-<section class="rcard" aria-labelledby="r1k-h"><h2 id="r1k-h" data-tr="r1k_h">مولد الأرقام العشوائية من 1 إلى 1,000</h2><p data-tr="r1k_p">اختر رقمًا صحيحًا عشوائيًا من 1 إلى 1,000، مناسب للمجموعات الكبيرة والألعاب الأكبر وقيم الاختبار.</p></section>
-<section class="rcard" aria-labelledby="r1m-h"><h2 id="r1m-h" data-tr="r1m_h">مولد الأرقام العشوائية من 1 إلى 1,000,000</h2><p data-tr="r1m_p">أنشئ أرقامًا عشوائية حتى 1,000,000، أو حدّد أي حد أدنى وأقصى تريده.</p></section>
+<div class="ranges sec-list">
+<section class="rcard" aria-labelledby="r100-h"><details class="sec"><summary><h2 id="r100-h" data-tr="r100_h">مولد الأرقام العشوائية من 1 إلى 100</h2></summary><div class="sec-body"><p data-tr="r100_p">اضغط على النطاق السريع 1–100 للحصول على اختيار فوري، مناسب للألعاب والمسابقات وأدوار الصف.</p></div></details></section>
+<section class="rcard" aria-labelledby="r1k-h"><details class="sec"><summary><h2 id="r1k-h" data-tr="r1k_h">مولد الأرقام العشوائية من 1 إلى 1,000</h2></summary><div class="sec-body"><p data-tr="r1k_p">اختر رقمًا صحيحًا عشوائيًا من 1 إلى 1,000، مناسب للمجموعات الكبيرة والألعاب الأكبر وقيم الاختبار.</p></div></details></section>
+<section class="rcard" aria-labelledby="r1m-h"><details class="sec"><summary><h2 id="r1m-h" data-tr="r1m_h">مولد الأرقام العشوائية من 1 إلى 1,000,000</h2></summary><div class="sec-body"><p data-tr="r1m_p">أنشئ أرقامًا عشوائية حتى 1,000,000، أو حدّد أي حد أدنى وأقصى تريده.</p></div></details></section>
 </div>
 
 <section class="faq" aria-labelledby="faq-h">
-<h2 id="faq-h" data-tr="faq_h">الأسئلة الشائعة</h2>
+<details class="sec"><summary><h2 id="faq-h" data-tr="faq_h">الأسئلة الشائعة</h2></summary>
+<div class="sec-body">
 <details><summary data-tr="q1">ما هو مولد الأرقام العشوائية؟</summary><p data-tr="a1">أداة تختار رقمًا دون نمط يمكن التنبؤ به. يختار Randomly عددًا صحيحًا بين الحد الأدنى والحد الأقصى اللذين تحددهما.</p></details>
 <details><summary data-tr="q7">ما الذي يميّز مولد الأرقام العشوائية هذا؟</summary><p data-tr="a7">تكتفي معظم المولدات بعرض رقم. أما Randomly فيحوّل الاختيار إلى كشف قصير بخمسة أنماط من الحركة (العجلة، الصندوق الغامض، آلة الأرقام، سحب بطاقة، ومطر السحاب) مع بقاء النتيجة عادلة. وهو سريع ويعمل على أي شاشة، ويمكنك تخطي أي حركة في أي وقت إذا كنت على عجلة.</p></details>
 <details><summary data-tr="q8">لماذا أستخدم مولد الأرقام العشوائية هذا بدلًا من أدوات الإنترنت الأخرى؟</summary><p data-tr="a8">لأنه يؤدي عددًا قليلًا من المهام بإتقان: نتائج عادلة من مصدر العشوائية التشفيري في متصفحك، وواجهة حديثة ونظيفة، ونتيجة فورية، وحركات اختيارية تجعل سحب الرقم أكثر متعة. لا يلزمك تثبيت شيء ولا إنشاء حساب.</p></details>
@@ -711,6 +737,8 @@ html[dir=rtl] body{font-family:system-ui,-apple-system,'Segoe UI',Tahoma,'Noto S
 </div>
 <div class="faq-more"><button type="button" class="faq-toggle" id="faq-toggle" aria-expanded="false" aria-controls="faq-extra" hidden><span class="t-all" data-tr="faq_all">عرض كل الأسئلة</span><span class="t-less" data-tr="faq_less">عرض أسئلة أقل</span></button></div>
 <script>(function(){var box=document.getElementById("faq-extra"),btn=document.getElementById("faq-toggle");if(!box||!btn)return;box.hidden=true;btn.hidden=false;btn.addEventListener("click",function(){var open=btn.getAttribute("aria-expanded")!=="true";box.hidden=!open;btn.setAttribute("aria-expanded",open?"true":"false");if(!open){var o=box.querySelectorAll("details[open]");for(var i=0;i<o.length;i++)o[i].removeAttribute("open");try{btn.scrollIntoView({block:"nearest"})}catch(e){}}});})();</script>
+</div>
+</details>
 </section>
 </div>
 

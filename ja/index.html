@@ -318,6 +318,28 @@ footer.site-footer{margin-top:auto;padding:0;text-align:left;color:var(--mute);f
 .faq-toggle .t-less{display:none}
 .faq-toggle[aria-expanded="true"] .t-all{display:none}
 .faq-toggle[aria-expanded="true"] .t-less{display:inline}
+/* ===== Collapsible sections ===== */
+.info details.sec{border-bottom:0;border-top:1px solid var(--line)}
+.info section.block:first-child details.sec,.info .ranges details.sec:first-child{border-top:0}
+.info details.sec>summary{padding:16px 0;gap:16px;cursor:pointer;border-radius:8px}
+.info details.sec>summary h2{margin:0;font-size:1.15rem;line-height:1.3;letter-spacing:-.01em;font-weight:700;color:var(--ink)}
+.info details.sec>summary::after{content:"";flex:none;width:9px;height:9px;border-right:2px solid var(--brand);border-bottom:2px solid var(--brand);transform:translateY(-2px) rotate(45deg);transition:transform .25s;font-size:0}
+.info details.sec[open]>summary::after{transform:translateY(2px) rotate(-135deg)}
+.info details.sec>summary:hover h2{color:var(--brand)}
+.info details.sec>summary:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
+.info details.sec>.sec-body{padding:0 0 20px;animation:secIn .25s ease}
+.info details.sec>.sec-body>p{padding:0}
+.info .ranges.sec-list{display:block;padding:0;border-top:1px solid var(--line)}
+.info .ranges .rcard{border:0}
+.info .ranges .rcard details.sec{border-top:1px solid var(--line)}
+.info .ranges .rcard:first-child details.sec{border-top:0}
+.info .ranges details.sec>summary h2{font-size:1.05rem}
+.info .ranges details.sec>.sec-body{padding-bottom:16px}
+.info .block{padding:0;border-top:0}
+.info .faq{border-top:0;padding-top:0}
+.info .faq details.sec .faq-more{margin-top:18px}
+.info .faq details:not(.sec)>summary{font-size:.95rem}
+@keyframes secIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
 .info .terms{border-top:1px solid var(--line);padding-top:20px}
 .info .terms h2{margin-bottom:4px}
 .info .terms .updated{font-size:.85rem;color:var(--mute);margin:0 0 16px}
@@ -660,37 +682,41 @@ html[dir=rtl] body{font-family:system-ui,-apple-system,'Segoe UI',Tahoma,'Noto S
 
 <div class="info">
 <section class="block" aria-labelledby="about-h">
-<h2 id="about-h" data-tr="h1">乱数ジェネレーター</h2>
-<p data-tr="about_p">Randomlyは、ブラウザですぐ使える無料の乱数生成器です。最小値と最大値を設定するだけで、1〜100のクイック抽選から最大1,000,000までの範囲まで、ランダムな数字を瞬時に生成できます。</p>
-<p style="margin-top:8px" data-trh="about_p2">ゲーム、授業での指名、グループ活動、日常の決めごとに使えるオンラインのランダム数字ピッカーです。演出を選んで1回タップするだけで、スマートフォン、タブレット、パソコンのどれでも、ライトモード・ダークモードで結果を確認できます。初めての方は<a href="/ja/guide/" data-page="guide">乱数生成器ガイド</a>もご覧ください。</p>
+<details class="sec"><summary><h2 id="about-h" data-tr="h1">乱数ジェネレーター</h2></summary>
+<div class="sec-body"><p data-tr="about_p">Randomlyは、ブラウザですぐ使える無料の乱数生成器です。最小値と最大値を設定するだけで、1〜100のクイック抽選から最大1,000,000までの範囲まで、ランダムな数字を瞬時に生成できます。</p>
+<p style="margin-top:8px" data-trh="about_p2">ゲーム、授業での指名、グループ活動、日常の決めごとに使えるオンラインのランダム数字ピッカーです。演出を選んで1回タップするだけで、スマートフォン、タブレット、パソコンのどれでも、ライトモード・ダークモードで結果を確認できます。初めての方は<a href="/ja/guide/" data-page="guide">乱数生成器ガイド</a>もご覧ください。</p></div>
+</details>
 </section>
 
 <section class="block" aria-labelledby="how-h">
-<h2 id="how-h" data-tr="how_h">乱数の生成方法</h2>
-<ol>
+<details class="sec"><summary><h2 id="how-h" data-tr="how_h">乱数の生成方法</h2></summary>
+<div class="sec-body"><ol>
 <li data-trh="s1"><strong>最小値</strong>を入力します。</li>
 <li data-trh="s2"><strong>最大値</strong>を入力します。</li>
 <li data-trh="s3"><strong>表示アニメーション</strong>を選びます。</li>
 <li data-trh="s4"><strong>乱数を表示</strong>をクリックします。</li>
 </ol>
-<p style="margin-top:8px" data-tr="s_note">範囲内のランダムな整数が得られます。</p>
+<p style="margin-top:8px" data-tr="s_note">範囲内のランダムな整数が得られます。</p></div>
+</details>
 </section>
 
 <section class="block" aria-labelledby="use-h">
-<h2 id="use-h" data-tr="use_h">乱数ジェネレーターの使い道は？</h2>
-<ul class="tags">
+<details class="sec"><summary><h2 id="use-h" data-tr="use_h">乱数ジェネレーターの使い道は？</h2></summary>
+<div class="sec-body"><ul class="tags">
 <li data-tr="u1">ゲーム</li><li data-tr="u2">授業・学習活動</li><li data-tr="u3">ランダムな選出</li><li data-tr="u4">2つの値の間の数を選ぶ</li><li data-tr="u5">意思決定</li><li data-tr="u6">参加者をランダムに選ぶ</li><li data-tr="u7">テスト用の値の生成</li><li data-tr="u8">日常の選択</li>
-</ul>
+</ul></div>
+</details>
 </section>
 
-<div class="ranges">
-<section class="rcard" aria-labelledby="r100-h"><h2 id="r100-h" data-tr="r100_h">乱数ジェネレーター 1–100</h2><p data-tr="r100_p">1〜100のクイック範囲をタップするだけ。ゲーム、クイズ、授業での指名にぴったりです。</p></section>
-<section class="rcard" aria-labelledby="r1k-h"><h2 id="r1k-h" data-tr="r1k_h">乱数ジェネレーター 1–1,000</h2><p data-tr="r1k_p">1〜1,000の整数をランダムに選びます。大きなグループや規模の大きいゲーム、テスト用の値に便利です。</p></section>
-<section class="rcard" aria-labelledby="r1m-h"><h2 id="r1m-h" data-tr="r1m_h">乱数ジェネレーター 1–1,000,000</h2><p data-tr="r1m_p">最大1,000,000までの乱数を生成できます。最小値・最大値は自由に設定可能です。</p></section>
+<div class="ranges sec-list">
+<section class="rcard" aria-labelledby="r100-h"><details class="sec"><summary><h2 id="r100-h" data-tr="r100_h">乱数ジェネレーター 1–100</h2></summary><div class="sec-body"><p data-tr="r100_p">1〜100のクイック範囲をタップするだけ。ゲーム、クイズ、授業での指名にぴったりです。</p></div></details></section>
+<section class="rcard" aria-labelledby="r1k-h"><details class="sec"><summary><h2 id="r1k-h" data-tr="r1k_h">乱数ジェネレーター 1–1,000</h2></summary><div class="sec-body"><p data-tr="r1k_p">1〜1,000の整数をランダムに選びます。大きなグループや規模の大きいゲーム、テスト用の値に便利です。</p></div></details></section>
+<section class="rcard" aria-labelledby="r1m-h"><details class="sec"><summary><h2 id="r1m-h" data-tr="r1m_h">乱数ジェネレーター 1–1,000,000</h2></summary><div class="sec-body"><p data-tr="r1m_p">最大1,000,000までの乱数を生成できます。最小値・最大値は自由に設定可能です。</p></div></details></section>
 </div>
 
 <section class="faq" aria-labelledby="faq-h">
-<h2 id="faq-h" data-tr="faq_h">よくある質問</h2>
+<details class="sec"><summary><h2 id="faq-h" data-tr="faq_h">よくある質問</h2></summary>
+<div class="sec-body">
 <details><summary data-tr="q1">乱数ジェネレーターとは？</summary><p data-tr="a1">予測可能なパターンのない数を選ぶツールです。設定した最小値と最大値の間の整数をランダムに選びます。</p></details>
 <details><summary data-tr="q7">この乱数生成器は他と何が違いますか？</summary><p data-tr="a7">多くの生成器は数字を表示するだけですが、Randomlyでは抽選を短い演出に変えます。ルーレット、ミステリークレート、ナンバーマシン、カードドロー、雨雲リビールの5種類の演出があり、結果の公平さは保たれます。動作が速く、どの画面サイズにも対応し、演出はいつでもスキップできます。</p></details>
 <details><summary data-tr="q8">他のオンラインツールではなく、この乱数生成器を使う理由は？</summary><p data-tr="a8">シンプルな機能を丁寧に仕上げているからです。ブラウザの暗号論的乱数源による公平な結果、すっきりした現代的な画面、即時の結果、抽選をより楽しくする任意のアニメーション。インストールもアカウント作成も不要です。</p></details>
@@ -711,6 +737,8 @@ html[dir=rtl] body{font-family:system-ui,-apple-system,'Segoe UI',Tahoma,'Noto S
 </div>
 <div class="faq-more"><button type="button" class="faq-toggle" id="faq-toggle" aria-expanded="false" aria-controls="faq-extra" hidden><span class="t-all" data-tr="faq_all">すべてのFAQを表示</span><span class="t-less" data-tr="faq_less">FAQを折りたたむ</span></button></div>
 <script>(function(){var box=document.getElementById("faq-extra"),btn=document.getElementById("faq-toggle");if(!box||!btn)return;box.hidden=true;btn.hidden=false;btn.addEventListener("click",function(){var open=btn.getAttribute("aria-expanded")!=="true";box.hidden=!open;btn.setAttribute("aria-expanded",open?"true":"false");if(!open){var o=box.querySelectorAll("details[open]");for(var i=0;i<o.length;i++)o[i].removeAttribute("open");try{btn.scrollIntoView({block:"nearest"})}catch(e){}}});})();</script>
+</div>
+</details>
 </section>
 </div>
 

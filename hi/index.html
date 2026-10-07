@@ -318,6 +318,28 @@ footer.site-footer{margin-top:auto;padding:0;text-align:left;color:var(--mute);f
 .faq-toggle .t-less{display:none}
 .faq-toggle[aria-expanded="true"] .t-all{display:none}
 .faq-toggle[aria-expanded="true"] .t-less{display:inline}
+/* ===== Collapsible sections ===== */
+.info details.sec{border-bottom:0;border-top:1px solid var(--line)}
+.info section.block:first-child details.sec,.info .ranges details.sec:first-child{border-top:0}
+.info details.sec>summary{padding:16px 0;gap:16px;cursor:pointer;border-radius:8px}
+.info details.sec>summary h2{margin:0;font-size:1.15rem;line-height:1.3;letter-spacing:-.01em;font-weight:700;color:var(--ink)}
+.info details.sec>summary::after{content:"";flex:none;width:9px;height:9px;border-right:2px solid var(--brand);border-bottom:2px solid var(--brand);transform:translateY(-2px) rotate(45deg);transition:transform .25s;font-size:0}
+.info details.sec[open]>summary::after{transform:translateY(2px) rotate(-135deg)}
+.info details.sec>summary:hover h2{color:var(--brand)}
+.info details.sec>summary:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
+.info details.sec>.sec-body{padding:0 0 20px;animation:secIn .25s ease}
+.info details.sec>.sec-body>p{padding:0}
+.info .ranges.sec-list{display:block;padding:0;border-top:1px solid var(--line)}
+.info .ranges .rcard{border:0}
+.info .ranges .rcard details.sec{border-top:1px solid var(--line)}
+.info .ranges .rcard:first-child details.sec{border-top:0}
+.info .ranges details.sec>summary h2{font-size:1.05rem}
+.info .ranges details.sec>.sec-body{padding-bottom:16px}
+.info .block{padding:0;border-top:0}
+.info .faq{border-top:0;padding-top:0}
+.info .faq details.sec .faq-more{margin-top:18px}
+.info .faq details:not(.sec)>summary{font-size:.95rem}
+@keyframes secIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
 .info .terms{border-top:1px solid var(--line);padding-top:20px}
 .info .terms h2{margin-bottom:4px}
 .info .terms .updated{font-size:.85rem;color:var(--mute);margin:0 0 16px}
@@ -660,37 +682,41 @@ html[dir=rtl] body{font-family:system-ui,-apple-system,'Segoe UI',Tahoma,'Noto S
 
 <div class="info">
 <section class="block" aria-labelledby="about-h">
-<h2 id="about-h" data-tr="h1">रैंडम नंबर जेनरेटर</h2>
-<p data-tr="about_p">Randomly एक मुफ़्त रैंडम नंबर जनरेटर है जो किसी भी ब्राउज़र में ऑनलाइन चलता है। न्यूनतम और अधिकतम संख्या तय करें और तुरंत रैंडम नंबर पाएं, 1–100 के त्वरित चयन से लेकर 1,000,000 तक की रेंज में।</p>
-<p style="margin-top:8px" data-trh="about_p2">इसे खेलों, कक्षा में बारी तय करने, समूह गतिविधियों या रोज़मर्रा के फ़ैसलों के लिए ऑनलाइन रैंडम नंबर पिकर की तरह इस्तेमाल करें। कोई रिवील एनिमेशन चुनें, एक बार टैप करें और किसी भी फ़ोन, टैबलेट या कंप्यूटर पर, लाइट या डार्क मोड में नतीजा देखें। रैंडम नंबर में नए हैं? <a href="/hi/guide/" data-page="guide">रैंडम नंबर जनरेटर गाइड</a> पढ़ें।</p>
+<details class="sec"><summary><h2 id="about-h" data-tr="h1">रैंडम नंबर जेनरेटर</h2></summary>
+<div class="sec-body"><p data-tr="about_p">Randomly एक मुफ़्त रैंडम नंबर जनरेटर है जो किसी भी ब्राउज़र में ऑनलाइन चलता है। न्यूनतम और अधिकतम संख्या तय करें और तुरंत रैंडम नंबर पाएं, 1–100 के त्वरित चयन से लेकर 1,000,000 तक की रेंज में।</p>
+<p style="margin-top:8px" data-trh="about_p2">इसे खेलों, कक्षा में बारी तय करने, समूह गतिविधियों या रोज़मर्रा के फ़ैसलों के लिए ऑनलाइन रैंडम नंबर पिकर की तरह इस्तेमाल करें। कोई रिवील एनिमेशन चुनें, एक बार टैप करें और किसी भी फ़ोन, टैबलेट या कंप्यूटर पर, लाइट या डार्क मोड में नतीजा देखें। रैंडम नंबर में नए हैं? <a href="/hi/guide/" data-page="guide">रैंडम नंबर जनरेटर गाइड</a> पढ़ें।</p></div>
+</details>
 </section>
 
 <section class="block" aria-labelledby="how-h">
-<h2 id="how-h" data-tr="how_h">रैंडम नंबर कैसे बनाएं</h2>
-<ol>
+<details class="sec"><summary><h2 id="how-h" data-tr="how_h">रैंडम नंबर कैसे बनाएं</h2></summary>
+<div class="sec-body"><ol>
 <li data-trh="s1"><strong>न्यूनतम</strong> संख्या दर्ज करें।</li>
 <li data-trh="s2"><strong>अधिकतम</strong> संख्या दर्ज करें।</li>
 <li data-trh="s3">एक <strong>रिवील एनिमेशन</strong> चुनें।</li>
 <li data-trh="s4"><strong>रैंडम नंबर दिखाएं</strong> पर क्लिक करें।</li>
 </ol>
-<p style="margin-top:8px" data-tr="s_note">आपको आपकी रेंज के भीतर एक रैंडम पूर्ण संख्या मिलेगी।</p>
+<p style="margin-top:8px" data-tr="s_note">आपको आपकी रेंज के भीतर एक रैंडम पूर्ण संख्या मिलेगी।</p></div>
+</details>
 </section>
 
 <section class="block" aria-labelledby="use-h">
-<h2 id="use-h" data-tr="use_h">रैंडम नंबर जेनरेटर का उपयोग किसलिए करें?</h2>
-<ul class="tags">
+<details class="sec"><summary><h2 id="use-h" data-tr="use_h">रैंडम नंबर जेनरेटर का उपयोग किसलिए करें?</h2></summary>
+<div class="sec-body"><ul class="tags">
 <li data-tr="u1">खेल</li><li data-tr="u2">कक्षा की गतिविधियां</li><li data-tr="u3">रैंडम चयन</li><li data-tr="u4">दो मानों के बीच कोई संख्या चुनना</li><li data-tr="u5">फ़ैसले लेना</li><li data-tr="u6">किसी प्रतिभागी को रैंडम चुनना</li><li data-tr="u7">टेस्ट वैल्यू बनाना</li><li data-tr="u8">रोज़मर्रा के विकल्प</li>
-</ul>
+</ul></div>
+</details>
 </section>
 
-<div class="ranges">
-<section class="rcard" aria-labelledby="r100-h"><h2 id="r100-h" data-tr="r100_h">रैंडम नंबर जेनरेटर 1–100</h2><p data-tr="r100_p">तुरंत चयन के लिए 1–100 क्विक रेंज टैप करें। खेलों, क्विज़ और कक्षा में बारी तय करने के लिए सुविधाजनक।</p></section>
-<section class="rcard" aria-labelledby="r1k-h"><h2 id="r1k-h" data-tr="r1k_h">रैंडम नंबर जेनरेटर 1–1,000</h2><p data-tr="r1k_p">1 से 1,000 के बीच कोई रैंडम पूर्ण संख्या चुनें। बड़े समूहों, बड़े खेलों और टेस्ट वैल्यू के लिए उपयोगी।</p></section>
-<section class="rcard" aria-labelledby="r1m-h"><h2 id="r1m-h" data-tr="r1m_h">रैंडम नंबर जेनरेटर 1–1,000,000</h2><p data-tr="r1m_p">1,000,000 तक रैंडम नंबर बनाएं, या अपनी पसंद का कोई भी न्यूनतम और अधिकतम तय करें।</p></section>
+<div class="ranges sec-list">
+<section class="rcard" aria-labelledby="r100-h"><details class="sec"><summary><h2 id="r100-h" data-tr="r100_h">रैंडम नंबर जेनरेटर 1–100</h2></summary><div class="sec-body"><p data-tr="r100_p">तुरंत चयन के लिए 1–100 क्विक रेंज टैप करें। खेलों, क्विज़ और कक्षा में बारी तय करने के लिए सुविधाजनक।</p></div></details></section>
+<section class="rcard" aria-labelledby="r1k-h"><details class="sec"><summary><h2 id="r1k-h" data-tr="r1k_h">रैंडम नंबर जेनरेटर 1–1,000</h2></summary><div class="sec-body"><p data-tr="r1k_p">1 से 1,000 के बीच कोई रैंडम पूर्ण संख्या चुनें। बड़े समूहों, बड़े खेलों और टेस्ट वैल्यू के लिए उपयोगी।</p></div></details></section>
+<section class="rcard" aria-labelledby="r1m-h"><details class="sec"><summary><h2 id="r1m-h" data-tr="r1m_h">रैंडम नंबर जेनरेटर 1–1,000,000</h2></summary><div class="sec-body"><p data-tr="r1m_p">1,000,000 तक रैंडम नंबर बनाएं, या अपनी पसंद का कोई भी न्यूनतम और अधिकतम तय करें।</p></div></details></section>
 </div>
 
 <section class="faq" aria-labelledby="faq-h">
-<h2 id="faq-h" data-tr="faq_h">अक्सर पूछे जाने वाले प्रश्न</h2>
+<details class="sec"><summary><h2 id="faq-h" data-tr="faq_h">अक्सर पूछे जाने वाले प्रश्न</h2></summary>
+<div class="sec-body">
 <details><summary data-tr="q1">रैंडम नंबर जेनरेटर क्या है?</summary><p data-tr="a1">यह एक ऐसा टूल है जो बिना किसी अनुमानित पैटर्न के संख्या चुनता है। Randomly आपके चुने न्यूनतम और अधिकतम के बीच एक पूर्ण संख्या चुनता है।</p></details>
 <details><summary data-tr="q7">यह रैंडम नंबर जनरेटर दूसरों से अलग कैसे है?</summary><p data-tr="a7">ज़्यादातर जनरेटर बस एक नंबर दिखा देते हैं। Randomly चयन को एक छोटे रिवील में बदल देता है, जिसमें पाँच एनिमेशन स्टाइल हैं (व्हील, मिस्ट्री क्रेट, नंबर मशीन, कार्ड ड्रॉ और बादल बारिश), और नतीजा निष्पक्ष ही रहता है। यह तेज़ है, हर स्क्रीन पर चलता है, और जल्दी हो तो आप किसी भी एनिमेशन को छोड़ सकते हैं।</p></details>
 <details><summary data-tr="q8">दूसरे ऑनलाइन टूल की जगह इस रैंडम नंबर जनरेटर का इस्तेमाल क्यों करें?</summary><p data-tr="a8">यह कुछ चीज़ें अच्छी तरह करता है: आपके ब्राउज़र के क्रिप्टोग्राफ़िक रैंडम स्रोत से निष्पक्ष नतीजे, साफ़-सुथरा आधुनिक इंटरफ़ेस, तुरंत नतीजा, और वैकल्पिक एनिमेशन जो नंबर चुनने को और रोचक बनाते हैं। कुछ इंस्टॉल नहीं करना पड़ता और खाता भी नहीं बनाना पड़ता।</p></details>
@@ -711,6 +737,8 @@ html[dir=rtl] body{font-family:system-ui,-apple-system,'Segoe UI',Tahoma,'Noto S
 </div>
 <div class="faq-more"><button type="button" class="faq-toggle" id="faq-toggle" aria-expanded="false" aria-controls="faq-extra" hidden><span class="t-all" data-tr="faq_all">सभी FAQ दिखाएं</span><span class="t-less" data-tr="faq_less">कम FAQ दिखाएं</span></button></div>
 <script>(function(){var box=document.getElementById("faq-extra"),btn=document.getElementById("faq-toggle");if(!box||!btn)return;box.hidden=true;btn.hidden=false;btn.addEventListener("click",function(){var open=btn.getAttribute("aria-expanded")!=="true";box.hidden=!open;btn.setAttribute("aria-expanded",open?"true":"false");if(!open){var o=box.querySelectorAll("details[open]");for(var i=0;i<o.length;i++)o[i].removeAttribute("open");try{btn.scrollIntoView({block:"nearest"})}catch(e){}}});})();</script>
+</div>
+</details>
 </section>
 </div>
 

@@ -318,6 +318,28 @@ footer.site-footer{margin-top:auto;padding:0;text-align:left;color:var(--mute);f
 .faq-toggle .t-less{display:none}
 .faq-toggle[aria-expanded="true"] .t-all{display:none}
 .faq-toggle[aria-expanded="true"] .t-less{display:inline}
+/* ===== Collapsible sections ===== */
+.info details.sec{border-bottom:0;border-top:1px solid var(--line)}
+.info section.block:first-child details.sec,.info .ranges details.sec:first-child{border-top:0}
+.info details.sec>summary{padding:16px 0;gap:16px;cursor:pointer;border-radius:8px}
+.info details.sec>summary h2{margin:0;font-size:1.15rem;line-height:1.3;letter-spacing:-.01em;font-weight:700;color:var(--ink)}
+.info details.sec>summary::after{content:"";flex:none;width:9px;height:9px;border-right:2px solid var(--brand);border-bottom:2px solid var(--brand);transform:translateY(-2px) rotate(45deg);transition:transform .25s;font-size:0}
+.info details.sec[open]>summary::after{transform:translateY(2px) rotate(-135deg)}
+.info details.sec>summary:hover h2{color:var(--brand)}
+.info details.sec>summary:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
+.info details.sec>.sec-body{padding:0 0 20px;animation:secIn .25s ease}
+.info details.sec>.sec-body>p{padding:0}
+.info .ranges.sec-list{display:block;padding:0;border-top:1px solid var(--line)}
+.info .ranges .rcard{border:0}
+.info .ranges .rcard details.sec{border-top:1px solid var(--line)}
+.info .ranges .rcard:first-child details.sec{border-top:0}
+.info .ranges details.sec>summary h2{font-size:1.05rem}
+.info .ranges details.sec>.sec-body{padding-bottom:16px}
+.info .block{padding:0;border-top:0}
+.info .faq{border-top:0;padding-top:0}
+.info .faq details.sec .faq-more{margin-top:18px}
+.info .faq details:not(.sec)>summary{font-size:.95rem}
+@keyframes secIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
 .info .terms{border-top:1px solid var(--line);padding-top:20px}
 .info .terms h2{margin-bottom:4px}
 .info .terms .updated{font-size:.85rem;color:var(--mute);margin:0 0 16px}
@@ -660,37 +682,41 @@ html[dir=rtl] body{font-family:system-ui,-apple-system,'Segoe UI',Tahoma,'Noto S
 
 <div class="info">
 <section class="block" aria-labelledby="about-h">
-<h2 id="about-h" data-tr="h1">Генератор случайных чисел</h2>
-<p data-tr="about_p">Randomly — бесплатный генератор случайных чисел, который работает онлайн в любом браузере. Задайте минимум и максимум и мгновенно получите случайное число: от быстрого выбора от 1 до 100 до диапазона в 1 000 000.</p>
-<p style="margin-top:8px" data-trh="about_p2">Используйте его как онлайн-выбор случайного числа для игр, занятий в классе, групповых активностей и повседневных решений. Выберите анимацию, нажмите один раз и получите результат на телефоне, планшете или компьютере, в светлой или тёмной теме. Впервые имеете дело со случайными числами? Прочитайте <a href="/ru/guide/" data-page="guide">руководство по генератору случайных чисел</a>.</p>
+<details class="sec"><summary><h2 id="about-h" data-tr="h1">Генератор случайных чисел</h2></summary>
+<div class="sec-body"><p data-tr="about_p">Randomly — бесплатный генератор случайных чисел, который работает онлайн в любом браузере. Задайте минимум и максимум и мгновенно получите случайное число: от быстрого выбора от 1 до 100 до диапазона в 1 000 000.</p>
+<p style="margin-top:8px" data-trh="about_p2">Используйте его как онлайн-выбор случайного числа для игр, занятий в классе, групповых активностей и повседневных решений. Выберите анимацию, нажмите один раз и получите результат на телефоне, планшете или компьютере, в светлой или тёмной теме. Впервые имеете дело со случайными числами? Прочитайте <a href="/ru/guide/" data-page="guide">руководство по генератору случайных чисел</a>.</p></div>
+</details>
 </section>
 
 <section class="block" aria-labelledby="how-h">
-<h2 id="how-h" data-tr="how_h">Как сгенерировать случайное число</h2>
-<ol>
+<details class="sec"><summary><h2 id="how-h" data-tr="how_h">Как сгенерировать случайное число</h2></summary>
+<div class="sec-body"><ol>
 <li data-trh="s1">Введите <strong>минимальное</strong> число.</li>
 <li data-trh="s2">Введите <strong>максимальное</strong> число.</li>
 <li data-trh="s3">Выберите <strong>анимацию показа</strong>.</li>
 <li data-trh="s4">Нажмите <strong>«Показать случайное число»</strong>.</li>
 </ol>
-<p style="margin-top:8px" data-tr="s_note">Вы получите случайное целое число в выбранном диапазоне.</p>
+<p style="margin-top:8px" data-tr="s_note">Вы получите случайное целое число в выбранном диапазоне.</p></div>
+</details>
 </section>
 
 <section class="block" aria-labelledby="use-h">
-<h2 id="use-h" data-tr="use_h">Для чего нужен генератор случайных чисел?</h2>
-<ul class="tags">
+<details class="sec"><summary><h2 id="use-h" data-tr="use_h">Для чего нужен генератор случайных чисел?</h2></summary>
+<div class="sec-body"><ul class="tags">
 <li data-tr="u1">Игры</li><li data-tr="u2">Занятия в классе</li><li data-tr="u3">Случайный выбор</li><li data-tr="u4">Число между двумя значениями</li><li data-tr="u5">Принятие решений</li><li data-tr="u6">Выбор случайного участника</li><li data-tr="u7">Тестовые значения</li><li data-tr="u8">Повседневный выбор</li>
-</ul>
+</ul></div>
+</details>
 </section>
 
-<div class="ranges">
-<section class="rcard" aria-labelledby="r100-h"><h2 id="r100-h" data-tr="r100_h">Генератор случайных чисел 1–100</h2><p data-tr="r100_p">Нажмите быстрый диапазон 1–100 для мгновенного выбора — удобно для игр, викторин и вызова учеников.</p></section>
-<section class="rcard" aria-labelledby="r1k-h"><h2 id="r1k-h" data-tr="r1k_h">Генератор случайных чисел 1–1 000</h2><p data-tr="r1k_p">Выберите случайное целое число от 1 до 1 000: подходит для больших групп, крупных игр и тестовых значений.</p></section>
-<section class="rcard" aria-labelledby="r1m-h"><h2 id="r1m-h" data-tr="r1m_h">Генератор случайных чисел 1–1 000 000</h2><p data-tr="r1m_p">Генерируйте случайные числа до 1 000 000 или задайте любой свой минимум и максимум.</p></section>
+<div class="ranges sec-list">
+<section class="rcard" aria-labelledby="r100-h"><details class="sec"><summary><h2 id="r100-h" data-tr="r100_h">Генератор случайных чисел 1–100</h2></summary><div class="sec-body"><p data-tr="r100_p">Нажмите быстрый диапазон 1–100 для мгновенного выбора — удобно для игр, викторин и вызова учеников.</p></div></details></section>
+<section class="rcard" aria-labelledby="r1k-h"><details class="sec"><summary><h2 id="r1k-h" data-tr="r1k_h">Генератор случайных чисел 1–1 000</h2></summary><div class="sec-body"><p data-tr="r1k_p">Выберите случайное целое число от 1 до 1 000: подходит для больших групп, крупных игр и тестовых значений.</p></div></details></section>
+<section class="rcard" aria-labelledby="r1m-h"><details class="sec"><summary><h2 id="r1m-h" data-tr="r1m_h">Генератор случайных чисел 1–1 000 000</h2></summary><div class="sec-body"><p data-tr="r1m_p">Генерируйте случайные числа до 1 000 000 или задайте любой свой минимум и максимум.</p></div></details></section>
 </div>
 
 <section class="faq" aria-labelledby="faq-h">
-<h2 id="faq-h" data-tr="faq_h">Часто задаваемые вопросы</h2>
+<details class="sec"><summary><h2 id="faq-h" data-tr="faq_h">Часто задаваемые вопросы</h2></summary>
+<div class="sec-body">
 <details><summary data-tr="q1">Что такое генератор случайных чисел?</summary><p data-tr="a1">Инструмент, который выбирает число без предсказуемой закономерности. Randomly выбирает целое число между заданными вами минимумом и максимумом.</p></details>
 <details><summary data-tr="q7">Чем этот генератор случайных чисел отличается от других?</summary><p data-tr="a7">Большинство генераторов просто показывают число. Randomly превращает выбор в короткое зрелище: пять стилей анимации (Колесо, Загадочный ящик, Числовая машина, Вытянуть карту и Дождь из облаков) — при этом результат остаётся честным. Он быстрый, подходит для любого экрана, а анимацию можно пропустить в любой момент.</p></details>
 <details><summary data-tr="q8">Почему стоит выбрать этот генератор случайных чисел, а не другие онлайн-сервисы?</summary><p data-tr="a8">Он делает немного вещей, но хорошо: честный результат на основе криптографического источника случайности вашего браузера, чистый современный интерфейс, мгновенный ответ и необязательные анимации, которые делают выбор числа интереснее. Ничего не нужно устанавливать и регистрироваться.</p></details>
@@ -711,6 +737,8 @@ html[dir=rtl] body{font-family:system-ui,-apple-system,'Segoe UI',Tahoma,'Noto S
 </div>
 <div class="faq-more"><button type="button" class="faq-toggle" id="faq-toggle" aria-expanded="false" aria-controls="faq-extra" hidden><span class="t-all" data-tr="faq_all">Показать все вопросы</span><span class="t-less" data-tr="faq_less">Показать меньше вопросов</span></button></div>
 <script>(function(){var box=document.getElementById("faq-extra"),btn=document.getElementById("faq-toggle");if(!box||!btn)return;box.hidden=true;btn.hidden=false;btn.addEventListener("click",function(){var open=btn.getAttribute("aria-expanded")!=="true";box.hidden=!open;btn.setAttribute("aria-expanded",open?"true":"false");if(!open){var o=box.querySelectorAll("details[open]");for(var i=0;i<o.length;i++)o[i].removeAttribute("open");try{btn.scrollIntoView({block:"nearest"})}catch(e){}}});})();</script>
+</div>
+</details>
 </section>
 </div>
 
