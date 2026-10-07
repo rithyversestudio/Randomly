@@ -10,8 +10,8 @@
 <link rel="manifest" href="/manifest.webmanifest">
 <meta name="theme-color" content="#f5f6fb">
 <script>(function(){var t=null;try{t=localStorage.getItem('randomly-theme')}catch(e){}if(t!=='light'&&t!=='dark')t='light';document.documentElement.setAttribute('data-theme',t)})()</script>
-<title>So funktionieren Zufallszahlengeneratoren | Randomly</title>
-<meta name="description" content="Ein Zufallszahlengenerator (ZZG) wählt eine Zahl ohne vorhersehbares Muster. Manche sind nur Pseudozufallsgeneratoren: Sie folgen einer Formel und sind vorhersagbar,…">
+<title>Zufallszahlengenerator: So funktioniert er und so nutzt du ihn | Randomly</title>
+<meta name="description" content="Ein Zufallszahlengenerator (ZZG) wählt eine Zahl ohne vorhersehbares Muster. Dieser Ratgeber erklärt, wie ein Online-Zufallszahlengenerator funktioniert und wie du ihn…">
 <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
 <meta name="author" content="RithyVerse Studio">
 <meta name="application-name" content="Randomly">
@@ -41,16 +41,16 @@
 <meta property="og:locale:alternate" content="pt_BR">
 <meta property="og:locale:alternate" content="id_ID">
 <meta property="og:locale:alternate" content="ar_AR">
-<meta property="og:title" content="So funktionieren Zufallszahlengeneratoren | Randomly">
-<meta property="og:description" content="Ein Zufallszahlengenerator (ZZG) wählt eine Zahl ohne vorhersehbares Muster. Manche sind nur Pseudozufallsgeneratoren: Sie folgen einer Formel und sind vorhersagbar,…">
+<meta property="og:title" content="Zufallszahlengenerator: So funktioniert er und so nutzt du ihn | Randomly">
+<meta property="og:description" content="Ein Zufallszahlengenerator (ZZG) wählt eine Zahl ohne vorhersehbares Muster. Dieser Ratgeber erklärt, wie ein Online-Zufallszahlengenerator funktioniert und wie du ihn…">
 <meta property="og:url" content="https://randomlynumber.com/de/guide/">
 <meta property="og:image" content="https://randomlynumber.com/og-image.png">
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="So funktionieren Zufallszahlengeneratoren | Randomly">
-<meta name="twitter:description" content="Ein Zufallszahlengenerator (ZZG) wählt eine Zahl ohne vorhersehbares Muster. Manche sind nur Pseudozufallsgeneratoren: Sie folgen einer Formel und sind vorhersagbar,…">
+<meta name="twitter:title" content="Zufallszahlengenerator: So funktioniert er und so nutzt du ihn | Randomly">
+<meta name="twitter:description" content="Ein Zufallszahlengenerator (ZZG) wählt eine Zahl ohne vorhersehbares Muster. Dieser Ratgeber erklärt, wie ein Online-Zufallszahlengenerator funktioniert und wie du ihn…">
 <meta name="twitter:image" content="https://randomlynumber.com/og-image.png">
 <style>
 :root{--bg:#f5f6fb;--card:#fff;--ink:#14162b;--mute:#6a6f8a;--line:#e3e5f0;--brand:#5b5bf0;--brand2:#8a5cf6;--accent:#12b5a6;--glow:rgba(91,91,240,.35);--shadow:0 10px 40px rgba(30,30,80,.08);--field:#f0f1f9;--wa:#5b5bf0;--wb:#8a5cf6;--wc:#12b5a6;--wd:#f3f4fb;
@@ -306,6 +306,16 @@ footer.site-footer{margin-top:auto;padding:0;text-align:left;color:var(--mute);f
 .info summary::after{content:"+";color:var(--brand);font-size:1.2rem;font-weight:700;line-height:1;transition:transform .2s}
 .info details[open] summary::after{transform:rotate(45deg)}
 .info details p{padding:0 0 12px}
+.info .faq-more{text-align:center;margin-top:18px}
+.faq-toggle{display:inline-flex;align-items:center;gap:8px;cursor:pointer;font:inherit;font-weight:700;font-size:.92rem;color:var(--ink);background:var(--field);border:1px solid var(--line);border-radius:999px;padding:9px 20px;transition:border-color .2s,color .2s,background .2s}
+.faq-toggle[hidden]{display:none}
+.faq-toggle:hover{border-color:var(--brand);color:var(--brand)}
+.faq-toggle:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
+.faq-toggle::after{content:"";width:7px;height:7px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:translateY(-2px) rotate(45deg);transition:transform .2s}
+.faq-toggle[aria-expanded="true"]::after{transform:translateY(2px) rotate(-135deg)}
+.faq-toggle .t-less{display:none}
+.faq-toggle[aria-expanded="true"] .t-all{display:none}
+.faq-toggle[aria-expanded="true"] .t-less{display:inline}
 .info .terms{border-top:1px solid var(--line);padding-top:20px}
 .info .terms h2{margin-bottom:4px}
 .info .terms .updated{font-size:.85rem;color:var(--mute);margin:0 0 16px}
@@ -329,6 +339,7 @@ footer a.terms-link:hover{opacity:1}
 .modal-body h3:first-child{margin-top:4px}
 .modal-body p,.modal-body li{margin:0 0 8px}
 .modal-body ul{margin:0 0 8px;padding-left:1.2rem}
+.modal-body ol{margin:0 0 8px;padding-left:1.2rem}
 .modal-body .updated{font-size:.85rem;margin:0 0 12px}
 @media(max-width:700px){.info .ranges{grid-template-columns:1fr;gap:14px}}
 .lang{padding:0 8px;text-align:center;appearance:auto;-webkit-appearance:menulist}
@@ -449,7 +460,7 @@ footer a.terms-link:hover{opacity:1}
 /* right-to-left (Arabic) */
 html[dir=rtl] .wscene,html[dir=rtl] .mscene,html[dir=rtl] .scene,html[dir=rtl] .cscene{direction:ltr}
 html[dir=rtl] input[type=number],html[dir=rtl] input[inputmode]{direction:ltr}
-html[dir=rtl] .info ol,html[dir=rtl] .info .terms ul,html[dir=rtl] .modal-body ul{padding-left:0;padding-right:1.2rem}
+html[dir=rtl] .info ol,html[dir=rtl] .info .terms ul,html[dir=rtl] .modal-body ul,html[dir=rtl] .modal-body ol{padding-left:0;padding-right:1.2rem}
 html[dir=rtl] footer.site-footer{text-align:right}
 html[dir=rtl] body{font-family:system-ui,-apple-system,'Segoe UI',Tahoma,'Noto Sans Arabic',Arial,sans-serif}
 </style>
@@ -477,9 +488,9 @@ a.brand{text-decoration:none;color:inherit}
 <main>
 <article class="card doc">
 <p class="doc-back"><a href="/de/">← Zurück zum Generator</a></p>
-<h1>So funktionieren Zufallszahlengeneratoren</h1>
+<h1>Zufallszahlengenerator: So funktioniert er und so nutzt du ihn</h1>
 <div class="modal-body">
-<p>Ein Zufallszahlengenerator (ZZG) wählt eine Zahl ohne vorhersehbares Muster. Manche sind nur Pseudozufallsgeneratoren: Sie folgen einer Formel und sind vorhersagbar, wenn man den Startwert kennt. Randomly nutzt stattdessen die kryptografische Zufallsquelle deines Browsers, die auf unvorhersehbaren Systemquellen beruht.</p><h3>Warum Fairness wichtig ist</h3><p>Wenn man einen großen Zufallswert nimmt und den Rest der Division durch die Bereichsgröße verwendet, werden manche Zahlen leicht bevorzugt. Randomly verwirft solche Werte und zieht neu, sodass jede Zahl in deinem Bereich gleich wahrscheinlich ist.</p><h3>Gut zu wissen</h3><p>Zufällig heißt nicht gleichmäßig verteilt. Zweimal dieselbe Zahl hintereinander ist normal, und eine Zahl, die lange nicht kam, ist nicht „fällig“. Randomly ist für den Alltag gedacht, nicht für Lotterien, Glücksspiel oder kryptografische Schlüssel.</p><p><a href="/de/">Zum Generator →</a></p>
+<p>Ein Zufallszahlengenerator (ZZG) wählt eine Zahl ohne vorhersehbares Muster. Dieser Ratgeber erklärt, wie ein Online-Zufallszahlengenerator funktioniert und wie du ihn gut nutzt.</p><h3>So nutzt du einen Online-Zufallszahlengenerator</h3><ol><li>Gib ein Minimum und ein Maximum ein oder tippe auf einen Schnellbereich wie 1–100 oder 1–1.000.</li><li>Wähle eine Enthüllungsanimation oder aktiviere „Animation überspringen“ für ein sofortiges Ergebnis.</li><li>Klicke auf „Zufallszahl enthüllen“.</li><li>Kopiere das Ergebnis oder sieh später unter „Letzte Ergebnisse“ nach, wenn du zurückblicken willst.</li></ol><h3>Den richtigen Bereich wählen</h3><p>Für eine schnelle Entscheidung oder ein Spiel reicht ein Zufallszahlengenerator von 1 bis 100 völlig aus. Nimm 1–1.000, wenn du eine größere Gruppe oder mehr Abwechslung brauchst, und noch größere Bereiche darüber hinaus. Um aus einer Liste zu wählen, nummeriere die Einträge von 1 bis N und stelle den Bereich auf 1–N ein. Beide Grenzen können gezogen werden.</p><h3>Pseudozufall und kryptografischer Zufall</h3><p>Manche Generatoren sind nur pseudozufällig: Sie folgen einer Formel und sind vorhersagbar, wenn man den Startwert kennt. Randomly nutzt stattdessen die kryptografische Zufallsquelle deines Browsers, die auf unvorhersehbare Systemquellen zurückgreift.</p><h3>Warum Fairness wichtig ist</h3><p>Wenn man einen großen Zufallswert nimmt und den Rest der Division durch die Bereichsgröße verwendet, werden manche Zahlen leicht bevorzugt. Randomly verwirft solche Werte und zieht neu, damit jede Zahl in deinem Bereich gleich wahrscheinlich ist.</p><h3>Wofür ein Zufallszahlen-Picker nützlich ist</h3><ul><li>Wer im Unterricht dran ist, und Schülernummern</li><li>Gruppenaktivitäten mit nummerierten Teilnehmenden</li><li>Brettspiele, Quizabende und Partyspiele</li><li>Entscheiden, wer anfängt oder welche Option genommen wird</li><li>Eine zufällige Stichprobe oder einen Testwert auswählen</li><li>Immer dann, wenn du schnell Zufallszahlen erzeugen willst</li></ul><h3>Tipps für eine faire Auswahl</h3><ul><li>Lege den Bereich vor dem Ziehen fest, damit ihn hinterher niemand infrage stellen kann.</li><li>Nummeriere Teilnehmende oder Optionen von 1 bis N und stelle den Bereich auf 1–N ein.</li><li>Aktiviere „Keine Wiederholungen“, wenn jede Zahl nur einmal gezogen werden soll.</li><li>Ziehe pro Entscheidung nur einmal. Wiederholen, bis das Ergebnis gefällt, widerspricht dem Sinn.</li><li>Nutze „Letzte Ergebnisse“, wenn du frühere Ergebnisse prüfen oder zeigen willst.</li></ul><h3>Enthüllungsanimationen</h3><p>Randomly bietet fünf Enthüllungsmodi: Rad, Überraschungskiste, Zahlenmaschine, Kartenziehen und Wolkenregen. Die Zahl wird gewählt, bevor die Animation startet, die Animation zeigt das Ergebnis also nur und beeinflusst es nie. Du kannst sie jederzeit überspringen, und sie wird abgeschwächt, wenn dein Gerät auf reduzierte Bewegung eingestellt ist.</p><h3>Gut zu wissen</h3><p>Zufällig heißt nicht gleichmäßig verteilt. Zweimal dieselbe Zahl hintereinander ist normal, und eine Zahl, die länger nicht kam, ist nicht „fällig“. Randomly ist für den Alltag gedacht, nicht für Lotterien, Glücksspiel oder kryptografische Schlüssel.</p><p><a href="/de/">Zum Generator →</a></p>
 </div>
 </article>
 </main>

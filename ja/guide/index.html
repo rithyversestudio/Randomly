@@ -10,8 +10,8 @@
 <link rel="manifest" href="/manifest.webmanifest">
 <meta name="theme-color" content="#f5f6fb">
 <script>(function(){var t=null;try{t=localStorage.getItem('randomly-theme')}catch(e){}if(t!=='light'&&t!=='dark')t='light';document.documentElement.setAttribute('data-theme',t)})()</script>
-<title>乱数ジェネレーターのしくみ | Randomly</title>
-<meta name="description" content="乱数ジェネレーター（RNG）は、予測できるパターンのない数字を選ぶツールです。なかには数式に従うだけの擬似乱数もあり、初期値がわかれば予測できてしまいます。Randomlyは、予測不能なシステム由来の情報を使うブラウザの暗号論的乱数源を利用しています。">
+<title>乱数生成器ガイド：仕組みと使い方 | Randomly</title>
+<meta name="description" content="乱数生成器（RNG）は、予測できるパターンのない数字を選ぶツールです。このガイドでは、オンライン乱数生成器の仕組みと、上手な使い方を紹介します。">
 <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
 <meta name="author" content="RithyVerse Studio">
 <meta name="application-name" content="Randomly">
@@ -41,16 +41,16 @@
 <meta property="og:locale:alternate" content="pt_BR">
 <meta property="og:locale:alternate" content="id_ID">
 <meta property="og:locale:alternate" content="ar_AR">
-<meta property="og:title" content="乱数ジェネレーターのしくみ | Randomly">
-<meta property="og:description" content="乱数ジェネレーター（RNG）は、予測できるパターンのない数字を選ぶツールです。なかには数式に従うだけの擬似乱数もあり、初期値がわかれば予測できてしまいます。Randomlyは、予測不能なシステム由来の情報を使うブラウザの暗号論的乱数源を利用しています。">
+<meta property="og:title" content="乱数生成器ガイド：仕組みと使い方 | Randomly">
+<meta property="og:description" content="乱数生成器（RNG）は、予測できるパターンのない数字を選ぶツールです。このガイドでは、オンライン乱数生成器の仕組みと、上手な使い方を紹介します。">
 <meta property="og:url" content="https://randomlynumber.com/ja/guide/">
 <meta property="og:image" content="https://randomlynumber.com/og-image.png">
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="乱数ジェネレーターのしくみ | Randomly">
-<meta name="twitter:description" content="乱数ジェネレーター（RNG）は、予測できるパターンのない数字を選ぶツールです。なかには数式に従うだけの擬似乱数もあり、初期値がわかれば予測できてしまいます。Randomlyは、予測不能なシステム由来の情報を使うブラウザの暗号論的乱数源を利用しています。">
+<meta name="twitter:title" content="乱数生成器ガイド：仕組みと使い方 | Randomly">
+<meta name="twitter:description" content="乱数生成器（RNG）は、予測できるパターンのない数字を選ぶツールです。このガイドでは、オンライン乱数生成器の仕組みと、上手な使い方を紹介します。">
 <meta name="twitter:image" content="https://randomlynumber.com/og-image.png">
 <style>
 :root{--bg:#f5f6fb;--card:#fff;--ink:#14162b;--mute:#6a6f8a;--line:#e3e5f0;--brand:#5b5bf0;--brand2:#8a5cf6;--accent:#12b5a6;--glow:rgba(91,91,240,.35);--shadow:0 10px 40px rgba(30,30,80,.08);--field:#f0f1f9;--wa:#5b5bf0;--wb:#8a5cf6;--wc:#12b5a6;--wd:#f3f4fb;
@@ -306,6 +306,16 @@ footer.site-footer{margin-top:auto;padding:0;text-align:left;color:var(--mute);f
 .info summary::after{content:"+";color:var(--brand);font-size:1.2rem;font-weight:700;line-height:1;transition:transform .2s}
 .info details[open] summary::after{transform:rotate(45deg)}
 .info details p{padding:0 0 12px}
+.info .faq-more{text-align:center;margin-top:18px}
+.faq-toggle{display:inline-flex;align-items:center;gap:8px;cursor:pointer;font:inherit;font-weight:700;font-size:.92rem;color:var(--ink);background:var(--field);border:1px solid var(--line);border-radius:999px;padding:9px 20px;transition:border-color .2s,color .2s,background .2s}
+.faq-toggle[hidden]{display:none}
+.faq-toggle:hover{border-color:var(--brand);color:var(--brand)}
+.faq-toggle:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
+.faq-toggle::after{content:"";width:7px;height:7px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:translateY(-2px) rotate(45deg);transition:transform .2s}
+.faq-toggle[aria-expanded="true"]::after{transform:translateY(2px) rotate(-135deg)}
+.faq-toggle .t-less{display:none}
+.faq-toggle[aria-expanded="true"] .t-all{display:none}
+.faq-toggle[aria-expanded="true"] .t-less{display:inline}
 .info .terms{border-top:1px solid var(--line);padding-top:20px}
 .info .terms h2{margin-bottom:4px}
 .info .terms .updated{font-size:.85rem;color:var(--mute);margin:0 0 16px}
@@ -329,6 +339,7 @@ footer a.terms-link:hover{opacity:1}
 .modal-body h3:first-child{margin-top:4px}
 .modal-body p,.modal-body li{margin:0 0 8px}
 .modal-body ul{margin:0 0 8px;padding-left:1.2rem}
+.modal-body ol{margin:0 0 8px;padding-left:1.2rem}
 .modal-body .updated{font-size:.85rem;margin:0 0 12px}
 @media(max-width:700px){.info .ranges{grid-template-columns:1fr;gap:14px}}
 .lang{padding:0 8px;text-align:center;appearance:auto;-webkit-appearance:menulist}
@@ -449,7 +460,7 @@ footer a.terms-link:hover{opacity:1}
 /* right-to-left (Arabic) */
 html[dir=rtl] .wscene,html[dir=rtl] .mscene,html[dir=rtl] .scene,html[dir=rtl] .cscene{direction:ltr}
 html[dir=rtl] input[type=number],html[dir=rtl] input[inputmode]{direction:ltr}
-html[dir=rtl] .info ol,html[dir=rtl] .info .terms ul,html[dir=rtl] .modal-body ul{padding-left:0;padding-right:1.2rem}
+html[dir=rtl] .info ol,html[dir=rtl] .info .terms ul,html[dir=rtl] .modal-body ul,html[dir=rtl] .modal-body ol{padding-left:0;padding-right:1.2rem}
 html[dir=rtl] footer.site-footer{text-align:right}
 html[dir=rtl] body{font-family:system-ui,-apple-system,'Segoe UI',Tahoma,'Noto Sans Arabic',Arial,sans-serif}
 </style>
@@ -477,9 +488,9 @@ a.brand{text-decoration:none;color:inherit}
 <main>
 <article class="card doc">
 <p class="doc-back"><a href="/ja/">← ジェネレーターに戻る</a></p>
-<h1>乱数ジェネレーターのしくみ</h1>
+<h1>乱数生成器ガイド：仕組みと使い方</h1>
 <div class="modal-body">
-<p>乱数ジェネレーター（RNG）は、予測できるパターンのない数字を選ぶツールです。なかには数式に従うだけの擬似乱数もあり、初期値がわかれば予測できてしまいます。Randomlyは、予測不能なシステム由来の情報を使うブラウザの暗号論的乱数源を利用しています。</p><h3>公平性が大切な理由</h3><p>大きな乱数を範囲の大きさで割った余りを使うと、一部の数字がわずかに出やすくなります。Randomlyはそのような値を捨ててもう一度引くので、範囲内のすべての数字が等しい確率で選ばれます。</p><h3>知っておきたいこと</h3><p>ランダムは「均等にばらける」という意味ではありません。同じ数字が2回続くのは普通のことで、しばらく出ていない数字が「そろそろ出る」わけでもありません。Randomlyは日常的な利用向けで、宝くじ、ギャンブル、暗号鍵には適していません。</p><p><a href="/ja/">ジェネレーターを試す →</a></p>
+<p>乱数生成器（RNG）は、予測できるパターンのない数字を選ぶツールです。このガイドでは、オンライン乱数生成器の仕組みと、上手な使い方を紹介します。</p><h3>オンライン乱数生成器の使い方</h3><ol><li>最小値と最大値を入力するか、1〜100や1〜1,000などのクイック範囲をタップします。</li><li>演出を選ぶか、「アニメーションをスキップ」をオンにして結果をすぐに表示します。</li><li>「乱数を表示」をクリックします。</li><li>結果をコピーするか、後で見直したいときは「最近の結果」を確認します。</li></ol><h3>範囲の選び方</h3><p>ちょっとした決めごとやゲームなら、1〜100の乱数生成器で十分です。大きなグループやより多様な結果が必要なときは1〜1,000、それ以上なら広い範囲を使います。リストから選ぶ場合は、項目に1からNまでの番号を振り、範囲を1〜Nに設定します。両端の数字も出ます。</p><h3>疑似乱数と暗号論的乱数</h3><p>一部の生成器は疑似乱数にすぎず、計算式に従うため、初期値がわかれば予測できてしまいます。Randomlyは、予測できないシステム情報を利用するブラウザの暗号論的乱数源を使っています。</p><h3>公平性が大切な理由</h3><p>大きな乱数を範囲の大きさで割った余りを使うと、特定の数字がわずかに出やすくなります。Randomlyはそのような値を捨てて引き直すので、範囲内のどの数字も同じ確率で選ばれます。</p><h3>ランダム数字ピッカーの使い道</h3><ul><li>授業での指名・出席番号</li><li>番号を振った参加者でのグループ活動</li><li>ボードゲーム、クイズ大会、パーティーゲーム</li><li>順番や選択肢を決める</li><li>ランダムなサンプルやテスト値の選択</li><li>すぐに乱数を生成したいとき</li></ul><h3>公平に選ぶためのヒント</h3><ul><li>抽選の前に範囲を決めておくと、後から疑問を持たれません。</li><li>参加者や選択肢に1からNまでの番号を振り、範囲を1〜Nにします。</li><li>同じ数字を一度しか出したくないときは「重複なし」をオンにします。</li><li>1つの決定につき1回だけ抽選します。気に入るまで引き直すと意味がなくなります。</li><li>以前の結果を確認したり見せたりするには「最近の結果」を使います。</li></ul><h3>表示アニメーション</h3><p>Randomlyにはルーレット、ミステリークレート、ナンバーマシン、カードドロー、雨雲リビールの5つの演出があります。数字はアニメーションの開始前に決まっているため、アニメーションは結果を見せるだけで、結果には影響しません。いつでもスキップでき、端末で動きを減らす設定にしている場合は控えめになります。</p><h3>知っておきたいこと</h3><p>ランダムは均等に散らばるという意味ではありません。同じ数字が2回続くのは普通のことで、最近出ていない数字が「そろそろ出る」わけでもありません。Randomlyは日常用途向けで、宝くじ、ギャンブル、暗号鍵には適していません。</p><p><a href="/ja/">ジェネレーターを試す →</a></p>
 </div>
 </article>
 </main>

@@ -10,7 +10,7 @@
 <link rel="manifest" href="/manifest.webmanifest">
 <meta name="theme-color" content="#f5f6fb">
 <script>(function(){var t=null;try{t=localStorage.getItem('randomly-theme')}catch(e){}if(t!=='light'&&t!=='dark')t='light';document.documentElement.setAttribute('data-theme',t)})()</script>
-<title>Comment fonctionnent les générateurs de nombres aléatoires | Randomly</title>
+<title>Générateur de nombres aléatoires : fonctionnement et mode d'emploi | Randomly</title>
 <meta name="description" content="Un générateur de nombres aléatoires (GNA) choisit un nombre sans schéma prévisible.">
 <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
 <meta name="author" content="RithyVerse Studio">
@@ -41,7 +41,7 @@
 <meta property="og:locale:alternate" content="pt_BR">
 <meta property="og:locale:alternate" content="id_ID">
 <meta property="og:locale:alternate" content="ar_AR">
-<meta property="og:title" content="Comment fonctionnent les générateurs de nombres aléatoires | Randomly">
+<meta property="og:title" content="Générateur de nombres aléatoires : fonctionnement et mode d&#x27;emploi | Randomly">
 <meta property="og:description" content="Un générateur de nombres aléatoires (GNA) choisit un nombre sans schéma prévisible.">
 <meta property="og:url" content="https://randomlynumber.com/fr/guide/">
 <meta property="og:image" content="https://randomlynumber.com/og-image.png">
@@ -49,7 +49,7 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Comment fonctionnent les générateurs de nombres aléatoires | Randomly">
+<meta name="twitter:title" content="Générateur de nombres aléatoires : fonctionnement et mode d&#x27;emploi | Randomly">
 <meta name="twitter:description" content="Un générateur de nombres aléatoires (GNA) choisit un nombre sans schéma prévisible.">
 <meta name="twitter:image" content="https://randomlynumber.com/og-image.png">
 <style>
@@ -306,6 +306,16 @@ footer.site-footer{margin-top:auto;padding:0;text-align:left;color:var(--mute);f
 .info summary::after{content:"+";color:var(--brand);font-size:1.2rem;font-weight:700;line-height:1;transition:transform .2s}
 .info details[open] summary::after{transform:rotate(45deg)}
 .info details p{padding:0 0 12px}
+.info .faq-more{text-align:center;margin-top:18px}
+.faq-toggle{display:inline-flex;align-items:center;gap:8px;cursor:pointer;font:inherit;font-weight:700;font-size:.92rem;color:var(--ink);background:var(--field);border:1px solid var(--line);border-radius:999px;padding:9px 20px;transition:border-color .2s,color .2s,background .2s}
+.faq-toggle[hidden]{display:none}
+.faq-toggle:hover{border-color:var(--brand);color:var(--brand)}
+.faq-toggle:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
+.faq-toggle::after{content:"";width:7px;height:7px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:translateY(-2px) rotate(45deg);transition:transform .2s}
+.faq-toggle[aria-expanded="true"]::after{transform:translateY(2px) rotate(-135deg)}
+.faq-toggle .t-less{display:none}
+.faq-toggle[aria-expanded="true"] .t-all{display:none}
+.faq-toggle[aria-expanded="true"] .t-less{display:inline}
 .info .terms{border-top:1px solid var(--line);padding-top:20px}
 .info .terms h2{margin-bottom:4px}
 .info .terms .updated{font-size:.85rem;color:var(--mute);margin:0 0 16px}
@@ -329,6 +339,7 @@ footer a.terms-link:hover{opacity:1}
 .modal-body h3:first-child{margin-top:4px}
 .modal-body p,.modal-body li{margin:0 0 8px}
 .modal-body ul{margin:0 0 8px;padding-left:1.2rem}
+.modal-body ol{margin:0 0 8px;padding-left:1.2rem}
 .modal-body .updated{font-size:.85rem;margin:0 0 12px}
 @media(max-width:700px){.info .ranges{grid-template-columns:1fr;gap:14px}}
 .lang{padding:0 8px;text-align:center;appearance:auto;-webkit-appearance:menulist}
@@ -449,7 +460,7 @@ footer a.terms-link:hover{opacity:1}
 /* right-to-left (Arabic) */
 html[dir=rtl] .wscene,html[dir=rtl] .mscene,html[dir=rtl] .scene,html[dir=rtl] .cscene{direction:ltr}
 html[dir=rtl] input[type=number],html[dir=rtl] input[inputmode]{direction:ltr}
-html[dir=rtl] .info ol,html[dir=rtl] .info .terms ul,html[dir=rtl] .modal-body ul{padding-left:0;padding-right:1.2rem}
+html[dir=rtl] .info ol,html[dir=rtl] .info .terms ul,html[dir=rtl] .modal-body ul,html[dir=rtl] .modal-body ol{padding-left:0;padding-right:1.2rem}
 html[dir=rtl] footer.site-footer{text-align:right}
 html[dir=rtl] body{font-family:system-ui,-apple-system,'Segoe UI',Tahoma,'Noto Sans Arabic',Arial,sans-serif}
 </style>
@@ -477,9 +488,9 @@ a.brand{text-decoration:none;color:inherit}
 <main>
 <article class="card doc">
 <p class="doc-back"><a href="/fr/">← Retour au générateur</a></p>
-<h1>Comment fonctionnent les générateurs de nombres aléatoires</h1>
+<h1>Générateur de nombres aléatoires : fonctionnement et mode d'emploi</h1>
 <div class="modal-body">
-<p>Un générateur de nombres aléatoires (GNA) choisit un nombre sans schéma prévisible. Certains ne sont que pseudo-aléatoires : ils suivent une formule et restent prévisibles si l'on connaît la valeur de départ. Randomly utilise plutôt la source aléatoire cryptographique de votre navigateur, qui s'appuie sur des sources système imprévisibles.</p><h3>Pourquoi l'équité compte</h3><p>Prendre une grande valeur aléatoire et utiliser le reste de sa division par la taille de la plage favorise légèrement certains nombres. Randomly écarte ces valeurs et tire à nouveau : chaque nombre de votre plage a la même probabilité.</p><h3>Bon à savoir</h3><p>Aléatoire ne veut pas dire réparti uniformément. Obtenir deux fois le même nombre est normal, et un nombre absent depuis longtemps n'est pas « dû ». Randomly est conçu pour un usage courant, pas pour les loteries, les jeux d'argent ni les clés cryptographiques.</p><p><a href="/fr/">Essayer le générateur →</a></p>
+<p>Un générateur de nombres aléatoires (GNA) choisit un nombre sans schéma prévisible. Ce guide explique comment fonctionne un générateur de nombres aléatoires en ligne et comment bien l'utiliser.</p><h3>Comment utiliser un générateur de nombres aléatoires en ligne</h3><ol><li>Saisissez un minimum et un maximum, ou appuyez sur une plage rapide comme 1–100 ou 1–1 000.</li><li>Choisissez une animation de révélation, ou cochez « Passer l'animation » pour un résultat immédiat.</li><li>Cliquez sur « Révéler un nombre aléatoire ».</li><li>Copiez le résultat, ou consultez « Tirages récents » plus tard pour revenir en arrière.</li></ol><h3>Choisir la bonne plage</h3><p>Pour une décision rapide ou un jeu, un générateur de nombres aléatoires de 1 à 100 suffit largement. Utilisez 1–1 000 pour un groupe plus grand ou plus de variété, et des plages plus larges au-delà. Pour choisir dans une liste, numérotez les éléments de 1 à N et réglez la plage sur 1–N. Les deux bornes peuvent sortir.</p><h3>Pseudo-aléatoire ou aléatoire cryptographique</h3><p>Certains générateurs ne sont que pseudo-aléatoires : ils suivent une formule et restent prévisibles si l'on connaît la valeur de départ. Randomly utilise plutôt la source aléatoire cryptographique de votre navigateur, qui s'appuie sur des sources système imprévisibles.</p><h3>Pourquoi l'équité compte</h3><p>Prendre une grande valeur aléatoire et utiliser le reste de sa division par la taille de la plage favorise légèrement certains nombres. Randomly écarte ces valeurs et tire à nouveau : chaque nombre de votre plage a la même probabilité.</p><h3>À quoi sert un sélecteur de nombres aléatoires</h3><ul><li>Désigner des élèves en classe</li><li>Activités de groupe avec des participants numérotés</li><li>Jeux de société, soirées quiz et jeux entre amis</li><li>Décider qui commence ou quelle option choisir</li><li>Choisir un échantillon aléatoire ou une valeur de test</li><li>Chaque fois que vous devez générer rapidement des nombres aléatoires</li></ul><h3>Conseils pour un tirage équitable</h3><ul><li>Fixez la plage avant de tirer, pour que personne ne puisse la contester ensuite.</li><li>Numérotez vos participants ou vos options de 1 à N et réglez la plage sur 1–N.</li><li>Activez « Sans répétition » quand chaque nombre ne doit sortir qu'une fois.</li><li>Tirez une seule fois par décision : recommencer jusqu'à obtenir le résultat voulu n'a aucun sens.</li><li>Utilisez « Tirages récents » pour vérifier ou montrer les résultats précédents.</li></ul><h3>Les animations de révélation</h3><p>Randomly propose cinq modes : Roue, Caisse mystère, Machine à nombres, Tirage de carte et Pluie de nuages. Le nombre est choisi avant le début de l'animation, qui ne fait que le révéler sans influencer le résultat. Vous pouvez la passer à tout moment, et elle est atténuée si votre appareil est réglé pour réduire les animations.</p><h3>Bon à savoir</h3><p>Aléatoire ne veut pas dire réparti uniformément. Obtenir deux fois le même nombre est normal, et un nombre absent depuis longtemps n'est pas « dû ». Randomly est conçu pour un usage courant, pas pour les loteries, les jeux d'argent ni les clés cryptographiques.</p><p><a href="/fr/">Essayer le générateur →</a></p>
 </div>
 </article>
 </main>

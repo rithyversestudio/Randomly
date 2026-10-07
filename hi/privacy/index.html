@@ -306,6 +306,16 @@ footer.site-footer{margin-top:auto;padding:0;text-align:left;color:var(--mute);f
 .info summary::after{content:"+";color:var(--brand);font-size:1.2rem;font-weight:700;line-height:1;transition:transform .2s}
 .info details[open] summary::after{transform:rotate(45deg)}
 .info details p{padding:0 0 12px}
+.info .faq-more{text-align:center;margin-top:18px}
+.faq-toggle{display:inline-flex;align-items:center;gap:8px;cursor:pointer;font:inherit;font-weight:700;font-size:.92rem;color:var(--ink);background:var(--field);border:1px solid var(--line);border-radius:999px;padding:9px 20px;transition:border-color .2s,color .2s,background .2s}
+.faq-toggle[hidden]{display:none}
+.faq-toggle:hover{border-color:var(--brand);color:var(--brand)}
+.faq-toggle:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
+.faq-toggle::after{content:"";width:7px;height:7px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:translateY(-2px) rotate(45deg);transition:transform .2s}
+.faq-toggle[aria-expanded="true"]::after{transform:translateY(2px) rotate(-135deg)}
+.faq-toggle .t-less{display:none}
+.faq-toggle[aria-expanded="true"] .t-all{display:none}
+.faq-toggle[aria-expanded="true"] .t-less{display:inline}
 .info .terms{border-top:1px solid var(--line);padding-top:20px}
 .info .terms h2{margin-bottom:4px}
 .info .terms .updated{font-size:.85rem;color:var(--mute);margin:0 0 16px}
@@ -329,6 +339,7 @@ footer a.terms-link:hover{opacity:1}
 .modal-body h3:first-child{margin-top:4px}
 .modal-body p,.modal-body li{margin:0 0 8px}
 .modal-body ul{margin:0 0 8px;padding-left:1.2rem}
+.modal-body ol{margin:0 0 8px;padding-left:1.2rem}
 .modal-body .updated{font-size:.85rem;margin:0 0 12px}
 @media(max-width:700px){.info .ranges{grid-template-columns:1fr;gap:14px}}
 .lang{padding:0 8px;text-align:center;appearance:auto;-webkit-appearance:menulist}
@@ -449,7 +460,7 @@ footer a.terms-link:hover{opacity:1}
 /* right-to-left (Arabic) */
 html[dir=rtl] .wscene,html[dir=rtl] .mscene,html[dir=rtl] .scene,html[dir=rtl] .cscene{direction:ltr}
 html[dir=rtl] input[type=number],html[dir=rtl] input[inputmode]{direction:ltr}
-html[dir=rtl] .info ol,html[dir=rtl] .info .terms ul,html[dir=rtl] .modal-body ul{padding-left:0;padding-right:1.2rem}
+html[dir=rtl] .info ol,html[dir=rtl] .info .terms ul,html[dir=rtl] .modal-body ul,html[dir=rtl] .modal-body ol{padding-left:0;padding-right:1.2rem}
 html[dir=rtl] footer.site-footer{text-align:right}
 html[dir=rtl] body{font-family:system-ui,-apple-system,'Segoe UI',Tahoma,'Noto Sans Arabic',Arial,sans-serif}
 </style>

@@ -10,8 +10,8 @@
 <link rel="manifest" href="/manifest.webmanifest">
 <meta name="theme-color" content="#f5f6fb">
 <script>(function(){var t=null;try{t=localStorage.getItem('randomly-theme')}catch(e){}if(t!=='light'&&t!=='dark')t='light';document.documentElement.setAttribute('data-theme',t)})()</script>
-<title>How Random Number Generators Work | Randomly</title>
-<meta name="description" content="A random number generator (RNG) picks a number with no pattern you could predict. Some are only pseudo-random: they follow a formula and are predictable if you know the…">
+<title>Random Number Generator Guide: How It Works and How to Use It | Randomly</title>
+<meta name="description" content="A random number generator (RNG) picks a number with no pattern you could predict. This guide explains how an online random number generator works and how to use it well.">
 <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
 <meta name="author" content="RithyVerse Studio">
 <meta name="application-name" content="Randomly">
@@ -41,16 +41,16 @@
 <meta property="og:locale:alternate" content="pt_BR">
 <meta property="og:locale:alternate" content="id_ID">
 <meta property="og:locale:alternate" content="ar_AR">
-<meta property="og:title" content="How Random Number Generators Work | Randomly">
-<meta property="og:description" content="A random number generator (RNG) picks a number with no pattern you could predict. Some are only pseudo-random: they follow a formula and are predictable if you know the…">
+<meta property="og:title" content="Random Number Generator Guide: How It Works and How to Use It | Randomly">
+<meta property="og:description" content="A random number generator (RNG) picks a number with no pattern you could predict. This guide explains how an online random number generator works and how to use it well.">
 <meta property="og:url" content="https://randomlynumber.com/guide/">
 <meta property="og:image" content="https://randomlynumber.com/og-image.png">
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="How Random Number Generators Work | Randomly">
-<meta name="twitter:description" content="A random number generator (RNG) picks a number with no pattern you could predict. Some are only pseudo-random: they follow a formula and are predictable if you know the…">
+<meta name="twitter:title" content="Random Number Generator Guide: How It Works and How to Use It | Randomly">
+<meta name="twitter:description" content="A random number generator (RNG) picks a number with no pattern you could predict. This guide explains how an online random number generator works and how to use it well.">
 <meta name="twitter:image" content="https://randomlynumber.com/og-image.png">
 <style>
 :root{--bg:#f5f6fb;--card:#fff;--ink:#14162b;--mute:#6a6f8a;--line:#e3e5f0;--brand:#5b5bf0;--brand2:#8a5cf6;--accent:#12b5a6;--glow:rgba(91,91,240,.35);--shadow:0 10px 40px rgba(30,30,80,.08);--field:#f0f1f9;--wa:#5b5bf0;--wb:#8a5cf6;--wc:#12b5a6;--wd:#f3f4fb;
@@ -306,6 +306,16 @@ footer.site-footer{margin-top:auto;padding:0;text-align:left;color:var(--mute);f
 .info summary::after{content:"+";color:var(--brand);font-size:1.2rem;font-weight:700;line-height:1;transition:transform .2s}
 .info details[open] summary::after{transform:rotate(45deg)}
 .info details p{padding:0 0 12px}
+.info .faq-more{text-align:center;margin-top:18px}
+.faq-toggle{display:inline-flex;align-items:center;gap:8px;cursor:pointer;font:inherit;font-weight:700;font-size:.92rem;color:var(--ink);background:var(--field);border:1px solid var(--line);border-radius:999px;padding:9px 20px;transition:border-color .2s,color .2s,background .2s}
+.faq-toggle[hidden]{display:none}
+.faq-toggle:hover{border-color:var(--brand);color:var(--brand)}
+.faq-toggle:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
+.faq-toggle::after{content:"";width:7px;height:7px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:translateY(-2px) rotate(45deg);transition:transform .2s}
+.faq-toggle[aria-expanded="true"]::after{transform:translateY(2px) rotate(-135deg)}
+.faq-toggle .t-less{display:none}
+.faq-toggle[aria-expanded="true"] .t-all{display:none}
+.faq-toggle[aria-expanded="true"] .t-less{display:inline}
 .info .terms{border-top:1px solid var(--line);padding-top:20px}
 .info .terms h2{margin-bottom:4px}
 .info .terms .updated{font-size:.85rem;color:var(--mute);margin:0 0 16px}
@@ -329,6 +339,7 @@ footer a.terms-link:hover{opacity:1}
 .modal-body h3:first-child{margin-top:4px}
 .modal-body p,.modal-body li{margin:0 0 8px}
 .modal-body ul{margin:0 0 8px;padding-left:1.2rem}
+.modal-body ol{margin:0 0 8px;padding-left:1.2rem}
 .modal-body .updated{font-size:.85rem;margin:0 0 12px}
 @media(max-width:700px){.info .ranges{grid-template-columns:1fr;gap:14px}}
 .lang{padding:0 8px;text-align:center;appearance:auto;-webkit-appearance:menulist}
@@ -449,7 +460,7 @@ footer a.terms-link:hover{opacity:1}
 /* right-to-left (Arabic) */
 html[dir=rtl] .wscene,html[dir=rtl] .mscene,html[dir=rtl] .scene,html[dir=rtl] .cscene{direction:ltr}
 html[dir=rtl] input[type=number],html[dir=rtl] input[inputmode]{direction:ltr}
-html[dir=rtl] .info ol,html[dir=rtl] .info .terms ul,html[dir=rtl] .modal-body ul{padding-left:0;padding-right:1.2rem}
+html[dir=rtl] .info ol,html[dir=rtl] .info .terms ul,html[dir=rtl] .modal-body ul,html[dir=rtl] .modal-body ol{padding-left:0;padding-right:1.2rem}
 html[dir=rtl] footer.site-footer{text-align:right}
 html[dir=rtl] body{font-family:system-ui,-apple-system,'Segoe UI',Tahoma,'Noto Sans Arabic',Arial,sans-serif}
 </style>
@@ -477,9 +488,9 @@ a.brand{text-decoration:none;color:inherit}
 <main>
 <article class="card doc">
 <p class="doc-back"><a href="/">← Back to the generator</a></p>
-<h1>How Random Number Generators Work</h1>
+<h1>Random Number Generator Guide: How It Works and How to Use It</h1>
 <div class="modal-body">
-<p>A random number generator (RNG) picks a number with no pattern you could predict. Some are only pseudo-random: they follow a formula and are predictable if you know the starting value. Randomly uses your browser's cryptographic random source instead, which draws on unpredictable system sources.</p><h3>Why fairness matters</h3><p>Taking a big random value and using the remainder after dividing by the range size slightly favors some numbers. Randomly discards those values and draws again, so every number in your range is equally likely.</p><h3>Good to know</h3><p>Random does not mean evenly spread. The same number twice in a row is normal, and a number that has not appeared lately is not "due". Randomly is for everyday use, not lotteries, gambling or cryptographic keys.</p><p><a href="/">Try the generator →</a></p>
+<p>A random number generator (RNG) picks a number with no pattern you could predict. This guide explains how an online random number generator works and how to use it well.</p><h3>How to use an online random number generator</h3><ol><li>Enter a minimum and a maximum number, or tap a quick range such as 1–100 or 1–1,000.</li><li>Choose a reveal animation, or tick Skip animation for an instant result.</li><li>Click Reveal Random Number.</li><li>Copy the result, or check Recent draws later if you need to look back.</li></ol><h3>Choosing the right range</h3><p>For a quick decision or a game, a random number generator 1-100 is plenty. Use 1–1,000 when you need a larger group or more variety, and bigger ranges beyond that. To pick from a list, number the items 1 to N and set the range to 1–N. Both endpoints can be drawn.</p><h3>Pseudo-random vs. cryptographic random</h3><p>Some generators are only pseudo-random: they follow a formula and are predictable if you know the starting value. Randomly uses your browser's cryptographic random source instead, which draws on unpredictable system sources.</p><h3>Why fairness matters</h3><p>Taking a big random value and using the remainder after dividing by the range size slightly favors some numbers. Randomly discards those values and draws again, so every number in your range is equally likely.</p><h3>What a random number picker is good for</h3><ul><li>Classroom turns and student numbers</li><li>Group activities with numbered participants</li><li>Board games, quiz nights and party games</li><li>Deciding who goes first or which option to take</li><li>Choosing a random sample or test value</li><li>Any time you need to generate random numbers quickly</li></ul><h3>Tips for a fair pick</h3><ul><li>Decide the range before you draw, so nobody can question it afterwards.</li><li>Number your participants or options from 1 to N and set the range to 1–N.</li><li>Turn on No repeats when each number should only be drawn once.</li><li>Draw once per decision. Redrawing until you like the result defeats the point.</li><li>Use Recent draws if you need to check or show earlier results.</li></ul><h3>Reveal animations</h3><p>Randomly offers five reveal modes: Wheel, Mystery Crate, Number Machine, Card Draw and Cloud Rain. The number is chosen before the animation starts, so the animation only shows the result and never affects it. You can skip it at any time, and it is toned down if your device is set to reduce motion.</p><h3>Good to know</h3><p>Random does not mean evenly spread. The same number twice in a row is normal, and a number that has not appeared lately is not “due”. Randomly is for everyday use, not lotteries, gambling or cryptographic keys.</p><p><a href="/">Try the generator →</a></p>
 </div>
 </article>
 </main>

@@ -10,8 +10,8 @@
 <link rel="manifest" href="/manifest.webmanifest">
 <meta name="theme-color" content="#f5f6fb">
 <script>(function(){var t=null;try{t=localStorage.getItem('randomly-theme')}catch(e){}if(t!=='light'&&t!=='dark')t='light';document.documentElement.setAttribute('data-theme',t)})()</script>
-<title>Как работают генераторы случайных чисел | Randomly</title>
-<meta name="description" content="Генератор случайных чисел (ГСЧ) выбирает число без предсказуемой закономерности. Некоторые из них лишь псевдослучайные: они работают по формуле и предсказуемы, если…">
+<title>Генератор случайных чисел: как он работает и как им пользоваться | Randomly</title>
+<meta name="description" content="Генератор случайных чисел (ГСЧ) выбирает число без закономерности, которую можно предсказать.">
 <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
 <meta name="author" content="RithyVerse Studio">
 <meta name="application-name" content="Randomly">
@@ -41,16 +41,16 @@
 <meta property="og:locale:alternate" content="pt_BR">
 <meta property="og:locale:alternate" content="id_ID">
 <meta property="og:locale:alternate" content="ar_AR">
-<meta property="og:title" content="Как работают генераторы случайных чисел | Randomly">
-<meta property="og:description" content="Генератор случайных чисел (ГСЧ) выбирает число без предсказуемой закономерности. Некоторые из них лишь псевдослучайные: они работают по формуле и предсказуемы, если…">
+<meta property="og:title" content="Генератор случайных чисел: как он работает и как им пользоваться | Randomly">
+<meta property="og:description" content="Генератор случайных чисел (ГСЧ) выбирает число без закономерности, которую можно предсказать.">
 <meta property="og:url" content="https://randomlynumber.com/ru/guide/">
 <meta property="og:image" content="https://randomlynumber.com/og-image.png">
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Как работают генераторы случайных чисел | Randomly">
-<meta name="twitter:description" content="Генератор случайных чисел (ГСЧ) выбирает число без предсказуемой закономерности. Некоторые из них лишь псевдослучайные: они работают по формуле и предсказуемы, если…">
+<meta name="twitter:title" content="Генератор случайных чисел: как он работает и как им пользоваться | Randomly">
+<meta name="twitter:description" content="Генератор случайных чисел (ГСЧ) выбирает число без закономерности, которую можно предсказать.">
 <meta name="twitter:image" content="https://randomlynumber.com/og-image.png">
 <style>
 :root{--bg:#f5f6fb;--card:#fff;--ink:#14162b;--mute:#6a6f8a;--line:#e3e5f0;--brand:#5b5bf0;--brand2:#8a5cf6;--accent:#12b5a6;--glow:rgba(91,91,240,.35);--shadow:0 10px 40px rgba(30,30,80,.08);--field:#f0f1f9;--wa:#5b5bf0;--wb:#8a5cf6;--wc:#12b5a6;--wd:#f3f4fb;
@@ -306,6 +306,16 @@ footer.site-footer{margin-top:auto;padding:0;text-align:left;color:var(--mute);f
 .info summary::after{content:"+";color:var(--brand);font-size:1.2rem;font-weight:700;line-height:1;transition:transform .2s}
 .info details[open] summary::after{transform:rotate(45deg)}
 .info details p{padding:0 0 12px}
+.info .faq-more{text-align:center;margin-top:18px}
+.faq-toggle{display:inline-flex;align-items:center;gap:8px;cursor:pointer;font:inherit;font-weight:700;font-size:.92rem;color:var(--ink);background:var(--field);border:1px solid var(--line);border-radius:999px;padding:9px 20px;transition:border-color .2s,color .2s,background .2s}
+.faq-toggle[hidden]{display:none}
+.faq-toggle:hover{border-color:var(--brand);color:var(--brand)}
+.faq-toggle:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
+.faq-toggle::after{content:"";width:7px;height:7px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:translateY(-2px) rotate(45deg);transition:transform .2s}
+.faq-toggle[aria-expanded="true"]::after{transform:translateY(2px) rotate(-135deg)}
+.faq-toggle .t-less{display:none}
+.faq-toggle[aria-expanded="true"] .t-all{display:none}
+.faq-toggle[aria-expanded="true"] .t-less{display:inline}
 .info .terms{border-top:1px solid var(--line);padding-top:20px}
 .info .terms h2{margin-bottom:4px}
 .info .terms .updated{font-size:.85rem;color:var(--mute);margin:0 0 16px}
@@ -329,6 +339,7 @@ footer a.terms-link:hover{opacity:1}
 .modal-body h3:first-child{margin-top:4px}
 .modal-body p,.modal-body li{margin:0 0 8px}
 .modal-body ul{margin:0 0 8px;padding-left:1.2rem}
+.modal-body ol{margin:0 0 8px;padding-left:1.2rem}
 .modal-body .updated{font-size:.85rem;margin:0 0 12px}
 @media(max-width:700px){.info .ranges{grid-template-columns:1fr;gap:14px}}
 .lang{padding:0 8px;text-align:center;appearance:auto;-webkit-appearance:menulist}
@@ -449,7 +460,7 @@ footer a.terms-link:hover{opacity:1}
 /* right-to-left (Arabic) */
 html[dir=rtl] .wscene,html[dir=rtl] .mscene,html[dir=rtl] .scene,html[dir=rtl] .cscene{direction:ltr}
 html[dir=rtl] input[type=number],html[dir=rtl] input[inputmode]{direction:ltr}
-html[dir=rtl] .info ol,html[dir=rtl] .info .terms ul,html[dir=rtl] .modal-body ul{padding-left:0;padding-right:1.2rem}
+html[dir=rtl] .info ol,html[dir=rtl] .info .terms ul,html[dir=rtl] .modal-body ul,html[dir=rtl] .modal-body ol{padding-left:0;padding-right:1.2rem}
 html[dir=rtl] footer.site-footer{text-align:right}
 html[dir=rtl] body{font-family:system-ui,-apple-system,'Segoe UI',Tahoma,'Noto Sans Arabic',Arial,sans-serif}
 </style>
@@ -477,9 +488,9 @@ a.brand{text-decoration:none;color:inherit}
 <main>
 <article class="card doc">
 <p class="doc-back"><a href="/ru/">← Назад к генератору</a></p>
-<h1>Как работают генераторы случайных чисел</h1>
+<h1>Генератор случайных чисел: как он работает и как им пользоваться</h1>
 <div class="modal-body">
-<p>Генератор случайных чисел (ГСЧ) выбирает число без предсказуемой закономерности. Некоторые из них лишь псевдослучайные: они работают по формуле и предсказуемы, если знать начальное значение. Randomly использует криптографический источник случайности вашего браузера, который опирается на непредсказуемые системные данные.</p><h3>Почему важна честность</h3><p>Если взять большое случайное значение и использовать остаток от деления на размер диапазона, одни числа получают небольшое преимущество. Randomly отбрасывает такие значения и выбирает заново, поэтому у каждого числа в диапазоне одинаковые шансы.</p><h3>Полезно знать</h3><p>Случайность не означает равномерность. Одно и то же число дважды подряд — это нормально, а давно не выпадавшее число не «обязано» выпасть. Randomly создан для повседневного использования, а не для лотерей, азартных игр и криптографических ключей.</p><p><a href="/ru/">Попробовать генератор →</a></p>
+<p>Генератор случайных чисел (ГСЧ) выбирает число без закономерности, которую можно предсказать. В этом руководстве объясняется, как работает онлайн-генератор случайных чисел и как использовать его правильно.</p><h3>Как пользоваться онлайн-генератором случайных чисел</h3><ol><li>Введите минимум и максимум или нажмите быстрый диапазон, например 1–100 или 1–1 000.</li><li>Выберите анимацию или включите «Без анимации», чтобы получить результат сразу.</li><li>Нажмите «Показать случайное число».</li><li>Скопируйте результат или позже откройте «Недавние результаты», если нужно вернуться назад.</li></ol><h3>Как выбрать диапазон</h3><p>Для быстрого решения или игры вполне хватит генератора случайных чисел от 1 до 100. Диапазон 1–1 000 подойдёт для большой группы или когда нужно больше разнообразия, а ещё более широкие диапазоны — для остальных случаев. Чтобы выбрать из списка, пронумеруйте пункты от 1 до N и задайте диапазон 1–N. Обе границы могут выпасть.</p><h3>Псевдослучайные и криптографические числа</h3><p>Некоторые генераторы лишь псевдослучайны: они работают по формуле и предсказуемы, если знать начальное значение. Randomly использует криптографический источник случайности вашего браузера, который опирается на непредсказуемые системные данные.</p><h3>Почему важна честность</h3><p>Если взять большое случайное значение и использовать остаток от деления на размер диапазона, некоторые числа получат небольшое преимущество. Randomly отбрасывает такие значения и делает новую попытку, поэтому у каждого числа в диапазоне одинаковый шанс.</p><h3>Для чего подходит выбор случайного числа</h3><ul><li>Вызов учеников и номера в классе</li><li>Групповые активности с пронумерованными участниками</li><li>Настольные игры, викторины и вечеринки</li><li>Решение, кто ходит первым или какой вариант выбрать</li><li>Случайная выборка или тестовые значения</li><li>Любая ситуация, когда нужно быстро сгенерировать случайные числа</li></ul><h3>Советы для честного выбора</h3><ul><li>Определите диапазон до выбора, чтобы потом его никто не оспорил.</li><li>Пронумеруйте участников или варианты от 1 до N и задайте диапазон 1–N.</li><li>Включите «Без повторов», если каждое число должно выпасть только один раз.</li><li>Делайте один выбор на одно решение: повторять, пока не понравится результат, бессмысленно.</li><li>Используйте «Недавние результаты», чтобы проверить или показать прежние числа.</li></ul><h3>Анимации показа</h3><p>Randomly предлагает пять режимов: Колесо, Загадочный ящик, Числовая машина, Вытянуть карту и Дождь из облаков. Число выбирается до начала анимации, поэтому она лишь показывает результат и на него не влияет. Анимацию можно пропустить в любой момент, а если на устройстве включено уменьшение движения, она ослабляется.</p><h3>Важно знать</h3><p>Случайность не означает равномерного распределения. Одно и то же число дважды подряд — это нормально, а число, которое давно не выпадало, не «должно» выпасть. Randomly рассчитан на повседневное использование, а не на лотереи, азартные игры или криптографические ключи.</p><p><a href="/ru/">Попробовать генератор →</a></p>
 </div>
 </article>
 </main>
