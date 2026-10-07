@@ -83,7 +83,7 @@ button:disabled{opacity:.55;cursor:progress}
 .stage>div{display:none}
 .stage[data-m=wheel] .s-wheel,.stage[data-m=crate] .s-crate,.stage[data-m=machine] .s-machine{display:flex}
 .big{font-size:clamp(3.4rem,15vw,7.5rem);font-weight:800;letter-spacing:-.04em;line-height:1.05;font-variant-numeric:tabular-nums;word-break:break-all;background:linear-gradient(135deg,var(--brand),var(--brand2));-webkit-background-clip:text;background-clip:text;color:transparent;min-height:1.1em}
-.big.idle{background:none;color:var(--line);-webkit-text-fill-color:currentColor}
+.big.idle{height:0;min-height:0;overflow:hidden;opacity:0;margin:0}
 .big.pop{animation:pop .85s cubic-bezier(.2,1.2,.4,1)}
 @keyframes pop{0%{transform:scale(.5);opacity:0;filter:blur(10px) drop-shadow(0 0 0 transparent)}55%{transform:scale(1.08);opacity:1;filter:blur(0) drop-shadow(0 0 28px var(--glow))}100%{transform:none;opacity:1;filter:blur(0) drop-shadow(0 0 0 transparent)}}
 .hint{color:var(--mute);margin:2px 0 0;min-height:1.4em}
@@ -587,7 +587,7 @@ footer a.terms-link:hover{opacity:1}
 </div>
 <button class="rskip" id="rskip" type="button" data-tr="rskip">Skip / Reveal now</button>
 </div>
-<div class="big idle" id="big" aria-live="polite" aria-atomic="true">—</div>
+<div class="big idle" id="big" aria-live="polite" aria-atomic="true">?</div>
 <p class="hint" id="hint">Choose a range and a reveal mode to begin.</p>
 <button class="go" id="go" type="button" data-tr="go">REVEAL RANDOM NUMBER</button>
 <p class="msg" id="msg" role="status"></p>
