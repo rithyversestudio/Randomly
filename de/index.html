@@ -187,6 +187,11 @@ h1,h2,h3,summary,.ft-col a,.ft-col h3,.ft-brand p{overflow-wrap:anywhere;hyphens
 .ft-top>*{min-width:0}
 @media(max-width:380px){h1{font-size:clamp(1.55rem,8vw,2.2rem)}.ft-top{grid-template-columns:repeat(2,minmax(0,1fr))}.ft-col h3{letter-spacing:.04em}}
 .wspin.blur{filter:none!important} /* the blur clipped the left edge of the wheel while spinning */
+/* ===== clean minimal page background: faint dot grid + soft top glow ===== */
+:root{--dot:rgba(91,91,240,.14);--g2:rgba(91,91,240,.10)}
+:root[data-theme="dark"]{--dot:rgba(255,255,255,.06);--g2:rgba(124,124,255,.18)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--dot:rgba(255,255,255,.06);--g2:rgba(124,124,255,.18)}}
+body{background:radial-gradient(720px 380px at 50% -6%,var(--g2),transparent 72%),radial-gradient(circle at 1px 1px,var(--dot) 1px,transparent 1.3px) 0 0/26px 26px,var(--bg)!important;background-attachment:fixed,fixed,fixed!important}
 /* ========== CINEMATIC MACHINE ========== */
 .s-machine{width:100%;max-width:460px;height:180px;align-self:center;position:relative;perspective:900px;align-items:center;justify-content:center}
 .mscene{position:absolute;left:50%;top:50%;width:0;height:0;transform-style:preserve-3d;transform:translate3d(-50%,-50%,-60px) rotateX(12deg) rotateY(-10deg) scale(.88);transition:transform 1.3s cubic-bezier(.4,0,.2,1)}
