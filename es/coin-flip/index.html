@@ -11,7 +11,7 @@
 <meta name="theme-color" content="#0e1020">
 <script>(function(){var t=null;try{t=localStorage.getItem('randomly-theme2')}catch(e){}if(t!=='light'&&t!=='dark')t='dark';document.documentElement.setAttribute('data-theme',t)})()</script>
 <title>Lanzar una moneda en línea | Randomly</title>
-<meta name="description" content="Lanzamiento de moneda en línea gratis. Cara o cruz, un 50/50 justo cada vez, con contador de lanzamientos.">
+<meta name="description" content="Lanzamiento de moneda en línea gratis. Cara o cruz, un 50/50 justo cada vez.">
 <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
 <meta name="author" content="RithyVerse Studio">
 <meta name="application-name" content="Randomly">
@@ -42,7 +42,7 @@
 <meta property="og:locale:alternate" content="id_ID">
 <meta property="og:locale:alternate" content="ar_AR">
 <meta property="og:title" content="Lanzar una moneda en línea | Randomly">
-<meta property="og:description" content="Lanzamiento de moneda en línea gratis. Cara o cruz, un 50/50 justo cada vez, con contador de lanzamientos.">
+<meta property="og:description" content="Lanzamiento de moneda en línea gratis. Cara o cruz, un 50/50 justo cada vez.">
 <meta property="og:url" content="https://randomlynumber.com/es/coin-flip/">
 <meta property="og:image" content="https://randomlynumber.com/og-image.png">
 <meta property="og:image:type" content="image/png">
@@ -50,7 +50,7 @@
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Lanzar una moneda en línea | Randomly">
-<meta name="twitter:description" content="Lanzamiento de moneda en línea gratis. Cara o cruz, un 50/50 justo cada vez, con contador de lanzamientos.">
+<meta name="twitter:description" content="Lanzamiento de moneda en línea gratis. Cara o cruz, un 50/50 justo cada vez.">
 <meta name="twitter:image" content="https://randomlynumber.com/og-image.png">
 <style>
 :root{--bg:#f5f6fb;--card:#fff;--ink:#14162b;--mute:#6a6f8a;--line:#e3e5f0;--brand:#5b5bf0;--brand2:#8a5cf6;--accent:#12b5a6;--glow:rgba(91,91,240,.35);--shadow:0 10px 40px rgba(30,30,80,.08);--field:#f0f1f9;--wa:#5b5bf0;--wb:#8a5cf6;--wc:#12b5a6;--wd:#f3f4fb;
@@ -649,40 +649,46 @@ html[dir=rtl] .s-dice,html[dir=rtl] .s-coin,html[dir=rtl] .s-cups{direction:ltr}
 .stage.tstage[data-m=cups]{height:auto;min-height:250px;padding:12px 6px}
 .stage.tstage[data-m=cups] .s-cups{height:auto}
 
-/* ---------- dice (real 3D cubes) ---------- */
-.dfloor{position:absolute;left:8%;right:8%;bottom:20px;height:56px;border-radius:50%;background:radial-gradient(ellipse at center,rgba(0,0,0,.4) 0%,transparent 70%)}
-:root[data-theme="light"] .dfloor{background:radial-gradient(ellipse at center,rgba(60,60,140,.2) 0%,transparent 70%)}
-.dwrap{--ds:96px;position:relative;display:flex;flex-wrap:wrap;justify-content:center;align-content:center;gap:34px 46px;max-width:94%;padding-top:70px}
+/* ---------- dice (true 3D polyhedra: D4 D6 D8 D10 D12 D20) ---------- */
+.dfloor{position:absolute;left:6%;right:6%;bottom:18px;height:60px;border-radius:50%;background:radial-gradient(ellipse at center,rgba(0,0,0,.42) 0%,transparent 70%)}
+:root[data-theme="light"] .dfloor{background:radial-gradient(ellipse at center,rgba(60,60,140,.22) 0%,transparent 70%)}
+.dwrap{--ds:96px;position:relative;display:flex;flex-wrap:wrap;justify-content:center;align-content:center;gap:34px 46px;max-width:96%;padding-top:70px}
 .dwrap[data-n="1"]{--ds:120px}
 .dwrap[data-n="2"],.dwrap[data-n="3"]{--ds:96px}
 .dwrap[data-n="4"],.dwrap[data-n="5"],.dwrap[data-n="6"]{--ds:74px;gap:30px 40px}
-.die{position:relative;width:var(--ds);height:var(--ds);flex:none;perspective:800px}
-.dsh{position:absolute;left:6%;right:6%;bottom:-16px;height:16px;border-radius:50%;background:rgba(0,0,0,.45);filter:blur(6px)}
-:root[data-theme="light"] .dsh{background:rgba(60,60,140,.32)}
-.dcube{position:absolute;inset:0;transform-style:preserve-3d;transform:rotateX(-20deg) rotateY(-28deg)}
-.df{position:absolute;inset:0;display:grid;place-items:center;border-radius:calc(var(--ds)*.17);background:linear-gradient(145deg,var(--brand),var(--brand2));color:#fff;font-weight:800;font-size:calc(var(--ds)*.4);font-variant-numeric:tabular-nums;box-shadow:inset 0 0 0 2px rgba(255,255,255,.2),inset 0 0 calc(var(--ds)*.28) rgba(0,0,0,.2);backface-visibility:hidden}
-.df.f1{transform:translateZ(calc(var(--ds)/2))}
-.df.f2{transform:rotateY(180deg) translateZ(calc(var(--ds)/2));filter:brightness(.62)}
-.df.f3{transform:rotateY(90deg) translateZ(calc(var(--ds)/2));filter:brightness(.8)}
-.df.f4{transform:rotateY(-90deg) translateZ(calc(var(--ds)/2));filter:brightness(.7)}
-.df.f5{transform:rotateX(90deg) translateZ(calc(var(--ds)/2));filter:brightness(1.2)}
-.df.f6{transform:rotateX(-90deg) translateZ(calc(var(--ds)/2));filter:brightness(.6)}
-.df.pips{grid-template:repeat(3,1fr)/repeat(3,1fr);padding:17%}
-.df.pips i{place-self:center;width:72%;aspect-ratio:1;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.35)}
+.die{position:relative;width:var(--ds);height:var(--ds);flex:none;perspective:900px;will-change:transform}
+.dsh{position:absolute;left:4%;right:4%;bottom:-20px;height:18px;border-radius:50%;background:rgba(0,0,0,.5);filter:blur(7px);will-change:transform,opacity}
+:root[data-theme="light"] .dsh{background:rgba(60,60,140,.36)}
+.dcube{position:absolute;inset:0;transform-style:preserve-3d;will-change:transform}
+.dpf{position:absolute;left:50%;top:50%;overflow:visible;backface-visibility:hidden;-webkit-backface-visibility:hidden;pointer-events:none}
+.dpf text{font-family:inherit;font-weight:800;font-variant-numeric:tabular-nums}
 
-/* ---------- coin (3D, with a thick rim) ---------- */
-.kfloor{position:absolute;left:24%;right:24%;bottom:22px;height:44px;border-radius:50%;background:radial-gradient(ellipse at center,rgba(0,0,0,.38) 0%,transparent 70%)}
-:root[data-theme="light"] .kfloor{background:radial-gradient(ellipse at center,rgba(60,60,140,.2) 0%,transparent 70%)}
-.kwrap{--kd:150px;position:relative;width:var(--kd);height:var(--kd);perspective:900px;margin-top:60px}
-.ksh{position:absolute;left:10%;right:10%;bottom:-30px;height:20px;border-radius:50%;background:rgba(0,0,0,.4);filter:blur(7px)}
-:root[data-theme="light"] .ksh{background:rgba(60,60,140,.3)}
-.kcoin{position:absolute;inset:0;transform-style:preserve-3d}
-.kl{position:absolute;inset:0;border-radius:50%;background:linear-gradient(135deg,var(--brand2),var(--brand));filter:brightness(.62)}
-.kf{position:absolute;inset:0;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;color:#fff;font-weight:800;background:linear-gradient(135deg,var(--brand),var(--brand2));box-shadow:inset 0 0 0 7px rgba(255,255,255,.2),inset 0 0 0 9px rgba(0,0,0,.12),inset 0 0 34px rgba(0,0,0,.22);backface-visibility:hidden}
-.kf b{font-size:calc(var(--kd)*.34);line-height:1}
-.kf span{font-size:calc(var(--kd)*.095);letter-spacing:.08em;text-transform:uppercase}
-.kf.h{transform:translateZ(5px)}
-.kf.t{transform:rotateX(180deg) translateZ(5px)}
+/* ---------- coin (3D, thick ridged rim, metal faces, live lighting) ---------- */
+.kfloor{position:absolute;left:20%;right:20%;bottom:20px;height:48px;border-radius:50%;background:radial-gradient(ellipse at center,rgba(0,0,0,.42) 0%,transparent 70%)}
+:root[data-theme="light"] .kfloor{background:radial-gradient(ellipse at center,rgba(60,60,140,.22) 0%,transparent 70%)}
+.kwrap{--kd:150px;position:relative;width:var(--kd);height:var(--kd);perspective:1000px;margin-top:64px}
+.ksh{position:absolute;left:8%;right:8%;bottom:-34px;height:22px;border-radius:50%;background:rgba(0,0,0,.5);filter:blur(8px);will-change:transform,opacity}
+:root[data-theme="light"] .ksh{background:rgba(60,60,140,.38)}
+.kview{position:absolute;inset:0;transform-style:preserve-3d}
+.kcoin{position:absolute;inset:0;transform-style:preserve-3d;will-change:transform}
+.kl{position:absolute;inset:0;border-radius:50%;background:repeating-conic-gradient(#f6d674 0 2.2deg,#a86f12 2.2deg 4.4deg);filter:brightness(.88)}
+.kl:nth-child(1),.kl:nth-child(13){filter:brightness(.5)}
+.kl:nth-child(2),.kl:nth-child(12){filter:brightness(.68)}
+.kf{position:absolute;inset:0;border-radius:50%;overflow:hidden;display:flex;align-items:center;justify-content:center;font-weight:800;backface-visibility:hidden;-webkit-backface-visibility:hidden;
+ background:radial-gradient(circle at 30% 24%,rgba(255,255,255,.5),transparent 42%),conic-gradient(from 30deg,#f7da7e,#d9a335,#fdeeb0,#c58c22,#f3d06c,#b98015,#f7da7e);
+ box-shadow:inset 0 0 0 calc(var(--kd)*.012) #fff6c4,inset 0 0 0 calc(var(--kd)*.045) #d3a02f,inset 0 0 0 calc(var(--kd)*.058) #8f5d0e,inset 0 0 calc(var(--kd)*.09) rgba(62,34,0,.55)}
+.kf::before{content:"";position:absolute;inset:7.5%;border-radius:50%;background:repeating-conic-gradient(rgba(96,58,6,.62) 0 1.6deg,rgba(255,244,190,.6) 1.6deg 3.2deg,transparent 3.2deg 6deg);-webkit-mask:radial-gradient(circle,transparent 0 92%,#000 93% 100%);mask:radial-gradient(circle,transparent 0 92%,#000 93% 100%)}
+.kf::after{content:"";position:absolute;inset:16%;border-radius:50%;background:radial-gradient(circle at 38% 30%,#fdeaa6,#e6bb55 52%,#cf9a2d);box-shadow:inset 0 calc(var(--kd)*.015) calc(var(--kd)*.03) rgba(70,38,0,.5),inset 0 calc(var(--kd)*-.01) calc(var(--kd)*.02) rgba(255,248,200,.7),0 1px 1px rgba(255,245,190,.9),0 -1px 1px rgba(80,44,0,.5)}
+.kfc{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;gap:calc(var(--kd)*.025)}
+.kfc b{display:flex;align-items:center;justify-content:center;width:calc(var(--kd)*.35);height:calc(var(--kd)*.35);font-size:calc(var(--kd)*.32);line-height:1;color:#9a6a12;text-shadow:0 1px 0 rgba(255,244,190,.9),0 -1px 0 rgba(70,38,0,.35)}
+.kfc b svg{display:block;width:100%;height:100%;fill:#f8dc86;stroke:#a8720f;stroke-width:2;stroke-linejoin:round;filter:drop-shadow(0 1.5px 0 rgba(255,245,190,.85)) drop-shadow(0 -1px 1px rgba(80,44,0,.45))}
+.kfc span{font-size:calc(var(--kd)*.08);line-height:1;letter-spacing:.14em;text-transform:uppercase;color:#8f5d0e;text-shadow:0 1px 0 rgba(255,244,190,.9),0 -1px 0 rgba(70,38,0,.3)}
+:lang(ar) .kfc span,:lang(hi) .kfc span{letter-spacing:0}
+.ksd,.kgl{position:absolute;inset:0;border-radius:50%;pointer-events:none;z-index:3}
+.ksd{background:#000;opacity:0}
+.kgl{background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.85) 46%,rgba(255,255,255,.1) 54%,transparent 68%);mix-blend-mode:soft-light;opacity:0}
+.kf.h{transform:translateZ(6.5px)}
+.kf.t{transform:rotateY(180deg) translateZ(6.5px)}
 .tstats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:16px auto 0;max-width:420px}
 .tstat{padding:10px 6px;border-radius:14px;border:1px solid var(--line);background:var(--field)}
 .tstat b{display:block;font-size:1.5rem;line-height:1.15;font-variant-numeric:tabular-nums;color:var(--ink)}
@@ -718,7 +724,7 @@ html[dir=rtl] .s-dice,html[dir=rtl] .s-coin,html[dir=rtl] .s-cups{direction:ltr}
 .dwrap[data-n="1"]{--ds:100px}
 .dwrap[data-n="2"],.dwrap[data-n="3"]{--ds:68px;gap:26px 34px}
 .dwrap[data-n="4"],.dwrap[data-n="5"],.dwrap[data-n="6"]{--ds:56px;gap:24px 28px}
-.kwrap{--kd:120px;margin-top:56px}
+.kwrap{--kd:122px;margin-top:58px}
 .tstat b{font-size:1.25rem}
 .cs-in{width:56px;height:44px}
 }
@@ -731,29 +737,28 @@ html[dir=rtl] .s-dice,html[dir=rtl] .s-coin,html[dir=rtl] .s-cups{direction:ltr}
 <div class="method" id="method">Listo cuando quieras</div>
 <div class="sw">
 <div class="stage tstage" id="stage" data-m="coin" aria-hidden="true">
-<div class="s-coin"><div class="kfloor"></div><div class="kwrap" id="kwrap"><i class="ksh" id="ksh"></i><div class="kcoin" id="kcoin"><i class="kl" style="transform:translateZ(-4px)"></i><i class="kl" style="transform:translateZ(-3px)"></i><i class="kl" style="transform:translateZ(-2px)"></i><i class="kl" style="transform:translateZ(-1px)"></i><i class="kl" style="transform:translateZ(0px)"></i><i class="kl" style="transform:translateZ(1px)"></i><i class="kl" style="transform:translateZ(2px)"></i><i class="kl" style="transform:translateZ(3px)"></i><i class="kl" style="transform:translateZ(4px)"></i><div class="kf h" id="kfront"></div><div class="kf t" id="kback"></div></div></div></div>
+<div class="s-coin"><div class="kfloor"></div><div class="kwrap" id="kwrap"><i class="ksh" id="ksh"></i><div class="kview"><div class="kcoin" id="kcoin"><i class="kl" style="transform:translateZ(-6px)"></i><i class="kl" style="transform:translateZ(-5px)"></i><i class="kl" style="transform:translateZ(-4px)"></i><i class="kl" style="transform:translateZ(-3px)"></i><i class="kl" style="transform:translateZ(-2px)"></i><i class="kl" style="transform:translateZ(-1px)"></i><i class="kl" style="transform:translateZ(0px)"></i><i class="kl" style="transform:translateZ(1px)"></i><i class="kl" style="transform:translateZ(2px)"></i><i class="kl" style="transform:translateZ(3px)"></i><i class="kl" style="transform:translateZ(4px)"></i><i class="kl" style="transform:translateZ(5px)"></i><i class="kl" style="transform:translateZ(6px)"></i><div class="kf h" id="kfront"><div class="kfc" id="kfc1"></div><i class="ksd" id="ksd1"></i><i class="kgl" id="kgl1"></i></div><div class="kf t" id="kback"><div class="kfc" id="kfc2"></div><i class="ksd" id="ksd2"></i><i class="kgl" id="kgl2"></i></div></div></div></div></div>
 <div class="ov vig"></div><div class="ov flash" id="flash"></div><div class="ov ring" id="ring"></div><canvas id="fx"></canvas>
 </div>
 <button class="rskip" id="rskip" type="button">Omitir / Revelar ya</button>
 </div>
 <div class="big idle" id="big" aria-live="polite" aria-atomic="true">?</div>
 <p class="hint" id="hint"></p>
-<div class="tstats"><div class="tstat"><b id="sh">0</b><span>Cara</span></div><div class="tstat"><b id="st">0</b><span>Cruz</span></div><div class="tstat"><b id="sf">0</b><span>Lanzamientos</span></div></div>
 <button class="go" id="go" type="button">Lanzar</button>
 <p class="msg" id="msg" role="status"></p>
 <div class="hist" id="hist" data-ic="🪙" hidden><div class="hhead"><div class="htitle">Sorteos recientes</div><div class="hacts"><button class="hclear" id="hcopyall" type="button">Copiar todo</button><button class="hclear" id="hclear" type="button">Borrar</button></div></div><ol class="hlist" id="hlist" aria-label="Sorteos recientes"></ol></div>
 </section>
-<section class="card tset" aria-label="Lanzar una moneda en línea"><div class="grp"><div class="lbl" id="g-opt">Opciones</div><div class="chips" role="group" aria-labelledby="g-opt"><label class="mode"><input type="checkbox" id="qskip"><span><b>Omitir animación</b></span></label><label class="mode"><input type="checkbox" id="snd" checked><span><b>🔊 Sonido</b></span></label><button class="chip" id="rst" type="button">↺ Reiniciar</button></div></div></section>
+<section class="card tset" aria-label="Lanzar una moneda en línea"><div class="grp"><div class="lbl" id="g-opt">Opciones</div><div class="chips" role="group" aria-labelledby="g-opt"><label class="mode"><input type="checkbox" id="qskip"><span><b>Omitir animación</b></span></label><label class="mode"><input type="checkbox" id="snd" checked><span><b>🔊 Sonido</b></span></label></div></div></section>
 <article class="card doc"><div class="modal-body">
 <p>Pulsa Lanzar y la moneda gira antes de caer en cara o cruz. El resultado sale de la fuente aleatoria criptográfica de tu navegador, así que cada lanzamiento es un 50/50 justo y nada se envía a un servidor.</p>
 <h3>Preguntas frecuentes</h3>
 <h4>¿Es justo el lanzamiento de moneda?</h4>
 <p>Sí. Cara o cruz lo decide la fuente aleatoria criptográfica de tu navegador. Cada una tiene un 50 % de probabilidad en cada lanzamiento, sin importar lo anterior.</p>
-<h4>¿Puedo llevar la cuenta de los lanzamientos?</h4>
-<p>Sí. El contador bajo la moneda cuenta caras y cruces, y el botón Reiniciar lo borra.</p>
+<h4>¿La moneda recuerda los lanzamientos anteriores?</h4>
+<p>No. Cada lanzamiento es independiente, así que una racha del mismo lado no hace más probable el otro lado la próxima vez.</p>
 <p><a href="/es/">Probar el generador de números aleatorios →</a></p>
 </div></article>
-<script>(function(){var L={"roll": "Tirar", "dice": "Dados", "sides": "Caras", "total": "Total", "flip": "Lanzar", "heads": "Cara", "tails": "Cruz", "flips": "Lanzamientos", "reset": "Reiniciar", "cs_cups": "Número de vasos", "cs_mode": "Números", "cs_quick": "Selección rápida", "cs_custom": "Números personalizados", "cs_uses": "Números bajo los vasos:", "cs_enter": "Escribe un número para cada vaso.", "cs_err": "Escribe un número entero en cada casilla.", "cs_start": "Esconder los números bajo los vasos", "cs_shuffle": "Mezclar", "cs_shuffling": "Mezclando…", "cs_pick": "Elige un vaso", "cs_ready": "Los números están ocultos. Pulsa Mezclar para mezclar los vasos.", "cs_result": "Tu número", "cs_again": "Mezclar otra vez", "cs_play": "Jugar de nuevo", "cs_back": "Cambiar configuración", "cs_cup": "Vaso", "hist": "Sorteos recientes", "hclear": "Borrar", "hcopyall": "Copiar todo", "hcopied": "Copiado", "hcopy": "Copiar", "rskip": "Omitir / Revelar ya", "qskip": "Omitir animación", "opts": "Opciones", "ready": "Listo cuando quieras", "sound": "Sonido"};function rnd(n){var c=window.crypto||window.msCrypto;if(!c||!c.getRandomValues)return Math.floor(Math.random()*n);var m=Math.floor(4294967296/n)*n,a=new Uint32Array(1);do{c.getRandomValues(a)}while(a[0]>=m);return a[0]%n}
+<script>(function(){var L={"roll": "Tirar", "dice": "Dados", "sides": "Caras", "total": "Total", "flip": "Lanzar", "heads": "Cara", "tails": "Cruz", "flips": "Lanzamientos", "reset": "Reiniciar", "cs_cups": "Número de vasos", "cs_mode": "Números", "cs_quick": "Selección rápida", "cs_custom": "Números personalizados", "cs_uses": "Números bajo los vasos:", "cs_enter": "Escribe un número para cada vaso.", "cs_err": "Escribe un número entero en cada casilla.", "cs_start": "Esconder los números bajo los vasos", "cs_shuffle": "Mezclar", "cs_shuffling": "Mezclando…", "cs_pick": "Elige un vaso", "cs_ready": "Estos son los números en juego. Pulsa Mezclar para tapar y mezclar los vasos.", "cs_result": "Tu número", "cs_again": "Mezclar otra vez", "cs_play": "Jugar de nuevo", "cs_back": "Cambiar configuración", "cs_cup": "Vaso", "hist": "Sorteos recientes", "hclear": "Borrar", "hcopyall": "Copiar todo", "hcopied": "Copiado", "hcopy": "Copiar", "rskip": "Omitir / Revelar ya", "qskip": "Omitir animación", "opts": "Opciones", "ready": "Listo cuando quieras", "sound": "Sonido"};function rnd(n){var c=window.crypto||window.msCrypto;if(!c||!c.getRandomValues)return Math.floor(Math.random()*n);var m=Math.floor(4294967296/n)*n,a=new Uint32Array(1);do{c.getRandomValues(a)}while(a[0]>=m);return a[0]%n}
 
 var $=function(i){return document.getElementById(i)};
 var RM=!!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches);
@@ -824,35 +829,53 @@ $('hclear').addEventListener('click',function(){HIST=[];histDraw()});
 $('hcopyall').addEventListener('click',function(){if(!HIST.length)return;var b=this;
   copyText(HIST.map(function(h){return h.n}).join(', '),function(){b.textContent=L.hcopied;setTimeout(function(){b.textContent=L.hcopyall},1300)})});
 
-var kc=$('kcoin'),front=$('kfront'),back=$('kback'),ksh=$('ksh'),busy=false,h=0,t=0,cur=0,anim=null,shA=null;
-function stats(){$('sh').textContent=h;$('st').textContent=t;$('sf').textContent=h+t}
-function faces(q){front.innerHTML=q?'<b>?</b>':'<b>\u2605</b><span>'+L.heads+'</span>';back.innerHTML='<b>\u25c6</b><span>'+L.tails+'</span>'}
-function rest(deg){kc.style.transform='rotateX('+deg+'deg)'}
-function land(r,fx){skipOff();if(r)t++;else h++;stats();
-  setBig(r?L.tails:L.heads,'word');setHint(L.flips+' #'+(h+t));$('method').textContent=L.flips+' #'+(h+t);
-  histAdd(r?L.tails:L.heads,'#'+(h+t));
+var kc=$('kcoin'),front=$('kfront'),back=$('kback'),ksh=$('ksh'),fc=$('kfc1'),bc=$('kfc2'),sdF=$('ksd1'),sdB=$('ksd2'),glF=$('kgl1'),glB=$('kgl2'),
+    busy=false,h=0,t=0,cur=0,raf=0,DEG=Math.PI/180;
+var EH='<svg viewBox="0 0 100 100" aria-hidden="true"><polygon points="50,5 61,38 96,38 68,59 79,93 50,72 21,93 32,59 4,38 39,38"/></svg>',
+ET=(function(){var o='',i,k,a,x,y,r;for(k=-1;k<=1;k+=2)for(i=0;i<7;i++){a=(24+i*22)*DEG;x=50+k*34*Math.sin(a);y=50+34*Math.cos(a);r=Math.atan2(k*Math.cos(a),Math.sin(a))/DEG+k*22;
+  o+='<ellipse cx="'+x.toFixed(1)+'" cy="'+y.toFixed(1)+'" rx="6.5" ry="11" transform="rotate('+r.toFixed(0)+' '+x.toFixed(1)+' '+y.toFixed(1)+')"/>'}
+  return '<svg viewBox="0 0 100 100" aria-hidden="true">'+o+'<polygon points="50,30 66,50 50,70 34,50"/></svg>'})();
+function faces(q){fc.innerHTML=q?'<b>?</b>':'<b>'+EH+'</b><span>'+L.heads+'</span>';bc.innerHTML='<b>'+ET+'</b><span>'+L.tails+'</span>'}
+/* one frame: y = height above the table (px), a = flip angle, ry/rz = wobble, x = drift */
+function draw(y,a,ry,rz,x){
+  var H=118,k=Math.max(0,Math.min(1,y/H));
+  kc.style.transform='translate3d('+x.toFixed(1)+'px,'+(-y).toFixed(1)+'px,'+(y*.9).toFixed(1)+'px) rotateZ('+rz.toFixed(2)+'deg) rotateX('+ry.toFixed(2)+'deg) rotateY('+a.toFixed(2)+'deg)';
+  ksh.style.transform='translateX('+(x*.8).toFixed(1)+'px) scale('+(1-.5*k).toFixed(3)+')';ksh.style.opacity=(1-.62*k).toFixed(3);
+  var r=a*DEG,ca=Math.cos(r),sa=Math.sin(r),d=ca*.82+sa*.5,e=-d;   /* light from above-front */
+  var df=Math.max(0,d),db=Math.max(0,e),vf=ca>0,vb=ca<0;
+  sdF.style.opacity=(vf?Math.max(0,.5-df*.6):0).toFixed(3);sdB.style.opacity=(vb?Math.max(0,.5-db*.6):0).toFixed(3);
+  glF.style.opacity=(vf?Math.pow(df,9)*1.0:0).toFixed(3);glB.style.opacity=(vb?Math.pow(db,9)*1.0:0).toFixed(3);
+  glF.style.transform='translateX('+(((a%360)+360)%360-180)*.35+'px)';glB.style.transform=glF.style.transform}
+function rest(deg){draw(0,deg,0,0,0)}
+function land(r,fx){skipOff();
+  setBig(r?L.tails:L.heads,'word');setHint('');$('method').textContent=L.ready;
+  histAdd(r?L.tails:L.heads,'');
   if(fx){pulse('flash');pulse('ring');sparks(34);shake()}
   sfxHit();unfocus();busy=false;lock(false)}
-function end(r){clearTM();skipOff();if(anim){try{anim.cancel()}catch(e){}anim=null}if(shA){try{shA.cancel()}catch(e){}shA=null}cur=r*180;rest(cur);land(r,true)}
+function end(r){clearTM();skipOff();if(raf){cancelAnimationFrame(raf);raf=0}cur=r*180;rest(cur);land(r,true)}
+function clink(v){tone({f:2300+rnd(500),d:.35*v+.12,v:.05*v+.015});tone({f:3500+rnd(500),d:.2*v+.08,v:.028*v+.01});noise({f:3200,d:.04,v:.05*v+.01})}
 function flip(){if(busy)return;busy=true;lock(true);say('');var r=rnd(2);faces(false);bigIdle();setHint('');
   if(quick()){cur=r*180;rest(cur);land(r,false);return}
   stage.classList.add('focus');skipOn(function(){end(r)});
-  var turns=4+rnd(3),delta=((r*180-cur)%360+360)%360,amount=360*turns+delta,target=cur+amount,wob=rnd(2)?7:-7,D=1800;
-  anim=kc.animate([
-    {transform:'translateY(0) rotateX('+cur+'deg) rotateY(0deg) scale(1)',offset:0,easing:'cubic-bezier(.15,.7,.35,1)'},
-    {transform:'translateY(-88px) rotateX('+(cur+amount*.6)+'deg) rotateY(16deg) scale(1.15)',offset:.42,easing:'cubic-bezier(.55,0,.85,.45)'},
-    {transform:'translateY(0) rotateX('+target+'deg) rotateY(0deg) scale(1)',offset:.76,easing:'cubic-bezier(.2,.8,.4,1)'},
-    {transform:'translateY(-22px) rotateX('+(target+wob)+'deg) rotateY(0deg) scale(1)',offset:.88,easing:'ease-in'},
-    {transform:'translateY(0) rotateX('+target+'deg) rotateY(0deg) scale(1)',offset:1}],{duration:D,fill:'both'});
-  shA=ksh.animate([{transform:'scale(1)',opacity:1,offset:0},{transform:'scale(.45)',opacity:.3,offset:.42},{transform:'scale(1)',opacity:1,offset:.76},{transform:'scale(.85)',opacity:.7,offset:.88},{transform:'scale(1)',opacity:1,offset:1}],{duration:D,fill:'both'});
-  noise({f:500,f2:2600,d:.4,v:.07});
-  for(var i=0;i<6;i++)(function(i){later(function(){tone({f:2600+rnd(900),d:.05,v:.02})},120+i*110)})(i);
-  later(function(){tone({f:2400,d:.55,v:.05});tone({f:3600,d:.35,v:.03});tone({f:1600,d:.65,v:.04});noise({f:3000,d:.06,v:.05})},D*.76);
-  later(function(){tone({f:2600,d:.3,v:.025});tone({f:1800,d:.35,v:.02})},D*.88);
-  later(function(){end(r)},D+40)}
+  var turns=5+rnd(3),delta=((r*180-cur)%360+360)%360,amount=360*turns+delta,start=cur,
+      TF=1250,PH=116,dir=rnd(2)?1:-1,pr=(10+rnd(8))*dir,drift=(rnd(2)?1:-1)*(6+rnd(14)),
+      B1=300,B2=170,SET=520,TOT=TF+B1+B2+SET,wA=(16+rnd(10))*(rnd(2)?1:-1),t0=0,s1=0,s2=0,c1=0;
+  noise({f:500,f2:2600,d:.35,v:.07});tone({f:1400,d:.12,v:.04});
+  for(var i=0;i<7;i++)(function(i){later(function(){tone({f:2700+rnd(900),d:.045,v:.018})},140+i*120)})(i);
+  function frame(now){if(!t0)t0=now;var e=now-t0,y,a,ry,rz,x;
+    if(e<TF){var s=e/TF,sp=s+.035*Math.sin(s*Math.PI*2)*0;y=PH*4*s*(1-s);a=start+amount*sp;
+      ry=0;rz=0;x=0}
+    else{var q=e-TF,wob=0,yy=0;
+      if(q<B1){var u=q/B1;yy=26*4*u*(1-u);if(!c1){c1=1;clink(1)}}
+      else if(q<B1+B2){var u2=(q-B1)/B2;yy=8*4*u2*(1-u2);if(!s1){s1=1;clink(.55)}}
+      else if(!s2){s2=1;clink(.28)}
+      var sec=q/1000;wob=wA*Math.exp(-sec*5.2)*Math.cos(sec*2*Math.PI*5.2);
+      y=yy;a=start+amount+wob;ry=0;rz=0;x=0}
+    draw(y,a,ry,rz,x);
+    if(e<TOT){raf=requestAnimationFrame(frame)}else{raf=0;end(r)}}
+  raf=requestAnimationFrame(frame)}
 $('go').addEventListener('click',flip);
-$('rst').addEventListener('click',function(){if(busy)return;h=0;t=0;stats();faces(true);bigIdle();setHint('');say('');$('method').textContent=L.ready});
-faces(true);stats();$('method').textContent=L.ready;
+faces(true);rest(0);$('method').textContent=L.ready;
 })();</script>
 </main>
 </div>

@@ -649,40 +649,46 @@ html[dir=rtl] .s-dice,html[dir=rtl] .s-coin,html[dir=rtl] .s-cups{direction:ltr}
 .stage.tstage[data-m=cups]{height:auto;min-height:250px;padding:12px 6px}
 .stage.tstage[data-m=cups] .s-cups{height:auto}
 
-/* ---------- dice (real 3D cubes) ---------- */
-.dfloor{position:absolute;left:8%;right:8%;bottom:20px;height:56px;border-radius:50%;background:radial-gradient(ellipse at center,rgba(0,0,0,.4) 0%,transparent 70%)}
-:root[data-theme="light"] .dfloor{background:radial-gradient(ellipse at center,rgba(60,60,140,.2) 0%,transparent 70%)}
-.dwrap{--ds:96px;position:relative;display:flex;flex-wrap:wrap;justify-content:center;align-content:center;gap:34px 46px;max-width:94%;padding-top:70px}
+/* ---------- dice (true 3D polyhedra: D4 D6 D8 D10 D12 D20) ---------- */
+.dfloor{position:absolute;left:6%;right:6%;bottom:18px;height:60px;border-radius:50%;background:radial-gradient(ellipse at center,rgba(0,0,0,.42) 0%,transparent 70%)}
+:root[data-theme="light"] .dfloor{background:radial-gradient(ellipse at center,rgba(60,60,140,.22) 0%,transparent 70%)}
+.dwrap{--ds:96px;position:relative;display:flex;flex-wrap:wrap;justify-content:center;align-content:center;gap:34px 46px;max-width:96%;padding-top:70px}
 .dwrap[data-n="1"]{--ds:120px}
 .dwrap[data-n="2"],.dwrap[data-n="3"]{--ds:96px}
 .dwrap[data-n="4"],.dwrap[data-n="5"],.dwrap[data-n="6"]{--ds:74px;gap:30px 40px}
-.die{position:relative;width:var(--ds);height:var(--ds);flex:none;perspective:800px}
-.dsh{position:absolute;left:6%;right:6%;bottom:-16px;height:16px;border-radius:50%;background:rgba(0,0,0,.45);filter:blur(6px)}
-:root[data-theme="light"] .dsh{background:rgba(60,60,140,.32)}
-.dcube{position:absolute;inset:0;transform-style:preserve-3d;transform:rotateX(-20deg) rotateY(-28deg)}
-.df{position:absolute;inset:0;display:grid;place-items:center;border-radius:calc(var(--ds)*.17);background:linear-gradient(145deg,var(--brand),var(--brand2));color:#fff;font-weight:800;font-size:calc(var(--ds)*.4);font-variant-numeric:tabular-nums;box-shadow:inset 0 0 0 2px rgba(255,255,255,.2),inset 0 0 calc(var(--ds)*.28) rgba(0,0,0,.2);backface-visibility:hidden}
-.df.f1{transform:translateZ(calc(var(--ds)/2))}
-.df.f2{transform:rotateY(180deg) translateZ(calc(var(--ds)/2));filter:brightness(.62)}
-.df.f3{transform:rotateY(90deg) translateZ(calc(var(--ds)/2));filter:brightness(.8)}
-.df.f4{transform:rotateY(-90deg) translateZ(calc(var(--ds)/2));filter:brightness(.7)}
-.df.f5{transform:rotateX(90deg) translateZ(calc(var(--ds)/2));filter:brightness(1.2)}
-.df.f6{transform:rotateX(-90deg) translateZ(calc(var(--ds)/2));filter:brightness(.6)}
-.df.pips{grid-template:repeat(3,1fr)/repeat(3,1fr);padding:17%}
-.df.pips i{place-self:center;width:72%;aspect-ratio:1;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.35)}
+.die{position:relative;width:var(--ds);height:var(--ds);flex:none;perspective:900px;will-change:transform}
+.dsh{position:absolute;left:4%;right:4%;bottom:-20px;height:18px;border-radius:50%;background:rgba(0,0,0,.5);filter:blur(7px);will-change:transform,opacity}
+:root[data-theme="light"] .dsh{background:rgba(60,60,140,.36)}
+.dcube{position:absolute;inset:0;transform-style:preserve-3d;will-change:transform}
+.dpf{position:absolute;left:50%;top:50%;overflow:visible;backface-visibility:hidden;-webkit-backface-visibility:hidden;pointer-events:none}
+.dpf text{font-family:inherit;font-weight:800;font-variant-numeric:tabular-nums}
 
-/* ---------- coin (3D, with a thick rim) ---------- */
-.kfloor{position:absolute;left:24%;right:24%;bottom:22px;height:44px;border-radius:50%;background:radial-gradient(ellipse at center,rgba(0,0,0,.38) 0%,transparent 70%)}
-:root[data-theme="light"] .kfloor{background:radial-gradient(ellipse at center,rgba(60,60,140,.2) 0%,transparent 70%)}
-.kwrap{--kd:150px;position:relative;width:var(--kd);height:var(--kd);perspective:900px;margin-top:60px}
-.ksh{position:absolute;left:10%;right:10%;bottom:-30px;height:20px;border-radius:50%;background:rgba(0,0,0,.4);filter:blur(7px)}
-:root[data-theme="light"] .ksh{background:rgba(60,60,140,.3)}
-.kcoin{position:absolute;inset:0;transform-style:preserve-3d}
-.kl{position:absolute;inset:0;border-radius:50%;background:linear-gradient(135deg,var(--brand2),var(--brand));filter:brightness(.62)}
-.kf{position:absolute;inset:0;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;color:#fff;font-weight:800;background:linear-gradient(135deg,var(--brand),var(--brand2));box-shadow:inset 0 0 0 7px rgba(255,255,255,.2),inset 0 0 0 9px rgba(0,0,0,.12),inset 0 0 34px rgba(0,0,0,.22);backface-visibility:hidden}
-.kf b{font-size:calc(var(--kd)*.34);line-height:1}
-.kf span{font-size:calc(var(--kd)*.095);letter-spacing:.08em;text-transform:uppercase}
-.kf.h{transform:translateZ(5px)}
-.kf.t{transform:rotateX(180deg) translateZ(5px)}
+/* ---------- coin (3D, thick ridged rim, metal faces, live lighting) ---------- */
+.kfloor{position:absolute;left:20%;right:20%;bottom:20px;height:48px;border-radius:50%;background:radial-gradient(ellipse at center,rgba(0,0,0,.42) 0%,transparent 70%)}
+:root[data-theme="light"] .kfloor{background:radial-gradient(ellipse at center,rgba(60,60,140,.22) 0%,transparent 70%)}
+.kwrap{--kd:150px;position:relative;width:var(--kd);height:var(--kd);perspective:1000px;margin-top:64px}
+.ksh{position:absolute;left:8%;right:8%;bottom:-34px;height:22px;border-radius:50%;background:rgba(0,0,0,.5);filter:blur(8px);will-change:transform,opacity}
+:root[data-theme="light"] .ksh{background:rgba(60,60,140,.38)}
+.kview{position:absolute;inset:0;transform-style:preserve-3d}
+.kcoin{position:absolute;inset:0;transform-style:preserve-3d;will-change:transform}
+.kl{position:absolute;inset:0;border-radius:50%;background:repeating-conic-gradient(#f6d674 0 2.2deg,#a86f12 2.2deg 4.4deg);filter:brightness(.88)}
+.kl:nth-child(1),.kl:nth-child(13){filter:brightness(.5)}
+.kl:nth-child(2),.kl:nth-child(12){filter:brightness(.68)}
+.kf{position:absolute;inset:0;border-radius:50%;overflow:hidden;display:flex;align-items:center;justify-content:center;font-weight:800;backface-visibility:hidden;-webkit-backface-visibility:hidden;
+ background:radial-gradient(circle at 30% 24%,rgba(255,255,255,.5),transparent 42%),conic-gradient(from 30deg,#f7da7e,#d9a335,#fdeeb0,#c58c22,#f3d06c,#b98015,#f7da7e);
+ box-shadow:inset 0 0 0 calc(var(--kd)*.012) #fff6c4,inset 0 0 0 calc(var(--kd)*.045) #d3a02f,inset 0 0 0 calc(var(--kd)*.058) #8f5d0e,inset 0 0 calc(var(--kd)*.09) rgba(62,34,0,.55)}
+.kf::before{content:"";position:absolute;inset:7.5%;border-radius:50%;background:repeating-conic-gradient(rgba(96,58,6,.62) 0 1.6deg,rgba(255,244,190,.6) 1.6deg 3.2deg,transparent 3.2deg 6deg);-webkit-mask:radial-gradient(circle,transparent 0 92%,#000 93% 100%);mask:radial-gradient(circle,transparent 0 92%,#000 93% 100%)}
+.kf::after{content:"";position:absolute;inset:16%;border-radius:50%;background:radial-gradient(circle at 38% 30%,#fdeaa6,#e6bb55 52%,#cf9a2d);box-shadow:inset 0 calc(var(--kd)*.015) calc(var(--kd)*.03) rgba(70,38,0,.5),inset 0 calc(var(--kd)*-.01) calc(var(--kd)*.02) rgba(255,248,200,.7),0 1px 1px rgba(255,245,190,.9),0 -1px 1px rgba(80,44,0,.5)}
+.kfc{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;gap:calc(var(--kd)*.025)}
+.kfc b{display:flex;align-items:center;justify-content:center;width:calc(var(--kd)*.35);height:calc(var(--kd)*.35);font-size:calc(var(--kd)*.32);line-height:1;color:#9a6a12;text-shadow:0 1px 0 rgba(255,244,190,.9),0 -1px 0 rgba(70,38,0,.35)}
+.kfc b svg{display:block;width:100%;height:100%;fill:#f8dc86;stroke:#a8720f;stroke-width:2;stroke-linejoin:round;filter:drop-shadow(0 1.5px 0 rgba(255,245,190,.85)) drop-shadow(0 -1px 1px rgba(80,44,0,.45))}
+.kfc span{font-size:calc(var(--kd)*.08);line-height:1;letter-spacing:.14em;text-transform:uppercase;color:#8f5d0e;text-shadow:0 1px 0 rgba(255,244,190,.9),0 -1px 0 rgba(70,38,0,.3)}
+:lang(ar) .kfc span,:lang(hi) .kfc span{letter-spacing:0}
+.ksd,.kgl{position:absolute;inset:0;border-radius:50%;pointer-events:none;z-index:3}
+.ksd{background:#000;opacity:0}
+.kgl{background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.85) 46%,rgba(255,255,255,.1) 54%,transparent 68%);mix-blend-mode:soft-light;opacity:0}
+.kf.h{transform:translateZ(6.5px)}
+.kf.t{transform:rotateY(180deg) translateZ(6.5px)}
 .tstats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:16px auto 0;max-width:420px}
 .tstat{padding:10px 6px;border-radius:14px;border:1px solid var(--line);background:var(--field)}
 .tstat b{display:block;font-size:1.5rem;line-height:1.15;font-variant-numeric:tabular-nums;color:var(--ink)}
@@ -718,7 +724,7 @@ html[dir=rtl] .s-dice,html[dir=rtl] .s-coin,html[dir=rtl] .s-cups{direction:ltr}
 .dwrap[data-n="1"]{--ds:100px}
 .dwrap[data-n="2"],.dwrap[data-n="3"]{--ds:68px;gap:26px 34px}
 .dwrap[data-n="4"],.dwrap[data-n="5"],.dwrap[data-n="6"]{--ds:56px;gap:24px 28px}
-.kwrap{--kd:120px;margin-top:56px}
+.kwrap{--kd:122px;margin-top:58px}
 .tstat b{font-size:1.25rem}
 .cs-in{width:56px;height:44px}
 }
@@ -744,15 +750,15 @@ html[dir=rtl] .s-dice,html[dir=rtl] .s-coin,html[dir=rtl] .s-cups{direction:ltr}
 </section>
 <section class="card tset" aria-label="Juego de vasos con números"><div class="grp"><div class="lbl" id="g-c">Número de vasos</div><div class="chips" role="radiogroup" aria-labelledby="g-c"><label class="mode"><input type="radio" name="cscount" value="3" checked><span>3</span></label><label class="mode"><input type="radio" name="cscount" value="5"><span>5</span></label><label class="mode"><input type="radio" name="cscount" value="7"><span>7</span></label></div></div><div class="grp"><div class="lbl" id="g-m">Números</div><div class="chips" role="radiogroup" aria-labelledby="g-m"><label class="mode"><input type="radio" name="csmode" value="quick" checked><span>Selección rápida</span></label><label class="mode"><input type="radio" name="csmode" value="custom"><span>Números personalizados</span></label></div><p class="cs-hint" id="cshint"></p><div class="cs-inputs" id="csinputs" hidden></div></div><div class="grp"><div class="lbl" id="g-opt">Opciones</div><div class="chips" role="group" aria-labelledby="g-opt"><label class="mode"><input type="checkbox" id="qskip"><span><b>Omitir animación</b></span></label><label class="mode"><input type="checkbox" id="snd" checked><span><b>🔊 Sonido</b></span></label></div></div></section>
 <article class="card doc"><div class="modal-body">
-<p>Elige 3, 5 o 7 vasos y usa la selección rápida (1, 2, 3…) o escribe tus propios números. Los números están ocultos bajo los vasos. Pulsa Mezclar y los vasos intercambian sus lugares de verdad, y cada número se mueve con su vaso. Después elige un vaso para levantarlo y revelar tu número. Los intercambios se eligen con la fuente aleatoria criptográfica de tu navegador y nada se envía a un servidor.</p>
+<p>Elige 3, 5 o 7 vasos y usa la selección rápida (1, 2, 3…) o escribe tus propios números. Los números se ven primero bajo los vasos y se tapan al mezclar. Pulsa Mezclar: los vasos intercambian sus lugares y, cuando se detienen, los números se reparten de nuevo en secreto y al azar bajo ellos, así que seguir un vaso no sirve de nada. Después elige un vaso para levantarlo y revelar tu número. Todo se elige con la fuente aleatoria criptográfica de tu navegador y nada se envía a un servidor.</p>
 <h3>Preguntas frecuentes</h3>
 <h4>¿Los números se mezclan de verdad?</h4>
-<p>Sí. Cada mezcla es una serie de intercambios reales elegidos por la fuente aleatoria criptográfica de tu navegador. Cada número se queda bajo su vaso y se mueve con él, así que lo que ves es lo que ocurrió.</p>
+<p>Sí. Los vasos intercambian sus lugares de verdad y, al detenerse, la fuente aleatoria criptográfica de tu navegador reparte los números al azar debajo. Por eso no se puede seguir ningún vaso, y cada vaso tiene la misma probabilidad de ocultar cada número.</p>
 <h4>¿Puedo usar mis propios números?</h4>
-<p>Sí. Elige Números personalizados y aparecerá una casilla por cada vaso. Escribe números enteros de hasta 6 cifras (los negativos valen) y pulsa Esconder los números bajo los vasos.</p>
+<p>Sí. Elige Números personalizados y aparecerá una casilla por cada vaso. Escribe números enteros de hasta 6 cifras (los negativos valen) y pulsa Mezclar.</p>
 <p><a href="/es/">Probar el generador de números aleatorios →</a></p>
 </div></article>
-<script>(function(){var L={"roll": "Tirar", "dice": "Dados", "sides": "Caras", "total": "Total", "flip": "Lanzar", "heads": "Cara", "tails": "Cruz", "flips": "Lanzamientos", "reset": "Reiniciar", "cs_cups": "Número de vasos", "cs_mode": "Números", "cs_quick": "Selección rápida", "cs_custom": "Números personalizados", "cs_uses": "Números bajo los vasos:", "cs_enter": "Escribe un número para cada vaso.", "cs_err": "Escribe un número entero en cada casilla.", "cs_start": "Esconder los números bajo los vasos", "cs_shuffle": "Mezclar", "cs_shuffling": "Mezclando…", "cs_pick": "Elige un vaso", "cs_ready": "Los números están ocultos. Pulsa Mezclar para mezclar los vasos.", "cs_result": "Tu número", "cs_again": "Mezclar otra vez", "cs_play": "Jugar de nuevo", "cs_back": "Cambiar configuración", "cs_cup": "Vaso", "hist": "Sorteos recientes", "hclear": "Borrar", "hcopyall": "Copiar todo", "hcopied": "Copiado", "hcopy": "Copiar", "rskip": "Omitir / Revelar ya", "qskip": "Omitir animación", "opts": "Opciones", "ready": "Listo cuando quieras", "sound": "Sonido"};function rnd(n){var c=window.crypto||window.msCrypto;if(!c||!c.getRandomValues)return Math.floor(Math.random()*n);var m=Math.floor(4294967296/n)*n,a=new Uint32Array(1);do{c.getRandomValues(a)}while(a[0]>=m);return a[0]%n}
+<script>(function(){var L={"roll": "Tirar", "dice": "Dados", "sides": "Caras", "total": "Total", "flip": "Lanzar", "heads": "Cara", "tails": "Cruz", "flips": "Lanzamientos", "reset": "Reiniciar", "cs_cups": "Número de vasos", "cs_mode": "Números", "cs_quick": "Selección rápida", "cs_custom": "Números personalizados", "cs_uses": "Números bajo los vasos:", "cs_enter": "Escribe un número para cada vaso.", "cs_err": "Escribe un número entero en cada casilla.", "cs_start": "Esconder los números bajo los vasos", "cs_shuffle": "Mezclar", "cs_shuffling": "Mezclando…", "cs_pick": "Elige un vaso", "cs_ready": "Estos son los números en juego. Pulsa Mezclar para tapar y mezclar los vasos.", "cs_result": "Tu número", "cs_again": "Mezclar otra vez", "cs_play": "Jugar de nuevo", "cs_back": "Cambiar configuración", "cs_cup": "Vaso", "hist": "Sorteos recientes", "hclear": "Borrar", "hcopyall": "Copiar todo", "hcopied": "Copiado", "hcopy": "Copiar", "rskip": "Omitir / Revelar ya", "qskip": "Omitir animación", "opts": "Opciones", "ready": "Listo cuando quieras", "sound": "Sonido"};function rnd(n){var c=window.crypto||window.msCrypto;if(!c||!c.getRandomValues)return Math.floor(Math.random()*n);var m=Math.floor(4294967296/n)*n,a=new Uint32Array(1);do{c.getRandomValues(a)}while(a[0]>=m);return a[0]%n}
 
 var $=function(i){return document.getElementById(i)};
 var RM=!!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches);
@@ -828,11 +834,13 @@ var CUP='<svg class="cs-body" viewBox="0 0 100 110" preserveAspectRatio="none" a
 var n=3,mode='quick',vals=['','','','','','',''],cups=[],slotCup=[],phase='ready',cw=90,ch=99,lift=70,sw=100,cols=3,rows=1,pitch=0,opened=false;
 function quickNums(){var a=[],i;for(i=1;i<=n;i++)a.push(i);return a}
 function buildInputs(){inBox.innerHTML='';for(var i=0;i<n;i++){(function(i){var inp=document.createElement('input');inp.type='text';inp.setAttribute('inputmode','numeric');inp.maxLength=7;inp.autocomplete='off';inp.className='cs-in';inp.dir='ltr';inp.placeholder='#';inp.value=vals[i];inp.setAttribute('aria-label',L.cs_cup+' '+(i+1));
-  inp.addEventListener('input',function(){var v=inp.value.replace(/[^0-9\-]/g,'');if(v!==inp.value)inp.value=v;vals[i]=v;inp.classList.remove('bad');say('')});
+  inp.addEventListener('input',function(){var v=inp.value.replace(/[^0-9\-]/g,'');if(v!==inp.value)inp.value=v;vals[i]=v;inp.classList.remove('bad');say('');if(phase==='ready')showNums()});
   inp.addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();bGo.click()}});inBox.appendChild(inp)})(i)}}
 function renderMode(){mode=rad('csmode');
   if(mode==='quick'){inBox.hidden=true;inBox.innerHTML='';hint2.textContent=L.cs_uses+' '+quickNums().join(', ')}
   else{hint2.textContent=L.cs_enter;inBox.hidden=false;buildInputs()}}
+function shownNums(){if(mode==='quick')return quickNums();var out=[],i;for(i=0;i<n;i++){var v=(vals[i]||'').trim();out.push(/^-?\d{1,6}$/.test(v)?parseInt(v,10):'?')}return out}
+function showNums(){var a=shownNums();cups.forEach(function(c,i){c.num=a[i];c.numEl.textContent=String(a[i]);fitNum(c);c.el.classList.add('open')});opened=true}
 function getNumbers(){if(mode==='quick')return quickNums();var out=[],bad=-1,i,ins=inBox.querySelectorAll('.cs-in');
   for(i=0;i<n;i++){var v=(vals[i]||'').trim();ins[i].classList.remove('bad');if(/^-?\d{1,6}$/.test(v))out.push(parseInt(v,10));else{ins[i].classList.add('bad');if(bad<0)bad=i}}
   if(bad>=0){ins[bad].focus();return null}return out}
@@ -852,7 +860,7 @@ function build(nums){cst.querySelectorAll('.cs-cup').forEach(function(e){e.remov
     b.addEventListener('click',function(){pickCup(+b.dataset.i)});cst.appendChild(b);
     cups.push({el:b,hop:b.firstChild,numEl:b.querySelector('.cs-num'),num:v});slotCup.push(i)})}
 function rebuild(){clearTM();skipOff();phase='ready';opened=false;say('');bigIdle();stage.classList.remove('focus');lockSet(false);
-  build(quickNums());layout(true);ui();$('method').textContent=L.ready}
+  build(shownNums());layout(true);showNums();ui();$('method').textContent=L.ready}
 function setup(){n=+rad('cscount');renderMode();rebuild()}
 function hop(c,dy,dur){if(c.hop.animate)c.hop.animate([{transform:'translateY(0)'},{transform:'translateY('+dy+'px)',offset:.5},{transform:'translateY(0)'}],{duration:dur,easing:'ease-in-out'})}
 function swapSlots(a,b,dur){var ca=cups[slotCup[a]],cb=cups[slotCup[b]],t=slotCup[a];slotCup[a]=slotCup[b];slotCup[b]=t;
@@ -862,16 +870,18 @@ function swapSlots(a,b,dur){var ca=cups[slotCup[a]],cb=cups[slotCup[b]],t=slotCu
 function closeAll(){cups.forEach(function(c){c.el.classList.remove('open')});if(opened){later(function(){cups.forEach(function(c){c.numEl.textContent=''})},560)}}
 function shuffle(){if(phase!=='ready'&&phase!=='done')return;clearTM();var wasOpen=opened;closeAll();opened=false;phase='shuffling';bigIdle();
   cups.forEach(function(c){c.el.disabled=true});ui();lockSet(true);stage.classList.add('focus');
-  var total=n===3?9:n===5?13:17,k=0,la=-1,lb=-1,fast=quick();
+  var total=n===3?24:n===5?36:48,k=0,la=-1,lb=-1,fast=quick();
   function pair(){var a,b;do{a=rnd(n);b=rnd(n-1);if(b>=a)b++}while((a===la&&b===lb)||(a===lb&&b===la));la=a;lb=b;return[a,b]}
   function instant(){clearTM();skipOff();while(k<total){var p=pair();swapSlots(p[0],p[1],0);k++}finish()}
   function step(){if(k>=total){finish();return}
-    var p=pair(),dur=Math.round(400-(k/total)*150);swapSlots(p[0],p[1],dur);
-    noise({f:600+rnd(500),f2:1500,d:.13,v:.05});tone({f:200+rnd(80),d:.05,v:.04});k++;later(step,dur+50)}
+    var p=pair(),dur=Math.round(46-(k/total)*18);swapSlots(p[0],p[1],dur);
+    if(k%2===0){noise({f:600+rnd(500),f2:1500,d:.06,v:.04});tone({f:200+rnd(80),d:.03,v:.03})}k++;later(step,dur+6)}
   if(fast){instant();return}
   skipOn(instant);
   later(step,wasOpen?640:250)}
 function finish(){phase='pick';skipOff();
+  /* fair: once the cups stop, numbers are secretly re-dealt at random, so tracking a cup cannot help */
+  var dn=cups.map(function(c){return c.num}),di,dj,dt;for(di=dn.length-1;di>0;di--){dj=rnd(di+1);dt=dn[di];dn[di]=dn[dj];dn[dj]=dt}cups.forEach(function(c,k){c.num=dn[k]});
   for(var s=0;s<n;s++){var c=cups[slotCup[s]];cst.appendChild(c.el);c.el.setAttribute('aria-label',L.cs_cup+' '+(s+1));c.el.disabled=false}
   lockSet(false);ui();tone({f:660,d:.15,v:.06});tone({f:880,d:.2,v:.05,t:.1});var f=cups[slotCup[0]];if(f)f.el.focus({preventScroll:true})}
 function pickCup(i){if(phase!=='pick')return;phase='revealing';var c=cups[i];c.numEl.textContent=String(c.num);fitNum(c);c.el.classList.add('open');opened=true;
