@@ -8,8 +8,8 @@
 <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/manifest.webmanifest">
-<meta name="theme-color" content="#f5f6fb">
-<script>(function(){var t=null;try{t=localStorage.getItem('randomly-theme')}catch(e){}if(t!=='light'&&t!=='dark')t='light';document.documentElement.setAttribute('data-theme',t)})()</script>
+<meta name="theme-color" content="#0e1020">
+<script>(function(){var t=null;try{t=localStorage.getItem('randomly-theme2')}catch(e){}if(t!=='light'&&t!=='dark')t='dark';document.documentElement.setAttribute('data-theme',t)})()</script>
 <title>Sobre o Randomly — Gerador de números aleatórios</title>
 <meta name="description" content="O Randomly é um gerador de números aleatórios gratuito da RithyVerse Studio. Escolha um mínimo e um máximo (de 1 a 1.000.">
 <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
@@ -525,6 +525,62 @@ html[dir=rtl] input[type=number],html[dir=rtl] input[inputmode]{direction:ltr}
 html[dir=rtl] .info ol,html[dir=rtl] .info .terms ul,html[dir=rtl] .modal-body ul,html[dir=rtl] .modal-body ol{padding-left:0;padding-right:1.2rem}
 html[dir=rtl] footer.site-footer{text-align:right}
 html[dir=rtl] body{font-family:system-ui,-apple-system,'Segoe UI',Tahoma,'Noto Sans Arabic',Arial,sans-serif}
+/* ===== compact settings card on phones: fewer rows, less scrolling ===== */
+@media(max-width:560px){
+.card{padding:14px}
+.row{grid-template-columns:1fr 1fr;gap:10px}
+input[type=number]{font-size:1.1rem;padding:9px 12px;border-radius:12px}
+label,.lbl{font-size:.78rem;margin-bottom:4px}
+.grp{margin-top:12px}
+.chips{gap:8px}
+.chip,.mode span{min-height:40px;padding:0 14px;font-size:.9rem;white-space:nowrap}
+.chips[aria-labelledby=ql],.chips[aria-labelledby=ml]{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.chips[aria-labelledby=ql] .chip,.chips[aria-labelledby=ml] .mode{min-width:0;flex:none}
+.chips[aria-labelledby=ql] .chip,.chips[aria-labelledby=ml] .mode span{width:100%;justify-content:center;text-align:center;white-space:normal;line-height:1.2;padding:4px 8px}
+.chips[aria-labelledby=ml] .mode:last-child:nth-child(odd){grid-column:1/-1}
+.chips[aria-labelledby=ol]{flex-wrap:nowrap}
+.chips[aria-labelledby=ol] .mode{flex:1 1 0;min-width:0}
+.chips[aria-labelledby=ol] .mode span{padding:4px 8px;font-size:.85rem;white-space:normal;text-align:center;line-height:1.2;width:100%;justify-content:center}
+}
+/* ===== theme toggle switch (sun = light, moon = night) ===== */
+.theme.tswitch{padding:0;gap:0;width:64px;height:36px;min-height:36px;position:relative;background:var(--field)}
+.tsw-track{position:absolute;inset:0;border-radius:999px}
+.tsw-track svg{position:absolute;top:50%;width:17px;height:17px;margin-top:-8.5px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;z-index:2;transition:color .3s}
+.tsw-track .tsun{left:9px;color:#fff}
+.tsw-track .tmoon{right:9px;color:var(--mute)}
+.tknob{position:absolute;top:3px;left:3px;width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--brand),var(--brand2));box-shadow:0 2px 8px var(--glow);transition:left .35s cubic-bezier(.3,1.3,.5,1)}
+:root[data-theme="dark"] .tknob{left:calc(100% - 31px)}
+:root[data-theme="dark"] .tsw-track .tsun{color:var(--mute)}
+:root[data-theme="dark"] .tsw-track .tmoon{color:#fff}
+html.theme-anim .tknob{transition:left .35s cubic-bezier(.3,1.3,.5,1),background-color .25s!important}
+/* ===== Help shape Randomly: liquid gradient (WebGL, reacts to cursor) ===== */
+.card.fbcta{position:relative;overflow:hidden;isolation:isolate;border:0;padding:38px 24px;color:#fff;background:linear-gradient(135deg,var(--brand),var(--brand2))}
+.card.fbcta::after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:radial-gradient(ellipse 72% 85% at 50% 50%,rgba(24,18,84,.34),transparent 78%)}
+.fbgl{position:absolute;inset:0;width:100%;height:100%;display:block;z-index:0;pointer-events:none}
+.fbcta>*:not(.fbgl){position:relative;z-index:1}
+.card.fbcta h2{color:#fff;text-shadow:0 1px 14px rgba(10,12,60,.45)}
+.card.fbcta p{color:rgba(255,255,255,.9);text-shadow:0 1px 12px rgba(10,12,60,.4)}
+.fbcta .chip{background:rgba(24,18,84,.30);border-color:rgba(255,255,255,.28);color:#fff;font-weight:700;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.fbcta .chip:hover{background:rgba(24,18,84,.5);border-color:rgba(255,255,255,.6)}
+@media(max-width:560px){.card.fbcta{padding:30px 16px}}
+/* ===== More tools (home page cards) ===== */
+.toolsec{padding:20px}
+.toolsec h2{margin:0 0 4px;font-size:1.15rem;letter-spacing:-.01em}
+.toolsub{margin:0 0 16px;color:var(--mute);font-size:.95rem}
+.toolgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.toolcard{display:flex;flex-direction:row;align-items:center;gap:14px;padding:12px 14px;min-width:0;border-radius:14px;border:1px solid var(--line);background:var(--field);color:var(--ink);text-decoration:none;transition:border-color .2s,transform .2s,box-shadow .2s,background .2s}
+.toolcard:hover{border-color:var(--brand);transform:translateY(-2px);box-shadow:0 8px 24px var(--glow)}
+.toolcard:focus-visible{outline:3px solid var(--brand);outline-offset:2px}
+.toolic{flex:0 0 auto;display:grid;place-items:center;width:52px;height:52px;border-radius:10px;background:rgba(91,91,240,.12);color:var(--brand)}
+.toolic svg{width:26px;height:26px}
+:root[data-theme="dark"] .toolic{background:rgba(124,124,255,.16)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .toolic{background:rgba(124,124,255,.16)}}
+.toolbody{display:flex;flex-direction:column;gap:3px;min-width:0}
+.toolbody strong{font-size:.98rem;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.toolbody span{color:var(--mute);font-size:.82rem;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+@media(max-width:700px){.toolgrid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:460px){.toolgrid{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){.toolcard{transition:none}.toolcard:hover{transform:none}}
 </style>
 <style>
 main{flex:1}
@@ -546,7 +602,7 @@ a.brand{text-decoration:none;color:inherit}
 <body>
 <div class="wrap">
 <header><a class="brand" href="/pt/"><span class="logo">Randomly</span><span class="tag" data-tr="tag">Deixe a sorte decidir</span></a>
-<div class="hbtns"><select class="theme lang" id="lang" autocomplete="off" aria-label="Idioma" title="Idioma" data-tra="aria-label:lang;title:lang"><option value="en">EN</option><option value="fr">FR</option><option value="ru">RU</option><option value="ja">JA</option><option value="fil">FIL</option><option value="hi">HI</option><option value="de">DE</option><option value="es">ES</option><option value="pt">PT</option><option value="id">ID</option><option value="ar">AR</option></select><button class="theme" id="theme" type="button" aria-label="Switch to dark mode" title="Switch to dark mode"><span class="ticon" aria-hidden="true"><svg class="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><svg class="moon" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></span><span id="tlabel">Light</span></button></div></header>
+<div class="hbtns"><select class="theme lang" id="lang" autocomplete="off" aria-label="Idioma" title="Idioma" data-tra="aria-label:lang;title:lang"><option value="en">EN</option><option value="fr">FR</option><option value="ru">RU</option><option value="ja">JA</option><option value="fil">FIL</option><option value="hi">HI</option><option value="de">DE</option><option value="es">ES</option><option value="pt">PT</option><option value="id">ID</option><option value="ar">AR</option></select><button class="theme tswitch" id="theme" type="button" aria-label="Switch to light mode" title="Switch to light mode"><span class="tsw-track" aria-hidden="true"><svg class="tsun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><svg class="tmoon" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg><span class="tknob"></span></span><span class="sr" id="tlabel">Dark</span></button></div></header>
 <main>
 <article class="card doc">
 <p class="doc-back"><a href="/pt/">← Voltar ao gerador</a></p>
@@ -564,7 +620,10 @@ a.brand{text-decoration:none;color:inherit}
 <nav class="ft-col" aria-label="Explore"><h3 data-tr="ft_h_site">Explorar</h3>
 <a href="/pt/" data-tr="f_home">Início</a>
 <a href="/pt/about/" data-tr="f_about">Sobre</a>
-<a href="/pt/guide/" data-tr="f_guide">Guia</a></nav>
+<a href="/pt/guide/" data-tr="f_guide">Guia</a>
+<a href="/pt/dice/" data-tr="t_dice_n">Rolar dados</a>
+<a href="/pt/coin-flip/" data-tr="t_coin_n">Cara ou coroa</a>
+<a href="/pt/cup-shuffle/" data-tr="t_cup_n">Copos com números</a></nav>
 <nav class="ft-col" aria-label="Legal"><h3 data-tr="ft_h_legal">Legal</h3>
 <a href="/pt/terms/" data-tr="f_terms">Termos e Condições</a>
 <a href="/pt/privacy/" data-tr="f_privacy">Política de Privacidade</a></nav>
@@ -614,7 +673,7 @@ window.RL=(function(){var S={"lang": "Idioma", "light": "Claro", "dark": "Escuro
 (function(){var root=document.documentElement,tb=document.getElementById('theme'),tl=document.getElementById('tlabel'),ls=document.getElementById('lang'),U={"en": "/about/", "fr": "/fr/about/", "ru": "/ru/about/", "ja": "/ja/about/", "fil": "/fil/about/", "hi": "/hi/about/", "de": "/de/about/", "es": "/es/about/", "pt": "/pt/about/", "id": "/id/about/", "ar": "/ar/about/"};
 function cur(){return root.getAttribute('data-theme')==='dark'?'dark':'light'}
 function paint(){var d=cur()==='dark',l=RL.t(d?'tolight':'todark');tb.setAttribute('aria-label',l);tb.title=l;tl.textContent=RL.t(d?'dark':'light');var mc=document.querySelector('meta[name=theme-color]');if(mc)mc.content=d?'#0e1020':'#f5f6fb'}
-tb.addEventListener('click',function(){var n=cur()==='dark'?'light':'dark';root.setAttribute('data-theme',n);try{localStorage.setItem('randomly-theme',n)}catch(e){}paint()});paint();
+tb.addEventListener('click',function(){var n=cur()==='dark'?'light':'dark';root.setAttribute('data-theme',n);try{localStorage.setItem('randomly-theme2',n)}catch(e){}paint()});paint();
 ls.value=RL.cur();ls.addEventListener('change',function(){location.href=U[ls.value]});
 window.addEventListener('pageshow',function(){ls.value=RL.cur()});
 })();
