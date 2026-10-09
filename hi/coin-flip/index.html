@@ -697,9 +697,9 @@ html[dir=rtl] .s-dice,html[dir=rtl] .s-coin,html[dir=rtl] .s-cups{direction:ltr}
 .dpf text{font-family:inherit;font-weight:800;font-variant-numeric:tabular-nums}
 
 /* ---------- coin (3D, thick ridged rim, metal faces, live lighting) ---------- */
-.kfloor{position:absolute;left:20%;right:20%;bottom:20px;height:48px;border-radius:50%;background:radial-gradient(ellipse at center,rgba(0,0,0,.42) 0%,transparent 70%)}
+.kfloor{position:absolute;left:20%;right:20%;bottom:40px;height:48px;border-radius:50%;background:radial-gradient(ellipse at center,rgba(0,0,0,.42) 0%,transparent 70%)}
 :root[data-theme="light"] .kfloor{background:radial-gradient(ellipse at center,rgba(60,60,140,.22) 0%,transparent 70%)}
-.kwrap{--kd:150px;position:relative;width:var(--kd);height:var(--kd);perspective:1000px;margin-top:64px}
+.kwrap{--kd:150px;position:relative;width:var(--kd);height:var(--kd);perspective:1000px;margin-top:26px}
 .ksh{position:absolute;left:8%;right:8%;bottom:-34px;height:22px;border-radius:50%;background:rgba(0,0,0,.5);filter:blur(8px);will-change:transform,opacity}
 :root[data-theme="light"] .ksh{background:rgba(60,60,140,.38)}
 .kview{position:absolute;inset:0;transform-style:preserve-3d}
@@ -758,7 +758,7 @@ html[dir=rtl] .s-dice,html[dir=rtl] .s-coin,html[dir=rtl] .s-cups{direction:ltr}
 .dwrap[data-n="1"]{--ds:100px}
 .dwrap[data-n="2"],.dwrap[data-n="3"]{--ds:68px;gap:26px 34px}
 .dwrap[data-n="4"],.dwrap[data-n="5"],.dwrap[data-n="6"]{--ds:56px;gap:24px 28px}
-.kwrap{--kd:122px;margin-top:58px}
+.kwrap{--kd:122px;margin-top:22px}
 .tstat b{font-size:1.25rem}
 .cs-in{width:56px;height:44px}
 }
@@ -872,7 +872,7 @@ ET=(function(){var o='',i,k,a,x,y,r;for(k=-1;k<=1;k+=2)for(i=0;i<7;i++){a=(24+i*
 function faces(q){fc.innerHTML=q?'<b>?</b>':'<b>'+EH+'</b><span>'+L.heads+'</span>';bc.innerHTML='<b>'+ET+'</b><span>'+L.tails+'</span>'}
 /* one frame: y = height above the table (px), a = flip angle, ry/rz = wobble, x = drift */
 function draw(y,a,ry,rz,x){
-  var H=118,k=Math.max(0,Math.min(1,y/H));
+  var H=74,k=Math.max(0,Math.min(1,y/H));
   kc.style.transform='translate3d('+x.toFixed(1)+'px,'+(-y).toFixed(1)+'px,'+(y*.9).toFixed(1)+'px) rotateZ('+rz.toFixed(2)+'deg) rotateX('+ry.toFixed(2)+'deg) rotateY('+a.toFixed(2)+'deg)';
   ksh.style.transform='translateX('+(x*.8).toFixed(1)+'px) scale('+(1-.5*k).toFixed(3)+')';ksh.style.opacity=(1-.62*k).toFixed(3);
   var r=a*DEG,ca=Math.cos(r),sa=Math.sin(r),d=ca*.82+sa*.5,e=-d;   /* light from above-front */
@@ -892,7 +892,7 @@ function flip(){if(busy)return;busy=true;lock(true);say('');var r=rnd(2);faces(f
   if(quick()){cur=r*180;rest(cur);land(r,false);return}
   stage.classList.add('focus');skipOn(function(){end(r)});
   var turns=5+rnd(3),delta=((r*180-cur)%360+360)%360,amount=360*turns+delta,start=cur,
-      TF=1250,PH=116,dir=rnd(2)?1:-1,pr=(10+rnd(8))*dir,drift=(rnd(2)?1:-1)*(6+rnd(14)),
+      TF=1250,PH=72,dir=rnd(2)?1:-1,pr=(10+rnd(8))*dir,drift=(rnd(2)?1:-1)*(6+rnd(14)),
       B1=300,B2=170,SET=520,TOT=TF+B1+B2+SET,wA=(16+rnd(10))*(rnd(2)?1:-1),t0=0,s1=0,s2=0,c1=0;
   noise({f:500,f2:2600,d:.35,v:.07});tone({f:1400,d:.12,v:.04});
   for(var i=0;i<7;i++)(function(i){later(function(){tone({f:2700+rnd(900),d:.045,v:.018})},140+i*120)})(i);
