@@ -710,6 +710,7 @@ html[dir=rtl] .s-dice,html[dir=rtl] .s-coin,html[dir=rtl] .s-cups{direction:ltr}
 .cs-cup.open .cs-body{transform:translateY(calc(var(--lift)*-1)) rotate(-12deg)}
 .cs-num{position:absolute;left:-12%;right:-12%;bottom:10%;z-index:1;text-align:center;font-weight:800;line-height:1;color:var(--ink);white-space:nowrap;font-variant-numeric:tabular-nums;opacity:0;transform:scale(.4);transition:opacity .25s .18s,transform .45s .18s cubic-bezier(.2,1.5,.4,1)}
 .cs-cup.open .cs-num{opacity:1;transform:scale(1)}
+.cs-cup.open.ghost .cs-num{opacity:.4;color:#8a8fa6;transition-delay:.05s,.05s}
 .cs-hint{margin:12px 0 0;color:var(--mute);font-size:.9rem}
 .cs-inputs{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;direction:ltr}
 .cs-inputs[hidden]{display:none}
@@ -843,7 +844,7 @@ function rotAxis(ax,deg){var v=vnorm(ax),x=v[0],y=v[1],z=v[2],r=deg*DEG,c=Math.c
   return[t*x*x+c,t*x*y-s*z,t*x*z+s*y, t*x*y+s*z,t*y*y+c,t*y*z-s*x, t*x*z-s*y,t*y*z+s*x,t*z*z+c]}
 function Rx(a){var r=a*DEG,c=Math.cos(r),s=Math.sin(r);return[1,0,0,0,c,-s,0,s,c]}
 function Ry(a){var r=a*DEG,c=Math.cos(r),s=Math.sin(r);return[c,0,s,0,1,0,-s,0,c]}
-var TILT=mmul(Rx(-22),Ry(-26));
+var TILT=mmul(Rx(-54),Ry(-26)),UP=Rx(90);
 var LV=vnorm([-.25,-.55,.8]),HV=vnorm([LV[0],LV[1],LV[2]+1]);
 function rr(a,b){return a+Math.random()*(b-a)}
 function sg(){return Math.random()<.5?1:-1}
@@ -904,7 +905,7 @@ function mkDie(box){var g=poly(S),ds=box.offsetWidth||96,Rc=ds*RC[S],F=[],i,j;
 function setQ(d,on){d.faces.forEach(function(f){f.gq.setAttribute('display','none');f.gn.setAttribute('display','')});
   if(on){d.q.gq.setAttribute('display','');d.q.gn.setAttribute('display','none')}}
 function faceFor(d,v){var i;for(i=0;i<d.faces.length;i++)if(d.faces[i].num===v)return d.faces[i];return d.faces[0]}
-function restM(f){return mmul(TILT,[f.u[0],f.u[1],f.u[2],f.v[0],f.v[1],f.v[2],f.n[0],f.n[1],f.n[2]])}
+function restM(f){return mmul(TILT,mmul(UP,[f.u[0],f.u[1],f.u[2],f.v[0],f.v[1],f.v[2],f.n[0],f.n[1],f.n[2]]))}
 function draw(d,M,x,y){var k=Math.max(0,Math.min(1,y/PH0));d.M=M;
   d.cube.style.transform='matrix3d('+[M[0],M[3],M[6],0,M[1],M[4],M[7],0,M[2],M[5],M[8],0,0,0,0,1].map(function(q){return q.toFixed(5)}).join(',')+')';
   d.el.style.transform='translate('+x.toFixed(1)+'px,'+(-y).toFixed(1)+'px) scale('+(1+.14*k).toFixed(3)+')';
