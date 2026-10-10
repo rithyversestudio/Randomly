@@ -10,7 +10,7 @@
 <link rel="manifest" href="/manifest.webmanifest">
 <meta name="theme-color" content="#0e1020">
 <script>(function(){var t=null;try{t=localStorage.getItem('randomly-theme2')}catch(e){}if(t!=='light'&&t!=='dark')t='dark';document.documentElement.setAttribute('data-theme',t)})()</script>
-<title>Jogo dos copos com números | Randomly</title>
+<title>Embaralhar copos com números – Jogo online | Randomly</title>
 <meta name="description" content="Jogo dos copos com números grátis. Esconda números sob 3, 5 ou 7 copos, embaralhe como no jogo da bolinha e escolha um copo para revelar seu número.">
 <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
 <meta name="author" content="RithyVerse Studio">
@@ -41,7 +41,7 @@
 <meta property="og:locale:alternate" content="es_ES">
 <meta property="og:locale:alternate" content="id_ID">
 <meta property="og:locale:alternate" content="ar_AR">
-<meta property="og:title" content="Jogo dos copos com números | Randomly">
+<meta property="og:title" content="Embaralhar copos com números – Jogo online | Randomly">
 <meta property="og:description" content="Jogo dos copos com números grátis. Esconda números sob 3, 5 ou 7 copos, embaralhe como no jogo da bolinha e escolha um copo para revelar seu número.">
 <meta property="og:url" content="https://randomlynumber.com/pt/cup-shuffle/">
 <meta property="og:image" content="https://randomlynumber.com/og-image.png">
@@ -49,9 +49,11 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Jogo dos copos com números | Randomly">
+<meta name="twitter:title" content="Embaralhar copos com números – Jogo online | Randomly">
 <meta name="twitter:description" content="Jogo dos copos com números grátis. Esconda números sob 3, 5 ou 7 copos, embaralhe como no jogo da bolinha e escolha um copo para revelar seu número.">
 <meta name="twitter:image" content="https://randomlynumber.com/og-image.png">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Randomly", "item": "https://randomlynumber.com/pt/"}, {"@type": "ListItem", "position": 2, "name": "Jogo dos copos com números", "item": "https://randomlynumber.com/pt/cup-shuffle/"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Jogo dos copos com números", "url": "https://randomlynumber.com/pt/cup-shuffle/", "description": "Jogo dos copos com números grátis. Esconda números sob 3, 5 ou 7 copos, embaralhe como no jogo da bolinha e escolha um copo para revelar seu número.", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any (web browser)", "browserRequirements": "Requires JavaScript", "isAccessibleForFree": true, "inLanguage": "pt", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "publisher": {"@id": "https://randomlynumber.com/#org"}}</script>
 <style>
 :root{--bg:#f5f6fb;--card:#fff;--ink:#14162b;--mute:#6a6f8a;--line:#e3e5f0;--brand:#5b5bf0;--brand2:#8a5cf6;--accent:#12b5a6;--glow:rgba(91,91,240,.35);--shadow:0 10px 40px rgba(30,30,80,.08);--field:#f0f1f9;--wa:#5b5bf0;--wb:#8a5cf6;--wc:#12b5a6;--wd:#f3f4fb;
 color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
@@ -791,6 +793,7 @@ html[dir=rtl] .s-dice,html[dir=rtl] .s-coin,html[dir=rtl] .s-cups{direction:ltr}
 <h4>Posso usar meus próprios números?</h4>
 <p>Sim. Escolha Números personalizados e aparecerá um campo para cada copo. Digite números inteiros de até 6 dígitos (negativos valem) e toque em Embaralhar.</p>
 <p><a href="/pt/">Experimentar o gerador de números aleatórios →</a></p>
+<p>Cada resultado usa o gerador aleatório seguro do seu navegador: todos os resultados têm a mesma chance e os anteriores nunca afetam o próximo. Nada é enviado a um servidor. <a href="/pt/guide/">Guia do gerador de números aleatórios: como funciona e como usar</a></p>
 </div></article>
 <script>(function(){var L={"roll": "Rolar", "dice": "Dados", "sides": "Lados", "total": "Total", "flip": "Jogar", "heads": "Cara", "tails": "Coroa", "flips": "Lançamentos", "reset": "Redefinir", "cs_cups": "Número de copos", "cs_mode": "Números", "cs_quick": "Seleção rápida", "cs_custom": "Números personalizados", "cs_uses": "Números sob os copos:", "cs_enter": "Digite um número para cada copo.", "cs_err": "Digite um número inteiro em cada campo.", "cs_start": "Esconder os números sob os copos", "cs_shuffle": "Embaralhar", "cs_shuffling": "Embaralhando…", "cs_pick": "Escolha um copo", "cs_ready": "Estes são os números em jogo. Toque em Embaralhar para cobrir e misturar os copos.", "cs_result": "Seu número", "cs_again": "Embaralhar de novo", "cs_play": "Jogar de novo", "cs_back": "Alterar configuração", "cs_cup": "Copo", "hist": "Sorteios recentes", "hclear": "Limpar", "hcopyall": "Copiar tudo", "hcopied": "Copiado", "hcopy": "Copiar", "rskip": "Pular / Revelar agora", "qskip": "Pular animação", "opts": "Opções", "ready": "Pronto quando você quiser", "sound": "Som"};function rnd(n){var c=window.crypto||window.msCrypto;if(!c||!c.getRandomValues)return Math.floor(Math.random()*n);var m=Math.floor(4294967296/n)*n,a=new Uint32Array(1);do{c.getRandomValues(a)}while(a[0]>=m);return a[0]%n}
 
