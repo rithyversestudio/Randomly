@@ -936,65 +936,6 @@ document.querySelectorAll('input[name=cscount],input[name=csmode]').forEach(func
 window.addEventListener('resize',function(){layout(true)});
 setup();
 })();</script>
-
-<section class="card fbcta" aria-labelledby="fb-h">
-<canvas class="fbgl" aria-hidden="true"></canvas>
-<h2 id="fb-h" data-tr="fb_h">ساعدنا في تطوير Randomly</h2>
-<p data-tr="fb_p">هل لديك فكرة أو ميزة تتمنى رؤيتها أو وجدت شيئًا لا يعمل؟ أخبرنا. نقرأ كل رسالة.</p>
-<div class="fbbtns">
-<button class="chip" type="button" data-modal="contact-modal" data-topic="suggestion" data-tr="fb_sug">💡 اقترح ميزة</button>
-<button class="chip" type="button" data-modal="contact-modal" data-topic="feedback" data-tr="fb_fb">⭐ ملاحظات عامة</button>
-<button class="chip" type="button" data-modal="contact-modal" data-topic="bug" data-tr="fb_bug">🐞 أبلغ عن مشكلة</button>
-</div>
-</section>
-<script>(function(){
-var c=document.querySelector('.fbcta'),cv=c&&c.querySelector('.fbgl');if(!cv)return;
-var gl=cv.getContext('webgl',{antialias:false,alpha:false,powerPreference:'low-power'})||cv.getContext('experimental-webgl');if(!gl)return;
-var VS='attribute vec2 p;void main(){gl_Position=vec4(p,0.,1.);}';
-var FS=[
-'#ifdef GL_FRAGMENT_PRECISION_HIGH','precision highp float;','#else','precision mediump float;','#endif',
-'uniform vec2 R;uniform float T;uniform vec2 M;uniform float E;uniform float H;uniform float D;uniform float S;uniform vec3 A;uniform vec3 B;',
-'void main(){',
-' vec2 fc=gl_FragCoord.xy;vec2 uv=fc/R;',
-' float asp=R.x/R.y;vec2 p=vec2(uv.x*asp,uv.y);vec2 m=vec2(M.x*asp,M.y);',
-' float dm=length(p-m);float inf=exp(-dm*dm*5.);',
-' float h=.5*sin(p.x*2.6+T*.25+1.3*sin(p.y*3.1-T*.2))+.5*sin(p.y*3.4-T*.18+1.1*sin(p.x*2.2+T*.22))+.35*sin((p.x+p.y)*1.8+T*.15);',
-' h+=(H*.9+E*1.2)*inf*1.3;',
-' float n=h*3.4;float fr=abs(fract(n)-.5);',
-' float aa=10./R.y;float lw=.07+.03*inf*H;',
-' float ln=1.-smoothstep(lw-aa,lw+aa,fr);',
-' float k=clamp(uv.x*.65+(1.-uv.y)*.35+.07*sin(T*.35+uv.y*3.),0.,1.);',
-' vec3 base=mix(A,B,k)*mix(.9,.74,D);',
-' base*=1.+.06*sin(n*3.14159);',
-' vec3 lc=vec3(1.);',
-' vec3 col=mix(base,lc,ln*(.24+.2*inf*(H*.8+E*.6)));',
-' col+=vec3(1.)*inf*(.03+.04*H+.05*E);',
-' gl_FragColor=vec4(col,1.);}'].join('\n');
-function sh(t,src){var s=gl.createShader(t);gl.shaderSource(s,src);gl.compileShader(s);return gl.getShaderParameter(s,gl.COMPILE_STATUS)?s:null}
-var vs=sh(gl.VERTEX_SHADER,VS),fs=sh(gl.FRAGMENT_SHADER,FS);if(!vs||!fs)return;
-var pg=gl.createProgram();gl.attachShader(pg,vs);gl.attachShader(pg,fs);gl.linkProgram(pg);if(!gl.getProgramParameter(pg,gl.LINK_STATUS))return;
-gl.useProgram(pg);var bf=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,bf);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,3,-1,-1,3]),gl.STATIC_DRAW);
-var lp=gl.getAttribLocation(pg,'p');gl.enableVertexAttribArray(lp);gl.vertexAttribPointer(lp,2,gl.FLOAT,false,0,0);
-var U={};['R','T','M','E','H','D','S','A','B'].forEach(function(k){U[k]=gl.getUniformLocation(pg,k)});
-var rm=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
-var tx=.5,ty=.5,cx=.5,cy=.5,px=.5,py=.5,E=0,H=0,hv=0,raf=0,vis=true,t0=performance.now();
-function size(){var w=c.clientWidth,hh=c.clientHeight,d=Math.min(window.devicePixelRatio||1,window.innerWidth<600?1:1.5);while(w*hh*d*d>650000&&d>.5)d-=.1;cv.width=Math.max(1,Math.round(w*d));cv.height=Math.max(1,Math.round(hh*d));gl.viewport(0,0,cv.width,cv.height);readCols();draw((performance.now()-t0)/1000)}
-var ca=[.357,.357,.941],cb=[.541,.361,.965],dk=1;
-function hx(v,fb){v=(v||'').trim();var m;if(v.charAt(0)==='#'){if(v.length===4)v='#'+v[1]+v[1]+v[2]+v[2]+v[3]+v[3];if(v.length>=7)return[parseInt(v.substr(1,2),16)/255,parseInt(v.substr(3,2),16)/255,parseInt(v.substr(5,2),16)/255]}else if(m=v.match(/\d+(\.\d+)?/g)){if(m.length>=3)return[m[0]/255,m[1]/255,m[2]/255]}return fb}
-function readCols(){var de=document.documentElement,cs=getComputedStyle(de),th=de.getAttribute('data-theme');ca=hx(cs.getPropertyValue('--brand'),ca);cb=hx(cs.getPropertyValue('--brand2'),cb);dk=(th==='dark'||(th!=='light'&&window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches))?1:0}
-function draw(t){gl.uniform2f(U.R,cv.width,cv.height);gl.uniform1f(U.T,rm?12:t+12);gl.uniform2f(U.M,cx,cy);gl.uniform1f(U.E,E);gl.uniform1f(U.H,H);gl.uniform1f(U.D,dk);gl.uniform1f(U.S,cv.width/Math.max(1,c.clientWidth));gl.uniform3f(U.A,ca[0],ca[1],ca[2]);gl.uniform3f(U.B,cb[0],cb[1],cb[2]);gl.drawArrays(gl.TRIANGLES,0,3)}
-function frame(now){raf=0;if(!vis||document.hidden)return;cx+=(tx-cx)*.12;cy+=(ty-cy)*.12;E=Math.min(1.5,E*.93+Math.hypot(cx-px,cy-py)*4*(c.clientWidth/c.clientHeight>1?1:1));px=cx;py=cy;H+=(hv-H)*.08;draw((now-t0)/1000);raf=requestAnimationFrame(frame)}
-function go(){if(!raf&&!rm&&vis&&!document.hidden)raf=requestAnimationFrame(frame)}
-function aim(ev){var r=c.getBoundingClientRect();tx=(ev.clientX-r.left)/r.width;ty=1-(ev.clientY-r.top)/r.height;hv=1}
-c.addEventListener('pointerenter',function(ev){aim(ev);cx=tx;cy=ty;px=cx;py=cy});c.addEventListener('pointermove',aim);
-c.addEventListener('pointerdown',function(ev){aim(ev);E=Math.min(1.5,E+.8)});
-c.addEventListener('pointerleave',function(){hv=0});c.addEventListener('pointercancel',function(){hv=0});
-if('IntersectionObserver' in window)new IntersectionObserver(function(en){vis=en[0].isIntersecting;if(vis)go()}).observe(c);
-document.addEventListener('visibilitychange',function(){if(!document.hidden)go()});
-if('ResizeObserver' in window)new ResizeObserver(size).observe(c);else window.addEventListener('resize',size);
-new MutationObserver(function(){readCols();draw((performance.now()-t0)/1000)}).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
-if(window.matchMedia){var mq=matchMedia('(prefers-color-scheme: dark)');if(mq.addEventListener)mq.addEventListener('change',function(){readCols();draw((performance.now()-t0)/1000)})}
-size();go()})()</script>
 </main>
 </div>
 <footer class="site-footer">
@@ -1005,7 +946,6 @@ size();go()})()</script>
 <a href="/ar/" data-tr="f_home">الرئيسية</a>
 <a href="/ar/about/" data-tr="f_about">حول</a>
 <a href="/ar/guide/" data-tr="f_guide">الدليل</a>
-<a href="/articles/">مقالات</a>
 <a href="/ar/dice/" data-tr="t_dice_n">رمي النرد</a>
 <a href="/ar/coin-flip/" data-tr="t_coin_n">رمي العملة</a>
 <a href="/ar/cup-shuffle/" data-tr="t_cup_n">أكواب الأرقام</a></nav>
@@ -1013,8 +953,7 @@ size();go()})()</script>
 <a href="/ar/terms/" data-tr="f_terms">الشروط والأحكام</a>
 <a href="/ar/privacy/" data-tr="f_privacy">سياسة الخصوصية</a></nav>
 <nav class="ft-col" aria-label="Support"><h3 data-tr="ft_h_help">الدعم</h3>
-<a href="#" data-modal="contact-modal" data-topic="other" role="button" data-tr="f_contact">تواصل معنا</a>
-<a href="/contact/">بيانات التواصل</a></nav>
+<a href="#" data-modal="contact-modal" data-topic="other" role="button" data-tr="f_contact">تواصل معنا</a></nav>
 </div>
 <nav class="ft-langs" aria-label="اللغة" data-tra="aria-label:lang"><a href="/ar/cup-shuffle/" hreflang="en" lang="en">English</a><a href="/fr/cup-shuffle/" hreflang="fr" lang="fr">Français</a><a href="/ru/cup-shuffle/" hreflang="ru" lang="ru">Русский</a><a href="/ja/cup-shuffle/" hreflang="ja" lang="ja">日本語</a><a href="/fil/cup-shuffle/" hreflang="fil" lang="fil">Filipino</a><a href="/hi/cup-shuffle/" hreflang="hi" lang="hi">हिन्दी</a><a href="/de/cup-shuffle/" hreflang="de" lang="de">Deutsch</a><a href="/es/cup-shuffle/" hreflang="es" lang="es">Español</a><a href="/pt/cup-shuffle/" hreflang="pt" lang="pt">Português</a><a href="/id/cup-shuffle/" hreflang="id" lang="id">Bahasa Indonesia</a><a href="/ar/cup-shuffle/" hreflang="ar" lang="ar" aria-current="page">العربية</a></nav>
 <div class="ft-bottom">
