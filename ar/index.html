@@ -616,6 +616,34 @@ html.theme-anim .tknob{transition:left .35s cubic-bezier(.3,1.3,.5,1),background
 @media(max-width:460px){.toolic{height:92px}}
 @media(prefers-reduced-motion:reduce){.toolcard:hover .toolic *,.toolcard:focus-visible .toolic *{animation:none!important}}
 @media(prefers-reduced-motion:reduce){.toolcard{transition:none}.toolcard:hover{transform:none}}
+
+/* ===== settings box between the animation and the main button ===== */
+.setbox{margin:0;padding:0;border:0}
+.card.setcard{padding:20px 24px}
+.setbox .row{margin:0}
+.setbox .grp:first-child{margin-top:0}
+.setbox .grp{margin-top:14px}
+.setbox label,.setbox .lbl{text-align:start}
+.orow{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start;margin-top:14px}
+.orow .selw,.orow .optw{min-width:0}
+.orow .chips{flex-wrap:nowrap;gap:8px}
+.orow .chips .mode{flex:1 1 0;min-width:0}
+.orow .chips .mode span{width:100%;justify-content:center;text-align:center;white-space:normal;line-height:1.2;padding:4px 10px}
+select.msel{width:100%;min-height:44px;font:inherit;font-weight:600;color:var(--ink);background-color:var(--field);border:1px solid var(--line);border-radius:999px;padding:0 42px 0 18px;-webkit-appearance:none;appearance:none;cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%238a8fb0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 18px center;background-size:12px 8px;transition:border-color .15s,box-shadow .15s}
+select.msel:hover{border-color:var(--brand)}
+select.msel:focus-visible{outline:3px solid var(--brand);outline-offset:2px}
+select.msel:disabled{opacity:.5;cursor:not-allowed}
+select.msel option{background:var(--card);color:var(--ink)}
+html[dir=rtl] select.msel{padding:0 18px 0 42px;background-position:left 18px center}
+@media(max-width:560px){
+.card.setcard{padding:16px 18px}
+.orow{grid-template-columns:1fr;gap:10px;margin-top:10px}
+.orow .selw,.orow .optw{flex:none;width:100%}
+.orow .chips{flex-wrap:nowrap;width:100%}
+.orow .chips .mode{flex:1 1 0;min-width:0}
+.orow .chips .mode span{width:100%;justify-content:center;text-align:center;white-space:normal;line-height:1.2;padding:4px 8px;font-size:.85rem}
+select.msel{min-height:42px}
+}
 </style>
 
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "ما هو مولد الأرقام العشوائية؟", "acceptedAnswer": {"@type": "Answer", "text": "أداة تختار رقمًا دون نمط يمكن التنبؤ به. يختار Randomly عددًا صحيحًا بين الحد الأدنى والحد الأقصى اللذين تحددهما."}}, {"@type": "Question", "name": "ما الذي يميّز مولد الأرقام العشوائية هذا؟", "acceptedAnswer": {"@type": "Answer", "text": "تكتفي معظم المولدات بعرض رقم. أما Randomly فيحوّل الاختيار إلى كشف قصير بخمسة أنماط من الحركة (العجلة، الصندوق الغامض، آلة الأرقام، سحب بطاقة، ومطر السحاب) مع بقاء النتيجة عادلة. وهو سريع ويعمل على أي شاشة، ويمكنك تخطي أي حركة في أي وقت إذا كنت على عجلة."}}, {"@type": "Question", "name": "لماذا أستخدم مولد الأرقام العشوائية هذا بدلًا من أدوات الإنترنت الأخرى؟", "acceptedAnswer": {"@type": "Answer", "text": "لأنه يؤدي عددًا قليلًا من المهام بإتقان: نتائج عادلة من مصدر العشوائية التشفيري في متصفحك، وواجهة حديثة ونظيفة، ونتيجة فورية، وحركات اختيارية تجعل سحب الرقم أكثر متعة. لا يلزمك تثبيت شيء ولا إنشاء حساب."}}, {"@type": "Question", "name": "هل مولد الأرقام العشوائية المجاني هذا سهل الاستخدام؟", "acceptedAnswer": {"@type": "Answer", "text": "نعم. إنه مجاني دون تسجيل ودون تثبيت أي شيء. أدخل حدًا أدنى وحدًا أقصى، واضغط زرًا واحدًا، ويظهر رقمك خلال ثوانٍ."}}, {"@type": "Question", "name": "هل يمكنني توليد رقم عشوائي من 1 إلى 100؟", "acceptedAnswer": {"@type": "Answer", "text": "نعم. اكتب 1 و100 كحد أدنى وأقصى ثم اكشف رقمك."}}, {"@type": "Question", "name": "هل توجد فيه حركات (أنيميشن)؟", "acceptedAnswer": {"@type": "Answer", "text": "نعم. اختر من بين خمسة أوضاع للكشف: العجلة، الصندوق الغامض، آلة الأرقام، سحب بطاقة، ومطر السحاب. يُختار الرقم أولًا وتكتفي الحركة بإظهاره، لذلك لا تغيّر النتيجة أبدًا. على عجلة؟ فعّل «تخطي الحركة» أو اضغط «تخطي» في أي وقت."}}, {"@type": "Question", "name": "هل هو مناسب للهاتف المحمول؟", "acceptedAnswer": {"@type": "Answer", "text": "نعم. يتكيّف التصميم مع الهواتف والأجهزة اللوحية والحواسيب، ويسهل استخدام عناصر التحكم بالإبهام. لا حاجة لتنزيل تطبيق: افتح الصفحة في متصفح هاتفك."}}, {"@type": "Question", "name": "هل يدعم الوضعين الفاتح والداكن؟", "acceptedAnswer": {"@type": "Answer", "text": "نعم. الوضع الفاتح هو الافتراضي، ويمكنك التبديل إلى الوضع الداكن بزر السمة في أعلى الصفحة. يُحفظ اختيارك لزيارتك القادمة."}}, {"@type": "Question", "name": "كيف يعمل مولد الأرقام العشوائية؟", "acceptedAnswer": {"@type": "Answer", "text": "يستخدم Randomly مصدر العشوائية التشفيرية المدمج في متصفحك، لذلك يحظى كل عدد صحيح في نطاقك بالفرصة نفسها."}}, {"@type": "Question", "name": "هل يمكنني توليد رقم عشوائي بين رقمين؟", "acceptedAnswer": {"@type": "Answer", "text": "نعم. أدخل أي حد أدنى وأقصى من 1 إلى 1,000,000. يمكن اختيار الطرفين كليهما."}}, {"@type": "Question", "name": "هل يمكنني إنشاء رقم عشوائي من 1 إلى 1,000؟", "acceptedAnswer": {"@type": "Answer", "text": "نعم. اكتب 1 و1000 كحد أدنى وأقصى، ثم اكشف رقمك."}}, {"@type": "Question", "name": "هل يمكنني توليد رقم عشوائي من 1 إلى 1,000,000؟", "acceptedAnswer": {"@type": "Answer", "text": "نعم. اكتب 1 و1000000 كحد أدنى وأقصى لتحصل على عدد صحيح يصل إلى مليون."}}, {"@type": "Question", "name": "هل يمكنني استخدامه كأداة اختيار رقم عشوائي عبر الإنترنت للصف أو لنشاط جماعي؟", "acceptedAnswer": {"@type": "Answer", "text": "نعم. اضبط النطاق ليناسب قائمة الصف أو حجم المجموعة، مثل 1–30 أو 1–100، ثم اختر رقمًا. لاختيار عادل، حدّد النطاق قبل أن تبدأ، وفعّل «بدون تكرار» إذا كان يجب أن يخرج كل رقم مرة واحدة فقط."}}, {"@type": "Question", "name": "هل يمكنني تجنب تكرار الأرقام أو الرجوع إلى النتائج السابقة؟", "acceptedAnswer": {"@type": "Answer", "text": "نعم. فعّل «بدون تكرار» ضمن «الخيارات» كي لا يخرج الرقم مرتين حتى يُستنفد النطاق. وتعرض «السحوبات الأخيرة» آخر نتائجك، فيمكنك الرجوع إليها إذا فاتتك إحداها."}}, {"@type": "Question", "name": "هل تُحفظ الأرقام التي أنشئها في أي مكان؟", "acceptedAnswer": {"@type": "Answer", "text": "لا. تُنشأ الأرقام داخل متصفحك، ولا يُرسل أي شيء تدخله إلى خادم."}}, {"@type": "Question", "name": "هل يمكنني استخدامه في اليانصيب أو القمار؟", "acceptedAnswer": {"@type": "Answer", "text": "لا. صُمم Randomly للاستخدامات اليومية مثل الألعاب والصفوف والقرارات البسيطة. وهو غير مخصص لليانصيب أو القمار أو الجوائز أو المفاتيح التشفيرية."}}, {"@type": "Question", "name": "هل يوجد مولّد أرقام عشوائية بدون تسجيل أو تسجيل دخول؟", "acceptedAnswer": {"@type": "Answer", "text": "نعم. Randomly مجاني ولا يتطلب تسجيلًا أو تسجيل دخول. افتح الصفحة واختر نطاقًا واكشف رقمك. لا حاجة لتثبيت أي شيء."}}, {"@type": "Question", "name": "هل يمكنني استخدامه للسحوبات والمسابقات أو اختيار الفائز؟", "acceptedAnswer": {"@type": "Answer", "text": "نعم، للسحوبات والمسابقات وألعاب الفصل غير الرسمية. رقّم المشاركين واضبط النطاق ثم اختر رقمًا. للسحوبات المنظَّمة قانونًا أو الجوائز القيّمة أو ما يتطلب اعتمادًا رسميًا، استخدم طريقة رسمية."}}]}</script>
@@ -784,25 +812,30 @@ html.theme-anim .tknob{transition:left .35s cubic-bezier(.3,1.3,.5,1),background
 <div class="hist" id="hist" hidden><div class="hhead"><div class="htitle" data-tr="hist">السحوبات الأخيرة</div><div class="hacts"><button class="hclear" id="hcopyall" type="button" data-tr="hcopyall">نسخ الكل</button><button class="hclear" id="hclear" type="button" data-tr="hclear">مسح</button></div></div><ol class="hlist" id="hlist" data-tra="aria-label:hist" aria-label="السحوبات الأخيرة"></ol></div>
 </section>
 
-<section class="card" aria-label="إعدادات النطاق والكشف" data-tra="aria-label:settings">
+<section class="card setcard" aria-label="إعدادات النطاق والكشف" data-tra="aria-label:settings"><div class="setbox tset">
 <div class="row">
 <div><label for="min" data-tr="min">الحد الأدنى</label><input id="min" type="number" inputmode="numeric" min="1" max="1000000" step="1" value="1"></div>
 <div><label for="max" data-tr="max">الحد الأقصى</label><input id="max" type="number" inputmode="numeric" min="1" max="1000000" step="1" value="100"></div>
 </div>
-<div class="grp"><div class="lbl" id="ml" data-tr="modelbl">وضع الكشف</div>
-<div class="chips" role="radiogroup" aria-labelledby="ml">
-<label class="mode"><input type="radio" name="mode" value="wheel" checked><span data-tr="wheel">🎡 العجلة</span></label>
-<label class="mode"><input type="radio" name="mode" value="crate"><span data-tr="crate">📦 الصندوق الغامض</span></label>
-<label class="mode"><input type="radio" name="mode" value="machine"><span data-tr="machine">⚡ آلة الأرقام</span></label>
-<label class="mode"><input type="radio" name="mode" value="card"><span data-tr="card">🃏 سحب بطاقة</span></label>
-<label class="mode"><input type="radio" name="mode" value="rain"><span data-tr="rain">🌧️ مطر السحاب</span></label>
-</div></div>
-<div class="grp"><div class="lbl" id="ol" data-tr="opts">الخيارات</div>
+<div class="orow">
+<div class="selw"><label for="modesel" data-tr="modelbl">وضع الكشف</label>
+<select id="modesel" class="msel">
+<option value="wheel" data-tr="wheel">🎡 العجلة</option>
+<option value="crate" data-tr="crate">📦 الصندوق الغامض</option>
+<option value="machine" data-tr="machine">⚡ آلة الأرقام</option>
+<option value="card" data-tr="card">🃏 سحب بطاقة</option>
+<option value="rain" data-tr="rain">🌧️ مطر السحاب</option>
+</select></div>
+<div class="optw"><div class="lbl" id="ol" data-tr="opts">الخيارات</div>
 <div class="chips" role="group" aria-labelledby="ol">
 <label class="mode"><input type="checkbox" id="norep"><span><b data-tr="norep">بدون تكرار</b></span></label>
 <label class="mode"><input type="checkbox" id="qskip"><span><b data-tr="qskip">تخطي الحركة</b></span></label>
-</div></div>
-</section>
+</div>
+</div>
+</div>
+</div></section>
+
+
 
 <section class="card toolsec" aria-labelledby="mt-h">
 <h2 id="mt-h" data-tr="mt_h">المزيد من الأدوات</h2>
@@ -950,6 +983,7 @@ size();go()})()</script>
 <a href="/ar/" data-tr="f_home">الرئيسية</a>
 <a href="/ar/about/" data-tr="f_about">حول</a>
 <a href="/ar/guide/" data-tr="f_guide">الدليل</a>
+<a href="/articles/">مقالات</a>
 <a href="/ar/dice/" data-tr="t_dice_n">رمي النرد</a>
 <a href="/ar/coin-flip/" data-tr="t_coin_n">رمي العملة</a>
 <a href="/ar/cup-shuffle/" data-tr="t_cup_n">أكواب الأرقام</a></nav>
@@ -957,7 +991,8 @@ size();go()})()</script>
 <a href="/ar/terms/" data-tr="f_terms">الشروط والأحكام</a>
 <a href="/ar/privacy/" data-tr="f_privacy">سياسة الخصوصية</a></nav>
 <nav class="ft-col" aria-label="Support"><h3 data-tr="ft_h_help">الدعم</h3>
-<a href="#" data-modal="contact-modal" data-topic="other" role="button" data-tr="f_contact">تواصل معنا</a></nav>
+<a href="#" data-modal="contact-modal" data-topic="other" role="button" data-tr="f_contact">تواصل معنا</a>
+<a href="/contact/">بيانات التواصل</a></nav>
 </div>
 <nav class="ft-langs" aria-label="اللغة" data-tra="aria-label:lang"><a href="/" hreflang="en" lang="en">English</a><a href="/fr/" hreflang="fr" lang="fr">Français</a><a href="/ru/" hreflang="ru" lang="ru">Русский</a><a href="/ja/" hreflang="ja" lang="ja">日本語</a><a href="/fil/" hreflang="fil" lang="fil">Filipino</a><a href="/hi/" hreflang="hi" lang="hi">हिन्दी</a><a href="/de/" hreflang="de" lang="de">Deutsch</a><a href="/es/" hreflang="es" lang="es">Español</a><a href="/pt/" hreflang="pt" lang="pt">Português</a><a href="/id/" hreflang="id" lang="id">Bahasa Indonesia</a><a href="/ar/" hreflang="ar" lang="ar" aria-current="page">العربية</a></nav>
 <div class="ft-bottom">
@@ -1020,7 +1055,8 @@ function rnd(min,max){ // unbiased via rejection sampling
   return min+a[0]%span;
 }
 function say(t,err){var m=$('msg');m.textContent=t;m.className='msg'+(err?' err':'')}
-function mode(){return document.querySelector('input[name=mode]:checked').value}
+(function(){try{var v=localStorage.getItem('randomly-mode'),m=document.getElementById('modesel');if(v&&m&&m.querySelector('option[value="'+v+'"]'))m.value=v}catch(e){}})();
+function mode(){return document.getElementById('modesel').value}
 function readRange(){
   var a=$('min').value.trim(),b=$('max').value.trim();
   if(a===''||b===''){say(RL.t('e1'),true);return null}
@@ -1039,6 +1075,7 @@ function readRange(){
 }
 function lock(on){busy=on;$('go').disabled=on;
   document.querySelectorAll('.chip,.mode input,#min,#max').forEach(function(e){e.disabled=on});
+  $('modesel').disabled=on||$('qskip').checked;
   $('big').setAttribute('aria-busy',on)}
 function setStage(){$('stage').dataset.m=mode();$('method').textContent=last===null?RL.t('ready'):names[lastMode]}
 var AC=null,NB=null,soundOn=true;
@@ -1767,7 +1804,7 @@ async function runRain(n){
 }
 $('rskip').addEventListener('click',function(){if(rainSkip)rainSkip();else if(skipFn)skipFn()});
 document.addEventListener('keydown',function(e){if(e.key!=='Escape')return;if(rainState==='run'&&rainSkip)rainSkip();else if(skipFn)skipFn()});
-document.querySelectorAll('input[name=mode]').forEach(function(r){r.addEventListener('change',rainReset)});
+[document.getElementById('modesel')].forEach(function(r){r.addEventListener('change',rainReset)});
 window.addEventListener('resize',function(){if(R.run)rainSize()});
 function doSkip(){
   if(SK.on||!busy)return;
@@ -1825,6 +1862,8 @@ function pickNum(min,max){
   else{var rem=[];for(var v=min;v<=max;v++)if(!NR.used.has(v))rem.push(v);n=rem[rnd(0,rem.length-1)]}
   NR.used.add(n);return n}
 $('norep').addEventListener('change',function(){NR.on=this.checked;NR.key='';NR.used=new Set()});
+$('modesel').addEventListener('change',function(){try{localStorage.setItem('randomly-mode',this.value)}catch(e){}});
+$('qskip').addEventListener('change',function(){if(!busy)$('modesel').disabled=this.checked});
 async function reveal(){
   if(busy)return;
   var r=readRange();if(!r)return;
@@ -1870,7 +1909,7 @@ async function reveal(){
 }
 $('go').addEventListener('click',reveal);
 ['min','max'].forEach(function(i){$(i).addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();reveal()}})});
-document.querySelectorAll('input[name=mode]').forEach(function(r){r.addEventListener('change',function(){
+[document.getElementById('modesel')].forEach(function(r){r.addEventListener('change',function(){
   setStage();$('stage').classList.remove('snap');
   $('scene').className='scene';$('cnum').className='cnum';
   $('mach').classList.remove('locked','hold','charge','processing');

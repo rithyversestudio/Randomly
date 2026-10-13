@@ -11,7 +11,7 @@
 <meta name="theme-color" content="#0e1020">
 <script>(function(){var t=null;try{t=localStorage.getItem('randomly-theme2')}catch(e){}if(t!=='light'&&t!=='dark')t='dark';document.documentElement.setAttribute('data-theme',t)})()</script>
 <title>About Randomly — Random Number Generator</title>
-<meta name="description" content="Randomly is a free random number generator from RithyVerse Studio. Pick a minimum and maximum (1 to 1,000,000), choose a reveal style, and get a random whole number.">
+<meta name="description" content="Randomly is a free, fair random number generator by RithyVerse Studio, with dice, coin flip and cup shuffle tools, in 11 languages.">
 <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
 <meta name="author" content="RithyVerse Studio">
 <meta name="application-name" content="Randomly">
@@ -42,7 +42,7 @@
 <meta property="og:locale:alternate" content="id_ID">
 <meta property="og:locale:alternate" content="ar_AR">
 <meta property="og:title" content="About Randomly — Random Number Generator">
-<meta property="og:description" content="Randomly is a free random number generator from RithyVerse Studio. Pick a minimum and maximum (1 to 1,000,000), choose a reveal style, and get a random whole number.">
+<meta property="og:description" content="Randomly is a free, fair random number generator by RithyVerse Studio, with dice, coin flip and cup shuffle tools, in 11 languages.">
 <meta property="og:url" content="https://randomlynumber.com/about/">
 <meta property="og:image" content="https://randomlynumber.com/og-image.png">
 <meta property="og:image:type" content="image/png">
@@ -615,6 +615,34 @@ html.theme-anim .tknob{transition:left .35s cubic-bezier(.3,1.3,.5,1),background
 @media(max-width:460px){.toolic{height:92px}}
 @media(prefers-reduced-motion:reduce){.toolcard:hover .toolic *,.toolcard:focus-visible .toolic *{animation:none!important}}
 @media(prefers-reduced-motion:reduce){.toolcard{transition:none}.toolcard:hover{transform:none}}
+
+/* ===== settings box between the animation and the main button ===== */
+.setbox{margin:0;padding:0;border:0}
+.card.setcard{padding:20px 24px}
+.setbox .row{margin:0}
+.setbox .grp:first-child{margin-top:0}
+.setbox .grp{margin-top:14px}
+.setbox label,.setbox .lbl{text-align:start}
+.orow{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start;margin-top:14px}
+.orow .selw,.orow .optw{min-width:0}
+.orow .chips{flex-wrap:nowrap;gap:8px}
+.orow .chips .mode{flex:1 1 0;min-width:0}
+.orow .chips .mode span{width:100%;justify-content:center;text-align:center;white-space:normal;line-height:1.2;padding:4px 10px}
+select.msel{width:100%;min-height:44px;font:inherit;font-weight:600;color:var(--ink);background-color:var(--field);border:1px solid var(--line);border-radius:999px;padding:0 42px 0 18px;-webkit-appearance:none;appearance:none;cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%238a8fb0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 18px center;background-size:12px 8px;transition:border-color .15s,box-shadow .15s}
+select.msel:hover{border-color:var(--brand)}
+select.msel:focus-visible{outline:3px solid var(--brand);outline-offset:2px}
+select.msel:disabled{opacity:.5;cursor:not-allowed}
+select.msel option{background:var(--card);color:var(--ink)}
+html[dir=rtl] select.msel{padding:0 18px 0 42px;background-position:left 18px center}
+@media(max-width:560px){
+.card.setcard{padding:16px 18px}
+.orow{grid-template-columns:1fr;gap:10px;margin-top:10px}
+.orow .selw,.orow .optw{flex:none;width:100%}
+.orow .chips{flex-wrap:nowrap;width:100%}
+.orow .chips .mode{flex:1 1 0;min-width:0}
+.orow .chips .mode span{width:100%;justify-content:center;text-align:center;white-space:normal;line-height:1.2;padding:4px 8px;font-size:.85rem}
+select.msel{min-height:42px}
+}
 </style>
 <style>
 main{flex:1}
@@ -668,7 +696,43 @@ a.brand{text-decoration:none;color:inherit}
 <p class="doc-back"><a href="/">← Back to the generator</a></p>
 <h1>About Randomly</h1>
 <div class="modal-body">
-<p>Randomly is a free random number generator from RithyVerse Studio. Pick a minimum and maximum (1 to 1,000,000), choose a reveal style, and get a random whole number.</p><h3>Fair and private</h3><p>Numbers are generated in your browser with the Web Crypto API, using rejection sampling so every whole number in your range, including both endpoints, is equally likely. Nothing you enter is sent to a server.</p><h3>For everyday use</h3><p>Great for games, classrooms and simple decisions. Not intended for gambling, betting, prizes or security-critical purposes.</p><p>Questions or feedback? Visit our <a href="#" data-modal="contact-modal">contact page</a>.</p>
+<p>Randomly is a free random number generator made by RithyVerse Studio. You choose a minimum and a maximum (anything from 1 to 1,000,000), pick a reveal style, and get a random whole number in a few seconds. There is nothing to install and no account to create, and it works on phones, tablets and computers, in light or dark mode.</p>
+
+<h3>Why we built it</h3>
+<p>Plenty of websites can print a random number. We wanted one that is fair, fast and also enjoyable to use. Picking who goes first in a game, calling on a student, drawing a giveaway winner or settling a small argument should take a few seconds and leave nobody doubting the result. So Randomly combines a carefully fair way of choosing the number with reveal animations that make the moment more fun: a wheel, a mystery crate, a number machine, a card draw and a cloud rain.</p>
+
+<h3>How we keep it fair</h3>
+<p>Numbers are generated in your own browser with the Web Crypto API, which draws on your device's cryptographically secure random source. To turn the raw random bits into a number in your range without favouring any value, the generator uses rejection sampling. This avoids a subtle problem called modulo bias, and it means every whole number in your range, including both endpoints, is equally likely. The number is chosen before any animation starts, so the animation only reveals the result and can never change it. You can read the full explanation in <a href="/articles/how-random-number-generators-work/">How Random Number Generators Work</a>.</p>
+
+<h3>Private by design</h3>
+<p>The minimum and maximum you enter and the numbers you draw are processed on your device. They are not sent to our servers or stored by us. The site remembers a few preferences, such as your language, theme and sound setting, in your browser's local storage so you do not have to set them again. Our <a href="/privacy/">Privacy Policy</a> explains this, along with how advertising and cookies work on the site.</p>
+
+<h3>What you can do on Randomly</h3>
+<ul>
+<li><strong>Random number generator:</strong> any range from 1 to 1,000,000, with a No repeats option and a list of recent draws.</li>
+<li><strong><a href="/dice/">Dice roller:</a></strong> realistic 3D dice that tumble and land, with several dice types.</li>
+<li><strong><a href="/coin-flip/">Coin flip:</a></strong> a spinning 3D coin with a fair 50/50 result and running totals.</li>
+<li><strong><a href="/cup-shuffle/">Number cup shuffle:</a></strong> hide numbers under 3, 5 or 7 cups, watch them shuffle and pick one.</li>
+<li><strong><a href="/guide/">Guide</a> and <a href="/articles/">Articles:</a></strong> plain-English explanations of randomness, probability, fair draws and classroom ideas.</li>
+</ul>
+
+<h3>Available in 11 languages</h3>
+<p>Randomly is available in English, French, Russian, Japanese, Filipino, Hindi, German, Spanish, Brazilian Portuguese, Indonesian and Arabic (with right-to-left layout). You can switch language from the menu at the top of any page. If you spot a translation that could be better, please tell us through the <a href="/contact/">contact page</a>.</p>
+
+<h3>Who it is for</h3>
+<p>Teachers use it to call on students and form groups, families use it for game nights and chores, creators use it to pick giveaway winners, and developers and students use it for quick test values and probability experiments. If you want ideas, see <a href="/articles/random-number-ideas-for-teachers/">ways teachers use a random number generator</a> and <a href="/articles/games-with-random-numbers/">games you can play with one</a>.</p>
+
+<h3>What Randomly is not for</h3>
+<p>Randomly is made for everyday use. It is not intended for lotteries, gambling, regulated prize draws or generating cryptographic keys or passwords. If a draw must be legally certified or audited, please use an official method that meets the rules where you live.</p>
+
+<h3>Our articles and how we write them</h3>
+<p>The articles on this site are written to explain how randomness and probability actually work, using accurate, well-known facts and simple examples. We update them when we find mistakes or when something changes. If you think a statement is wrong or unclear, let us know and we will review it.</p>
+
+<h3>How the site is funded</h3>
+<p>Randomly is free to use. To cover hosting and development time, the site may show ads served by Google AdSense and other third-party vendors. Ads never affect the numbers that are generated, and the way advertising cookies are handled is described in our Privacy Policy.</p>
+
+<h3>Get in touch</h3>
+<p>We read every message about bugs, suggestions and feedback. You can find our email address and the contact form on the <a href="/contact/">contact page</a>.</p>
 </div>
 </article>
 </main>

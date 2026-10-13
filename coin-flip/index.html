@@ -616,6 +616,34 @@ html.theme-anim .tknob{transition:left .35s cubic-bezier(.3,1.3,.5,1),background
 @media(max-width:460px){.toolic{height:92px}}
 @media(prefers-reduced-motion:reduce){.toolcard:hover .toolic *,.toolcard:focus-visible .toolic *{animation:none!important}}
 @media(prefers-reduced-motion:reduce){.toolcard{transition:none}.toolcard:hover{transform:none}}
+
+/* ===== settings box between the animation and the main button ===== */
+.setbox{margin:0;padding:0;border:0}
+.card.setcard{padding:20px 24px}
+.setbox .row{margin:0}
+.setbox .grp:first-child{margin-top:0}
+.setbox .grp{margin-top:14px}
+.setbox label,.setbox .lbl{text-align:start}
+.orow{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start;margin-top:14px}
+.orow .selw,.orow .optw{min-width:0}
+.orow .chips{flex-wrap:nowrap;gap:8px}
+.orow .chips .mode{flex:1 1 0;min-width:0}
+.orow .chips .mode span{width:100%;justify-content:center;text-align:center;white-space:normal;line-height:1.2;padding:4px 10px}
+select.msel{width:100%;min-height:44px;font:inherit;font-weight:600;color:var(--ink);background-color:var(--field);border:1px solid var(--line);border-radius:999px;padding:0 42px 0 18px;-webkit-appearance:none;appearance:none;cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%238a8fb0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 18px center;background-size:12px 8px;transition:border-color .15s,box-shadow .15s}
+select.msel:hover{border-color:var(--brand)}
+select.msel:focus-visible{outline:3px solid var(--brand);outline-offset:2px}
+select.msel:disabled{opacity:.5;cursor:not-allowed}
+select.msel option{background:var(--card);color:var(--ink)}
+html[dir=rtl] select.msel{padding:0 18px 0 42px;background-position:left 18px center}
+@media(max-width:560px){
+.card.setcard{padding:16px 18px}
+.orow{grid-template-columns:1fr;gap:10px;margin-top:10px}
+.orow .selw,.orow .optw{flex:none;width:100%}
+.orow .chips{flex-wrap:nowrap;width:100%}
+.orow .chips .mode{flex:1 1 0;min-width:0}
+.orow .chips .mode span{width:100%;justify-content:center;text-align:center;white-space:normal;line-height:1.2;padding:4px 8px;font-size:.85rem}
+select.msel{min-height:42px}
+}
 </style>
 <style>
 main{flex:1}
@@ -671,7 +699,7 @@ a.brand{text-decoration:none;color:inherit}
 .tback a{color:var(--mute);font-weight:700;text-decoration:none}
 .tback a:hover{color:var(--brand);text-decoration:underline}
 .card.tool .go{text-transform:uppercase}
-.card.tset .grp:first-child{margin-top:0}
+.card.tset .grp:first-child,.setbox .grp:first-child{margin-top:0}
 .chips.grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px}
 .chips.grid .mode span{width:100%;justify-content:center;padding:0 6px}
 .chips.g3{grid-template-columns:repeat(3,minmax(0,1fr))}
@@ -685,9 +713,10 @@ html[dir=rtl] .s-dice,html[dir=rtl] .s-coin,html[dir=rtl] .s-cups{direction:ltr}
 .stage.tstage[data-m=cups] .s-cups{height:auto}
 
 /* ---------- dice (true 3D polyhedra: D4 D6 D8 D10 D12 D20) ---------- */
-.dfloor{position:absolute;left:6%;right:6%;bottom:18px;height:60px;border-radius:50%;background:radial-gradient(ellipse at center,rgba(0,0,0,.42) 0%,transparent 70%)}
+.stage.tstage[data-m=dice]{height:360px}
+.dfloor{position:absolute;left:6%;right:6%;bottom:56px;height:60px;border-radius:50%;background:radial-gradient(ellipse at center,rgba(0,0,0,.42) 0%,transparent 70%)}
 :root[data-theme="light"] .dfloor{background:radial-gradient(ellipse at center,rgba(60,60,140,.22) 0%,transparent 70%)}
-.dwrap{--ds:96px;position:relative;display:flex;flex-wrap:wrap;justify-content:center;align-content:center;gap:34px 46px;max-width:96%;padding-top:70px}
+.dwrap{--ds:96px;position:relative;display:flex;flex-wrap:wrap;justify-content:center;align-content:center;gap:34px 46px;max-width:96%;padding-top:0}
 .dwrap[data-n="1"]{--ds:120px}
 .dwrap[data-n="2"],.dwrap[data-n="3"]{--ds:96px}
 .dwrap[data-n="4"],.dwrap[data-n="5"],.dwrap[data-n="6"]{--ds:74px;gap:30px 40px}
@@ -755,6 +784,7 @@ html[dir=rtl] .s-dice,html[dir=rtl] .s-coin,html[dir=rtl] .s-cups{direction:ltr}
 
 @media(max-width:560px){
 .stage.tstage{height:270px}
+.stage.tstage[data-m=dice]{height:320px}
 .stage.tstage[data-m=cups]{height:auto}
 .chips.grid{grid-template-columns:repeat(3,minmax(0,1fr))}
 .dwrap[data-n="1"]{--ds:100px}
@@ -784,7 +814,8 @@ html[dir=rtl] .s-dice,html[dir=rtl] .s-coin,html[dir=rtl] .s-cups{direction:ltr}
 <p class="msg" id="msg" role="status"></p>
 <div class="hist" id="hist" data-ic="🪙" hidden><div class="hhead"><div class="htitle">Recent draws</div><div class="hacts"><button class="hclear" id="hcopyall" type="button">Copy all</button><button class="hclear" id="hclear" type="button">Clear</button></div></div><ol class="hlist" id="hlist" aria-label="Recent draws"></ol></div>
 </section>
-<section class="card tset" aria-label="Coin Flip"><div class="grp"><div class="lbl" id="g-opt">Options</div><div class="chips" role="group" aria-labelledby="g-opt"><label class="mode"><input type="checkbox" id="qskip"><span><b>Skip animation</b></span></label><label class="mode"><input type="checkbox" id="snd" checked><span><b>🔊 Sound</b></span></label></div></div></section>
+<section class="card setcard tool" aria-label="Coin Flip"><div class="setbox tset"><div class="grp"><div class="lbl" id="g-opt">Options</div><div class="chips" role="group" aria-labelledby="g-opt"><label class="mode"><input type="checkbox" id="qskip"><span><b>Skip animation</b></span></label><label class="mode"><input type="checkbox" id="snd" checked><span><b>🔊 Sound</b></span></label></div></div></div></section>
+
 <article class="card doc"><div class="modal-body">
 <p>Press Flip and the coin spins before landing on heads or tails. The result comes from your browser's cryptographic random source, so every flip is a fair 50/50 and nothing is sent to a server.</p>
 <h3>FAQ</h3>
@@ -794,6 +825,61 @@ html[dir=rtl] .s-dice,html[dir=rtl] .s-coin,html[dir=rtl] .s-cups{direction:ltr}
 <p>No. Every flip is independent, so a streak of the same side doesn't make the other side any more likely next time.</p>
 <p><a href="/">Try the random number generator →</a></p>
 <p>Each result uses your browser's secure random generator, so every outcome has the same chance and earlier results never affect the next one. Nothing is sent to a server. <a href="/guide/">Random Number Generator Guide: How It Works and How to Use It</a></p>
+</div></article>
+<article class="card doc"><div class="modal-body">
+
+<h3>How to use the coin flip</h3>
+<ol>
+<li>Decide what heads and tails stand for before you flip, for example heads for pizza and tails for tacos.</li>
+<li>Press <strong>Flip</strong>. The 3D coin is tossed into the air, spins and lands on one side.</li>
+<li>Read the result on the coin and in the result card. The tiles keep a running count of <strong>Heads</strong>, <strong>Tails</strong> and total <strong>Flips</strong>.</li>
+<li>Press <strong>Skip / Reveal now</strong> for an instant answer, or turn on <strong>Skip animation</strong> in Options.</li>
+<li>Use <strong>Reset</strong> in Options to set the counters back to zero, and <strong>Recent draws</strong> to review your latest flips.</li>
+</ol>
+
+<h3>Why this coin flip is fair</h3>
+<p>Each flip is decided by your browser's cryptographic random source. Heads and tails each have a 50 percent chance, every time. The result is picked before the coin starts to spin, so the animation only reveals it and cannot influence it. A real coin can have a very slight bias depending on how it is tossed and how it is weighted, but a digital flip does not have that physical effect. You can read more about this in <a href="/articles/coin-flip-odds-and-myths/">Coin Flip Odds: Fairness, Streaks and the Gambler's Fallacy</a>.</p>
+
+<h3>Good uses for a coin flip</h3>
+<ul>
+<li>Choosing who goes first in a game or who kicks off a match.</li>
+<li>Breaking a tie between two equally good options.</li>
+<li>Making a small everyday decision, such as where to eat.</li>
+<li>Teaching probability: flip fifty or a hundred times and compare the counts with what you predicted.</li>
+<li>Settling a friendly disagreement without anyone feeling cheated.</li>
+</ul>
+
+<h3>Tips for a clean decision</h3>
+<ul>
+<li><strong>Call it first.</strong> Say which side means what before the flip so nobody changes the rules afterwards.</li>
+<li><strong>Flip once.</strong> Repeating until you get the answer you want defeats the purpose.</li>
+<li><strong>Notice your reaction.</strong> Many people discover what they really wanted by how they feel while the coin is in the air.</li>
+<li><strong>For bigger choices,</strong> use the coin only to break a true tie. Important decisions deserve real thought.</li>
+</ul>
+
+<h3>Try these flip challenges</h3>
+<ul>
+<li><strong>Best of three or five:</strong> the first to win most flips takes the round, which makes the result feel more decisive.</li>
+<li><strong>Streak hunt:</strong> flip 100 times and see how long your longest run of the same side is. Runs of five or six are common.</li>
+<li><strong>Prediction game:</strong> each player guesses before every flip and scores a point for each correct call.</li>
+</ul>
+
+<h3>More questions</h3>
+<h4>Can I flip several coins at once?</h4>
+<p>The tool flips one coin at a time. For several coins, flip repeatedly and keep count with the Heads and Tails tiles.</p>
+<h4>Why do I sometimes get many heads in a row?</h4>
+<p>Streaks are a normal part of random sequences. In 100 fair flips you should expect a run of five or six identical results somewhere. A streak does not mean the coin is biased, and it does not make the other side due.</p>
+<h4>Is my history stored?</h4>
+<p>No. The counts and recent flips are shown on the page for your visit, and nothing is sent to a server.</p>
+<h4>Can I use it to decide a prize winner?</h4>
+<p>For friendly choices between two people, yes. For prize draws, read <a href="/articles/pick-a-fair-winner-for-a-giveaway/">How to Pick a Fair Winner for a Giveaway</a>. Randomly is not intended for gambling or regulated draws.</p>
+
+<h3>Keep reading</h3>
+<ul>
+<li><a href="/articles/coin-flip-odds-and-myths/">Coin Flip Odds and Myths</a></li>
+<li><a href="/articles/birthday-paradox-and-surprising-chance/">The Birthday Paradox and Other Surprising Facts About Chance</a></li>
+<li><a href="/dice/">Dice Roller</a> and <a href="/cup-shuffle/">Number Cup Shuffle</a></li>
+</ul>
 </div></article>
 <script>(function(){var L={"roll": "Roll", "dice": "Dice", "sides": "Sides", "total": "Total", "flip": "Flip", "heads": "Heads", "tails": "Tails", "flips": "Flips", "reset": "Reset", "cs_cups": "Number of cups", "cs_mode": "Numbers", "cs_quick": "Quick Pick", "cs_custom": "Custom Numbers", "cs_uses": "Numbers under the cups:", "cs_enter": "Enter a number for each cup.", "cs_err": "Please enter a whole number in every box.", "cs_start": "Hide numbers under cups", "cs_shuffle": "Shuffle", "cs_shuffling": "Shuffling…", "cs_pick": "Pick a cup", "cs_ready": "These are the numbers in play. Press Shuffle to cover and mix the cups.", "cs_result": "Your Number", "cs_again": "Shuffle Again", "cs_play": "Play Again", "cs_back": "Change setup", "cs_cup": "Cup", "hist": "Recent draws", "hclear": "Clear", "hcopyall": "Copy all", "hcopied": "Copied", "hcopy": "Copy", "rskip": "Skip / Reveal now", "qskip": "Skip animation", "opts": "Options", "ready": "Ready when you are", "sound": "Sound"};function rnd(n){var c=window.crypto||window.msCrypto;if(!c||!c.getRandomValues)return Math.floor(Math.random()*n);var m=Math.floor(4294967296/n)*n,a=new Uint32Array(1);do{c.getRandomValues(a)}while(a[0]>=m);return a[0]%n}
 
@@ -812,9 +898,72 @@ function noise(o){var a=ac();if(!a)return;
   s.buffer=NB;s.loop=true;f.type=o.type||'bandpass';f.frequency.setValueAtTime(o.f,t);if(o.f2)f.frequency.exponentialRampToValueAtTime(o.f2,t+o.d);
   g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(o.v,t+o.d*(o.a||.3));g.gain.exponentialRampToValueAtTime(.0001,t+o.d);
   s.connect(f);f.connect(g);g.connect(a.destination);s.start(t);s.stop(t+o.d+.05)}
-// same reveal "hit" feel as the number generator: sub thump, air burst, bell sparkle
-function sfxHit(){tone({f:130,f2:52,d:.4,v:.22});noise({f:2400,f2:700,d:.45,v:.05,type:'highpass'});
-  [523.25,659.25,783.99,1046.5].forEach(function(f,i){tone({f:f,d:1-i*.1,v:.07,t:.05+i*.07})})}
+// ---- high-quality sound engine (shared by Dice / Coin / Cups): compressor + reverb bus, layered voices
+var WREV=null,SFXM=[];
+function sfR(a,b){return a+Math.random()*(b-a)}
+function sfxTrack(g){SFXM.push(g);if(SFXM.length>12)SFXM.shift()}
+function sfxStop(){var a=AC;if(!a)return;var t=a.currentTime;
+  SFXM.forEach(function(g){try{g.gain.cancelScheduledValues(t);g.gain.setValueAtTime(g.gain.value,t);g.gain.linearRampToValueAtTime(0,t+.08)}catch(e){}});SFXM=[]}
+function sfxKit(){
+  var a=ac();if(!a)return null;
+  if(!NB){NB=a.createBuffer(1,a.sampleRate,a.sampleRate);var q=NB.getChannelData(0);for(var i=0;i<q.length;i++)q[i]=Math.random()*2-1}
+  var comp=a.createDynamicsCompressor();comp.threshold.value=-14;comp.knee.value=10;comp.ratio.value=4;comp.attack.value=.003;comp.release.value=.2;
+  var mst=a.createGain();mst.gain.value=.9;comp.connect(mst);mst.connect(a.destination);sfxTrack(mst);
+  var dry=a.createGain();dry.connect(comp);
+  if(!WREV||WREV.sampleRate!==a.sampleRate){var L=Math.floor(a.sampleRate*1.7);WREV=a.createBuffer(2,L,a.sampleRate);
+    for(var c=0;c<2;c++){var d=WREV.getChannelData(c);for(var k=0;k<L;k++)d[k]=(Math.random()*2-1)*Math.pow(1-k/L,2.6)}}
+  var cvb=a.createConvolver();cvb.buffer=WREV;var wet=a.createGain();wet.gain.value=.3;cvb.connect(wet);wet.connect(comp);
+  var send=a.createGain();send.gain.value=1;send.connect(cvb);
+  function out(g,rv,pan){var n=g;if(pan&&a.createStereoPanner){n=a.createStereoPanner();n.pan.value=Math.max(-1,Math.min(1,pan));g.connect(n)}n.connect(dry);if(rv){var r=a.createGain();r.gain.value=rv;n.connect(r);r.connect(send)}}
+  // tonal voice: attack / decay, optional pitch glide, lowpass, reverb send, pan
+  function T(o){var t=a.currentTime+(o.t||0),os=a.createOscillator(),g=a.createGain(),n=os;
+    os.type=o.type||'sine';os.frequency.setValueAtTime(o.f,t);if(o.f2)os.frequency.exponentialRampToValueAtTime(o.f2,t+o.d);
+    var at=Math.min(o.at||.012,o.d*.9);
+    g.gain.value=0;g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(o.v,t+at);g.gain.exponentialRampToValueAtTime(.0001,t+o.d);
+    if(o.lp){var f=a.createBiquadFilter();f.type='lowpass';f.frequency.value=o.lp;os.connect(f);n=f}
+    n.connect(g);out(g,o.rv,o.pan);os.start(t);os.stop(t+o.d+.05)}
+  // filtered-noise voice with frequency sweep
+  function N(o){var t=a.currentTime+(o.t||0),s=a.createBufferSource(),f=a.createBiquadFilter(),g=a.createGain();
+    s.buffer=NB;s.loop=true;f.type=o.type||'bandpass';f.Q.value=o.q||1;
+    f.frequency.setValueAtTime(o.f,t);if(o.f2)f.frequency.exponentialRampToValueAtTime(o.f2,t+o.d);
+    g.gain.value=0;g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(o.v,t+o.d*(o.a||.3));g.gain.exponentialRampToValueAtTime(.0001,t+o.d);
+    s.connect(f);f.connect(g);out(g,o.rv,o.pan);s.start(t,Math.random()*.4);s.stop(t+o.d+.05)}
+  // fluttering voice (amplitude modulated by an LFO) - the whirr of a spinning coin
+  function M(o){var t=a.currentTime+(o.t||0),os=a.createOscillator(),lf=a.createOscillator(),lg=a.createGain(),md=a.createGain(),g=a.createGain();
+    os.type=o.type||'triangle';os.frequency.setValueAtTime(o.f,t);if(o.f2)os.frequency.linearRampToValueAtTime(o.f2,t+o.d);
+    lf.frequency.setValueAtTime(o.lf,t);if(o.lf2)lf.frequency.linearRampToValueAtTime(o.lf2,t+o.d);
+    md.gain.value=.5;lg.gain.value=.5;lf.connect(lg);lg.connect(md.gain);
+    var at=Math.min(o.at||.05,o.d*.9);g.gain.value=0;g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(o.v,t+at);g.gain.exponentialRampToValueAtTime(.0001,t+o.d);
+    os.connect(md);md.connect(g);out(g,o.rv,o.pan);os.start(t);lf.start(t);os.stop(t+o.d+.05);lf.stop(t+o.d+.05)}
+  // struck metal: inharmonic partials, each one dying faster than the last
+  function ring(o){[1,2.32,4.25,6.63,9.38].forEach(function(r,i){var f=o.f*r;if(f>15000)return;
+    T({f:f,t:o.t,d:o.d/(1+i*.75),v:o.v/(1+i*.8),at:.002,rv:o.rv==null?.5:o.rv,pan:o.pan})})}
+  return {a:a,T:T,N:N,M:M,ring:ring};
+}
+// big reveal at the end: kind = 'dice' (deep drum + ivory sparkle) | 'coin' (gold bell shimmer) | 'cup' (magic burst)
+function sfxReveal(K,kind,t0){t0=t0||0;var T=K.T,N=K.N,i;
+  if(kind==='coin'){
+    T({f:150,f2:40,t:t0,d:.8,v:.42});T({f:300,f2:80,t:t0,d:.3,v:.18,type:'triangle'});
+    N({f:5200,t:t0,d:.07,v:.14,type:'highpass'});N({f:3000,f2:500,t:t0,d:.5,v:.14,q:1.4,a:.03,rv:.4});
+    K.ring({f:1318.5,t:t0,d:2,v:.075,rv:.75});K.ring({f:1975.5,t:t0+.08,d:1.7,v:.05,rv:.8,pan:.3});K.ring({f:2637,t:t0+.16,d:1.5,v:.04,rv:.8,pan:-.3});
+    [392,493.9,587.3,783.99,987.8].forEach(function(f,k){T({f:f,t:t0+.03+k*.05,d:1.7,v:.05,type:'triangle',rv:.8,pan:k%2?.3:-.3})});
+    for(i=0;i<7;i++)T({f:2093*Math.pow(1.19,i),t:t0+.1+i*.055,d:.8,v:.028,rv:.9,pan:i%2?.5:-.5});
+    N({f:7000,t:t0,d:1.6,v:.1,type:'highpass',a:.03,rv:.7})
+  }else if(kind==='cup'){
+    T({f:105,f2:28,t:t0,d:1.4,v:.55});T({f:240,f2:55,t:t0,d:.45,v:.26,type:'triangle'});T({f:900,f2:70,t:t0,d:.5,v:.08,type:'sawtooth',lp:1400});
+    N({f:2200,f2:100,t:t0,d:.9,v:.3,type:'lowpass',a:.03,rv:.35});N({f:5500,t:t0,d:1.7,v:.14,type:'highpass',a:.03,rv:.7});
+    N({f:3500,f2:600,t:t0,d:.35,v:.2,q:1.5,a:.03,pan:-.35});N({f:3000,f2:500,t:t0+.01,d:.35,v:.2,q:1.5,a:.03,pan:.35});
+    [523.25,659.25,783.99,1046.5,1318.5,1568].forEach(function(f,k){T({f:f,t:t0+.04+k*.05,d:1.7,v:.055,type:'triangle',rv:.8,pan:k%2?.3:-.3});if(k<3)T({f:f,t:t0+.04+k*.05,d:1.5,v:.035,type:'sawtooth',lp:1800,rv:.6})});
+    T({f:900,f2:4200,t:t0,d:.55,v:.03,at:.35,rv:.8});
+    [1568,2093,2637,3136,4186].forEach(function(f,k){T({f:f,t:t0+.1+k*.06,d:.9,v:.035,rv:.9,pan:k%2?.5:-.5})})
+  }else{
+    T({f:120,f2:28,t:t0,d:1.3,v:.6});T({f:230,f2:55,t:t0,d:.45,v:.28,type:'triangle'});
+    N({f:4200,t:t0,d:.025,v:.16,type:'highpass'});
+    N({f:2600,f2:90,t:t0,d:.9,v:.3,type:'lowpass',a:.03,rv:.35});N({f:6000,t:t0,d:1.5,v:.12,type:'highpass',a:.03,rv:.7});
+    [523.25,659.25,783.99,1046.5,1318.5].forEach(function(f,k){T({f:f,t:t0+.04+k*.055,d:1.6,v:.055,type:'triangle',rv:.8,pan:k%2?.3:-.3})});
+    [1568,2093,2637,3136,4186].forEach(function(f,k){T({f:f,t:t0+.12+k*.06,d:.9,v:.032,rv:.9,pan:k%2?.5:-.5})})
+  }}
+function sfxHit(kind){var K=sfxKit();if(K)sfxReveal(K,kind,0)}
 var TM=[];function later(f,ms){var t=setTimeout(f,ms);TM.push(t);return t}
 function clearTM(){TM.forEach(clearTimeout);TM=[]}
 var stage=$('stage'),cv=$('fx'),cx=cv.getContext('2d'),P=[],W=0,H=0,ticking=false;
@@ -888,17 +1037,35 @@ function land(r,fx){skipOff();
   setBig(r?L.tails:L.heads,'word');setHint('');$('method').textContent=L.ready;
   histAdd(r?L.tails:L.heads,'');
   if(fx){pulse('flash');pulse('ring');sparks(34);shake()}
-  sfxHit();unfocus();busy=false;lock(false)}
+  sfxHit('coin');unfocus();busy=false;lock(false)}
 function end(r){clearTM();skipOff();if(raf){cancelAnimationFrame(raf);raf=0}cur=r*180;rest(cur);land(r,true)}
-function clink(v){tone({f:2300+rnd(500),d:.35*v+.12,v:.05*v+.015});tone({f:3500+rnd(500),d:.2*v+.08,v:.028*v+.01});noise({f:3200,d:.04,v:.05*v+.01})}
+var KN=null;
+// thumb flick, the spin whirr in the air (flutters as the coin turns edge-on, falls in pitch), dread swell, glints at the top of the arc
+function coinToss(){var K=KN=sfxKit();if(!K)return;var T=K.T,N=K.N;
+  K.ring({f:3100,d:.5,v:.05,rv:.6,pan:-.2});
+  N({f:600,f2:3200,d:.18,v:.07,q:1.4,a:.3,pan:-.2});
+  K.M({f:2300,f2:1550,lf:10,lf2:8,t:.05,d:1.15,v:.026,at:.25,rv:.35});
+  K.M({f:3450,f2:2300,lf:10,lf2:8,t:.05,d:1.15,v:.014,at:.25,rv:.4,type:'sine',pan:.2});
+  T({f:50,f2:110,d:1.25,v:.13,type:'sawtooth',lp:260,at:1.1});
+  N({f:4000,f2:9000,t:.1,d:1.1,v:.03,type:'highpass',a:.95});
+  K.ring({f:4200,t:.55,d:.35,v:.018,rv:.8,pan:.4})}
+// gold coin on a hard table: ringing strike + thunk; the last call (v<.3) is the spin-down chatter that speeds up and rises in pitch
+function clink(v){var K=KN;if(!K)return;var T=K.T,N=K.N,p=sfR(-.2,.2);
+  K.ring({f:2250+sfR(0,350),d:.25+.7*v,v:.06*v+.012,rv:.5,pan:p});
+  T({f:190,f2:80,d:.1+.08*v,v:.16*v+.04,pan:p});
+  N({f:4200,d:.02,v:.1*v+.015,type:'highpass',pan:p});
+  N({f:1400,f2:500,d:.07,v:.05*v,q:2,a:.1,rv:.2,pan:p});
+  if(v>.8)T({f:75,f2:36,d:.4,v:.18,rv:.15});
+  if(v<.3){var t=.06,dt=.085,i=0;
+    while(i<12){var w=Math.max(.3,.8-i*.04);K.ring({f:2500+i*70,t:t,d:.12,v:.04*w,rv:.35,pan:sfR(-.1,.1)});T({f:210+i*5,f2:120,t:t,d:.035,v:.03*w,pan:p});t+=dt;dt*=.8;i++}
+    N({f:3000,f2:6500,t:.35,d:.25,v:.03,q:1.2,a:.4})}}
 function flip(){if(busy)return;busy=true;lock(true);say('');var r=rnd(2);faces(false);bigIdle();setHint('');
   if(quick()){cur=r*180;rest(cur);land(r,false);return}
-  stage.classList.add('focus');skipOn(function(){end(r)});
+  stage.classList.add('focus');skipOn(function(){sfxStop();end(r)});
   var turns=5+rnd(3),delta=((r*180-cur)%360+360)%360,amount=360*turns+delta,start=cur,
       TF=1250,PH=72,dir=rnd(2)?1:-1,pr=(10+rnd(8))*dir,drift=(rnd(2)?1:-1)*(6+rnd(14)),
       B1=300,B2=170,SET=520,TOT=TF+B1+B2+SET,wA=(16+rnd(10))*(rnd(2)?1:-1),t0=0,s1=0,s2=0,c1=0;
-  noise({f:500,f2:2600,d:.35,v:.07});tone({f:1400,d:.12,v:.04});
-  for(var i=0;i<7;i++)(function(i){later(function(){tone({f:2700+rnd(900),d:.045,v:.018})},140+i*120)})(i);
+  coinToss();
   function frame(now){if(!t0)t0=now;var e=now-t0,y,a,ry,rz,x;
     if(e<TF){var s=e/TF,sp=s+.035*Math.sin(s*Math.PI*2)*0;y=PH*4*s*(1-s);a=start+amount*sp;
       ry=0;rz=0;x=0}
@@ -914,6 +1081,65 @@ function flip(){if(busy)return;busy=true;lock(true);say('');var r=rnd(2);faces(f
 $('go').addEventListener('click',flip);
 faces(true);rest(0);$('method').textContent=L.ready;
 })();</script>
+
+<section class="card fbcta" aria-labelledby="fb-h">
+<canvas class="fbgl" aria-hidden="true"></canvas>
+<h2 id="fb-h" data-tr="fb_h">Help shape Randomly</h2>
+<p data-tr="fb_p">Have an idea, a feature you'd love to see, or found something that isn't working? Tell us. We read every message.</p>
+<div class="fbbtns">
+<button class="chip" type="button" data-modal="contact-modal" data-topic="suggestion" data-tr="fb_sug">💡 Suggest a feature</button>
+<button class="chip" type="button" data-modal="contact-modal" data-topic="feedback" data-tr="fb_fb">⭐ General feedback</button>
+<button class="chip" type="button" data-modal="contact-modal" data-topic="bug" data-tr="fb_bug">🐞 Report a problem</button>
+</div>
+</section>
+<script>(function(){
+var c=document.querySelector('.fbcta'),cv=c&&c.querySelector('.fbgl');if(!cv)return;
+var gl=cv.getContext('webgl',{antialias:false,alpha:false,powerPreference:'low-power'})||cv.getContext('experimental-webgl');if(!gl)return;
+var VS='attribute vec2 p;void main(){gl_Position=vec4(p,0.,1.);}';
+var FS=[
+'#ifdef GL_FRAGMENT_PRECISION_HIGH','precision highp float;','#else','precision mediump float;','#endif',
+'uniform vec2 R;uniform float T;uniform vec2 M;uniform float E;uniform float H;uniform float D;uniform float S;uniform vec3 A;uniform vec3 B;',
+'void main(){',
+' vec2 fc=gl_FragCoord.xy;vec2 uv=fc/R;',
+' float asp=R.x/R.y;vec2 p=vec2(uv.x*asp,uv.y);vec2 m=vec2(M.x*asp,M.y);',
+' float dm=length(p-m);float inf=exp(-dm*dm*5.);',
+' float h=.5*sin(p.x*2.6+T*.25+1.3*sin(p.y*3.1-T*.2))+.5*sin(p.y*3.4-T*.18+1.1*sin(p.x*2.2+T*.22))+.35*sin((p.x+p.y)*1.8+T*.15);',
+' h+=(H*.9+E*1.2)*inf*1.3;',
+' float n=h*3.4;float fr=abs(fract(n)-.5);',
+' float aa=10./R.y;float lw=.07+.03*inf*H;',
+' float ln=1.-smoothstep(lw-aa,lw+aa,fr);',
+' float k=clamp(uv.x*.65+(1.-uv.y)*.35+.07*sin(T*.35+uv.y*3.),0.,1.);',
+' vec3 base=mix(A,B,k)*mix(.9,.74,D);',
+' base*=1.+.06*sin(n*3.14159);',
+' vec3 lc=vec3(1.);',
+' vec3 col=mix(base,lc,ln*(.24+.2*inf*(H*.8+E*.6)));',
+' col+=vec3(1.)*inf*(.03+.04*H+.05*E);',
+' gl_FragColor=vec4(col,1.);}'].join('\n');
+function sh(t,src){var s=gl.createShader(t);gl.shaderSource(s,src);gl.compileShader(s);return gl.getShaderParameter(s,gl.COMPILE_STATUS)?s:null}
+var vs=sh(gl.VERTEX_SHADER,VS),fs=sh(gl.FRAGMENT_SHADER,FS);if(!vs||!fs)return;
+var pg=gl.createProgram();gl.attachShader(pg,vs);gl.attachShader(pg,fs);gl.linkProgram(pg);if(!gl.getProgramParameter(pg,gl.LINK_STATUS))return;
+gl.useProgram(pg);var bf=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,bf);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,3,-1,-1,3]),gl.STATIC_DRAW);
+var lp=gl.getAttribLocation(pg,'p');gl.enableVertexAttribArray(lp);gl.vertexAttribPointer(lp,2,gl.FLOAT,false,0,0);
+var U={};['R','T','M','E','H','D','S','A','B'].forEach(function(k){U[k]=gl.getUniformLocation(pg,k)});
+var rm=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+var tx=.5,ty=.5,cx=.5,cy=.5,px=.5,py=.5,E=0,H=0,hv=0,raf=0,vis=true,t0=performance.now();
+function size(){var w=c.clientWidth,hh=c.clientHeight,d=Math.min(window.devicePixelRatio||1,window.innerWidth<600?1:1.5);while(w*hh*d*d>650000&&d>.5)d-=.1;cv.width=Math.max(1,Math.round(w*d));cv.height=Math.max(1,Math.round(hh*d));gl.viewport(0,0,cv.width,cv.height);readCols();draw((performance.now()-t0)/1000)}
+var ca=[.357,.357,.941],cb=[.541,.361,.965],dk=1;
+function hx(v,fb){v=(v||'').trim();var m;if(v.charAt(0)==='#'){if(v.length===4)v='#'+v[1]+v[1]+v[2]+v[2]+v[3]+v[3];if(v.length>=7)return[parseInt(v.substr(1,2),16)/255,parseInt(v.substr(3,2),16)/255,parseInt(v.substr(5,2),16)/255]}else if(m=v.match(/\d+(\.\d+)?/g)){if(m.length>=3)return[m[0]/255,m[1]/255,m[2]/255]}return fb}
+function readCols(){var de=document.documentElement,cs=getComputedStyle(de),th=de.getAttribute('data-theme');ca=hx(cs.getPropertyValue('--brand'),ca);cb=hx(cs.getPropertyValue('--brand2'),cb);dk=(th==='dark'||(th!=='light'&&window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches))?1:0}
+function draw(t){gl.uniform2f(U.R,cv.width,cv.height);gl.uniform1f(U.T,rm?12:t+12);gl.uniform2f(U.M,cx,cy);gl.uniform1f(U.E,E);gl.uniform1f(U.H,H);gl.uniform1f(U.D,dk);gl.uniform1f(U.S,cv.width/Math.max(1,c.clientWidth));gl.uniform3f(U.A,ca[0],ca[1],ca[2]);gl.uniform3f(U.B,cb[0],cb[1],cb[2]);gl.drawArrays(gl.TRIANGLES,0,3)}
+function frame(now){raf=0;if(!vis||document.hidden)return;cx+=(tx-cx)*.12;cy+=(ty-cy)*.12;E=Math.min(1.5,E*.93+Math.hypot(cx-px,cy-py)*4*(c.clientWidth/c.clientHeight>1?1:1));px=cx;py=cy;H+=(hv-H)*.08;draw((now-t0)/1000);raf=requestAnimationFrame(frame)}
+function go(){if(!raf&&!rm&&vis&&!document.hidden)raf=requestAnimationFrame(frame)}
+function aim(ev){var r=c.getBoundingClientRect();tx=(ev.clientX-r.left)/r.width;ty=1-(ev.clientY-r.top)/r.height;hv=1}
+c.addEventListener('pointerenter',function(ev){aim(ev);cx=tx;cy=ty;px=cx;py=cy});c.addEventListener('pointermove',aim);
+c.addEventListener('pointerdown',function(ev){aim(ev);E=Math.min(1.5,E+.8)});
+c.addEventListener('pointerleave',function(){hv=0});c.addEventListener('pointercancel',function(){hv=0});
+if('IntersectionObserver' in window)new IntersectionObserver(function(en){vis=en[0].isIntersecting;if(vis)go()}).observe(c);
+document.addEventListener('visibilitychange',function(){if(!document.hidden)go()});
+if('ResizeObserver' in window)new ResizeObserver(size).observe(c);else window.addEventListener('resize',size);
+new MutationObserver(function(){readCols();draw((performance.now()-t0)/1000)}).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
+if(window.matchMedia){var mq=matchMedia('(prefers-color-scheme: dark)');if(mq.addEventListener)mq.addEventListener('change',function(){readCols();draw((performance.now()-t0)/1000)})}
+size();go()})()</script>
 </main>
 </div>
 <footer class="site-footer">
@@ -924,6 +1150,7 @@ faces(true);rest(0);$('method').textContent=L.ready;
 <a href="/" data-tr="f_home">Home</a>
 <a href="/about/" data-tr="f_about">About</a>
 <a href="/guide/" data-tr="f_guide">Guide</a>
+<a href="/articles/">Articles</a>
 <a href="/dice/" data-tr="t_dice_n">Dice Roller</a>
 <a href="/coin-flip/" data-tr="t_coin_n">Coin Flip</a>
 <a href="/cup-shuffle/" data-tr="t_cup_n">Number Cup Shuffle</a></nav>
@@ -931,7 +1158,8 @@ faces(true);rest(0);$('method').textContent=L.ready;
 <a href="/terms/" data-tr="f_terms">Terms and Conditions</a>
 <a href="/privacy/" data-tr="f_privacy">Privacy Policy</a></nav>
 <nav class="ft-col" aria-label="Support"><h3 data-tr="ft_h_help">Support</h3>
-<a href="#" data-modal="contact-modal" data-topic="other" role="button" data-tr="f_contact">Contact us</a></nav>
+<a href="#" data-modal="contact-modal" data-topic="other" role="button" data-tr="f_contact">Contact us</a>
+<a href="/contact/">Contact details</a></nav>
 </div>
 <nav class="ft-langs" aria-label="Language" data-tra="aria-label:lang"><a href="/coin-flip/" hreflang="en" lang="en" aria-current="page">English</a><a href="/fr/coin-flip/" hreflang="fr" lang="fr">Français</a><a href="/ru/coin-flip/" hreflang="ru" lang="ru">Русский</a><a href="/ja/coin-flip/" hreflang="ja" lang="ja">日本語</a><a href="/fil/coin-flip/" hreflang="fil" lang="fil">Filipino</a><a href="/hi/coin-flip/" hreflang="hi" lang="hi">हिन्दी</a><a href="/de/coin-flip/" hreflang="de" lang="de">Deutsch</a><a href="/es/coin-flip/" hreflang="es" lang="es">Español</a><a href="/pt/coin-flip/" hreflang="pt" lang="pt">Português</a><a href="/id/coin-flip/" hreflang="id" lang="id">Bahasa Indonesia</a><a href="/ar/coin-flip/" hreflang="ar" lang="ar">العربية</a></nav>
 <div class="ft-bottom">
