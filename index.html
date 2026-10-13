@@ -616,6 +616,34 @@ html.theme-anim .tknob{transition:left .35s cubic-bezier(.3,1.3,.5,1),background
 @media(max-width:460px){.toolic{height:92px}}
 @media(prefers-reduced-motion:reduce){.toolcard:hover .toolic *,.toolcard:focus-visible .toolic *{animation:none!important}}
 @media(prefers-reduced-motion:reduce){.toolcard{transition:none}.toolcard:hover{transform:none}}
+
+/* ===== settings box between the animation and the main button ===== */
+.setbox{margin:0;padding:0;border:0}
+.card.setcard{padding:20px 24px}
+.setbox .row{margin:0}
+.setbox .grp:first-child{margin-top:0}
+.setbox .grp{margin-top:14px}
+.setbox label,.setbox .lbl{text-align:start}
+.orow{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start;margin-top:14px}
+.orow .selw,.orow .optw{min-width:0}
+.orow .chips{flex-wrap:nowrap;gap:8px}
+.orow .chips .mode{flex:1 1 0;min-width:0}
+.orow .chips .mode span{width:100%;justify-content:center;text-align:center;white-space:normal;line-height:1.2;padding:4px 10px}
+select.msel{width:100%;min-height:44px;font:inherit;font-weight:600;color:var(--ink);background-color:var(--field);border:1px solid var(--line);border-radius:999px;padding:0 42px 0 18px;-webkit-appearance:none;appearance:none;cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%238a8fb0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 18px center;background-size:12px 8px;transition:border-color .15s,box-shadow .15s}
+select.msel:hover{border-color:var(--brand)}
+select.msel:focus-visible{outline:3px solid var(--brand);outline-offset:2px}
+select.msel:disabled{opacity:.5;cursor:not-allowed}
+select.msel option{background:var(--card);color:var(--ink)}
+html[dir=rtl] select.msel{padding:0 18px 0 42px;background-position:left 18px center}
+@media(max-width:560px){
+.card.setcard{padding:16px 18px}
+.orow{grid-template-columns:1fr;gap:10px;margin-top:10px}
+.orow .selw,.orow .optw{flex:none;width:100%}
+.orow .chips{flex-wrap:nowrap;width:100%}
+.orow .chips .mode{flex:1 1 0;min-width:0}
+.orow .chips .mode span{width:100%;justify-content:center;text-align:center;white-space:normal;line-height:1.2;padding:4px 8px;font-size:.85rem}
+select.msel{min-height:42px}
+}
 </style>
 
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is a random number generator?", "acceptedAnswer": {"@type": "Answer", "text": "A tool that picks a number with no predictable pattern. Randomly picks a whole number between a minimum and maximum you choose."}}, {"@type": "Question", "name": "What makes this random number generator different?", "acceptedAnswer": {"@type": "Answer", "text": "Most generators just print a number. Randomly turns the pick into a short reveal, with five animation styles (Wheel, Mystery Crate, Number Machine, Card Draw and Cloud Rain), while keeping the result fair. It's also fast, works on any screen, and you can skip any animation when you're in a hurry."}}, {"@type": "Question", "name": "Why use this random number generator instead of other online tools?", "acceptedAnswer": {"@type": "Answer", "text": "It does a few things well: fair results from your browser's cryptographic random source, a clean modern interface, instant results, and optional animations that make drawing a number more engaging. There's nothing to install and no account to create."}}, {"@type": "Question", "name": "Is this free random number generator easy to use?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. It's free, with no sign-up and nothing to install. Enter a minimum and maximum, press one button, and your number appears within seconds."}}, {"@type": "Question", "name": "Can I generate a random number from 1 to 100?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Type 1 and 100 as your minimum and maximum, then reveal your number."}}, {"@type": "Question", "name": "Does it have animations?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Choose from five reveal modes: Wheel, Mystery Crate, Number Machine, Card Draw and Cloud Rain. The number is chosen first and the animation only reveals it, so it never changes the result. In a hurry? Tick Skip animation or press Skip at any time."}}, {"@type": "Question", "name": "Is it mobile-friendly?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. The layout adapts to phones, tablets and computers, and the controls are easy to use with a thumb. There's no app to download: just open the page in your mobile browser."}}, {"@type": "Question", "name": "Does it support light and dark mode?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Light mode is the default, and you can switch to dark mode with the theme button at the top of the page. Your choice is remembered for your next visit."}}, {"@type": "Question", "name": "How does a random number generator work?", "acceptedAnswer": {"@type": "Answer", "text": "Randomly uses your browser's built-in cryptographic random source, so every whole number in your range has an equal chance."}}, {"@type": "Question", "name": "Can I generate a random number between two numbers?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Enter any minimum and maximum from 1 to 1,000,000. Both endpoints can be picked."}}, {"@type": "Question", "name": "Can I generate a random number from 1 to 1,000?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Type 1 and 1000 as your minimum and maximum, then reveal your number."}}, {"@type": "Question", "name": "Can I generate a random number from 1 to 1,000,000?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Type 1 and 1000000 as your minimum and maximum to get a whole number up to one million."}}, {"@type": "Question", "name": "Can I use it as a random number picker online for a classroom or group activity?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Set the range to match your class list or group size, such as 1–30 or 1–100, and pick a number. For a fair pick, decide the range before you start, and turn on No repeats if each number should only be drawn once."}}, {"@type": "Question", "name": "Can I avoid repeated numbers or look back at earlier results?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Turn on No repeats under Options so a number isn't drawn twice until the range is used up. Recent draws lists your latest results, so you can look back if you missed one."}}, {"@type": "Question", "name": "Are the numbers I generate stored anywhere?", "acceptedAnswer": {"@type": "Answer", "text": "No. Numbers are generated in your browser, and nothing you enter is sent to a server."}}, {"@type": "Question", "name": "Can I use it for lotteries or gambling?", "acceptedAnswer": {"@type": "Answer", "text": "No. Randomly is made for everyday uses such as games, classrooms and simple decisions. It isn't intended for lotteries, gambling, prizes or cryptographic keys."}}, {"@type": "Question", "name": "Is there a random number generator without signup or login?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Randomly is a free random number generator with no signup and no login. Open the page, choose a range, and reveal your number. There is nothing to install."}}, {"@type": "Question", "name": "Can I use it for giveaways, contests or picking a winner?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, for casual giveaways, contests and classroom draws. Number your entries, set the range to match, and pick a number. For regulated draws, valuable prizes or anything that must be legally certified, use an official method instead."}}]}</script>
@@ -784,25 +812,30 @@ html.theme-anim .tknob{transition:left .35s cubic-bezier(.3,1.3,.5,1),background
 <div class="hist" id="hist" hidden><div class="hhead"><div class="htitle" data-tr="hist">Recent draws</div><div class="hacts"><button class="hclear" id="hcopyall" type="button" data-tr="hcopyall">Copy all</button><button class="hclear" id="hclear" type="button" data-tr="hclear">Clear</button></div></div><ol class="hlist" id="hlist" data-tra="aria-label:hist" aria-label="Recent draws"></ol></div>
 </section>
 
-<section class="card" aria-label="Range and reveal settings" data-tra="aria-label:settings">
+<section class="card setcard" aria-label="Range and reveal settings" data-tra="aria-label:settings"><div class="setbox tset">
 <div class="row">
 <div><label for="min" data-tr="min">Minimum</label><input id="min" type="number" inputmode="numeric" min="1" max="1000000" step="1" value="1"></div>
 <div><label for="max" data-tr="max">Maximum</label><input id="max" type="number" inputmode="numeric" min="1" max="1000000" step="1" value="100"></div>
 </div>
-<div class="grp"><div class="lbl" id="ml" data-tr="modelbl">Reveal mode</div>
-<div class="chips" role="radiogroup" aria-labelledby="ml">
-<label class="mode"><input type="radio" name="mode" value="wheel" checked><span data-tr="wheel">🎡 Wheel</span></label>
-<label class="mode"><input type="radio" name="mode" value="crate"><span data-tr="crate">📦 Mystery Crate</span></label>
-<label class="mode"><input type="radio" name="mode" value="machine"><span data-tr="machine">⚡ Number Machine</span></label>
-<label class="mode"><input type="radio" name="mode" value="card"><span data-tr="card">🃏 Card Draw</span></label>
-<label class="mode"><input type="radio" name="mode" value="rain"><span data-tr="rain">🌧️ Cloud Rain</span></label>
-</div></div>
-<div class="grp"><div class="lbl" id="ol" data-tr="opts">Options</div>
+<div class="orow">
+<div class="selw"><label for="modesel" data-tr="modelbl">Reveal mode</label>
+<select id="modesel" class="msel">
+<option value="wheel" data-tr="wheel">🎡 Wheel</option>
+<option value="crate" data-tr="crate">📦 Mystery Crate</option>
+<option value="machine" data-tr="machine">⚡ Number Machine</option>
+<option value="card" data-tr="card">🃏 Card Draw</option>
+<option value="rain" data-tr="rain">🌧️ Cloud Rain</option>
+</select></div>
+<div class="optw"><div class="lbl" id="ol" data-tr="opts">Options</div>
 <div class="chips" role="group" aria-labelledby="ol">
 <label class="mode"><input type="checkbox" id="norep"><span><b data-tr="norep">No repeats</b></span></label>
 <label class="mode"><input type="checkbox" id="qskip"><span><b data-tr="qskip">Skip animation</b></span></label>
-</div></div>
-</section>
+</div>
+</div>
+</div>
+</div></section>
+
+
 
 <section class="card toolsec" aria-labelledby="mt-h">
 <h2 id="mt-h" data-tr="mt_h">More tools</h2>
@@ -882,6 +915,13 @@ html.theme-anim .tknob{transition:left .35s cubic-bezier(.3,1.3,.5,1),background
 </section>
 </div>
 
+<section class="card" aria-labelledby="art-h" style="margin-top:18px">
+<h2 id="art-h">Articles and guides</h2>
+<p>Learn how random numbers work, how to run a fair draw, and how to use chance in the classroom and in games.</p>
+<ul style="margin:8px 0 0;padding-left:1.2rem;line-height:1.7"><li><a href="/articles/true-random-vs-pseudo-random/">True Random vs Pseudo-Random Numbers: What&#x27;s the Difference?</a></li><li><a href="/articles/how-random-number-generators-work/">How Random Number Generators Work in Your Browser</a></li><li><a href="/articles/pick-a-fair-winner-for-a-giveaway/">How to Pick a Fair Winner for a Giveaway or Contest</a></li><li><a href="/articles/random-number-ideas-for-teachers/">10 Ways Teachers Use a Random Number Generator in the Classroom</a></li><li><a href="/articles/dice-probability-explained/">Dice Probability Explained: Odds for One, Two and Three Dice</a></li><li><a href="/articles/coin-flip-odds-and-myths/">Coin Flip Odds: Fairness, Streaks and the Gambler&#x27;s Fallacy</a></li></ul>
+<p style="margin-top:10px"><a href="/articles/">See all articles &rarr;</a></p>
+</section>
+
 <section class="card fbcta" aria-labelledby="fb-h">
 <canvas class="fbgl" aria-hidden="true"></canvas>
 <h2 id="fb-h" data-tr="fb_h">Help shape Randomly</h2>
@@ -950,6 +990,7 @@ size();go()})()</script>
 <a href="/" data-tr="f_home">Home</a>
 <a href="/about/" data-tr="f_about">About</a>
 <a href="/guide/" data-tr="f_guide">Guide</a>
+<a href="/articles/">Articles</a>
 <a href="/dice/" data-tr="t_dice_n">Dice Roller</a>
 <a href="/coin-flip/" data-tr="t_coin_n">Coin Flip</a>
 <a href="/cup-shuffle/" data-tr="t_cup_n">Number Cup Shuffle</a></nav>
@@ -957,7 +998,8 @@ size();go()})()</script>
 <a href="/terms/" data-tr="f_terms">Terms and Conditions</a>
 <a href="/privacy/" data-tr="f_privacy">Privacy Policy</a></nav>
 <nav class="ft-col" aria-label="Support"><h3 data-tr="ft_h_help">Support</h3>
-<a href="#" data-modal="contact-modal" data-topic="other" role="button" data-tr="f_contact">Contact us</a></nav>
+<a href="#" data-modal="contact-modal" data-topic="other" role="button" data-tr="f_contact">Contact us</a>
+<a href="/contact/">Contact details</a></nav>
 </div>
 <nav class="ft-langs" aria-label="Language" data-tra="aria-label:lang"><a href="/" hreflang="en" lang="en" aria-current="page">English</a><a href="/fr/" hreflang="fr" lang="fr">Français</a><a href="/ru/" hreflang="ru" lang="ru">Русский</a><a href="/ja/" hreflang="ja" lang="ja">日本語</a><a href="/fil/" hreflang="fil" lang="fil">Filipino</a><a href="/hi/" hreflang="hi" lang="hi">हिन्दी</a><a href="/de/" hreflang="de" lang="de">Deutsch</a><a href="/es/" hreflang="es" lang="es">Español</a><a href="/pt/" hreflang="pt" lang="pt">Português</a><a href="/id/" hreflang="id" lang="id">Bahasa Indonesia</a><a href="/ar/" hreflang="ar" lang="ar">العربية</a></nav>
 <div class="ft-bottom">
@@ -1020,7 +1062,8 @@ function rnd(min,max){ // unbiased via rejection sampling
   return min+a[0]%span;
 }
 function say(t,err){var m=$('msg');m.textContent=t;m.className='msg'+(err?' err':'')}
-function mode(){return document.querySelector('input[name=mode]:checked').value}
+(function(){try{var v=localStorage.getItem('randomly-mode'),m=document.getElementById('modesel');if(v&&m&&m.querySelector('option[value="'+v+'"]'))m.value=v}catch(e){}})();
+function mode(){return document.getElementById('modesel').value}
 function readRange(){
   var a=$('min').value.trim(),b=$('max').value.trim();
   if(a===''||b===''){say(RL.t('e1'),true);return null}
@@ -1039,6 +1082,7 @@ function readRange(){
 }
 function lock(on){busy=on;$('go').disabled=on;
   document.querySelectorAll('.chip,.mode input,#min,#max').forEach(function(e){e.disabled=on});
+  $('modesel').disabled=on||$('qskip').checked;
   $('big').setAttribute('aria-busy',on)}
 function setStage(){$('stage').dataset.m=mode();$('method').textContent=last===null?RL.t('ready'):names[lastMode]}
 var AC=null,NB=null,soundOn=true;
@@ -1767,7 +1811,7 @@ async function runRain(n){
 }
 $('rskip').addEventListener('click',function(){if(rainSkip)rainSkip();else if(skipFn)skipFn()});
 document.addEventListener('keydown',function(e){if(e.key!=='Escape')return;if(rainState==='run'&&rainSkip)rainSkip();else if(skipFn)skipFn()});
-document.querySelectorAll('input[name=mode]').forEach(function(r){r.addEventListener('change',rainReset)});
+[document.getElementById('modesel')].forEach(function(r){r.addEventListener('change',rainReset)});
 window.addEventListener('resize',function(){if(R.run)rainSize()});
 function doSkip(){
   if(SK.on||!busy)return;
@@ -1825,6 +1869,8 @@ function pickNum(min,max){
   else{var rem=[];for(var v=min;v<=max;v++)if(!NR.used.has(v))rem.push(v);n=rem[rnd(0,rem.length-1)]}
   NR.used.add(n);return n}
 $('norep').addEventListener('change',function(){NR.on=this.checked;NR.key='';NR.used=new Set()});
+$('modesel').addEventListener('change',function(){try{localStorage.setItem('randomly-mode',this.value)}catch(e){}});
+$('qskip').addEventListener('change',function(){if(!busy)$('modesel').disabled=this.checked});
 async function reveal(){
   if(busy)return;
   var r=readRange();if(!r)return;
@@ -1870,7 +1916,7 @@ async function reveal(){
 }
 $('go').addEventListener('click',reveal);
 ['min','max'].forEach(function(i){$(i).addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();reveal()}})});
-document.querySelectorAll('input[name=mode]').forEach(function(r){r.addEventListener('change',function(){
+[document.getElementById('modesel')].forEach(function(r){r.addEventListener('change',function(){
   setStage();$('stage').classList.remove('snap');
   $('scene').className='scene';$('cnum').className='cnum';
   $('mach').classList.remove('locked','hold','charge','processing');

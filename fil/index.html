@@ -616,6 +616,34 @@ html.theme-anim .tknob{transition:left .35s cubic-bezier(.3,1.3,.5,1),background
 @media(max-width:460px){.toolic{height:92px}}
 @media(prefers-reduced-motion:reduce){.toolcard:hover .toolic *,.toolcard:focus-visible .toolic *{animation:none!important}}
 @media(prefers-reduced-motion:reduce){.toolcard{transition:none}.toolcard:hover{transform:none}}
+
+/* ===== settings box between the animation and the main button ===== */
+.setbox{margin:0;padding:0;border:0}
+.card.setcard{padding:20px 24px}
+.setbox .row{margin:0}
+.setbox .grp:first-child{margin-top:0}
+.setbox .grp{margin-top:14px}
+.setbox label,.setbox .lbl{text-align:start}
+.orow{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start;margin-top:14px}
+.orow .selw,.orow .optw{min-width:0}
+.orow .chips{flex-wrap:nowrap;gap:8px}
+.orow .chips .mode{flex:1 1 0;min-width:0}
+.orow .chips .mode span{width:100%;justify-content:center;text-align:center;white-space:normal;line-height:1.2;padding:4px 10px}
+select.msel{width:100%;min-height:44px;font:inherit;font-weight:600;color:var(--ink);background-color:var(--field);border:1px solid var(--line);border-radius:999px;padding:0 42px 0 18px;-webkit-appearance:none;appearance:none;cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%238a8fb0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 18px center;background-size:12px 8px;transition:border-color .15s,box-shadow .15s}
+select.msel:hover{border-color:var(--brand)}
+select.msel:focus-visible{outline:3px solid var(--brand);outline-offset:2px}
+select.msel:disabled{opacity:.5;cursor:not-allowed}
+select.msel option{background:var(--card);color:var(--ink)}
+html[dir=rtl] select.msel{padding:0 18px 0 42px;background-position:left 18px center}
+@media(max-width:560px){
+.card.setcard{padding:16px 18px}
+.orow{grid-template-columns:1fr;gap:10px;margin-top:10px}
+.orow .selw,.orow .optw{flex:none;width:100%}
+.orow .chips{flex-wrap:nowrap;width:100%}
+.orow .chips .mode{flex:1 1 0;min-width:0}
+.orow .chips .mode span{width:100%;justify-content:center;text-align:center;white-space:normal;line-height:1.2;padding:4px 8px;font-size:.85rem}
+select.msel{min-height:42px}
+}
 </style>
 
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Ano ang random number generator?", "acceptedAnswer": {"@type": "Answer", "text": "Isang tool na pumipili ng numero nang walang predictable na pattern. Ang Randomly ay pumipili ng buong numero sa pagitan ng minimum at maximum na iyong pinili."}}, {"@type": "Question", "name": "Ano ang nagpapaiba sa random number generator na ito?", "acceptedAnswer": {"@type": "Answer", "text": "Karamihan ng generator ay nagpapakita lang ng numero. Ginagawa ng Randomly na maikling reveal ang pagpili, na may limang animation style (Gulong, Mystery Crate, Number Machine, Card Draw at Ulan ng Ulap), habang nananatiling patas ang resulta. Mabilis din ito, gumagana sa anumang screen, at maaari mong laktawan ang animation anumang oras."}}, {"@type": "Question", "name": "Bakit gagamitin ang random number generator na ito sa halip na ibang online tool?", "acceptedAnswer": {"@type": "Answer", "text": "Kaunti ang ginagawa nito pero maayos: patas na resulta mula sa cryptographic random source ng browser mo, malinis at modernong interface, agarang resulta, at opsyonal na animation na nagpapasaya sa pagpili ng numero. Walang ii-install at walang account na gagawin."}}, {"@type": "Question", "name": "Madali bang gamitin ang libreng random number generator na ito?", "acceptedAnswer": {"@type": "Answer", "text": "Oo. Libre ito, walang sign-up at walang kailangang i-install. Ilagay ang minimum at maximum, pindutin ang isang button, at lalabas ang numero mo sa loob ng ilang segundo."}}, {"@type": "Question", "name": "Maaari ba akong bumuo ng random number mula 1 hanggang 100?", "acceptedAnswer": {"@type": "Answer", "text": "Oo. I-type ang 1 at 100 bilang minimum at maximum, pagkatapos ipakita ang iyong numero."}}, {"@type": "Question", "name": "May animation ba ito?", "acceptedAnswer": {"@type": "Answer", "text": "Oo. Pumili sa limang reveal mode: Gulong, Mystery Crate, Number Machine, Card Draw at Ulan ng Ulap. Pinipili muna ang numero at ipinapakita lang ito ng animation, kaya hindi nito binabago ang resulta. Nagmamadali? I-tick ang Laktawan ang animation o pindutin ang Laktawan anumang oras."}}, {"@type": "Question", "name": "Mobile-friendly ba ito?", "acceptedAnswer": {"@type": "Answer", "text": "Oo. Umaangkop ang layout sa telepono, tablet at computer, at madaling gamitin ang mga kontrol gamit ang hinlalaki. Walang app na ida-download: buksan lang ang page sa mobile browser mo."}}, {"@type": "Question", "name": "Sinusuportahan ba nito ang light at dark mode?", "acceptedAnswer": {"@type": "Answer", "text": "Oo. Light mode ang default, at maaari kang lumipat sa dark mode gamit ang theme button sa itaas ng page. Naaalala ang pinili mo sa susunod mong pagbisita."}}, {"@type": "Question", "name": "Paano gumagana ang random number generator?", "acceptedAnswer": {"@type": "Answer", "text": "Gumagamit ang Randomly ng built-in cryptographic random source ng iyong browser, kaya pantay ang tsansa ng bawat buong numero sa iyong saklaw."}}, {"@type": "Question", "name": "Maaari ba akong bumuo ng random number sa pagitan ng dalawang numero?", "acceptedAnswer": {"@type": "Answer", "text": "Oo. Maglagay ng anumang minimum at maximum mula 1 hanggang 1,000,000. Maaaring mapili ang parehong dulo."}}, {"@type": "Question", "name": "Puwede ba akong gumawa ng random na numero mula 1 hanggang 1,000?", "acceptedAnswer": {"@type": "Answer", "text": "Oo. I-type ang 1 at 1000 bilang minimum at maximum, saka ipakita ang numero."}}, {"@type": "Question", "name": "Maaari ba akong bumuo ng random number mula 1 hanggang 1,000,000?", "acceptedAnswer": {"@type": "Answer", "text": "Oo. I-type ang 1 at 1000000 bilang minimum at maximum para makakuha ng buong numero hanggang isang milyon."}}, {"@type": "Question", "name": "Puwede ko ba itong gamitin bilang random number picker online para sa klase o group activity?", "acceptedAnswer": {"@type": "Answer", "text": "Oo. Itakda ang saklaw ayon sa listahan ng klase o laki ng grupo, tulad ng 1–30 o 1–100, at pumili ng numero. Para sa patas na pagpili, itakda ang saklaw bago magsimula, at i-on ang Walang ulit kung dapat isang beses lang lumabas ang bawat numero."}}, {"@type": "Question", "name": "Maiiwasan ko ba ang paulit-ulit na numero o makikita ang mga naunang resulta?", "acceptedAnswer": {"@type": "Answer", "text": "Oo. I-on ang Walang ulit sa Mga opsyon para hindi lumabas nang dalawang beses ang isang numero hanggang maubos ang saklaw. Nakalista sa Mga huling resulta ang mga pinakabago mong resulta, kaya makakabalik ka kung may nalampasan ka."}}, {"@type": "Question", "name": "Naka-save ba kahit saan ang mga numerong ginagawa ko?", "acceptedAnswer": {"@type": "Answer", "text": "Hindi. Ginagawa ang mga numero sa browser mo, at walang ipinapadala sa server na anumang inilagay mo."}}, {"@type": "Question", "name": "Puwede ko ba itong gamitin sa lottery o sugal?", "acceptedAnswer": {"@type": "Answer", "text": "Hindi. Ginawa ang Randomly para sa pang-araw-araw na gamit tulad ng mga laro, klase at simpleng desisyon. Hindi ito para sa lottery, sugal, premyo o cryptographic key."}}, {"@type": "Question", "name": "May random number generator ba na walang signup o login?", "acceptedAnswer": {"@type": "Answer", "text": "Oo. Libre ang Randomly at walang signup o login. Buksan ang page, pumili ng range, at ibunyag ang numero. Walang kailangang i-install."}}, {"@type": "Question", "name": "Magagamit ba ito sa giveaway, paligsahan o pagpili ng mananalo?", "acceptedAnswer": {"@type": "Answer", "text": "Oo, para sa kaswal na giveaway, paligsahan at palaro sa klase. Bigyan ng numero ang mga kalahok, itugma ang range, at pumili ng numero. Para sa reguladong raffle, mahahalagang premyo o kailangang may sertipikasyon, gumamit ng opisyal na paraan."}}]}</script>
@@ -784,25 +812,30 @@ html.theme-anim .tknob{transition:left .35s cubic-bezier(.3,1.3,.5,1),background
 <div class="hist" id="hist" hidden><div class="hhead"><div class="htitle" data-tr="hist">Mga huling resulta</div><div class="hacts"><button class="hclear" id="hcopyall" type="button" data-tr="hcopyall">Kopyahin lahat</button><button class="hclear" id="hclear" type="button" data-tr="hclear">I-clear</button></div></div><ol class="hlist" id="hlist" data-tra="aria-label:hist" aria-label="Mga huling resulta"></ol></div>
 </section>
 
-<section class="card" aria-label="Mga setting ng saklaw at reveal" data-tra="aria-label:settings">
+<section class="card setcard" aria-label="Mga setting ng saklaw at reveal" data-tra="aria-label:settings"><div class="setbox tset">
 <div class="row">
 <div><label for="min" data-tr="min">Minimum</label><input id="min" type="number" inputmode="numeric" min="1" max="1000000" step="1" value="1"></div>
 <div><label for="max" data-tr="max">Maximum</label><input id="max" type="number" inputmode="numeric" min="1" max="1000000" step="1" value="100"></div>
 </div>
-<div class="grp"><div class="lbl" id="ml" data-tr="modelbl">Reveal mode</div>
-<div class="chips" role="radiogroup" aria-labelledby="ml">
-<label class="mode"><input type="radio" name="mode" value="wheel" checked><span data-tr="wheel">🎡 Gulong</span></label>
-<label class="mode"><input type="radio" name="mode" value="crate"><span data-tr="crate">📦 Mystery Crate</span></label>
-<label class="mode"><input type="radio" name="mode" value="machine"><span data-tr="machine">⚡ Number Machine</span></label>
-<label class="mode"><input type="radio" name="mode" value="card"><span data-tr="card">🃏 Card Draw</span></label>
-<label class="mode"><input type="radio" name="mode" value="rain"><span data-tr="rain">🌧️ Ulan ng Ulap</span></label>
-</div></div>
-<div class="grp"><div class="lbl" id="ol" data-tr="opts">Mga opsyon</div>
+<div class="orow">
+<div class="selw"><label for="modesel" data-tr="modelbl">Reveal mode</label>
+<select id="modesel" class="msel">
+<option value="wheel" data-tr="wheel">🎡 Gulong</option>
+<option value="crate" data-tr="crate">📦 Mystery Crate</option>
+<option value="machine" data-tr="machine">⚡ Number Machine</option>
+<option value="card" data-tr="card">🃏 Card Draw</option>
+<option value="rain" data-tr="rain">🌧️ Ulan ng Ulap</option>
+</select></div>
+<div class="optw"><div class="lbl" id="ol" data-tr="opts">Mga opsyon</div>
 <div class="chips" role="group" aria-labelledby="ol">
 <label class="mode"><input type="checkbox" id="norep"><span><b data-tr="norep">Walang ulit</b></span></label>
 <label class="mode"><input type="checkbox" id="qskip"><span><b data-tr="qskip">Laktawan ang animation</b></span></label>
-</div></div>
-</section>
+</div>
+</div>
+</div>
+</div></section>
+
+
 
 <section class="card toolsec" aria-labelledby="mt-h">
 <h2 id="mt-h" data-tr="mt_h">Iba pang tool</h2>
@@ -950,6 +983,7 @@ size();go()})()</script>
 <a href="/fil/" data-tr="f_home">Home</a>
 <a href="/fil/about/" data-tr="f_about">Tungkol</a>
 <a href="/fil/guide/" data-tr="f_guide">Gabay</a>
+<a href="/articles/">Mga Artikulo</a>
 <a href="/fil/dice/" data-tr="t_dice_n">Dice Roller</a>
 <a href="/fil/coin-flip/" data-tr="t_coin_n">Coin Flip</a>
 <a href="/fil/cup-shuffle/" data-tr="t_cup_n">Number Cup Shuffle</a></nav>
@@ -957,7 +991,8 @@ size();go()})()</script>
 <a href="/fil/terms/" data-tr="f_terms">Mga Tuntunin at Kundisyon</a>
 <a href="/fil/privacy/" data-tr="f_privacy">Patakaran sa Privacy</a></nav>
 <nav class="ft-col" aria-label="Support"><h3 data-tr="ft_h_help">Suporta</h3>
-<a href="#" data-modal="contact-modal" data-topic="other" role="button" data-tr="f_contact">Makipag-ugnayan sa amin</a></nav>
+<a href="#" data-modal="contact-modal" data-topic="other" role="button" data-tr="f_contact">Makipag-ugnayan sa amin</a>
+<a href="/contact/">Detalye ng contact</a></nav>
 </div>
 <nav class="ft-langs" aria-label="Wika" data-tra="aria-label:lang"><a href="/" hreflang="en" lang="en">English</a><a href="/fr/" hreflang="fr" lang="fr">Français</a><a href="/ru/" hreflang="ru" lang="ru">Русский</a><a href="/ja/" hreflang="ja" lang="ja">日本語</a><a href="/fil/" hreflang="fil" lang="fil" aria-current="page">Filipino</a><a href="/hi/" hreflang="hi" lang="hi">हिन्दी</a><a href="/de/" hreflang="de" lang="de">Deutsch</a><a href="/es/" hreflang="es" lang="es">Español</a><a href="/pt/" hreflang="pt" lang="pt">Português</a><a href="/id/" hreflang="id" lang="id">Bahasa Indonesia</a><a href="/ar/" hreflang="ar" lang="ar">العربية</a></nav>
 <div class="ft-bottom">
@@ -1020,7 +1055,8 @@ function rnd(min,max){ // unbiased via rejection sampling
   return min+a[0]%span;
 }
 function say(t,err){var m=$('msg');m.textContent=t;m.className='msg'+(err?' err':'')}
-function mode(){return document.querySelector('input[name=mode]:checked').value}
+(function(){try{var v=localStorage.getItem('randomly-mode'),m=document.getElementById('modesel');if(v&&m&&m.querySelector('option[value="'+v+'"]'))m.value=v}catch(e){}})();
+function mode(){return document.getElementById('modesel').value}
 function readRange(){
   var a=$('min').value.trim(),b=$('max').value.trim();
   if(a===''||b===''){say(RL.t('e1'),true);return null}
@@ -1039,6 +1075,7 @@ function readRange(){
 }
 function lock(on){busy=on;$('go').disabled=on;
   document.querySelectorAll('.chip,.mode input,#min,#max').forEach(function(e){e.disabled=on});
+  $('modesel').disabled=on||$('qskip').checked;
   $('big').setAttribute('aria-busy',on)}
 function setStage(){$('stage').dataset.m=mode();$('method').textContent=last===null?RL.t('ready'):names[lastMode]}
 var AC=null,NB=null,soundOn=true;
@@ -1767,7 +1804,7 @@ async function runRain(n){
 }
 $('rskip').addEventListener('click',function(){if(rainSkip)rainSkip();else if(skipFn)skipFn()});
 document.addEventListener('keydown',function(e){if(e.key!=='Escape')return;if(rainState==='run'&&rainSkip)rainSkip();else if(skipFn)skipFn()});
-document.querySelectorAll('input[name=mode]').forEach(function(r){r.addEventListener('change',rainReset)});
+[document.getElementById('modesel')].forEach(function(r){r.addEventListener('change',rainReset)});
 window.addEventListener('resize',function(){if(R.run)rainSize()});
 function doSkip(){
   if(SK.on||!busy)return;
@@ -1825,6 +1862,8 @@ function pickNum(min,max){
   else{var rem=[];for(var v=min;v<=max;v++)if(!NR.used.has(v))rem.push(v);n=rem[rnd(0,rem.length-1)]}
   NR.used.add(n);return n}
 $('norep').addEventListener('change',function(){NR.on=this.checked;NR.key='';NR.used=new Set()});
+$('modesel').addEventListener('change',function(){try{localStorage.setItem('randomly-mode',this.value)}catch(e){}});
+$('qskip').addEventListener('change',function(){if(!busy)$('modesel').disabled=this.checked});
 async function reveal(){
   if(busy)return;
   var r=readRange();if(!r)return;
@@ -1870,7 +1909,7 @@ async function reveal(){
 }
 $('go').addEventListener('click',reveal);
 ['min','max'].forEach(function(i){$(i).addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();reveal()}})});
-document.querySelectorAll('input[name=mode]').forEach(function(r){r.addEventListener('change',function(){
+[document.getElementById('modesel')].forEach(function(r){r.addEventListener('change',function(){
   setStage();$('stage').classList.remove('snap');
   $('scene').className='scene';$('cnum').className='cnum';
   $('mach').classList.remove('locked','hold','charge','processing');

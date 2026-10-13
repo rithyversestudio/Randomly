@@ -616,6 +616,34 @@ html.theme-anim .tknob{transition:left .35s cubic-bezier(.3,1.3,.5,1),background
 @media(max-width:460px){.toolic{height:92px}}
 @media(prefers-reduced-motion:reduce){.toolcard:hover .toolic *,.toolcard:focus-visible .toolic *{animation:none!important}}
 @media(prefers-reduced-motion:reduce){.toolcard{transition:none}.toolcard:hover{transform:none}}
+
+/* ===== settings box between the animation and the main button ===== */
+.setbox{margin:0;padding:0;border:0}
+.card.setcard{padding:20px 24px}
+.setbox .row{margin:0}
+.setbox .grp:first-child{margin-top:0}
+.setbox .grp{margin-top:14px}
+.setbox label,.setbox .lbl{text-align:start}
+.orow{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start;margin-top:14px}
+.orow .selw,.orow .optw{min-width:0}
+.orow .chips{flex-wrap:nowrap;gap:8px}
+.orow .chips .mode{flex:1 1 0;min-width:0}
+.orow .chips .mode span{width:100%;justify-content:center;text-align:center;white-space:normal;line-height:1.2;padding:4px 10px}
+select.msel{width:100%;min-height:44px;font:inherit;font-weight:600;color:var(--ink);background-color:var(--field);border:1px solid var(--line);border-radius:999px;padding:0 42px 0 18px;-webkit-appearance:none;appearance:none;cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%238a8fb0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 18px center;background-size:12px 8px;transition:border-color .15s,box-shadow .15s}
+select.msel:hover{border-color:var(--brand)}
+select.msel:focus-visible{outline:3px solid var(--brand);outline-offset:2px}
+select.msel:disabled{opacity:.5;cursor:not-allowed}
+select.msel option{background:var(--card);color:var(--ink)}
+html[dir=rtl] select.msel{padding:0 18px 0 42px;background-position:left 18px center}
+@media(max-width:560px){
+.card.setcard{padding:16px 18px}
+.orow{grid-template-columns:1fr;gap:10px;margin-top:10px}
+.orow .selw,.orow .optw{flex:none;width:100%}
+.orow .chips{flex-wrap:nowrap;width:100%}
+.orow .chips .mode{flex:1 1 0;min-width:0}
+.orow .chips .mode span{width:100%;justify-content:center;text-align:center;white-space:normal;line-height:1.2;padding:4px 8px;font-size:.85rem}
+select.msel{min-height:42px}
+}
 </style>
 
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "¿Qué es un generador de números aleatorios?", "acceptedAnswer": {"@type": "Answer", "text": "Una herramienta que elige un número sin un patrón predecible. Randomly elige un número entero entre el mínimo y el máximo que tú definas."}}, {"@type": "Question", "name": "¿Qué diferencia a este generador de números aleatorios?", "acceptedAnswer": {"@type": "Answer", "text": "La mayoría de los generadores solo muestran un número. Randomly convierte la elección en una breve revelación, con cinco estilos de animación (Ruleta, Caja misteriosa, Máquina de números, Carta y Lluvia de nubes), manteniendo el resultado justo. Además es rápido, funciona en cualquier pantalla y puedes omitir cualquier animación cuando tengas prisa."}}, {"@type": "Question", "name": "¿Por qué usar este generador de números aleatorios en lugar de otras herramientas en línea?", "acceptedAnswer": {"@type": "Answer", "text": "Hace pocas cosas, pero bien: resultados justos gracias a la fuente aleatoria criptográfica de tu navegador, una interfaz moderna y limpia, resultados al instante y animaciones opcionales que hacen más entretenido sacar un número. No hay nada que instalar ni cuenta que crear."}}, {"@type": "Question", "name": "¿Es fácil de usar este generador de números aleatorios gratis?", "acceptedAnswer": {"@type": "Answer", "text": "Sí. Es gratis, sin registro y sin nada que instalar. Introduce un mínimo y un máximo, pulsa un botón y tu número aparece en segundos."}}, {"@type": "Question", "name": "¿Puedo generar un número aleatorio del 1 al 100?", "acceptedAnswer": {"@type": "Answer", "text": "Sí. Escribe 1 y 100 como mínimo y máximo y revela tu número."}}, {"@type": "Question", "name": "¿Tiene animaciones?", "acceptedAnswer": {"@type": "Answer", "text": "Sí. Puedes elegir entre cinco modos de revelación: Ruleta, Caja misteriosa, Máquina de números, Carta y Lluvia de nubes. El número se elige primero y la animación solo lo revela, así que nunca cambia el resultado. ¿Tienes prisa? Marca Omitir animación o pulsa Omitir en cualquier momento."}}, {"@type": "Question", "name": "¿Funciona bien en el móvil?", "acceptedAnswer": {"@type": "Answer", "text": "Sí. El diseño se adapta a móviles, tabletas y ordenadores, y los controles son fáciles de usar con el pulgar. No hay que descargar ninguna aplicación: abre la página en el navegador de tu móvil."}}, {"@type": "Question", "name": "¿Admite modo claro y oscuro?", "acceptedAnswer": {"@type": "Answer", "text": "Sí. El modo claro es el predeterminado y puedes cambiar al modo oscuro con el botón de tema de la parte superior de la página. Tu elección se recuerda para la próxima visita."}}, {"@type": "Question", "name": "¿Cómo funciona un generador de números aleatorios?", "acceptedAnswer": {"@type": "Answer", "text": "Randomly usa la fuente aleatoria criptográfica integrada en tu navegador, así que cada número entero de tu rango tiene la misma probabilidad."}}, {"@type": "Question", "name": "¿Puedo generar un número aleatorio entre dos números?", "acceptedAnswer": {"@type": "Answer", "text": "Sí. Introduce cualquier mínimo y máximo del 1 al 1.000.000. Se pueden elegir ambos extremos."}}, {"@type": "Question", "name": "¿Puedo generar un número aleatorio del 1 al 1.000?", "acceptedAnswer": {"@type": "Answer", "text": "Sí. Escribe 1 y 1000 como mínimo y máximo, y revela tu número."}}, {"@type": "Question", "name": "¿Puedo generar un número aleatorio del 1 al 1.000.000?", "acceptedAnswer": {"@type": "Answer", "text": "Sí. Escribe 1 y 1000000 como mínimo y máximo para obtener un número entero de hasta un millón."}}, {"@type": "Question", "name": "¿Puedo usarlo como selector de números aleatorios en línea para una clase o una actividad en grupo?", "acceptedAnswer": {"@type": "Answer", "text": "Sí. Ajusta el rango al tamaño de tu lista de clase o de tu grupo, por ejemplo 1–30 o 1–100, y elige un número. Para una elección justa, decide el rango antes de empezar y activa Sin repetidos si cada número solo debe salir una vez."}}, {"@type": "Question", "name": "¿Puedo evitar números repetidos o consultar resultados anteriores?", "acceptedAnswer": {"@type": "Answer", "text": "Sí. Activa Sin repetidos en Opciones para que un número no salga dos veces hasta agotar el rango. Sorteos recientes muestra tus últimos resultados, así que puedes volver atrás si se te pasó alguno."}}, {"@type": "Question", "name": "¿Se guardan en algún sitio los números que genero?", "acceptedAnswer": {"@type": "Answer", "text": "No. Los números se generan en tu navegador y nada de lo que introduces se envía a un servidor."}}, {"@type": "Question", "name": "¿Puedo usarlo para loterías o juegos de azar?", "acceptedAnswer": {"@type": "Answer", "text": "No. Randomly está pensado para usos cotidianos como juegos, clases y decisiones sencillas. No está destinado a loterías, juegos de azar, premios ni claves criptográficas."}}, {"@type": "Question", "name": "¿Hay un generador de números aleatorios sin registro ni inicio de sesión?", "acceptedAnswer": {"@type": "Answer", "text": "Sí. Randomly es gratuito y no requiere registro ni inicio de sesión. Abre la página, elige un rango y revela tu número. No hay nada que instalar."}}, {"@type": "Question", "name": "¿Puedo usarlo para sorteos, concursos o elegir un ganador?", "acceptedAnswer": {"@type": "Answer", "text": "Sí, para sorteos, concursos y dinámicas de clase informales. Numera a los participantes, ajusta el rango y elige un número. Para sorteos regulados, premios de valor o casos que exijan certificación, usa un método oficial."}}]}</script>
@@ -784,25 +812,30 @@ html.theme-anim .tknob{transition:left .35s cubic-bezier(.3,1.3,.5,1),background
 <div class="hist" id="hist" hidden><div class="hhead"><div class="htitle" data-tr="hist">Sorteos recientes</div><div class="hacts"><button class="hclear" id="hcopyall" type="button" data-tr="hcopyall">Copiar todo</button><button class="hclear" id="hclear" type="button" data-tr="hclear">Borrar</button></div></div><ol class="hlist" id="hlist" data-tra="aria-label:hist" aria-label="Sorteos recientes"></ol></div>
 </section>
 
-<section class="card" aria-label="Ajustes de rango y revelación" data-tra="aria-label:settings">
+<section class="card setcard" aria-label="Ajustes de rango y revelación" data-tra="aria-label:settings"><div class="setbox tset">
 <div class="row">
 <div><label for="min" data-tr="min">Mínimo</label><input id="min" type="number" inputmode="numeric" min="1" max="1000000" step="1" value="1"></div>
 <div><label for="max" data-tr="max">Máximo</label><input id="max" type="number" inputmode="numeric" min="1" max="1000000" step="1" value="100"></div>
 </div>
-<div class="grp"><div class="lbl" id="ml" data-tr="modelbl">Modo de revelación</div>
-<div class="chips" role="radiogroup" aria-labelledby="ml">
-<label class="mode"><input type="radio" name="mode" value="wheel" checked><span data-tr="wheel">🎡 Ruleta</span></label>
-<label class="mode"><input type="radio" name="mode" value="crate"><span data-tr="crate">📦 Caja misteriosa</span></label>
-<label class="mode"><input type="radio" name="mode" value="machine"><span data-tr="machine">⚡ Máquina de números</span></label>
-<label class="mode"><input type="radio" name="mode" value="card"><span data-tr="card">🃏 Carta</span></label>
-<label class="mode"><input type="radio" name="mode" value="rain"><span data-tr="rain">🌧️ Lluvia de nubes</span></label>
-</div></div>
-<div class="grp"><div class="lbl" id="ol" data-tr="opts">Opciones</div>
+<div class="orow">
+<div class="selw"><label for="modesel" data-tr="modelbl">Modo de revelación</label>
+<select id="modesel" class="msel">
+<option value="wheel" data-tr="wheel">🎡 Ruleta</option>
+<option value="crate" data-tr="crate">📦 Caja misteriosa</option>
+<option value="machine" data-tr="machine">⚡ Máquina de números</option>
+<option value="card" data-tr="card">🃏 Carta</option>
+<option value="rain" data-tr="rain">🌧️ Lluvia de nubes</option>
+</select></div>
+<div class="optw"><div class="lbl" id="ol" data-tr="opts">Opciones</div>
 <div class="chips" role="group" aria-labelledby="ol">
 <label class="mode"><input type="checkbox" id="norep"><span><b data-tr="norep">Sin repetidos</b></span></label>
 <label class="mode"><input type="checkbox" id="qskip"><span><b data-tr="qskip">Omitir animación</b></span></label>
-</div></div>
-</section>
+</div>
+</div>
+</div>
+</div></section>
+
+
 
 <section class="card toolsec" aria-labelledby="mt-h">
 <h2 id="mt-h" data-tr="mt_h">Más herramientas</h2>
@@ -950,6 +983,7 @@ size();go()})()</script>
 <a href="/es/" data-tr="f_home">Inicio</a>
 <a href="/es/about/" data-tr="f_about">Acerca de</a>
 <a href="/es/guide/" data-tr="f_guide">Guía</a>
+<a href="/articles/">Artículos</a>
 <a href="/es/dice/" data-tr="t_dice_n">Tirar dados</a>
 <a href="/es/coin-flip/" data-tr="t_coin_n">Cara o cruz</a>
 <a href="/es/cup-shuffle/" data-tr="t_cup_n">Vasos con números</a></nav>
@@ -957,7 +991,8 @@ size();go()})()</script>
 <a href="/es/terms/" data-tr="f_terms">Términos y condiciones</a>
 <a href="/es/privacy/" data-tr="f_privacy">Política de privacidad</a></nav>
 <nav class="ft-col" aria-label="Support"><h3 data-tr="ft_h_help">Ayuda</h3>
-<a href="#" data-modal="contact-modal" data-topic="other" role="button" data-tr="f_contact">Contáctanos</a></nav>
+<a href="#" data-modal="contact-modal" data-topic="other" role="button" data-tr="f_contact">Contáctanos</a>
+<a href="/contact/">Datos de contacto</a></nav>
 </div>
 <nav class="ft-langs" aria-label="Idioma" data-tra="aria-label:lang"><a href="/" hreflang="en" lang="en">English</a><a href="/fr/" hreflang="fr" lang="fr">Français</a><a href="/ru/" hreflang="ru" lang="ru">Русский</a><a href="/ja/" hreflang="ja" lang="ja">日本語</a><a href="/fil/" hreflang="fil" lang="fil">Filipino</a><a href="/hi/" hreflang="hi" lang="hi">हिन्दी</a><a href="/de/" hreflang="de" lang="de">Deutsch</a><a href="/es/" hreflang="es" lang="es" aria-current="page">Español</a><a href="/pt/" hreflang="pt" lang="pt">Português</a><a href="/id/" hreflang="id" lang="id">Bahasa Indonesia</a><a href="/ar/" hreflang="ar" lang="ar">العربية</a></nav>
 <div class="ft-bottom">
@@ -1020,7 +1055,8 @@ function rnd(min,max){ // unbiased via rejection sampling
   return min+a[0]%span;
 }
 function say(t,err){var m=$('msg');m.textContent=t;m.className='msg'+(err?' err':'')}
-function mode(){return document.querySelector('input[name=mode]:checked').value}
+(function(){try{var v=localStorage.getItem('randomly-mode'),m=document.getElementById('modesel');if(v&&m&&m.querySelector('option[value="'+v+'"]'))m.value=v}catch(e){}})();
+function mode(){return document.getElementById('modesel').value}
 function readRange(){
   var a=$('min').value.trim(),b=$('max').value.trim();
   if(a===''||b===''){say(RL.t('e1'),true);return null}
@@ -1039,6 +1075,7 @@ function readRange(){
 }
 function lock(on){busy=on;$('go').disabled=on;
   document.querySelectorAll('.chip,.mode input,#min,#max').forEach(function(e){e.disabled=on});
+  $('modesel').disabled=on||$('qskip').checked;
   $('big').setAttribute('aria-busy',on)}
 function setStage(){$('stage').dataset.m=mode();$('method').textContent=last===null?RL.t('ready'):names[lastMode]}
 var AC=null,NB=null,soundOn=true;
@@ -1767,7 +1804,7 @@ async function runRain(n){
 }
 $('rskip').addEventListener('click',function(){if(rainSkip)rainSkip();else if(skipFn)skipFn()});
 document.addEventListener('keydown',function(e){if(e.key!=='Escape')return;if(rainState==='run'&&rainSkip)rainSkip();else if(skipFn)skipFn()});
-document.querySelectorAll('input[name=mode]').forEach(function(r){r.addEventListener('change',rainReset)});
+[document.getElementById('modesel')].forEach(function(r){r.addEventListener('change',rainReset)});
 window.addEventListener('resize',function(){if(R.run)rainSize()});
 function doSkip(){
   if(SK.on||!busy)return;
@@ -1825,6 +1862,8 @@ function pickNum(min,max){
   else{var rem=[];for(var v=min;v<=max;v++)if(!NR.used.has(v))rem.push(v);n=rem[rnd(0,rem.length-1)]}
   NR.used.add(n);return n}
 $('norep').addEventListener('change',function(){NR.on=this.checked;NR.key='';NR.used=new Set()});
+$('modesel').addEventListener('change',function(){try{localStorage.setItem('randomly-mode',this.value)}catch(e){}});
+$('qskip').addEventListener('change',function(){if(!busy)$('modesel').disabled=this.checked});
 async function reveal(){
   if(busy)return;
   var r=readRange();if(!r)return;
@@ -1870,7 +1909,7 @@ async function reveal(){
 }
 $('go').addEventListener('click',reveal);
 ['min','max'].forEach(function(i){$(i).addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();reveal()}})});
-document.querySelectorAll('input[name=mode]').forEach(function(r){r.addEventListener('change',function(){
+[document.getElementById('modesel')].forEach(function(r){r.addEventListener('change',function(){
   setStage();$('stage').classList.remove('snap');
   $('scene').className='scene';$('cnum').className='cnum';
   $('mach').classList.remove('locked','hold','charge','processing');

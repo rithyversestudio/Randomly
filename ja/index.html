@@ -616,6 +616,34 @@ html.theme-anim .tknob{transition:left .35s cubic-bezier(.3,1.3,.5,1),background
 @media(max-width:460px){.toolic{height:92px}}
 @media(prefers-reduced-motion:reduce){.toolcard:hover .toolic *,.toolcard:focus-visible .toolic *{animation:none!important}}
 @media(prefers-reduced-motion:reduce){.toolcard{transition:none}.toolcard:hover{transform:none}}
+
+/* ===== settings box between the animation and the main button ===== */
+.setbox{margin:0;padding:0;border:0}
+.card.setcard{padding:20px 24px}
+.setbox .row{margin:0}
+.setbox .grp:first-child{margin-top:0}
+.setbox .grp{margin-top:14px}
+.setbox label,.setbox .lbl{text-align:start}
+.orow{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start;margin-top:14px}
+.orow .selw,.orow .optw{min-width:0}
+.orow .chips{flex-wrap:nowrap;gap:8px}
+.orow .chips .mode{flex:1 1 0;min-width:0}
+.orow .chips .mode span{width:100%;justify-content:center;text-align:center;white-space:normal;line-height:1.2;padding:4px 10px}
+select.msel{width:100%;min-height:44px;font:inherit;font-weight:600;color:var(--ink);background-color:var(--field);border:1px solid var(--line);border-radius:999px;padding:0 42px 0 18px;-webkit-appearance:none;appearance:none;cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%238a8fb0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 18px center;background-size:12px 8px;transition:border-color .15s,box-shadow .15s}
+select.msel:hover{border-color:var(--brand)}
+select.msel:focus-visible{outline:3px solid var(--brand);outline-offset:2px}
+select.msel:disabled{opacity:.5;cursor:not-allowed}
+select.msel option{background:var(--card);color:var(--ink)}
+html[dir=rtl] select.msel{padding:0 18px 0 42px;background-position:left 18px center}
+@media(max-width:560px){
+.card.setcard{padding:16px 18px}
+.orow{grid-template-columns:1fr;gap:10px;margin-top:10px}
+.orow .selw,.orow .optw{flex:none;width:100%}
+.orow .chips{flex-wrap:nowrap;width:100%}
+.orow .chips .mode{flex:1 1 0;min-width:0}
+.orow .chips .mode span{width:100%;justify-content:center;text-align:center;white-space:normal;line-height:1.2;padding:4px 8px;font-size:.85rem}
+select.msel{min-height:42px}
+}
 </style>
 
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "乱数ジェネレーターとは？", "acceptedAnswer": {"@type": "Answer", "text": "予測可能なパターンのない数を選ぶツールです。設定した最小値と最大値の間の整数をランダムに選びます。"}}, {"@type": "Question", "name": "この乱数生成器は他と何が違いますか？", "acceptedAnswer": {"@type": "Answer", "text": "多くの生成器は数字を表示するだけですが、Randomlyでは抽選を短い演出に変えます。ルーレット、ミステリークレート、ナンバーマシン、カードドロー、雨雲リビールの5種類の演出があり、結果の公平さは保たれます。動作が速く、どの画面サイズにも対応し、演出はいつでもスキップできます。"}}, {"@type": "Question", "name": "他のオンラインツールではなく、この乱数生成器を使う理由は？", "acceptedAnswer": {"@type": "Answer", "text": "シンプルな機能を丁寧に仕上げているからです。ブラウザの暗号論的乱数源による公平な結果、すっきりした現代的な画面、即時の結果、抽選をより楽しくする任意のアニメーション。インストールもアカウント作成も不要です。"}}, {"@type": "Question", "name": "この無料の乱数生成器は使いやすいですか？", "acceptedAnswer": {"@type": "Answer", "text": "はい。無料で、登録もインストールも不要です。最小値と最大値を入力してボタンを押すだけで、数秒で数字が表示されます。"}}, {"@type": "Question", "name": "1から100の乱数を生成できますか？", "acceptedAnswer": {"@type": "Answer", "text": "はい。最小値に1、最大値に100を入力してから数を表示してください。"}}, {"@type": "Question", "name": "アニメーションはありますか？", "acceptedAnswer": {"@type": "Answer", "text": "はい。ルーレット、ミステリークレート、ナンバーマシン、カードドロー、雨雲リビールの5つの演出から選べます。数字は先に決まり、アニメーションはそれを見せるだけなので結果には影響しません。急ぐときは「アニメーションをスキップ」をオンにするか、いつでも「スキップ」を押してください。"}}, {"@type": "Question", "name": "スマートフォンでも使えますか？", "acceptedAnswer": {"@type": "Answer", "text": "はい。スマートフォン、タブレット、パソコンの画面に合わせて表示が調整され、親指でも操作しやすくなっています。アプリは不要で、モバイルのブラウザで開くだけです。"}}, {"@type": "Question", "name": "ライトモードとダークモードに対応していますか？", "acceptedAnswer": {"@type": "Answer", "text": "はい。初期設定はライトモードで、ページ上部のテーマボタンでダークモードに切り替えられます。選択は次回以降も保存されます。"}}, {"@type": "Question", "name": "乱数ジェネレーターの仕組みは？", "acceptedAnswer": {"@type": "Answer", "text": "Randomlyはブラウザ内蔵の暗号学的乱数源を使うため、範囲内のどの整数も等しい確率で選ばれます。"}}, {"@type": "Question", "name": "2つの数の間の乱数を生成できますか？", "acceptedAnswer": {"@type": "Answer", "text": "はい。1から1,000,000までの任意の最小値と最大値を入力できます。両端も選ばれる可能性があります。"}}, {"@type": "Question", "name": "1から1,000までの乱数を生成できますか？", "acceptedAnswer": {"@type": "Answer", "text": "はい。最小値に1、最大値に1000を入力して数字を表示してください。"}}, {"@type": "Question", "name": "1から1,000,000の乱数を生成できますか？", "acceptedAnswer": {"@type": "Answer", "text": "はい。最小値に1、最大値に1000000を入力すると、最大100万の整数が得られます。"}}, {"@type": "Question", "name": "授業やグループ活動のランダム数字ピッカーとして使えますか？", "acceptedAnswer": {"@type": "Answer", "text": "はい。クラスやグループの人数に合わせて1〜30や1〜100などの範囲を設定し、数字を選びます。公平に選ぶため、始める前に範囲を決めておき、同じ数字を一度しか出したくない場合は「重複なし」をオンにしてください。"}}, {"@type": "Question", "name": "同じ数字を避けたり、過去の結果を確認したりできますか？", "acceptedAnswer": {"@type": "Answer", "text": "はい。「オプション」で「重複なし」をオンにすると、範囲を使い切るまで同じ数字は出ません。「最近の結果」には直近の結果が表示されるので、見逃したときも振り返れます。"}}, {"@type": "Question", "name": "生成した数字はどこかに保存されますか？", "acceptedAnswer": {"@type": "Answer", "text": "いいえ。数字はお使いのブラウザ内で生成され、入力した内容がサーバーに送信されることはありません。"}}, {"@type": "Question", "name": "宝くじやギャンブルに使えますか？", "acceptedAnswer": {"@type": "Answer", "text": "いいえ。Randomlyはゲーム、授業、簡単な決めごとなど日常の用途向けです。宝くじ、ギャンブル、賞品の抽選、暗号鍵には適していません。"}}, {"@type": "Question", "name": "登録やログイン不要の乱数ジェネレーターはありますか？", "acceptedAnswer": {"@type": "Answer", "text": "はい。Randomlyは無料で、登録もログインも不要です。ページを開いて範囲を選び、数字を表示するだけ。インストールも不要です。"}}, {"@type": "Question", "name": "プレゼント企画やコンテスト、当選者の選出に使えますか？", "acceptedAnswer": {"@type": "Answer", "text": "はい、気軽なプレゼント企画、コンテスト、授業での抽選に使えます。参加者に番号を振り、範囲を合わせて数字を選びます。法的規制のある抽選や高額な賞品、認証が必要な場合は公式な方法を使ってください。"}}]}</script>
@@ -784,25 +812,30 @@ html.theme-anim .tknob{transition:left .35s cubic-bezier(.3,1.3,.5,1),background
 <div class="hist" id="hist" hidden><div class="hhead"><div class="htitle" data-tr="hist">最近の結果</div><div class="hacts"><button class="hclear" id="hcopyall" type="button" data-tr="hcopyall">すべてコピー</button><button class="hclear" id="hclear" type="button" data-tr="hclear">クリア</button></div></div><ol class="hlist" id="hlist" data-tra="aria-label:hist" aria-label="最近の結果"></ol></div>
 </section>
 
-<section class="card" aria-label="範囲と表示の設定" data-tra="aria-label:settings">
+<section class="card setcard" aria-label="範囲と表示の設定" data-tra="aria-label:settings"><div class="setbox tset">
 <div class="row">
 <div><label for="min" data-tr="min">最小</label><input id="min" type="number" inputmode="numeric" min="1" max="1000000" step="1" value="1"></div>
 <div><label for="max" data-tr="max">最大</label><input id="max" type="number" inputmode="numeric" min="1" max="1000000" step="1" value="100"></div>
 </div>
-<div class="grp"><div class="lbl" id="ml" data-tr="modelbl">表示モード</div>
-<div class="chips" role="radiogroup" aria-labelledby="ml">
-<label class="mode"><input type="radio" name="mode" value="wheel" checked><span data-tr="wheel">🎡 ルーレット</span></label>
-<label class="mode"><input type="radio" name="mode" value="crate"><span data-tr="crate">📦 ミステリークレート</span></label>
-<label class="mode"><input type="radio" name="mode" value="machine"><span data-tr="machine">⚡ ナンバーマシン</span></label>
-<label class="mode"><input type="radio" name="mode" value="card"><span data-tr="card">🃏 カードドロー</span></label>
-<label class="mode"><input type="radio" name="mode" value="rain"><span data-tr="rain">🌧️ 雨雲リビール</span></label>
-</div></div>
-<div class="grp"><div class="lbl" id="ol" data-tr="opts">オプション</div>
+<div class="orow">
+<div class="selw"><label for="modesel" data-tr="modelbl">表示モード</label>
+<select id="modesel" class="msel">
+<option value="wheel" data-tr="wheel">🎡 ルーレット</option>
+<option value="crate" data-tr="crate">📦 ミステリークレート</option>
+<option value="machine" data-tr="machine">⚡ ナンバーマシン</option>
+<option value="card" data-tr="card">🃏 カードドロー</option>
+<option value="rain" data-tr="rain">🌧️ 雨雲リビール</option>
+</select></div>
+<div class="optw"><div class="lbl" id="ol" data-tr="opts">オプション</div>
 <div class="chips" role="group" aria-labelledby="ol">
 <label class="mode"><input type="checkbox" id="norep"><span><b data-tr="norep">重複なし</b></span></label>
 <label class="mode"><input type="checkbox" id="qskip"><span><b data-tr="qskip">アニメーションをスキップ</b></span></label>
-</div></div>
-</section>
+</div>
+</div>
+</div>
+</div></section>
+
+
 
 <section class="card toolsec" aria-labelledby="mt-h">
 <h2 id="mt-h" data-tr="mt_h">その他のツール</h2>
@@ -950,6 +983,7 @@ size();go()})()</script>
 <a href="/ja/" data-tr="f_home">ホーム</a>
 <a href="/ja/about/" data-tr="f_about">概要</a>
 <a href="/ja/guide/" data-tr="f_guide">ガイド</a>
+<a href="/articles/">記事</a>
 <a href="/ja/dice/" data-tr="t_dice_n">サイコロ</a>
 <a href="/ja/coin-flip/" data-tr="t_coin_n">コイントス</a>
 <a href="/ja/cup-shuffle/" data-tr="t_cup_n">ナンバーカップ</a></nav>
@@ -957,7 +991,8 @@ size();go()})()</script>
 <a href="/ja/terms/" data-tr="f_terms">利用規約</a>
 <a href="/ja/privacy/" data-tr="f_privacy">プライバシーポリシー</a></nav>
 <nav class="ft-col" aria-label="Support"><h3 data-tr="ft_h_help">サポート</h3>
-<a href="#" data-modal="contact-modal" data-topic="other" role="button" data-tr="f_contact">お問い合わせ</a></nav>
+<a href="#" data-modal="contact-modal" data-topic="other" role="button" data-tr="f_contact">お問い合わせ</a>
+<a href="/contact/">連絡先</a></nav>
 </div>
 <nav class="ft-langs" aria-label="言語" data-tra="aria-label:lang"><a href="/" hreflang="en" lang="en">English</a><a href="/fr/" hreflang="fr" lang="fr">Français</a><a href="/ru/" hreflang="ru" lang="ru">Русский</a><a href="/ja/" hreflang="ja" lang="ja" aria-current="page">日本語</a><a href="/fil/" hreflang="fil" lang="fil">Filipino</a><a href="/hi/" hreflang="hi" lang="hi">हिन्दी</a><a href="/de/" hreflang="de" lang="de">Deutsch</a><a href="/es/" hreflang="es" lang="es">Español</a><a href="/pt/" hreflang="pt" lang="pt">Português</a><a href="/id/" hreflang="id" lang="id">Bahasa Indonesia</a><a href="/ar/" hreflang="ar" lang="ar">العربية</a></nav>
 <div class="ft-bottom">
@@ -1020,7 +1055,8 @@ function rnd(min,max){ // unbiased via rejection sampling
   return min+a[0]%span;
 }
 function say(t,err){var m=$('msg');m.textContent=t;m.className='msg'+(err?' err':'')}
-function mode(){return document.querySelector('input[name=mode]:checked').value}
+(function(){try{var v=localStorage.getItem('randomly-mode'),m=document.getElementById('modesel');if(v&&m&&m.querySelector('option[value="'+v+'"]'))m.value=v}catch(e){}})();
+function mode(){return document.getElementById('modesel').value}
 function readRange(){
   var a=$('min').value.trim(),b=$('max').value.trim();
   if(a===''||b===''){say(RL.t('e1'),true);return null}
@@ -1039,6 +1075,7 @@ function readRange(){
 }
 function lock(on){busy=on;$('go').disabled=on;
   document.querySelectorAll('.chip,.mode input,#min,#max').forEach(function(e){e.disabled=on});
+  $('modesel').disabled=on||$('qskip').checked;
   $('big').setAttribute('aria-busy',on)}
 function setStage(){$('stage').dataset.m=mode();$('method').textContent=last===null?RL.t('ready'):names[lastMode]}
 var AC=null,NB=null,soundOn=true;
@@ -1767,7 +1804,7 @@ async function runRain(n){
 }
 $('rskip').addEventListener('click',function(){if(rainSkip)rainSkip();else if(skipFn)skipFn()});
 document.addEventListener('keydown',function(e){if(e.key!=='Escape')return;if(rainState==='run'&&rainSkip)rainSkip();else if(skipFn)skipFn()});
-document.querySelectorAll('input[name=mode]').forEach(function(r){r.addEventListener('change',rainReset)});
+[document.getElementById('modesel')].forEach(function(r){r.addEventListener('change',rainReset)});
 window.addEventListener('resize',function(){if(R.run)rainSize()});
 function doSkip(){
   if(SK.on||!busy)return;
@@ -1825,6 +1862,8 @@ function pickNum(min,max){
   else{var rem=[];for(var v=min;v<=max;v++)if(!NR.used.has(v))rem.push(v);n=rem[rnd(0,rem.length-1)]}
   NR.used.add(n);return n}
 $('norep').addEventListener('change',function(){NR.on=this.checked;NR.key='';NR.used=new Set()});
+$('modesel').addEventListener('change',function(){try{localStorage.setItem('randomly-mode',this.value)}catch(e){}});
+$('qskip').addEventListener('change',function(){if(!busy)$('modesel').disabled=this.checked});
 async function reveal(){
   if(busy)return;
   var r=readRange();if(!r)return;
@@ -1870,7 +1909,7 @@ async function reveal(){
 }
 $('go').addEventListener('click',reveal);
 ['min','max'].forEach(function(i){$(i).addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();reveal()}})});
-document.querySelectorAll('input[name=mode]').forEach(function(r){r.addEventListener('change',function(){
+[document.getElementById('modesel')].forEach(function(r){r.addEventListener('change',function(){
   setStage();$('stage').classList.remove('snap');
   $('scene').className='scene';$('cnum').className='cnum';
   $('mach').classList.remove('locked','hold','charge','processing');

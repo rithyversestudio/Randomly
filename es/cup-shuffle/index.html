@@ -616,6 +616,34 @@ html.theme-anim .tknob{transition:left .35s cubic-bezier(.3,1.3,.5,1),background
 @media(max-width:460px){.toolic{height:92px}}
 @media(prefers-reduced-motion:reduce){.toolcard:hover .toolic *,.toolcard:focus-visible .toolic *{animation:none!important}}
 @media(prefers-reduced-motion:reduce){.toolcard{transition:none}.toolcard:hover{transform:none}}
+
+/* ===== settings box between the animation and the main button ===== */
+.setbox{margin:0;padding:0;border:0}
+.card.setcard{padding:20px 24px}
+.setbox .row{margin:0}
+.setbox .grp:first-child{margin-top:0}
+.setbox .grp{margin-top:14px}
+.setbox label,.setbox .lbl{text-align:start}
+.orow{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start;margin-top:14px}
+.orow .selw,.orow .optw{min-width:0}
+.orow .chips{flex-wrap:nowrap;gap:8px}
+.orow .chips .mode{flex:1 1 0;min-width:0}
+.orow .chips .mode span{width:100%;justify-content:center;text-align:center;white-space:normal;line-height:1.2;padding:4px 10px}
+select.msel{width:100%;min-height:44px;font:inherit;font-weight:600;color:var(--ink);background-color:var(--field);border:1px solid var(--line);border-radius:999px;padding:0 42px 0 18px;-webkit-appearance:none;appearance:none;cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%238a8fb0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 18px center;background-size:12px 8px;transition:border-color .15s,box-shadow .15s}
+select.msel:hover{border-color:var(--brand)}
+select.msel:focus-visible{outline:3px solid var(--brand);outline-offset:2px}
+select.msel:disabled{opacity:.5;cursor:not-allowed}
+select.msel option{background:var(--card);color:var(--ink)}
+html[dir=rtl] select.msel{padding:0 18px 0 42px;background-position:left 18px center}
+@media(max-width:560px){
+.card.setcard{padding:16px 18px}
+.orow{grid-template-columns:1fr;gap:10px;margin-top:10px}
+.orow .selw,.orow .optw{flex:none;width:100%}
+.orow .chips{flex-wrap:nowrap;width:100%}
+.orow .chips .mode{flex:1 1 0;min-width:0}
+.orow .chips .mode span{width:100%;justify-content:center;text-align:center;white-space:normal;line-height:1.2;padding:4px 8px;font-size:.85rem}
+select.msel{min-height:42px}
+}
 </style>
 <style>
 main{flex:1}
@@ -671,7 +699,7 @@ a.brand{text-decoration:none;color:inherit}
 .tback a{color:var(--mute);font-weight:700;text-decoration:none}
 .tback a:hover{color:var(--brand);text-decoration:underline}
 .card.tool .go{text-transform:uppercase}
-.card.tset .grp:first-child{margin-top:0}
+.card.tset .grp:first-child,.setbox .grp:first-child{margin-top:0}
 .chips.grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px}
 .chips.grid .mode span{width:100%;justify-content:center;padding:0 6px}
 .chips.g3{grid-template-columns:repeat(3,minmax(0,1fr))}
@@ -685,9 +713,10 @@ html[dir=rtl] .s-dice,html[dir=rtl] .s-coin,html[dir=rtl] .s-cups{direction:ltr}
 .stage.tstage[data-m=cups] .s-cups{height:auto}
 
 /* ---------- dice (true 3D polyhedra: D4 D6 D8 D10 D12 D20) ---------- */
-.dfloor{position:absolute;left:6%;right:6%;bottom:18px;height:60px;border-radius:50%;background:radial-gradient(ellipse at center,rgba(0,0,0,.42) 0%,transparent 70%)}
+.stage.tstage[data-m=dice]{height:360px}
+.dfloor{position:absolute;left:6%;right:6%;bottom:56px;height:60px;border-radius:50%;background:radial-gradient(ellipse at center,rgba(0,0,0,.42) 0%,transparent 70%)}
 :root[data-theme="light"] .dfloor{background:radial-gradient(ellipse at center,rgba(60,60,140,.22) 0%,transparent 70%)}
-.dwrap{--ds:96px;position:relative;display:flex;flex-wrap:wrap;justify-content:center;align-content:center;gap:34px 46px;max-width:96%;padding-top:70px}
+.dwrap{--ds:96px;position:relative;display:flex;flex-wrap:wrap;justify-content:center;align-content:center;gap:34px 46px;max-width:96%;padding-top:0}
 .dwrap[data-n="1"]{--ds:120px}
 .dwrap[data-n="2"],.dwrap[data-n="3"]{--ds:96px}
 .dwrap[data-n="4"],.dwrap[data-n="5"],.dwrap[data-n="6"]{--ds:74px;gap:30px 40px}
@@ -755,6 +784,7 @@ html[dir=rtl] .s-dice,html[dir=rtl] .s-coin,html[dir=rtl] .s-cups{direction:ltr}
 
 @media(max-width:560px){
 .stage.tstage{height:270px}
+.stage.tstage[data-m=dice]{height:320px}
 .stage.tstage[data-m=cups]{height:auto}
 .chips.grid{grid-template-columns:repeat(3,minmax(0,1fr))}
 .dwrap[data-n="1"]{--ds:100px}
@@ -784,7 +814,8 @@ html[dir=rtl] .s-dice,html[dir=rtl] .s-coin,html[dir=rtl] .s-cups{direction:ltr}
 <p class="msg" id="msg" role="status"></p>
 <div class="hist" id="hist" data-ic="🥤" hidden><div class="hhead"><div class="htitle">Sorteos recientes</div><div class="hacts"><button class="hclear" id="hcopyall" type="button">Copiar todo</button><button class="hclear" id="hclear" type="button">Borrar</button></div></div><ol class="hlist" id="hlist" aria-label="Sorteos recientes"></ol></div>
 </section>
-<section class="card tset" aria-label="Juego de vasos con números"><div class="grp"><div class="lbl" id="g-c">Número de vasos</div><div class="chips" role="radiogroup" aria-labelledby="g-c"><label class="mode"><input type="radio" name="cscount" value="3" checked><span>3</span></label><label class="mode"><input type="radio" name="cscount" value="5"><span>5</span></label><label class="mode"><input type="radio" name="cscount" value="7"><span>7</span></label></div></div><div class="grp"><div class="lbl" id="g-m">Números</div><div class="chips" role="radiogroup" aria-labelledby="g-m"><label class="mode"><input type="radio" name="csmode" value="quick" checked><span>Selección rápida</span></label><label class="mode"><input type="radio" name="csmode" value="custom"><span>Números personalizados</span></label></div><p class="cs-hint" id="cshint"></p><div class="cs-inputs" id="csinputs" hidden></div></div><div class="grp"><div class="lbl" id="g-opt">Opciones</div><div class="chips" role="group" aria-labelledby="g-opt"><label class="mode"><input type="checkbox" id="qskip"><span><b>Omitir animación</b></span></label><label class="mode"><input type="checkbox" id="snd" checked><span><b>🔊 Sonido</b></span></label></div></div></section>
+<section class="card setcard tool" aria-label="Juego de vasos con números"><div class="setbox tset"><div class="grp"><div class="lbl" id="g-c">Número de vasos</div><div class="chips" role="radiogroup" aria-labelledby="g-c"><label class="mode"><input type="radio" name="cscount" value="3" checked><span>3</span></label><label class="mode"><input type="radio" name="cscount" value="5"><span>5</span></label><label class="mode"><input type="radio" name="cscount" value="7"><span>7</span></label></div></div><div class="grp"><div class="lbl" id="g-m">Números</div><div class="chips" role="radiogroup" aria-labelledby="g-m"><label class="mode"><input type="radio" name="csmode" value="quick" checked><span>Selección rápida</span></label><label class="mode"><input type="radio" name="csmode" value="custom"><span>Números personalizados</span></label></div><p class="cs-hint" id="cshint"></p><div class="cs-inputs" id="csinputs" hidden></div></div><div class="grp"><div class="lbl" id="g-opt">Opciones</div><div class="chips" role="group" aria-labelledby="g-opt"><label class="mode"><input type="checkbox" id="qskip"><span><b>Omitir animación</b></span></label><label class="mode"><input type="checkbox" id="snd" checked><span><b>🔊 Sonido</b></span></label></div></div></div></section>
+
 <article class="card doc"><div class="modal-body">
 <p>Elige 3, 5 o 7 vasos y usa la selección rápida (1, 2, 3…) o escribe tus propios números. Los números se ven primero bajo los vasos y se tapan al mezclar. Pulsa Mezclar: los vasos intercambian sus lugares y, cuando se detienen, los números se reparten de nuevo en secreto y al azar bajo ellos, así que seguir un vaso no sirve de nada. Después elige un vaso para levantarlo y revelar tu número. Todo se elige con la fuente aleatoria criptográfica de tu navegador y nada se envía a un servidor.</p>
 <h3>Preguntas frecuentes</h3>
@@ -812,9 +843,72 @@ function noise(o){var a=ac();if(!a)return;
   s.buffer=NB;s.loop=true;f.type=o.type||'bandpass';f.frequency.setValueAtTime(o.f,t);if(o.f2)f.frequency.exponentialRampToValueAtTime(o.f2,t+o.d);
   g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(o.v,t+o.d*(o.a||.3));g.gain.exponentialRampToValueAtTime(.0001,t+o.d);
   s.connect(f);f.connect(g);g.connect(a.destination);s.start(t);s.stop(t+o.d+.05)}
-// same reveal "hit" feel as the number generator: sub thump, air burst, bell sparkle
-function sfxHit(){tone({f:130,f2:52,d:.4,v:.22});noise({f:2400,f2:700,d:.45,v:.05,type:'highpass'});
-  [523.25,659.25,783.99,1046.5].forEach(function(f,i){tone({f:f,d:1-i*.1,v:.07,t:.05+i*.07})})}
+// ---- high-quality sound engine (shared by Dice / Coin / Cups): compressor + reverb bus, layered voices
+var WREV=null,SFXM=[];
+function sfR(a,b){return a+Math.random()*(b-a)}
+function sfxTrack(g){SFXM.push(g);if(SFXM.length>12)SFXM.shift()}
+function sfxStop(){var a=AC;if(!a)return;var t=a.currentTime;
+  SFXM.forEach(function(g){try{g.gain.cancelScheduledValues(t);g.gain.setValueAtTime(g.gain.value,t);g.gain.linearRampToValueAtTime(0,t+.08)}catch(e){}});SFXM=[]}
+function sfxKit(){
+  var a=ac();if(!a)return null;
+  if(!NB){NB=a.createBuffer(1,a.sampleRate,a.sampleRate);var q=NB.getChannelData(0);for(var i=0;i<q.length;i++)q[i]=Math.random()*2-1}
+  var comp=a.createDynamicsCompressor();comp.threshold.value=-14;comp.knee.value=10;comp.ratio.value=4;comp.attack.value=.003;comp.release.value=.2;
+  var mst=a.createGain();mst.gain.value=.9;comp.connect(mst);mst.connect(a.destination);sfxTrack(mst);
+  var dry=a.createGain();dry.connect(comp);
+  if(!WREV||WREV.sampleRate!==a.sampleRate){var L=Math.floor(a.sampleRate*1.7);WREV=a.createBuffer(2,L,a.sampleRate);
+    for(var c=0;c<2;c++){var d=WREV.getChannelData(c);for(var k=0;k<L;k++)d[k]=(Math.random()*2-1)*Math.pow(1-k/L,2.6)}}
+  var cvb=a.createConvolver();cvb.buffer=WREV;var wet=a.createGain();wet.gain.value=.3;cvb.connect(wet);wet.connect(comp);
+  var send=a.createGain();send.gain.value=1;send.connect(cvb);
+  function out(g,rv,pan){var n=g;if(pan&&a.createStereoPanner){n=a.createStereoPanner();n.pan.value=Math.max(-1,Math.min(1,pan));g.connect(n)}n.connect(dry);if(rv){var r=a.createGain();r.gain.value=rv;n.connect(r);r.connect(send)}}
+  // tonal voice: attack / decay, optional pitch glide, lowpass, reverb send, pan
+  function T(o){var t=a.currentTime+(o.t||0),os=a.createOscillator(),g=a.createGain(),n=os;
+    os.type=o.type||'sine';os.frequency.setValueAtTime(o.f,t);if(o.f2)os.frequency.exponentialRampToValueAtTime(o.f2,t+o.d);
+    var at=Math.min(o.at||.012,o.d*.9);
+    g.gain.value=0;g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(o.v,t+at);g.gain.exponentialRampToValueAtTime(.0001,t+o.d);
+    if(o.lp){var f=a.createBiquadFilter();f.type='lowpass';f.frequency.value=o.lp;os.connect(f);n=f}
+    n.connect(g);out(g,o.rv,o.pan);os.start(t);os.stop(t+o.d+.05)}
+  // filtered-noise voice with frequency sweep
+  function N(o){var t=a.currentTime+(o.t||0),s=a.createBufferSource(),f=a.createBiquadFilter(),g=a.createGain();
+    s.buffer=NB;s.loop=true;f.type=o.type||'bandpass';f.Q.value=o.q||1;
+    f.frequency.setValueAtTime(o.f,t);if(o.f2)f.frequency.exponentialRampToValueAtTime(o.f2,t+o.d);
+    g.gain.value=0;g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(o.v,t+o.d*(o.a||.3));g.gain.exponentialRampToValueAtTime(.0001,t+o.d);
+    s.connect(f);f.connect(g);out(g,o.rv,o.pan);s.start(t,Math.random()*.4);s.stop(t+o.d+.05)}
+  // fluttering voice (amplitude modulated by an LFO) - the whirr of a spinning coin
+  function M(o){var t=a.currentTime+(o.t||0),os=a.createOscillator(),lf=a.createOscillator(),lg=a.createGain(),md=a.createGain(),g=a.createGain();
+    os.type=o.type||'triangle';os.frequency.setValueAtTime(o.f,t);if(o.f2)os.frequency.linearRampToValueAtTime(o.f2,t+o.d);
+    lf.frequency.setValueAtTime(o.lf,t);if(o.lf2)lf.frequency.linearRampToValueAtTime(o.lf2,t+o.d);
+    md.gain.value=.5;lg.gain.value=.5;lf.connect(lg);lg.connect(md.gain);
+    var at=Math.min(o.at||.05,o.d*.9);g.gain.value=0;g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(o.v,t+at);g.gain.exponentialRampToValueAtTime(.0001,t+o.d);
+    os.connect(md);md.connect(g);out(g,o.rv,o.pan);os.start(t);lf.start(t);os.stop(t+o.d+.05);lf.stop(t+o.d+.05)}
+  // struck metal: inharmonic partials, each one dying faster than the last
+  function ring(o){[1,2.32,4.25,6.63,9.38].forEach(function(r,i){var f=o.f*r;if(f>15000)return;
+    T({f:f,t:o.t,d:o.d/(1+i*.75),v:o.v/(1+i*.8),at:.002,rv:o.rv==null?.5:o.rv,pan:o.pan})})}
+  return {a:a,T:T,N:N,M:M,ring:ring};
+}
+// big reveal at the end: kind = 'dice' (deep drum + ivory sparkle) | 'coin' (gold bell shimmer) | 'cup' (magic burst)
+function sfxReveal(K,kind,t0){t0=t0||0;var T=K.T,N=K.N,i;
+  if(kind==='coin'){
+    T({f:150,f2:40,t:t0,d:.8,v:.42});T({f:300,f2:80,t:t0,d:.3,v:.18,type:'triangle'});
+    N({f:5200,t:t0,d:.07,v:.14,type:'highpass'});N({f:3000,f2:500,t:t0,d:.5,v:.14,q:1.4,a:.03,rv:.4});
+    K.ring({f:1318.5,t:t0,d:2,v:.075,rv:.75});K.ring({f:1975.5,t:t0+.08,d:1.7,v:.05,rv:.8,pan:.3});K.ring({f:2637,t:t0+.16,d:1.5,v:.04,rv:.8,pan:-.3});
+    [392,493.9,587.3,783.99,987.8].forEach(function(f,k){T({f:f,t:t0+.03+k*.05,d:1.7,v:.05,type:'triangle',rv:.8,pan:k%2?.3:-.3})});
+    for(i=0;i<7;i++)T({f:2093*Math.pow(1.19,i),t:t0+.1+i*.055,d:.8,v:.028,rv:.9,pan:i%2?.5:-.5});
+    N({f:7000,t:t0,d:1.6,v:.1,type:'highpass',a:.03,rv:.7})
+  }else if(kind==='cup'){
+    T({f:105,f2:28,t:t0,d:1.4,v:.55});T({f:240,f2:55,t:t0,d:.45,v:.26,type:'triangle'});T({f:900,f2:70,t:t0,d:.5,v:.08,type:'sawtooth',lp:1400});
+    N({f:2200,f2:100,t:t0,d:.9,v:.3,type:'lowpass',a:.03,rv:.35});N({f:5500,t:t0,d:1.7,v:.14,type:'highpass',a:.03,rv:.7});
+    N({f:3500,f2:600,t:t0,d:.35,v:.2,q:1.5,a:.03,pan:-.35});N({f:3000,f2:500,t:t0+.01,d:.35,v:.2,q:1.5,a:.03,pan:.35});
+    [523.25,659.25,783.99,1046.5,1318.5,1568].forEach(function(f,k){T({f:f,t:t0+.04+k*.05,d:1.7,v:.055,type:'triangle',rv:.8,pan:k%2?.3:-.3});if(k<3)T({f:f,t:t0+.04+k*.05,d:1.5,v:.035,type:'sawtooth',lp:1800,rv:.6})});
+    T({f:900,f2:4200,t:t0,d:.55,v:.03,at:.35,rv:.8});
+    [1568,2093,2637,3136,4186].forEach(function(f,k){T({f:f,t:t0+.1+k*.06,d:.9,v:.035,rv:.9,pan:k%2?.5:-.5})})
+  }else{
+    T({f:120,f2:28,t:t0,d:1.3,v:.6});T({f:230,f2:55,t:t0,d:.45,v:.28,type:'triangle'});
+    N({f:4200,t:t0,d:.025,v:.16,type:'highpass'});
+    N({f:2600,f2:90,t:t0,d:.9,v:.3,type:'lowpass',a:.03,rv:.35});N({f:6000,t:t0,d:1.5,v:.12,type:'highpass',a:.03,rv:.7});
+    [523.25,659.25,783.99,1046.5,1318.5].forEach(function(f,k){T({f:f,t:t0+.04+k*.055,d:1.6,v:.055,type:'triangle',rv:.8,pan:k%2?.3:-.3})});
+    [1568,2093,2637,3136,4186].forEach(function(f,k){T({f:f,t:t0+.12+k*.06,d:.9,v:.032,rv:.9,pan:k%2?.5:-.5})})
+  }}
+function sfxHit(kind){var K=sfxKit();if(K)sfxReveal(K,kind,0)}
 var TM=[];function later(f,ms){var t=setTimeout(f,ms);TM.push(t);return t}
 function clearTM(){TM.forEach(clearTimeout);TM=[]}
 var stage=$('stage'),cv=$('fx'),cx=cv.getContext('2d'),P=[],W=0,H=0,ticking=false;
@@ -866,7 +960,33 @@ $('hclear').addEventListener('click',function(){HIST=[];histDraw()});
 $('hcopyall').addEventListener('click',function(){if(!HIST.length)return;var b=this;
   copyText(HIST.map(function(h){return h.n}).join(', '),function(){b.textContent=L.hcopied;setTimeout(function(){b.textContent=L.hcopyall},1300)})});
 
-var cst=$('csstage'),inBox=$('csinputs'),hint2=$('cshint'),bGo=$('go');
+var cst=$('csstage'),inBox=$('csinputs'),hint2=$('cshint'),bGo=$('go'),KC=null;
+function cupPan(s){return n>1?(s/(n-1))*1.6-.8:0}
+// cups slammed down over the numbers, left to right
+function cupsDown(){var K=KC;if(!K)return;for(var i=0;i<n;i++){var t=i*.045,p=cupPan(i);
+  K.T({f:150+sfR(0,30),f2:60,t:t,d:.22,v:.17,pan:p});K.T({f:520,f2:240,t:t,d:.06,v:.06,type:'triangle',pan:p});
+  K.N({f:1300,f2:260,t:t,d:.12,v:.1,type:'lowpass',a:.05,rv:.2,pan:p});K.N({f:3400,t:t,d:.014,v:.05,type:'highpass',pan:p})}
+  K.N({f:300,f2:2400,d:.25,v:.05,q:1,a:.9,rv:.3})}
+// tension that builds through the whole shuffle
+function cupRise(t,d){var K=KC;if(!K)return;
+  K.T({f:50,f2:130,t:t,d:d,v:.1,type:'sawtooth',lp:280,at:d*.85});K.N({f:500,f2:5000,t:t,d:d,v:.05,q:1.1,a:.92,rv:.3});K.T({f:300,f2:1200,t:t,d:d,v:.025,at:d*.85,rv:.5})}
+// two cups swap places: slide + tock, panned to where the cups are, getting more intense as the shuffle goes on
+function cupSwap(a,b,dur,pr){var K=KC;if(!K)return;var d=Math.max(.05,dur/1000+.03),g=.7+.3*pr;
+  [a,b].forEach(function(s,j){var p=cupPan(s),u=j?.7:1;
+    K.N({f:420+sfR(0,200),f2:1500+sfR(0,500),d:d,v:.06*g*u,q:1.6,a:.5,rv:.15,pan:p});
+    K.T({f:300+sfR(0,120),f2:150,t:d*.7,d:.05,v:.05*g*u,type:'triangle',pan:p});
+    K.N({f:1700,f2:400,t:d*.7,d:.05,v:.05*g*u,type:'lowpass',a:.1,pan:p})})}
+// cups come to rest: heavy thud + a bell that says "now pick one"
+function cupSettle(){var K=sfxKit();if(!K)return;
+  K.T({f:120,f2:40,d:.6,v:.3});K.N({f:1200,f2:200,d:.3,v:.14,type:'lowpass',a:.05,rv:.3});K.N({f:2500,d:.02,v:.06,type:'highpass'});
+  K.ring({f:988,t:.1,d:.9,v:.04,rv:.7});K.ring({f:1319,t:.24,d:.9,v:.035,rv:.7,pan:.2})}
+// lifting the chosen cup: thud, air rush and a rising shimmer into the reveal; then the other cups give up their numbers
+function cupPick(){var K=sfxKit();if(!K)return;var d=RM?0:.52,g=RM?0:.9,i;
+  K.T({f:170,f2:70,d:.25,v:.18});K.N({f:900,f2:300,d:.2,v:.1,type:'lowpass',rv:.2});
+  if(d){K.N({f:400,f2:4200,d:d,v:.07,q:1.1,a:.92,rv:.3});K.T({f:200,f2:1000,d:d,v:.05,at:d*.85,rv:.5});K.T({f:55,f2:115,d:d,v:.12,at:d*.85})}
+  sfxReveal(K,'cup',d);
+  for(i=0;i<n-1;i++)K.T({f:880*Math.pow(1.1225,i),t:d+g+i*.05,d:.5,v:.03,rv:.7,pan:cupPan(i)});
+  K.N({f:3000,f2:800,t:d+g,d:.35,v:.04,q:1.2,a:.2,rv:.4})}
 var CUP='<svg class="cs-body" viewBox="0 0 100 110" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M20 4h60l14 98H6z" fill="url(#csg)"/><path d="M31 14l-9 74" stroke="rgba(255,255,255,.4)" stroke-width="7" stroke-linecap="round" fill="none"/><ellipse cx="50" cy="5" rx="30" ry="4" fill="rgba(255,255,255,.35)"/><rect x="2" y="93" width="96" height="15" rx="7.5" fill="rgba(255,255,255,.28)"/></svg>';
 var n=3,mode='quick',vals=['','','','','','',''],cups=[],slotCup=[],phase='ready',cw=90,ch=99,lift=70,sw=100,cols=3,rows=1,pitch=0,opened=false;
 function quickNums(){var a=[],i;for(i=1;i<=n;i++)a.push(i);return a}
@@ -909,26 +1029,27 @@ function shuffle(){if(phase!=='ready'&&phase!=='done')return;clearTM();var wasOp
   cups.forEach(function(c){c.el.disabled=true});ui();lockSet(true);stage.classList.add('focus');
   var total=n===3?24:n===5?36:48,k=0,la=-1,lb=-1,fast=quick();
   function pair(){var a,b;do{a=rnd(n);b=rnd(n-1);if(b>=a)b++}while((a===la&&b===lb)||(a===lb&&b===la));la=a;lb=b;return[a,b]}
-  function instant(){clearTM();skipOff();while(k<total){var p=pair();swapSlots(p[0],p[1],0);k++}finish()}
+  function instant(){clearTM();skipOff();sfxStop();while(k<total){var p=pair();swapSlots(p[0],p[1],0);k++}finish()}
   function step(){if(k>=total){finish();return}
     var p=pair(),dur=Math.round(46-(k/total)*18);swapSlots(p[0],p[1],dur);
-    if(k%2===0){noise({f:600+rnd(500),f2:1500,d:.06,v:.04});tone({f:200+rnd(80),d:.03,v:.03})}k++;later(step,dur+6)}
+    cupSwap(p[0],p[1],dur,k/total);k++;later(step,dur+6)}
   if(fast){instant();return}
+  KC=sfxKit();if(KC){if(wasOpen)cupsDown();cupRise(wasOpen?.64:.25,total*.043)}
   skipOn(instant);
   later(step,wasOpen?640:250)}
 function finish(){phase='pick';skipOff();
   /* fair: once the cups stop, numbers are secretly re-dealt at random, so tracking a cup cannot help */
   var dn=cups.map(function(c){return c.num}),di,dj,dt;for(di=dn.length-1;di>0;di--){dj=rnd(di+1);dt=dn[di];dn[di]=dn[dj];dn[dj]=dt}cups.forEach(function(c,k){c.num=dn[k]});
   for(var s=0;s<n;s++){var c=cups[slotCup[s]];cst.appendChild(c.el);c.el.setAttribute('aria-label',L.cs_cup+' '+(s+1));c.el.disabled=false}
-  lockSet(false);ui();tone({f:660,d:.15,v:.06});tone({f:880,d:.2,v:.05,t:.1});var f=cups[slotCup[0]];if(f)f.el.focus({preventScroll:true})}
+  lockSet(false);ui();cupSettle();var f=cups[slotCup[0]];if(f)f.el.focus({preventScroll:true})}
 function pickCup(i){if(phase!=='pick')return;phase='revealing';var c=cups[i];c.numEl.textContent=String(c.num);fitNum(c);c.el.classList.add('open');opened=true;
   cups.forEach(function(x){x.el.disabled=true});ui();bGo.disabled=true;
-  tone({f:160,f2:70,d:.25,v:.16});noise({f:900,f2:300,d:.2,v:.08});
+  cupPick();
   later(function(){
     var cr=c.el.getBoundingClientRect(),sr=stage.getBoundingClientRect();
     later(function(){cups.forEach(function(x){if(x!==c){x.numEl.textContent=String(x.num);fitNum(x);x.el.classList.add('ghost','open')}})},RM?0:900);
     setBig(c.num);setHint('');$('method').textContent=L.cs_cups+': '+n;histAdd(c.num,'\ud83e\udd64 \u00d7'+n);
-    pulse('flash');pulse('ring');sparks(36,cr.left-sr.left+cr.width/2,cr.top-sr.top+ch*.3);shake();sfxHit();
+    pulse('flash');pulse('ring');sparks(36,cr.left-sr.left+cr.width/2,cr.top-sr.top+ch*.3);shake();
     phase='done';ui();unfocus()},RM?0:520)}
 bGo.addEventListener('click',function(){if(phase!=='ready'&&phase!=='done')return;var nm=getNumbers();if(!nm){say(L.cs_err,true);return}say('');
   cups.forEach(function(c,i){c.num=nm[i]});shuffle()});
@@ -936,6 +1057,65 @@ document.querySelectorAll('input[name=cscount],input[name=csmode]').forEach(func
 window.addEventListener('resize',function(){layout(true)});
 setup();
 })();</script>
+
+<section class="card fbcta" aria-labelledby="fb-h">
+<canvas class="fbgl" aria-hidden="true"></canvas>
+<h2 id="fb-h" data-tr="fb_h">Ayuda a mejorar Randomly</h2>
+<p data-tr="fb_p">¿Tienes una idea, una función que te gustaría ver o encontraste algo que no funciona? Cuéntanoslo. Leemos todos los mensajes.</p>
+<div class="fbbtns">
+<button class="chip" type="button" data-modal="contact-modal" data-topic="suggestion" data-tr="fb_sug">💡 Sugerir una función</button>
+<button class="chip" type="button" data-modal="contact-modal" data-topic="feedback" data-tr="fb_fb">⭐ Comentarios generales</button>
+<button class="chip" type="button" data-modal="contact-modal" data-topic="bug" data-tr="fb_bug">🐞 Informar de un problema</button>
+</div>
+</section>
+<script>(function(){
+var c=document.querySelector('.fbcta'),cv=c&&c.querySelector('.fbgl');if(!cv)return;
+var gl=cv.getContext('webgl',{antialias:false,alpha:false,powerPreference:'low-power'})||cv.getContext('experimental-webgl');if(!gl)return;
+var VS='attribute vec2 p;void main(){gl_Position=vec4(p,0.,1.);}';
+var FS=[
+'#ifdef GL_FRAGMENT_PRECISION_HIGH','precision highp float;','#else','precision mediump float;','#endif',
+'uniform vec2 R;uniform float T;uniform vec2 M;uniform float E;uniform float H;uniform float D;uniform float S;uniform vec3 A;uniform vec3 B;',
+'void main(){',
+' vec2 fc=gl_FragCoord.xy;vec2 uv=fc/R;',
+' float asp=R.x/R.y;vec2 p=vec2(uv.x*asp,uv.y);vec2 m=vec2(M.x*asp,M.y);',
+' float dm=length(p-m);float inf=exp(-dm*dm*5.);',
+' float h=.5*sin(p.x*2.6+T*.25+1.3*sin(p.y*3.1-T*.2))+.5*sin(p.y*3.4-T*.18+1.1*sin(p.x*2.2+T*.22))+.35*sin((p.x+p.y)*1.8+T*.15);',
+' h+=(H*.9+E*1.2)*inf*1.3;',
+' float n=h*3.4;float fr=abs(fract(n)-.5);',
+' float aa=10./R.y;float lw=.07+.03*inf*H;',
+' float ln=1.-smoothstep(lw-aa,lw+aa,fr);',
+' float k=clamp(uv.x*.65+(1.-uv.y)*.35+.07*sin(T*.35+uv.y*3.),0.,1.);',
+' vec3 base=mix(A,B,k)*mix(.9,.74,D);',
+' base*=1.+.06*sin(n*3.14159);',
+' vec3 lc=vec3(1.);',
+' vec3 col=mix(base,lc,ln*(.24+.2*inf*(H*.8+E*.6)));',
+' col+=vec3(1.)*inf*(.03+.04*H+.05*E);',
+' gl_FragColor=vec4(col,1.);}'].join('\n');
+function sh(t,src){var s=gl.createShader(t);gl.shaderSource(s,src);gl.compileShader(s);return gl.getShaderParameter(s,gl.COMPILE_STATUS)?s:null}
+var vs=sh(gl.VERTEX_SHADER,VS),fs=sh(gl.FRAGMENT_SHADER,FS);if(!vs||!fs)return;
+var pg=gl.createProgram();gl.attachShader(pg,vs);gl.attachShader(pg,fs);gl.linkProgram(pg);if(!gl.getProgramParameter(pg,gl.LINK_STATUS))return;
+gl.useProgram(pg);var bf=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,bf);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,3,-1,-1,3]),gl.STATIC_DRAW);
+var lp=gl.getAttribLocation(pg,'p');gl.enableVertexAttribArray(lp);gl.vertexAttribPointer(lp,2,gl.FLOAT,false,0,0);
+var U={};['R','T','M','E','H','D','S','A','B'].forEach(function(k){U[k]=gl.getUniformLocation(pg,k)});
+var rm=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+var tx=.5,ty=.5,cx=.5,cy=.5,px=.5,py=.5,E=0,H=0,hv=0,raf=0,vis=true,t0=performance.now();
+function size(){var w=c.clientWidth,hh=c.clientHeight,d=Math.min(window.devicePixelRatio||1,window.innerWidth<600?1:1.5);while(w*hh*d*d>650000&&d>.5)d-=.1;cv.width=Math.max(1,Math.round(w*d));cv.height=Math.max(1,Math.round(hh*d));gl.viewport(0,0,cv.width,cv.height);readCols();draw((performance.now()-t0)/1000)}
+var ca=[.357,.357,.941],cb=[.541,.361,.965],dk=1;
+function hx(v,fb){v=(v||'').trim();var m;if(v.charAt(0)==='#'){if(v.length===4)v='#'+v[1]+v[1]+v[2]+v[2]+v[3]+v[3];if(v.length>=7)return[parseInt(v.substr(1,2),16)/255,parseInt(v.substr(3,2),16)/255,parseInt(v.substr(5,2),16)/255]}else if(m=v.match(/\d+(\.\d+)?/g)){if(m.length>=3)return[m[0]/255,m[1]/255,m[2]/255]}return fb}
+function readCols(){var de=document.documentElement,cs=getComputedStyle(de),th=de.getAttribute('data-theme');ca=hx(cs.getPropertyValue('--brand'),ca);cb=hx(cs.getPropertyValue('--brand2'),cb);dk=(th==='dark'||(th!=='light'&&window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches))?1:0}
+function draw(t){gl.uniform2f(U.R,cv.width,cv.height);gl.uniform1f(U.T,rm?12:t+12);gl.uniform2f(U.M,cx,cy);gl.uniform1f(U.E,E);gl.uniform1f(U.H,H);gl.uniform1f(U.D,dk);gl.uniform1f(U.S,cv.width/Math.max(1,c.clientWidth));gl.uniform3f(U.A,ca[0],ca[1],ca[2]);gl.uniform3f(U.B,cb[0],cb[1],cb[2]);gl.drawArrays(gl.TRIANGLES,0,3)}
+function frame(now){raf=0;if(!vis||document.hidden)return;cx+=(tx-cx)*.12;cy+=(ty-cy)*.12;E=Math.min(1.5,E*.93+Math.hypot(cx-px,cy-py)*4*(c.clientWidth/c.clientHeight>1?1:1));px=cx;py=cy;H+=(hv-H)*.08;draw((now-t0)/1000);raf=requestAnimationFrame(frame)}
+function go(){if(!raf&&!rm&&vis&&!document.hidden)raf=requestAnimationFrame(frame)}
+function aim(ev){var r=c.getBoundingClientRect();tx=(ev.clientX-r.left)/r.width;ty=1-(ev.clientY-r.top)/r.height;hv=1}
+c.addEventListener('pointerenter',function(ev){aim(ev);cx=tx;cy=ty;px=cx;py=cy});c.addEventListener('pointermove',aim);
+c.addEventListener('pointerdown',function(ev){aim(ev);E=Math.min(1.5,E+.8)});
+c.addEventListener('pointerleave',function(){hv=0});c.addEventListener('pointercancel',function(){hv=0});
+if('IntersectionObserver' in window)new IntersectionObserver(function(en){vis=en[0].isIntersecting;if(vis)go()}).observe(c);
+document.addEventListener('visibilitychange',function(){if(!document.hidden)go()});
+if('ResizeObserver' in window)new ResizeObserver(size).observe(c);else window.addEventListener('resize',size);
+new MutationObserver(function(){readCols();draw((performance.now()-t0)/1000)}).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
+if(window.matchMedia){var mq=matchMedia('(prefers-color-scheme: dark)');if(mq.addEventListener)mq.addEventListener('change',function(){readCols();draw((performance.now()-t0)/1000)})}
+size();go()})()</script>
 </main>
 </div>
 <footer class="site-footer">
@@ -946,6 +1126,7 @@ setup();
 <a href="/es/" data-tr="f_home">Inicio</a>
 <a href="/es/about/" data-tr="f_about">Acerca de</a>
 <a href="/es/guide/" data-tr="f_guide">Guía</a>
+<a href="/articles/">Artículos</a>
 <a href="/es/dice/" data-tr="t_dice_n">Tirar dados</a>
 <a href="/es/coin-flip/" data-tr="t_coin_n">Cara o cruz</a>
 <a href="/es/cup-shuffle/" data-tr="t_cup_n">Vasos con números</a></nav>
@@ -953,7 +1134,8 @@ setup();
 <a href="/es/terms/" data-tr="f_terms">Términos y condiciones</a>
 <a href="/es/privacy/" data-tr="f_privacy">Política de privacidad</a></nav>
 <nav class="ft-col" aria-label="Support"><h3 data-tr="ft_h_help">Ayuda</h3>
-<a href="#" data-modal="contact-modal" data-topic="other" role="button" data-tr="f_contact">Contáctanos</a></nav>
+<a href="#" data-modal="contact-modal" data-topic="other" role="button" data-tr="f_contact">Contáctanos</a>
+<a href="/contact/">Datos de contacto</a></nav>
 </div>
 <nav class="ft-langs" aria-label="Idioma" data-tra="aria-label:lang"><a href="/es/cup-shuffle/" hreflang="en" lang="en">English</a><a href="/fr/cup-shuffle/" hreflang="fr" lang="fr">Français</a><a href="/ru/cup-shuffle/" hreflang="ru" lang="ru">Русский</a><a href="/ja/cup-shuffle/" hreflang="ja" lang="ja">日本語</a><a href="/fil/cup-shuffle/" hreflang="fil" lang="fil">Filipino</a><a href="/hi/cup-shuffle/" hreflang="hi" lang="hi">हिन्दी</a><a href="/de/cup-shuffle/" hreflang="de" lang="de">Deutsch</a><a href="/es/cup-shuffle/" hreflang="es" lang="es" aria-current="page">Español</a><a href="/pt/cup-shuffle/" hreflang="pt" lang="pt">Português</a><a href="/id/cup-shuffle/" hreflang="id" lang="id">Bahasa Indonesia</a><a href="/ar/cup-shuffle/" hreflang="ar" lang="ar">العربية</a></nav>
 <div class="ft-bottom">

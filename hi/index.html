@@ -616,6 +616,34 @@ html.theme-anim .tknob{transition:left .35s cubic-bezier(.3,1.3,.5,1),background
 @media(max-width:460px){.toolic{height:92px}}
 @media(prefers-reduced-motion:reduce){.toolcard:hover .toolic *,.toolcard:focus-visible .toolic *{animation:none!important}}
 @media(prefers-reduced-motion:reduce){.toolcard{transition:none}.toolcard:hover{transform:none}}
+
+/* ===== settings box between the animation and the main button ===== */
+.setbox{margin:0;padding:0;border:0}
+.card.setcard{padding:20px 24px}
+.setbox .row{margin:0}
+.setbox .grp:first-child{margin-top:0}
+.setbox .grp{margin-top:14px}
+.setbox label,.setbox .lbl{text-align:start}
+.orow{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start;margin-top:14px}
+.orow .selw,.orow .optw{min-width:0}
+.orow .chips{flex-wrap:nowrap;gap:8px}
+.orow .chips .mode{flex:1 1 0;min-width:0}
+.orow .chips .mode span{width:100%;justify-content:center;text-align:center;white-space:normal;line-height:1.2;padding:4px 10px}
+select.msel{width:100%;min-height:44px;font:inherit;font-weight:600;color:var(--ink);background-color:var(--field);border:1px solid var(--line);border-radius:999px;padding:0 42px 0 18px;-webkit-appearance:none;appearance:none;cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%238a8fb0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 18px center;background-size:12px 8px;transition:border-color .15s,box-shadow .15s}
+select.msel:hover{border-color:var(--brand)}
+select.msel:focus-visible{outline:3px solid var(--brand);outline-offset:2px}
+select.msel:disabled{opacity:.5;cursor:not-allowed}
+select.msel option{background:var(--card);color:var(--ink)}
+html[dir=rtl] select.msel{padding:0 18px 0 42px;background-position:left 18px center}
+@media(max-width:560px){
+.card.setcard{padding:16px 18px}
+.orow{grid-template-columns:1fr;gap:10px;margin-top:10px}
+.orow .selw,.orow .optw{flex:none;width:100%}
+.orow .chips{flex-wrap:nowrap;width:100%}
+.orow .chips .mode{flex:1 1 0;min-width:0}
+.orow .chips .mode span{width:100%;justify-content:center;text-align:center;white-space:normal;line-height:1.2;padding:4px 8px;font-size:.85rem}
+select.msel{min-height:42px}
+}
 </style>
 
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "रैंडम नंबर जेनरेटर क्या है?", "acceptedAnswer": {"@type": "Answer", "text": "यह एक ऐसा टूल है जो बिना किसी अनुमानित पैटर्न के संख्या चुनता है। Randomly आपके चुने न्यूनतम और अधिकतम के बीच एक पूर्ण संख्या चुनता है।"}}, {"@type": "Question", "name": "यह रैंडम नंबर जनरेटर दूसरों से अलग कैसे है?", "acceptedAnswer": {"@type": "Answer", "text": "ज़्यादातर जनरेटर बस एक नंबर दिखा देते हैं। Randomly चयन को एक छोटे रिवील में बदल देता है, जिसमें पाँच एनिमेशन स्टाइल हैं (व्हील, मिस्ट्री क्रेट, नंबर मशीन, कार्ड ड्रॉ और बादल बारिश), और नतीजा निष्पक्ष ही रहता है। यह तेज़ है, हर स्क्रीन पर चलता है, और जल्दी हो तो आप किसी भी एनिमेशन को छोड़ सकते हैं।"}}, {"@type": "Question", "name": "दूसरे ऑनलाइन टूल की जगह इस रैंडम नंबर जनरेटर का इस्तेमाल क्यों करें?", "acceptedAnswer": {"@type": "Answer", "text": "यह कुछ चीज़ें अच्छी तरह करता है: आपके ब्राउज़र के क्रिप्टोग्राफ़िक रैंडम स्रोत से निष्पक्ष नतीजे, साफ़-सुथरा आधुनिक इंटरफ़ेस, तुरंत नतीजा, और वैकल्पिक एनिमेशन जो नंबर चुनने को और रोचक बनाते हैं। कुछ इंस्टॉल नहीं करना पड़ता और खाता भी नहीं बनाना पड़ता।"}}, {"@type": "Question", "name": "क्या यह मुफ़्त रैंडम नंबर जनरेटर इस्तेमाल करना आसान है?", "acceptedAnswer": {"@type": "Answer", "text": "हाँ। यह मुफ़्त है, साइन-अप की ज़रूरत नहीं और कुछ इंस्टॉल भी नहीं करना पड़ता। न्यूनतम और अधिकतम संख्या डालें, एक बटन दबाएं और कुछ ही सेकंड में आपका नंबर दिख जाता है।"}}, {"@type": "Question", "name": "क्या मैं 1 से 100 तक रैंडम नंबर बना सकता हूं?", "acceptedAnswer": {"@type": "Answer", "text": "हां। न्यूनतम और अधिकतम में 1 और 100 लिखें, फिर अपना नंबर दिखाएं।"}}, {"@type": "Question", "name": "क्या इसमें एनिमेशन हैं?", "acceptedAnswer": {"@type": "Answer", "text": "हाँ। पाँच रिवील मोड में से चुनें: व्हील, मिस्ट्री क्रेट, नंबर मशीन, कार्ड ड्रॉ और बादल बारिश। नंबर पहले चुना जाता है और एनिमेशन सिर्फ़ उसे दिखाता है, इसलिए वह नतीजे को नहीं बदलता। जल्दी में हैं? एनिमेशन छोड़ें पर टिक करें या कभी भी छोड़ें दबाएं।"}}, {"@type": "Question", "name": "क्या यह मोबाइल पर आसानी से चलता है?", "acceptedAnswer": {"@type": "Answer", "text": "हाँ। लेआउट फ़ोन, टैबलेट और कंप्यूटर के हिसाब से ढल जाता है और कंट्रोल अंगूठे से आसानी से चलाए जा सकते हैं। कोई ऐप डाउनलोड नहीं करना है: बस पेज को अपने मोबाइल ब्राउज़र में खोलें।"}}, {"@type": "Question", "name": "क्या यह लाइट और डार्क मोड को सपोर्ट करता है?", "acceptedAnswer": {"@type": "Answer", "text": "हाँ। डिफ़ॉल्ट रूप से लाइट मोड चालू रहता है, और पेज के ऊपर थीम बटन से आप डार्क मोड पर जा सकते हैं। आपकी पसंद अगली बार के लिए याद रखी जाती है।"}}, {"@type": "Question", "name": "रैंडम नंबर जेनरेटर कैसे काम करता है?", "acceptedAnswer": {"@type": "Answer", "text": "Randomly आपके ब्राउज़र का बिल्ट-इन क्रिप्टोग्राफ़िक रैंडम स्रोत इस्तेमाल करता है, इसलिए आपकी रेंज की हर पूर्ण संख्या के चुने जाने की संभावना बराबर होती है।"}}, {"@type": "Question", "name": "क्या मैं दो संख्याओं के बीच रैंडम नंबर बना सकता हूं?", "acceptedAnswer": {"@type": "Answer", "text": "हां। 1 से 1,000,000 के बीच कोई भी न्यूनतम और अधिकतम दर्ज करें। दोनों सिरे चुने जा सकते हैं।"}}, {"@type": "Question", "name": "क्या मैं 1 से 1,000 के बीच रैंडम नंबर बना सकता/सकती हूँ?", "acceptedAnswer": {"@type": "Answer", "text": "हाँ। न्यूनतम और अधिकतम में 1 और 1000 लिखें, फिर अपना नंबर दिखाएं।"}}, {"@type": "Question", "name": "क्या मैं 1 से 1,000,000 तक रैंडम नंबर बना सकता हूं?", "acceptedAnswer": {"@type": "Answer", "text": "हां। न्यूनतम और अधिकतम में 1 और 1000000 लिखें और दस लाख तक की पूर्ण संख्या पाएं।"}}, {"@type": "Question", "name": "क्या मैं इसे कक्षा या समूह गतिविधि के लिए ऑनलाइन रैंडम नंबर पिकर की तरह इस्तेमाल कर सकता/सकती हूँ?", "acceptedAnswer": {"@type": "Answer", "text": "हाँ। रेंज को अपनी कक्षा की सूची या समूह के आकार के अनुसार रखें, जैसे 1–30 या 1–100, और नंबर चुनें। निष्पक्ष चयन के लिए शुरू करने से पहले रेंज तय कर लें, और अगर हर नंबर सिर्फ़ एक बार आना चाहिए तो दोहराव नहीं चालू करें।"}}, {"@type": "Question", "name": "क्या मैं दोहराए गए नंबर से बच सकता/सकती हूँ या पिछले नतीजे देख सकता/सकती हूँ?", "acceptedAnswer": {"@type": "Answer", "text": "हाँ। विकल्प में दोहराव नहीं चालू करें, ताकि रेंज पूरी होने तक कोई नंबर दो बार न आए। हाल के नतीजे में आपके ताज़ा नतीजे दिखते हैं, इसलिए कोई नतीजा छूट जाए तो आप पीछे देख सकते हैं।"}}, {"@type": "Question", "name": "क्या मेरे बनाए गए नंबर कहीं सेव होते हैं?", "acceptedAnswer": {"@type": "Answer", "text": "नहीं। नंबर आपके ब्राउज़र में बनते हैं, और आपके डाले गए किसी भी विवरण को सर्वर पर नहीं भेजा जाता।"}}, {"@type": "Question", "name": "क्या मैं इसे लॉटरी या जुए के लिए इस्तेमाल कर सकता/सकती हूँ?", "acceptedAnswer": {"@type": "Answer", "text": "नहीं। Randomly रोज़मर्रा के कामों जैसे खेल, कक्षा और सरल फ़ैसलों के लिए बना है। यह लॉटरी, जुए, इनाम या क्रिप्टोग्राफ़िक कीज़ के लिए नहीं है।"}}, {"@type": "Question", "name": "क्या बिना साइन-अप या लॉगिन वाला रैंडम नंबर जनरेटर है?", "acceptedAnswer": {"@type": "Answer", "text": "हाँ। Randomly मुफ़्त है और इसमें साइन-अप या लॉगिन नहीं चाहिए। पेज खोलें, रेंज चुनें और अपना नंबर देखें। कुछ इंस्टॉल करने की ज़रूरत नहीं।"}}, {"@type": "Question", "name": "क्या इसे गिवअवे, प्रतियोगिता या विजेता चुनने के लिए इस्तेमाल कर सकते हैं?", "acceptedAnswer": {"@type": "Answer", "text": "हाँ, आम गिवअवे, प्रतियोगिताओं और कक्षा के ड्रॉ के लिए। प्रतिभागियों को नंबर दें, रेंज उसी हिसाब से सेट करें और नंबर चुनें। नियमों से बंधे ड्रॉ, कीमती इनाम या प्रमाणन वाले मामलों में आधिकारिक तरीका अपनाएँ।"}}]}</script>
@@ -784,25 +812,30 @@ html.theme-anim .tknob{transition:left .35s cubic-bezier(.3,1.3,.5,1),background
 <div class="hist" id="hist" hidden><div class="hhead"><div class="htitle" data-tr="hist">हाल के नतीजे</div><div class="hacts"><button class="hclear" id="hcopyall" type="button" data-tr="hcopyall">सब कॉपी करें</button><button class="hclear" id="hclear" type="button" data-tr="hclear">साफ़ करें</button></div></div><ol class="hlist" id="hlist" data-tra="aria-label:hist" aria-label="हाल के नतीजे"></ol></div>
 </section>
 
-<section class="card" aria-label="रेंज और रिवील सेटिंग्स" data-tra="aria-label:settings">
+<section class="card setcard" aria-label="रेंज और रिवील सेटिंग्स" data-tra="aria-label:settings"><div class="setbox tset">
 <div class="row">
 <div><label for="min" data-tr="min">न्यूनतम</label><input id="min" type="number" inputmode="numeric" min="1" max="1000000" step="1" value="1"></div>
 <div><label for="max" data-tr="max">अधिकतम</label><input id="max" type="number" inputmode="numeric" min="1" max="1000000" step="1" value="100"></div>
 </div>
-<div class="grp"><div class="lbl" id="ml" data-tr="modelbl">रिवील मोड</div>
-<div class="chips" role="radiogroup" aria-labelledby="ml">
-<label class="mode"><input type="radio" name="mode" value="wheel" checked><span data-tr="wheel">🎡 व्हील</span></label>
-<label class="mode"><input type="radio" name="mode" value="crate"><span data-tr="crate">📦 मिस्ट्री क्रेट</span></label>
-<label class="mode"><input type="radio" name="mode" value="machine"><span data-tr="machine">⚡ नंबर मशीन</span></label>
-<label class="mode"><input type="radio" name="mode" value="card"><span data-tr="card">🃏 कार्ड ड्रॉ</span></label>
-<label class="mode"><input type="radio" name="mode" value="rain"><span data-tr="rain">🌧️ बादल बारिश</span></label>
-</div></div>
-<div class="grp"><div class="lbl" id="ol" data-tr="opts">विकल्प</div>
+<div class="orow">
+<div class="selw"><label for="modesel" data-tr="modelbl">रिवील मोड</label>
+<select id="modesel" class="msel">
+<option value="wheel" data-tr="wheel">🎡 व्हील</option>
+<option value="crate" data-tr="crate">📦 मिस्ट्री क्रेट</option>
+<option value="machine" data-tr="machine">⚡ नंबर मशीन</option>
+<option value="card" data-tr="card">🃏 कार्ड ड्रॉ</option>
+<option value="rain" data-tr="rain">🌧️ बादल बारिश</option>
+</select></div>
+<div class="optw"><div class="lbl" id="ol" data-tr="opts">विकल्प</div>
 <div class="chips" role="group" aria-labelledby="ol">
 <label class="mode"><input type="checkbox" id="norep"><span><b data-tr="norep">दोहराव नहीं</b></span></label>
 <label class="mode"><input type="checkbox" id="qskip"><span><b data-tr="qskip">एनिमेशन छोड़ें</b></span></label>
-</div></div>
-</section>
+</div>
+</div>
+</div>
+</div></section>
+
+
 
 <section class="card toolsec" aria-labelledby="mt-h">
 <h2 id="mt-h" data-tr="mt_h">और टूल</h2>
@@ -950,6 +983,7 @@ size();go()})()</script>
 <a href="/hi/" data-tr="f_home">होम</a>
 <a href="/hi/about/" data-tr="f_about">परिचय</a>
 <a href="/hi/guide/" data-tr="f_guide">गाइड</a>
+<a href="/articles/">लेख</a>
 <a href="/hi/dice/" data-tr="t_dice_n">पासा रोलर</a>
 <a href="/hi/coin-flip/" data-tr="t_coin_n">सिक्का उछालें</a>
 <a href="/hi/cup-shuffle/" data-tr="t_cup_n">नंबर कप शफल</a></nav>
@@ -957,7 +991,8 @@ size();go()})()</script>
 <a href="/hi/terms/" data-tr="f_terms">नियम और शर्तें</a>
 <a href="/hi/privacy/" data-tr="f_privacy">गोपनीयता नीति</a></nav>
 <nav class="ft-col" aria-label="Support"><h3 data-tr="ft_h_help">सहायता</h3>
-<a href="#" data-modal="contact-modal" data-topic="other" role="button" data-tr="f_contact">हमसे संपर्क करें</a></nav>
+<a href="#" data-modal="contact-modal" data-topic="other" role="button" data-tr="f_contact">हमसे संपर्क करें</a>
+<a href="/contact/">संपर्क विवरण</a></nav>
 </div>
 <nav class="ft-langs" aria-label="भाषा" data-tra="aria-label:lang"><a href="/" hreflang="en" lang="en">English</a><a href="/fr/" hreflang="fr" lang="fr">Français</a><a href="/ru/" hreflang="ru" lang="ru">Русский</a><a href="/ja/" hreflang="ja" lang="ja">日本語</a><a href="/fil/" hreflang="fil" lang="fil">Filipino</a><a href="/hi/" hreflang="hi" lang="hi" aria-current="page">हिन्दी</a><a href="/de/" hreflang="de" lang="de">Deutsch</a><a href="/es/" hreflang="es" lang="es">Español</a><a href="/pt/" hreflang="pt" lang="pt">Português</a><a href="/id/" hreflang="id" lang="id">Bahasa Indonesia</a><a href="/ar/" hreflang="ar" lang="ar">العربية</a></nav>
 <div class="ft-bottom">
@@ -1020,7 +1055,8 @@ function rnd(min,max){ // unbiased via rejection sampling
   return min+a[0]%span;
 }
 function say(t,err){var m=$('msg');m.textContent=t;m.className='msg'+(err?' err':'')}
-function mode(){return document.querySelector('input[name=mode]:checked').value}
+(function(){try{var v=localStorage.getItem('randomly-mode'),m=document.getElementById('modesel');if(v&&m&&m.querySelector('option[value="'+v+'"]'))m.value=v}catch(e){}})();
+function mode(){return document.getElementById('modesel').value}
 function readRange(){
   var a=$('min').value.trim(),b=$('max').value.trim();
   if(a===''||b===''){say(RL.t('e1'),true);return null}
@@ -1039,6 +1075,7 @@ function readRange(){
 }
 function lock(on){busy=on;$('go').disabled=on;
   document.querySelectorAll('.chip,.mode input,#min,#max').forEach(function(e){e.disabled=on});
+  $('modesel').disabled=on||$('qskip').checked;
   $('big').setAttribute('aria-busy',on)}
 function setStage(){$('stage').dataset.m=mode();$('method').textContent=last===null?RL.t('ready'):names[lastMode]}
 var AC=null,NB=null,soundOn=true;
@@ -1767,7 +1804,7 @@ async function runRain(n){
 }
 $('rskip').addEventListener('click',function(){if(rainSkip)rainSkip();else if(skipFn)skipFn()});
 document.addEventListener('keydown',function(e){if(e.key!=='Escape')return;if(rainState==='run'&&rainSkip)rainSkip();else if(skipFn)skipFn()});
-document.querySelectorAll('input[name=mode]').forEach(function(r){r.addEventListener('change',rainReset)});
+[document.getElementById('modesel')].forEach(function(r){r.addEventListener('change',rainReset)});
 window.addEventListener('resize',function(){if(R.run)rainSize()});
 function doSkip(){
   if(SK.on||!busy)return;
@@ -1825,6 +1862,8 @@ function pickNum(min,max){
   else{var rem=[];for(var v=min;v<=max;v++)if(!NR.used.has(v))rem.push(v);n=rem[rnd(0,rem.length-1)]}
   NR.used.add(n);return n}
 $('norep').addEventListener('change',function(){NR.on=this.checked;NR.key='';NR.used=new Set()});
+$('modesel').addEventListener('change',function(){try{localStorage.setItem('randomly-mode',this.value)}catch(e){}});
+$('qskip').addEventListener('change',function(){if(!busy)$('modesel').disabled=this.checked});
 async function reveal(){
   if(busy)return;
   var r=readRange();if(!r)return;
@@ -1870,7 +1909,7 @@ async function reveal(){
 }
 $('go').addEventListener('click',reveal);
 ['min','max'].forEach(function(i){$(i).addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();reveal()}})});
-document.querySelectorAll('input[name=mode]').forEach(function(r){r.addEventListener('change',function(){
+[document.getElementById('modesel')].forEach(function(r){r.addEventListener('change',function(){
   setStage();$('stage').classList.remove('snap');
   $('scene').className='scene';$('cnum').className='cnum';
   $('mach').classList.remove('locked','hold','charge','processing');

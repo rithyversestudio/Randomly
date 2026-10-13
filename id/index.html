@@ -616,6 +616,34 @@ html.theme-anim .tknob{transition:left .35s cubic-bezier(.3,1.3,.5,1),background
 @media(max-width:460px){.toolic{height:92px}}
 @media(prefers-reduced-motion:reduce){.toolcard:hover .toolic *,.toolcard:focus-visible .toolic *{animation:none!important}}
 @media(prefers-reduced-motion:reduce){.toolcard{transition:none}.toolcard:hover{transform:none}}
+
+/* ===== settings box between the animation and the main button ===== */
+.setbox{margin:0;padding:0;border:0}
+.card.setcard{padding:20px 24px}
+.setbox .row{margin:0}
+.setbox .grp:first-child{margin-top:0}
+.setbox .grp{margin-top:14px}
+.setbox label,.setbox .lbl{text-align:start}
+.orow{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start;margin-top:14px}
+.orow .selw,.orow .optw{min-width:0}
+.orow .chips{flex-wrap:nowrap;gap:8px}
+.orow .chips .mode{flex:1 1 0;min-width:0}
+.orow .chips .mode span{width:100%;justify-content:center;text-align:center;white-space:normal;line-height:1.2;padding:4px 10px}
+select.msel{width:100%;min-height:44px;font:inherit;font-weight:600;color:var(--ink);background-color:var(--field);border:1px solid var(--line);border-radius:999px;padding:0 42px 0 18px;-webkit-appearance:none;appearance:none;cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%238a8fb0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 18px center;background-size:12px 8px;transition:border-color .15s,box-shadow .15s}
+select.msel:hover{border-color:var(--brand)}
+select.msel:focus-visible{outline:3px solid var(--brand);outline-offset:2px}
+select.msel:disabled{opacity:.5;cursor:not-allowed}
+select.msel option{background:var(--card);color:var(--ink)}
+html[dir=rtl] select.msel{padding:0 18px 0 42px;background-position:left 18px center}
+@media(max-width:560px){
+.card.setcard{padding:16px 18px}
+.orow{grid-template-columns:1fr;gap:10px;margin-top:10px}
+.orow .selw,.orow .optw{flex:none;width:100%}
+.orow .chips{flex-wrap:nowrap;width:100%}
+.orow .chips .mode{flex:1 1 0;min-width:0}
+.orow .chips .mode span{width:100%;justify-content:center;text-align:center;white-space:normal;line-height:1.2;padding:4px 8px;font-size:.85rem}
+select.msel{min-height:42px}
+}
 </style>
 
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Apa itu generator angka acak?", "acceptedAnswer": {"@type": "Answer", "text": "Alat yang memilih angka tanpa pola yang bisa diprediksi. Randomly memilih bilangan bulat di antara minimum dan maksimum yang Anda tentukan."}}, {"@type": "Question", "name": "Apa yang membuat generator angka acak ini berbeda?", "acceptedAnswer": {"@type": "Answer", "text": "Kebanyakan generator hanya menampilkan angka. Randomly menjadikan pemilihan sebagai pengungkapan singkat, dengan lima gaya animasi (Roda, Peti Misteri, Mesin Angka, Tarik Kartu, dan Hujan Awan), sambil tetap menjaga hasil yang adil. Generator ini juga cepat, berfungsi di layar apa pun, dan Anda bisa melewati animasi kapan saja saat terburu-buru."}}, {"@type": "Question", "name": "Mengapa menggunakan generator angka acak ini dibandingkan alat online lain?", "acceptedAnswer": {"@type": "Answer", "text": "Fiturnya tidak banyak, tetapi dikerjakan dengan baik: hasil yang adil dari sumber acak kriptografi di browser Anda, antarmuka modern yang bersih, hasil instan, dan animasi opsional yang membuat pengundian angka lebih menarik. Tidak ada yang perlu dipasang dan tidak perlu membuat akun."}}, {"@type": "Question", "name": "Apakah generator angka acak gratis ini mudah digunakan?", "acceptedAnswer": {"@type": "Answer", "text": "Ya. Gratis, tanpa pendaftaran, dan tidak perlu memasang apa pun. Masukkan angka minimum dan maksimum, tekan satu tombol, dan angka Anda muncul dalam hitungan detik."}}, {"@type": "Question", "name": "Bisakah saya menghasilkan angka acak dari 1 sampai 100?", "acceptedAnswer": {"@type": "Answer", "text": "Bisa. Ketik 1 dan 100 sebagai minimum dan maksimum, lalu tampilkan angka Anda."}}, {"@type": "Question", "name": "Apakah ada animasinya?", "acceptedAnswer": {"@type": "Answer", "text": "Ya. Pilih dari lima mode tampilan: Roda, Peti Misteri, Mesin Angka, Tarik Kartu, dan Hujan Awan. Angka dipilih lebih dulu dan animasi hanya menampilkannya, sehingga tidak pernah mengubah hasil. Terburu-buru? Centang Lewati animasi atau tekan Lewati kapan saja."}}, {"@type": "Question", "name": "Apakah nyaman dipakai di ponsel?", "acceptedAnswer": {"@type": "Answer", "text": "Ya. Tata letaknya menyesuaikan ponsel, tablet, dan komputer, dan kontrolnya mudah digunakan dengan ibu jari. Tidak perlu mengunduh aplikasi: cukup buka halaman ini di browser ponsel Anda."}}, {"@type": "Question", "name": "Apakah mendukung mode terang dan gelap?", "acceptedAnswer": {"@type": "Answer", "text": "Ya. Mode terang adalah pengaturan awal, dan Anda bisa beralih ke mode gelap dengan tombol tema di bagian atas halaman. Pilihan Anda diingat untuk kunjungan berikutnya."}}, {"@type": "Question", "name": "Bagaimana cara kerja generator angka acak?", "acceptedAnswer": {"@type": "Answer", "text": "Randomly memakai sumber acak kriptografi bawaan browser Anda, sehingga setiap bilangan bulat dalam rentang Anda memiliki peluang yang sama."}}, {"@type": "Question", "name": "Bisakah saya menghasilkan angka acak di antara dua angka?", "acceptedAnswer": {"@type": "Answer", "text": "Bisa. Masukkan minimum dan maksimum apa saja dari 1 sampai 1.000.000. Kedua ujungnya bisa terpilih."}}, {"@type": "Question", "name": "Bisakah saya menghasilkan angka acak dari 1 sampai 1.000?", "acceptedAnswer": {"@type": "Answer", "text": "Bisa. Ketik 1 dan 1000 sebagai minimum dan maksimum, lalu tampilkan angkanya."}}, {"@type": "Question", "name": "Bisakah saya menghasilkan angka acak dari 1 sampai 1.000.000?", "acceptedAnswer": {"@type": "Answer", "text": "Bisa. Ketik 1 dan 1000000 sebagai minimum dan maksimum untuk mendapatkan bilangan bulat hingga satu juta."}}, {"@type": "Question", "name": "Bisakah dipakai sebagai pemilih angka acak online untuk kelas atau kegiatan kelompok?", "acceptedAnswer": {"@type": "Answer", "text": "Bisa. Sesuaikan rentang dengan daftar kelas atau jumlah anggota kelompok, misalnya 1–30 atau 1–100, lalu pilih satu angka. Agar adil, tentukan rentang sebelum mulai, dan aktifkan Tanpa pengulangan jika setiap angka hanya boleh keluar sekali."}}, {"@type": "Question", "name": "Bisakah saya menghindari angka yang berulang atau melihat hasil sebelumnya?", "acceptedAnswer": {"@type": "Answer", "text": "Bisa. Aktifkan Tanpa pengulangan di Opsi agar angka tidak keluar dua kali sampai seluruh rentang terpakai. Undian terbaru menampilkan hasil terakhir Anda, jadi Anda bisa melihat kembali jika ada yang terlewat."}}, {"@type": "Question", "name": "Apakah angka yang saya hasilkan disimpan di suatu tempat?", "acceptedAnswer": {"@type": "Answer", "text": "Tidak. Angka dihasilkan di browser Anda, dan tidak ada yang Anda masukkan dikirim ke server."}}, {"@type": "Question", "name": "Bisakah dipakai untuk lotere atau judi?", "acceptedAnswer": {"@type": "Answer", "text": "Tidak. Randomly dibuat untuk keperluan sehari-hari seperti permainan, kelas, dan keputusan sederhana. Layanan ini tidak ditujukan untuk lotere, judi, hadiah, atau kunci kriptografi."}}, {"@type": "Question", "name": "Apakah ada generator angka acak tanpa daftar atau login?", "acceptedAnswer": {"@type": "Answer", "text": "Ya. Randomly gratis dan tidak perlu daftar atau login. Buka halaman, pilih rentang, lalu tampilkan angkanya. Tidak ada yang perlu diinstal."}}, {"@type": "Question", "name": "Bisakah dipakai untuk giveaway, kontes, atau memilih pemenang?", "acceptedAnswer": {"@type": "Answer", "text": "Bisa, untuk giveaway, kontes, dan undian kelas yang santai. Beri nomor peserta, sesuaikan rentang, lalu pilih angka. Untuk undian yang diatur hukum, hadiah bernilai besar, atau yang perlu sertifikasi, gunakan metode resmi."}}]}</script>
@@ -784,25 +812,30 @@ html.theme-anim .tknob{transition:left .35s cubic-bezier(.3,1.3,.5,1),background
 <div class="hist" id="hist" hidden><div class="hhead"><div class="htitle" data-tr="hist">Undian terbaru</div><div class="hacts"><button class="hclear" id="hcopyall" type="button" data-tr="hcopyall">Salin semua</button><button class="hclear" id="hclear" type="button" data-tr="hclear">Hapus</button></div></div><ol class="hlist" id="hlist" data-tra="aria-label:hist" aria-label="Undian terbaru"></ol></div>
 </section>
 
-<section class="card" aria-label="Pengaturan rentang dan tampilan" data-tra="aria-label:settings">
+<section class="card setcard" aria-label="Pengaturan rentang dan tampilan" data-tra="aria-label:settings"><div class="setbox tset">
 <div class="row">
 <div><label for="min" data-tr="min">Minimum</label><input id="min" type="number" inputmode="numeric" min="1" max="1000000" step="1" value="1"></div>
 <div><label for="max" data-tr="max">Maksimum</label><input id="max" type="number" inputmode="numeric" min="1" max="1000000" step="1" value="100"></div>
 </div>
-<div class="grp"><div class="lbl" id="ml" data-tr="modelbl">Mode tampilan</div>
-<div class="chips" role="radiogroup" aria-labelledby="ml">
-<label class="mode"><input type="radio" name="mode" value="wheel" checked><span data-tr="wheel">🎡 Roda</span></label>
-<label class="mode"><input type="radio" name="mode" value="crate"><span data-tr="crate">📦 Peti Misteri</span></label>
-<label class="mode"><input type="radio" name="mode" value="machine"><span data-tr="machine">⚡ Mesin Angka</span></label>
-<label class="mode"><input type="radio" name="mode" value="card"><span data-tr="card">🃏 Tarik Kartu</span></label>
-<label class="mode"><input type="radio" name="mode" value="rain"><span data-tr="rain">🌧️ Hujan Awan</span></label>
-</div></div>
-<div class="grp"><div class="lbl" id="ol" data-tr="opts">Opsi</div>
+<div class="orow">
+<div class="selw"><label for="modesel" data-tr="modelbl">Mode tampilan</label>
+<select id="modesel" class="msel">
+<option value="wheel" data-tr="wheel">🎡 Roda</option>
+<option value="crate" data-tr="crate">📦 Peti Misteri</option>
+<option value="machine" data-tr="machine">⚡ Mesin Angka</option>
+<option value="card" data-tr="card">🃏 Tarik Kartu</option>
+<option value="rain" data-tr="rain">🌧️ Hujan Awan</option>
+</select></div>
+<div class="optw"><div class="lbl" id="ol" data-tr="opts">Opsi</div>
 <div class="chips" role="group" aria-labelledby="ol">
 <label class="mode"><input type="checkbox" id="norep"><span><b data-tr="norep">Tanpa pengulangan</b></span></label>
 <label class="mode"><input type="checkbox" id="qskip"><span><b data-tr="qskip">Lewati animasi</b></span></label>
-</div></div>
-</section>
+</div>
+</div>
+</div>
+</div></section>
+
+
 
 <section class="card toolsec" aria-labelledby="mt-h">
 <h2 id="mt-h" data-tr="mt_h">Alat lainnya</h2>
@@ -950,6 +983,7 @@ size();go()})()</script>
 <a href="/id/" data-tr="f_home">Beranda</a>
 <a href="/id/about/" data-tr="f_about">Tentang</a>
 <a href="/id/guide/" data-tr="f_guide">Panduan</a>
+<a href="/articles/">Artikel</a>
 <a href="/id/dice/" data-tr="t_dice_n">Lempar Dadu</a>
 <a href="/id/coin-flip/" data-tr="t_coin_n">Lempar Koin</a>
 <a href="/id/cup-shuffle/" data-tr="t_cup_n">Gelas Angka</a></nav>
@@ -957,7 +991,8 @@ size();go()})()</script>
 <a href="/id/terms/" data-tr="f_terms">Syarat dan Ketentuan</a>
 <a href="/id/privacy/" data-tr="f_privacy">Kebijakan Privasi</a></nav>
 <nav class="ft-col" aria-label="Support"><h3 data-tr="ft_h_help">Bantuan</h3>
-<a href="#" data-modal="contact-modal" data-topic="other" role="button" data-tr="f_contact">Hubungi kami</a></nav>
+<a href="#" data-modal="contact-modal" data-topic="other" role="button" data-tr="f_contact">Hubungi kami</a>
+<a href="/contact/">Detail kontak</a></nav>
 </div>
 <nav class="ft-langs" aria-label="Bahasa" data-tra="aria-label:lang"><a href="/" hreflang="en" lang="en">English</a><a href="/fr/" hreflang="fr" lang="fr">Français</a><a href="/ru/" hreflang="ru" lang="ru">Русский</a><a href="/ja/" hreflang="ja" lang="ja">日本語</a><a href="/fil/" hreflang="fil" lang="fil">Filipino</a><a href="/hi/" hreflang="hi" lang="hi">हिन्दी</a><a href="/de/" hreflang="de" lang="de">Deutsch</a><a href="/es/" hreflang="es" lang="es">Español</a><a href="/pt/" hreflang="pt" lang="pt">Português</a><a href="/id/" hreflang="id" lang="id" aria-current="page">Bahasa Indonesia</a><a href="/ar/" hreflang="ar" lang="ar">العربية</a></nav>
 <div class="ft-bottom">
@@ -1020,7 +1055,8 @@ function rnd(min,max){ // unbiased via rejection sampling
   return min+a[0]%span;
 }
 function say(t,err){var m=$('msg');m.textContent=t;m.className='msg'+(err?' err':'')}
-function mode(){return document.querySelector('input[name=mode]:checked').value}
+(function(){try{var v=localStorage.getItem('randomly-mode'),m=document.getElementById('modesel');if(v&&m&&m.querySelector('option[value="'+v+'"]'))m.value=v}catch(e){}})();
+function mode(){return document.getElementById('modesel').value}
 function readRange(){
   var a=$('min').value.trim(),b=$('max').value.trim();
   if(a===''||b===''){say(RL.t('e1'),true);return null}
@@ -1039,6 +1075,7 @@ function readRange(){
 }
 function lock(on){busy=on;$('go').disabled=on;
   document.querySelectorAll('.chip,.mode input,#min,#max').forEach(function(e){e.disabled=on});
+  $('modesel').disabled=on||$('qskip').checked;
   $('big').setAttribute('aria-busy',on)}
 function setStage(){$('stage').dataset.m=mode();$('method').textContent=last===null?RL.t('ready'):names[lastMode]}
 var AC=null,NB=null,soundOn=true;
@@ -1767,7 +1804,7 @@ async function runRain(n){
 }
 $('rskip').addEventListener('click',function(){if(rainSkip)rainSkip();else if(skipFn)skipFn()});
 document.addEventListener('keydown',function(e){if(e.key!=='Escape')return;if(rainState==='run'&&rainSkip)rainSkip();else if(skipFn)skipFn()});
-document.querySelectorAll('input[name=mode]').forEach(function(r){r.addEventListener('change',rainReset)});
+[document.getElementById('modesel')].forEach(function(r){r.addEventListener('change',rainReset)});
 window.addEventListener('resize',function(){if(R.run)rainSize()});
 function doSkip(){
   if(SK.on||!busy)return;
@@ -1825,6 +1862,8 @@ function pickNum(min,max){
   else{var rem=[];for(var v=min;v<=max;v++)if(!NR.used.has(v))rem.push(v);n=rem[rnd(0,rem.length-1)]}
   NR.used.add(n);return n}
 $('norep').addEventListener('change',function(){NR.on=this.checked;NR.key='';NR.used=new Set()});
+$('modesel').addEventListener('change',function(){try{localStorage.setItem('randomly-mode',this.value)}catch(e){}});
+$('qskip').addEventListener('change',function(){if(!busy)$('modesel').disabled=this.checked});
 async function reveal(){
   if(busy)return;
   var r=readRange();if(!r)return;
@@ -1870,7 +1909,7 @@ async function reveal(){
 }
 $('go').addEventListener('click',reveal);
 ['min','max'].forEach(function(i){$(i).addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();reveal()}})});
-document.querySelectorAll('input[name=mode]').forEach(function(r){r.addEventListener('change',function(){
+[document.getElementById('modesel')].forEach(function(r){r.addEventListener('change',function(){
   setStage();$('stage').classList.remove('snap');
   $('scene').className='scene';$('cnum').className='cnum';
   $('mach').classList.remove('locked','hold','charge','processing');
