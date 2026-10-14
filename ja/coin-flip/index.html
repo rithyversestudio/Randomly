@@ -831,7 +831,7 @@ html[dir=rtl] .s-dice,html[dir=rtl] .s-coin,html[dir=rtl] .s-cups{direction:ltr}
 <p><a href="/ja/">乱数ジェネレーターを試す →</a></p>
 <p>結果はブラウザの安全な乱数生成機能で決まり、どの結果も同じ確率で出ます。前の結果が次に影響することはなく、データがサーバーに送られることもありません。 <a href="/ja/guide/">乱数生成器ガイド：仕組みと使い方</a></p>
 </div></article>
-<script>(function(){var L={"roll": "振る", "dice": "個数", "sides": "面", "total": "合計", "flip": "投げる", "heads": "表", "tails": "裏", "flips": "回数", "reset": "リセット", "cs_cups": "カップの数", "cs_mode": "数字", "cs_quick": "クイック設定", "cs_custom": "好きな数字", "cs_uses": "カップの下の数字：", "cs_enter": "各カップに入れる数字を入力してください。", "cs_err": "すべての欄に整数を入力してください。", "cs_start": "数字をカップに隠す", "cs_shuffle": "シャッフル", "cs_shuffling": "シャッフル中…", "cs_pick": "カップを選んでください", "cs_ready": "これが使われる数字です。「シャッフル」を押して、カップを伏せて混ぜましょう。", "cs_result": "あなたの数字", "cs_again": "もう一度シャッフル", "cs_play": "もう一度遊ぶ", "cs_back": "設定を変更", "cs_cup": "カップ", "hist": "最近の結果", "hclear": "クリア", "hcopyall": "すべてコピー", "hcopied": "コピーしました", "hcopy": "コピー", "rskip": "スキップ / 今すぐ表示", "qskip": "アニメーションをスキップ", "opts": "オプション", "ready": "いつでも準備OK", "sound": "サウンド"};function rnd(n){var c=window.crypto||window.msCrypto;if(!c||!c.getRandomValues)return Math.floor(Math.random()*n);var m=Math.floor(4294967296/n)*n,a=new Uint32Array(1);do{c.getRandomValues(a)}while(a[0]>=m);return a[0]%n}
+<script>(function(){var L={"roll": "振る", "dice": "個数", "sides": "面", "total": "合計", "flip": "投げる", "heads": "表", "tails": "裏", "flips": "回数", "reset": "リセット", "cs_cups": "カップの数", "cs_norep": "重複なし", "cs_left": "残りのカップ：", "cs_last": "最後の数字です！もう一度シャッフルで最初から。", "cs_mode": "数字", "cs_quick": "クイック設定", "cs_custom": "好きな数字", "cs_uses": "カップの下の数字：", "cs_enter": "各カップに入れる数字を入力してください。", "cs_err": "すべての欄に整数を入力してください。", "cs_start": "数字をカップに隠す", "cs_shuffle": "シャッフル", "cs_shuffling": "シャッフル中…", "cs_pick": "カップを選んでください", "cs_ready": "これが使われる数字です。「シャッフル」を押して、カップを伏せて混ぜましょう。", "cs_result": "あなたの数字", "cs_again": "もう一度シャッフル", "cs_play": "もう一度遊ぶ", "cs_back": "設定を変更", "cs_cup": "カップ", "hist": "最近の結果", "hclear": "クリア", "hcopyall": "すべてコピー", "hcopied": "コピーしました", "hcopy": "コピー", "rskip": "スキップ / 今すぐ表示", "qskip": "アニメーションをスキップ", "opts": "オプション", "ready": "いつでも準備OK", "sound": "サウンド"};function rnd(n){var c=window.crypto||window.msCrypto;if(!c||!c.getRandomValues)return Math.floor(Math.random()*n);var m=Math.floor(4294967296/n)*n,a=new Uint32Array(1);do{c.getRandomValues(a)}while(a[0]>=m);return a[0]%n}
 
 var $=function(i){return document.getElementById(i)};
 var RM=!!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches);
@@ -931,10 +931,10 @@ function say(t,err){var m=$('msg');m.textContent=t||'';m.className='msg'+(err?' 
 function setHint(t,cls){var h=$('hint');h.textContent=t||'';h.className='hint'+(cls?' '+cls:'')}
 function bigIdle(){var b=$('big');b.className='big idle';b.textContent='?'}
 function setBig(t,cls){var b=$('big');b.className='big'+(cls?' '+cls:'');void b.offsetWidth;b.classList.add('pop');b.textContent=t}
-function lockSet(b){document.querySelectorAll('.tset input,.tset button').forEach(function(e){e.disabled=b})}
+function lockSet(b){document.querySelectorAll('.tset input,.tset button,.tset select').forEach(function(e){e.disabled=b})}
 function lock(b){$('go').disabled=b;lockSet(b)}
 function quick(){return RM||$('qskip').checked}
-function rad(nm){var r=document.querySelector('input[name='+nm+']:checked');return r?r.value:''}
+function rad(nm){var s=document.getElementById(nm);if(s&&s.tagName==='SELECT')return s.value;var r=document.querySelector('input[name='+nm+']:checked');return r?r.value:''}
 function unfocus(){setTimeout(function(){stage.classList.remove('focus')},700)}
 // skip button (shown while an animation runs)
 var skipFn=null;

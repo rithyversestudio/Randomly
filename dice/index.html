@@ -831,7 +831,7 @@ html[dir=rtl] .s-dice,html[dir=rtl] .s-coin,html[dir=rtl] .s-cups{direction:ltr}
 <p><a href="/">Try the random number generator →</a></p>
 <p>Each result uses your browser's secure random generator, so every outcome has the same chance and earlier results never affect the next one. Nothing is sent to a server. <a href="/guide/">Random Number Generator Guide: How It Works and How to Use It</a></p>
 </div></article>
-<script>(function(){var L={"roll": "Roll", "dice": "Dice", "sides": "Sides", "total": "Total", "flip": "Flip", "heads": "Heads", "tails": "Tails", "flips": "Flips", "reset": "Reset", "cs_cups": "Number of cups", "cs_mode": "Numbers", "cs_quick": "Quick Pick", "cs_custom": "Custom Numbers", "cs_uses": "Numbers under the cups:", "cs_enter": "Enter a number for each cup.", "cs_err": "Please enter a whole number in every box.", "cs_start": "Hide numbers under cups", "cs_shuffle": "Shuffle", "cs_shuffling": "Shuffling…", "cs_pick": "Pick a cup", "cs_ready": "These are the numbers in play. Press Shuffle to cover and mix the cups.", "cs_result": "Your Number", "cs_again": "Shuffle Again", "cs_play": "Play Again", "cs_back": "Change setup", "cs_cup": "Cup", "hist": "Recent draws", "hclear": "Clear", "hcopyall": "Copy all", "hcopied": "Copied", "hcopy": "Copy", "rskip": "Skip / Reveal now", "qskip": "Skip animation", "opts": "Options", "ready": "Ready when you are", "sound": "Sound"};function rnd(n){var c=window.crypto||window.msCrypto;if(!c||!c.getRandomValues)return Math.floor(Math.random()*n);var m=Math.floor(4294967296/n)*n,a=new Uint32Array(1);do{c.getRandomValues(a)}while(a[0]>=m);return a[0]%n}
+<script>(function(){var L={"roll": "Roll", "dice": "Dice", "sides": "Sides", "total": "Total", "flip": "Flip", "heads": "Heads", "tails": "Tails", "flips": "Flips", "reset": "Reset", "cs_cups": "Number of cups", "cs_norep": "No repeats", "cs_left": "Cups left:", "cs_last": "Last number drawn! Shuffle again to start over.", "cs_mode": "Numbers", "cs_quick": "Quick Pick", "cs_custom": "Custom Numbers", "cs_uses": "Numbers under the cups:", "cs_enter": "Enter a number for each cup.", "cs_err": "Please enter a whole number in every box.", "cs_start": "Hide numbers under cups", "cs_shuffle": "Shuffle", "cs_shuffling": "Shuffling…", "cs_pick": "Pick a cup", "cs_ready": "These are the numbers in play. Press Shuffle to cover and mix the cups.", "cs_result": "Your Number", "cs_again": "Shuffle Again", "cs_play": "Play Again", "cs_back": "Change setup", "cs_cup": "Cup", "hist": "Recent draws", "hclear": "Clear", "hcopyall": "Copy all", "hcopied": "Copied", "hcopy": "Copy", "rskip": "Skip / Reveal now", "qskip": "Skip animation", "opts": "Options", "ready": "Ready when you are", "sound": "Sound"};function rnd(n){var c=window.crypto||window.msCrypto;if(!c||!c.getRandomValues)return Math.floor(Math.random()*n);var m=Math.floor(4294967296/n)*n,a=new Uint32Array(1);do{c.getRandomValues(a)}while(a[0]>=m);return a[0]%n}
 
 var $=function(i){return document.getElementById(i)};
 var RM=!!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches);
@@ -931,10 +931,10 @@ function say(t,err){var m=$('msg');m.textContent=t||'';m.className='msg'+(err?' 
 function setHint(t,cls){var h=$('hint');h.textContent=t||'';h.className='hint'+(cls?' '+cls:'')}
 function bigIdle(){var b=$('big');b.className='big idle';b.textContent='?'}
 function setBig(t,cls){var b=$('big');b.className='big'+(cls?' '+cls:'');void b.offsetWidth;b.classList.add('pop');b.textContent=t}
-function lockSet(b){document.querySelectorAll('.tset input,.tset button').forEach(function(e){e.disabled=b})}
+function lockSet(b){document.querySelectorAll('.tset input,.tset button,.tset select').forEach(function(e){e.disabled=b})}
 function lock(b){$('go').disabled=b;lockSet(b)}
 function quick(){return RM||$('qskip').checked}
-function rad(nm){var r=document.querySelector('input[name='+nm+']:checked');return r?r.value:''}
+function rad(nm){var s=document.getElementById(nm);if(s&&s.tagName==='SELECT')return s.value;var r=document.querySelector('input[name='+nm+']:checked');return r?r.value:''}
 function unfocus(){setTimeout(function(){stage.classList.remove('focus')},700)}
 // skip button (shown while an animation runs)
 var skipFn=null;

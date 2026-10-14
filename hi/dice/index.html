@@ -831,7 +831,7 @@ html[dir=rtl] .s-dice,html[dir=rtl] .s-coin,html[dir=rtl] .s-cups{direction:ltr}
 <p><a href="/hi/">रैंडम नंबर जनरेटर आज़माएं →</a></p>
 <p>हर नतीजा आपके ब्राउज़र के सुरक्षित रैंडम जनरेटर से तय होता है, इसलिए हर नतीजे की संभावना बराबर है और पिछले नतीजे अगले को प्रभावित नहीं करते। कुछ भी सर्वर को नहीं भेजा जाता। <a href="/hi/guide/">रैंडम नंबर जनरेटर गाइड: यह कैसे काम करता है और कैसे इस्तेमाल करें</a></p>
 </div></article>
-<script>(function(){var L={"roll": "फेंकें", "dice": "पासे", "sides": "पक्ष", "total": "कुल", "flip": "उछालें", "heads": "चित", "tails": "पट", "flips": "उछाल", "reset": "रीसेट", "cs_cups": "कप की संख्या", "cs_mode": "संख्याएं", "cs_quick": "क्विक पिक", "cs_custom": "अपनी संख्याएं", "cs_uses": "कपों के नीचे की संख्याएं:", "cs_enter": "हर कप के लिए एक संख्या दर्ज करें।", "cs_err": "हर बॉक्स में एक पूर्ण संख्या दर्ज करें।", "cs_start": "संख्याएं कपों के नीचे छिपाएं", "cs_shuffle": "मिलाएं", "cs_shuffling": "मिला रहे हैं…", "cs_pick": "एक कप चुनें", "cs_ready": "ये खेल की संख्याएं हैं। कप ढकने और मिलाने के लिए मिलाएं दबाएं।", "cs_result": "आपकी संख्या", "cs_again": "फिर से मिलाएं", "cs_play": "फिर खेलें", "cs_back": "सेटअप बदलें", "cs_cup": "कप", "hist": "हाल के नतीजे", "hclear": "साफ़ करें", "hcopyall": "सब कॉपी करें", "hcopied": "कॉपी हो गया", "hcopy": "कॉपी करें", "rskip": "छोड़ें / अभी दिखाएं", "qskip": "एनिमेशन छोड़ें", "opts": "विकल्प", "ready": "जब आप तैयार हों", "sound": "ध्वनि"};function rnd(n){var c=window.crypto||window.msCrypto;if(!c||!c.getRandomValues)return Math.floor(Math.random()*n);var m=Math.floor(4294967296/n)*n,a=new Uint32Array(1);do{c.getRandomValues(a)}while(a[0]>=m);return a[0]%n}
+<script>(function(){var L={"roll": "फेंकें", "dice": "पासे", "sides": "पक्ष", "total": "कुल", "flip": "उछालें", "heads": "चित", "tails": "पट", "flips": "उछाल", "reset": "रीसेट", "cs_cups": "कप की संख्या", "cs_norep": "बिना दोहराव", "cs_left": "बचे हुए कप:", "cs_last": "आखिरी संख्या! दोबारा शुरू करने के लिए फिर से मिलाएं।", "cs_mode": "संख्याएं", "cs_quick": "क्विक पिक", "cs_custom": "अपनी संख्याएं", "cs_uses": "कपों के नीचे की संख्याएं:", "cs_enter": "हर कप के लिए एक संख्या दर्ज करें।", "cs_err": "हर बॉक्स में एक पूर्ण संख्या दर्ज करें।", "cs_start": "संख्याएं कपों के नीचे छिपाएं", "cs_shuffle": "मिलाएं", "cs_shuffling": "मिला रहे हैं…", "cs_pick": "एक कप चुनें", "cs_ready": "ये खेल की संख्याएं हैं। कप ढकने और मिलाने के लिए मिलाएं दबाएं।", "cs_result": "आपकी संख्या", "cs_again": "फिर से मिलाएं", "cs_play": "फिर खेलें", "cs_back": "सेटअप बदलें", "cs_cup": "कप", "hist": "हाल के नतीजे", "hclear": "साफ़ करें", "hcopyall": "सब कॉपी करें", "hcopied": "कॉपी हो गया", "hcopy": "कॉपी करें", "rskip": "छोड़ें / अभी दिखाएं", "qskip": "एनिमेशन छोड़ें", "opts": "विकल्प", "ready": "जब आप तैयार हों", "sound": "ध्वनि"};function rnd(n){var c=window.crypto||window.msCrypto;if(!c||!c.getRandomValues)return Math.floor(Math.random()*n);var m=Math.floor(4294967296/n)*n,a=new Uint32Array(1);do{c.getRandomValues(a)}while(a[0]>=m);return a[0]%n}
 
 var $=function(i){return document.getElementById(i)};
 var RM=!!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches);
@@ -931,10 +931,10 @@ function say(t,err){var m=$('msg');m.textContent=t||'';m.className='msg'+(err?' 
 function setHint(t,cls){var h=$('hint');h.textContent=t||'';h.className='hint'+(cls?' '+cls:'')}
 function bigIdle(){var b=$('big');b.className='big idle';b.textContent='?'}
 function setBig(t,cls){var b=$('big');b.className='big'+(cls?' '+cls:'');void b.offsetWidth;b.classList.add('pop');b.textContent=t}
-function lockSet(b){document.querySelectorAll('.tset input,.tset button').forEach(function(e){e.disabled=b})}
+function lockSet(b){document.querySelectorAll('.tset input,.tset button,.tset select').forEach(function(e){e.disabled=b})}
 function lock(b){$('go').disabled=b;lockSet(b)}
 function quick(){return RM||$('qskip').checked}
-function rad(nm){var r=document.querySelector('input[name='+nm+']:checked');return r?r.value:''}
+function rad(nm){var s=document.getElementById(nm);if(s&&s.tagName==='SELECT')return s.value;var r=document.querySelector('input[name='+nm+']:checked');return r?r.value:''}
 function unfocus(){setTimeout(function(){stage.classList.remove('focus')},700)}
 // skip button (shown while an animation runs)
 var skipFn=null;
