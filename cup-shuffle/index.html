@@ -11,7 +11,7 @@
 <meta name="theme-color" content="#0e1020">
 <script>(function(){var t=null;try{t=localStorage.getItem('randomly-theme2')}catch(e){}if(t!=='light'&&t!=='dark')t='dark';document.documentElement.setAttribute('data-theme',t)})()</script>
 <title>Number Cup Shuffle – Free Online Shell Game | Randomly</title>
-<meta name="description" content="Free number cup shuffle game. Hide numbers under 3, 5 or 7 cups, shuffle them like a shell game, then pick a cup to reveal your number.">
+<meta name="description" content="Free number cup shuffle game. Hide numbers under 3, 5, 7 or 10 cups, shuffle them like a shell game, then pick a cup to reveal your number.">
 <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
 <meta name="author" content="RithyVerse Studio">
 <meta name="application-name" content="Randomly">
@@ -42,7 +42,7 @@
 <meta property="og:locale:alternate" content="id_ID">
 <meta property="og:locale:alternate" content="ar_AR">
 <meta property="og:title" content="Number Cup Shuffle – Free Online Shell Game | Randomly">
-<meta property="og:description" content="Free number cup shuffle game. Hide numbers under 3, 5 or 7 cups, shuffle them like a shell game, then pick a cup to reveal your number.">
+<meta property="og:description" content="Free number cup shuffle game. Hide numbers under 3, 5, 7 or 10 cups, shuffle them like a shell game, then pick a cup to reveal your number.">
 <meta property="og:url" content="https://randomlynumber.com/cup-shuffle/">
 <meta property="og:image" content="https://randomlynumber.com/og-image.png">
 <meta property="og:image:type" content="image/png">
@@ -50,10 +50,10 @@
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Number Cup Shuffle – Free Online Shell Game | Randomly">
-<meta name="twitter:description" content="Free number cup shuffle game. Hide numbers under 3, 5 or 7 cups, shuffle them like a shell game, then pick a cup to reveal your number.">
+<meta name="twitter:description" content="Free number cup shuffle game. Hide numbers under 3, 5, 7 or 10 cups, shuffle them like a shell game, then pick a cup to reveal your number.">
 <meta name="twitter:image" content="https://randomlynumber.com/og-image.png">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Randomly", "item": "https://randomlynumber.com/"}, {"@type": "ListItem", "position": 2, "name": "Number Cup Shuffle", "item": "https://randomlynumber.com/cup-shuffle/"}]}</script>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Number Cup Shuffle", "url": "https://randomlynumber.com/cup-shuffle/", "description": "Free number cup shuffle game. Hide numbers under 3, 5 or 7 cups, shuffle them like a shell game, then pick a cup to reveal your number.", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any (web browser)", "browserRequirements": "Requires JavaScript", "isAccessibleForFree": true, "inLanguage": "en", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "publisher": {"@id": "https://randomlynumber.com/#org"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Number Cup Shuffle", "url": "https://randomlynumber.com/cup-shuffle/", "description": "Free number cup shuffle game. Hide numbers under 3, 5, 7 or 10 cups, shuffle them like a shell game, then pick a cup to reveal your number.", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any (web browser)", "browserRequirements": "Requires JavaScript", "isAccessibleForFree": true, "inLanguage": "en", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "publisher": {"@id": "https://randomlynumber.com/#org"}}</script>
 <style>
 :root{--bg:#f5f6fb;--card:#fff;--ink:#14162b;--mute:#6a6f8a;--line:#e3e5f0;--brand:#5b5bf0;--brand2:#8a5cf6;--accent:#12b5a6;--glow:rgba(91,91,240,.35);--shadow:0 10px 40px rgba(30,30,80,.08);--field:#f0f1f9;--wa:#5b5bf0;--wb:#8a5cf6;--wc:#12b5a6;--wd:#f3f4fb;
 color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
@@ -781,6 +781,11 @@ html[dir=rtl] .s-dice,html[dir=rtl] .s-coin,html[dir=rtl] .s-cups{direction:ltr}
 .cs-in{width:68px;height:48px;padding:0 6px;text-align:center;border-radius:12px;border:2px solid transparent;background:var(--field);color:var(--ink);font:inherit;font-size:1.05rem;font-weight:800}
 .cs-in:focus{outline:none;border-color:var(--brand);box-shadow:0 0 0 4px var(--glow)}
 .cs-in.bad{border-color:#e5484d}
+/* reveal wave: centred on the chosen cup and drawn BEHIND the cups (sparks stay on top) */
+.stage.tstage[data-m=cups] .s-cups{z-index:1}
+.stage.tstage[data-m=cups] .flash,.stage.tstage[data-m=cups] .ring{z-index:0}
+.stage.tstage[data-m=cups] #fx{z-index:2}
+.stage.tstage[data-m=cups] .ring{background:radial-gradient(circle 200px at var(--rx,50%) var(--ry,55%),transparent 0 40%,var(--glow) 45%,transparent 50%);transform-origin:var(--rx,50%) var(--ry,55%)}
 
 @media(max-width:560px){
 .stage.tstage{height:270px}
@@ -797,7 +802,7 @@ html[dir=rtl] .s-dice,html[dir=rtl] .s-coin,html[dir=rtl] .s-cups{direction:ltr}
 @media(prefers-reduced-motion:reduce){.cs-cup,.cs-hop,.cs-body,.cs-num{transition:none}}
 </style>
 <p class="doc-back tback"><a href="/">← Back to the generator</a></p>
-<section class="hero"><h1>Number Cup Shuffle</h1><p>Pick 3, 5 or 7 cups, then use Quick Pick (1, 2, 3…) or type your own numbers.</p></section>
+<section class="hero"><h1>Number Cup Shuffle</h1><p>Pick 3, 5, 7 or 10 cups, then use Quick Pick (1, 2, 3…) or type your own numbers.</p></section>
 <section class="card res tool" aria-labelledby="rh">
 <h2 class="sr" id="rh">Number Cup Shuffle</h2>
 <div class="method" id="method">Ready when you are</div>
@@ -814,10 +819,10 @@ html[dir=rtl] .s-dice,html[dir=rtl] .s-coin,html[dir=rtl] .s-cups{direction:ltr}
 <p class="msg" id="msg" role="status"></p>
 <div class="hist" id="hist" data-ic="🥤" hidden><div class="hhead"><div class="htitle">Recent draws</div><div class="hacts"><button class="hclear" id="hcopyall" type="button">Copy all</button><button class="hclear" id="hclear" type="button">Clear</button></div></div><ol class="hlist" id="hlist" aria-label="Recent draws"></ol></div>
 </section>
-<section class="card setcard tool" aria-label="Number Cup Shuffle"><div class="setbox tset"><div class="grp"><div class="lbl" id="g-c">Number of cups</div><div class="chips" role="radiogroup" aria-labelledby="g-c"><label class="mode"><input type="radio" name="cscount" value="3" checked><span>3</span></label><label class="mode"><input type="radio" name="cscount" value="5"><span>5</span></label><label class="mode"><input type="radio" name="cscount" value="7"><span>7</span></label></div></div><div class="grp"><div class="lbl" id="g-m">Numbers</div><div class="chips" role="radiogroup" aria-labelledby="g-m"><label class="mode"><input type="radio" name="csmode" value="quick" checked><span>Quick Pick</span></label><label class="mode"><input type="radio" name="csmode" value="custom"><span>Custom Numbers</span></label></div><p class="cs-hint" id="cshint"></p><div class="cs-inputs" id="csinputs" hidden></div></div><div class="grp"><div class="lbl" id="g-opt">Options</div><div class="chips" role="group" aria-labelledby="g-opt"><label class="mode"><input type="checkbox" id="qskip"><span><b>Skip animation</b></span></label><label class="mode"><input type="checkbox" id="snd" checked><span><b>🔊 Sound</b></span></label></div></div></div></section>
+<section class="card setcard tool" aria-label="Number Cup Shuffle"><div class="setbox tset"><div class="grp"><div class="lbl" id="g-c">Number of cups</div><div class="chips" role="radiogroup" aria-labelledby="g-c"><label class="mode"><input type="radio" name="cscount" value="3" checked><span>3</span></label><label class="mode"><input type="radio" name="cscount" value="5"><span>5</span></label><label class="mode"><input type="radio" name="cscount" value="7"><span>7</span></label><label class="mode"><input type="radio" name="cscount" value="10"><span>10</span></label></div></div><div class="grp"><div class="lbl" id="g-m">Numbers</div><div class="chips" role="radiogroup" aria-labelledby="g-m"><label class="mode"><input type="radio" name="csmode" value="quick" checked><span>Quick Pick</span></label><label class="mode"><input type="radio" name="csmode" value="custom"><span>Custom Numbers</span></label></div><p class="cs-hint" id="cshint"></p><div class="cs-inputs" id="csinputs" hidden></div></div><div class="grp"><div class="lbl" id="g-opt">Options</div><div class="chips" role="group" aria-labelledby="g-opt"><label class="mode"><input type="checkbox" id="qskip"><span><b>Skip animation</b></span></label><label class="mode"><input type="checkbox" id="snd" checked><span><b>🔊 Sound</b></span></label></div></div></div></section>
 
 <article class="card doc"><div class="modal-body">
-<p>Pick 3, 5 or 7 cups, then use Quick Pick (1, 2, 3…) or type your own numbers. The numbers are shown under the cups first and get covered when you shuffle. Press Shuffle and the cups swap places; when they stop, the numbers are secretly re-dealt under them at random, so following a cup can't help you find a number. Then pick one cup to lift it and reveal your number. Everything is chosen with your browser's cryptographic random source, and nothing is sent to a server.</p>
+<p>Pick 3, 5, 7 or 10 cups, then use Quick Pick (1, 2, 3…) or type your own numbers. The numbers are shown under the cups first and get covered when you shuffle. Press Shuffle and the cups swap places; when they stop, the numbers are secretly re-dealt under them at random, so following a cup can't help you find a number. Then pick one cup to lift it and reveal your number. Everything is chosen with your browser's cryptographic random source, and nothing is sent to a server.</p>
 <h3>FAQ</h3>
 <h4>Are the numbers really shuffled?</h4>
 <p>Yes. The cups really swap places, and when they stop your browser's cryptographic random source re-deals the numbers under them at random. Because of that, no cup can be tracked, and every cup is equally likely to hide every number.</p>
@@ -825,57 +830,6 @@ html[dir=rtl] .s-dice,html[dir=rtl] .s-coin,html[dir=rtl] .s-cups{direction:ltr}
 <p>Yes. Choose Custom Numbers and a box appears for each cup. Enter whole numbers of up to 6 digits (negatives are fine), then press Shuffle.</p>
 <p><a href="/">Try the random number generator →</a></p>
 <p>Each result uses your browser's secure random generator, so every outcome has the same chance and earlier results never affect the next one. Nothing is sent to a server. <a href="/guide/">Random Number Generator Guide: How It Works and How to Use It</a></p>
-</div></article>
-<article class="card doc"><div class="modal-body">
-
-<h3>How to play</h3>
-<ol>
-<li>Choose how many cups you want: <strong>3, 5 or 7</strong>.</li>
-<li>Pick <strong>Quick Pick</strong> to use the numbers 1, 2, 3 and so on, or <strong>Custom Numbers</strong> to type a number for each cup.</li>
-<li>Press <strong>Hide numbers under cups</strong>. The numbers are shown under the cups first, so you can see what is in play.</li>
-<li>Press <strong>Shuffle</strong>. The cups cover the numbers and swap places.</li>
-<li>When the cups stop, <strong>pick a cup</strong> to lift it and reveal <strong>Your Number</strong>.</li>
-<li>Use <strong>Shuffle Again</strong> or <strong>Play Again</strong> to start another round.</li>
-</ol>
-<p>On narrow phone screens, 5 and 7 cups are arranged in two rows so they stay easy to tap.</p>
-
-<h3>Why you cannot track the cups</h3>
-<p>In a street game, a skilled eye might follow the right cup. Here, the cups really do swap places, and when they stop the numbers are re-dealt under them using your browser's cryptographic random source. Following a cup therefore tells you nothing, and every cup is equally likely to hide every number. After you pick, the other cups fade in with their numbers in grey so you can see what you missed.</p>
-
-<h3>Using your own numbers</h3>
-<p>With Custom Numbers, a box appears for each cup. You can enter whole numbers of up to six digits, and negative numbers are allowed. This opens up many uses beyond a simple game:</p>
-<ul>
-<li><strong>Prizes and points:</strong> hide 10, 20, 50 and 100 points under the cups and let each player pick one.</li>
-<li><strong>Dares and rewards:</strong> number a list of dares or small rewards and let the cup decide which one you get.</li>
-<li><strong>Classroom review:</strong> use question numbers so a student picks which question to answer.</li>
-<li><strong>Chores or turn order:</strong> hide the numbers 1 to 5 and let everyone pick their position.</li>
-</ul>
-
-<h3>Game ideas</h3>
-<ul>
-<li><strong>Highest number wins:</strong> each player takes a turn picking a cup, and the highest number takes the round.</li>
-<li><strong>Lucky cup:</strong> use negative numbers for bad luck and positive numbers for good luck, then play several rounds and add up your score.</li>
-<li><strong>Team challenge:</strong> split into two teams, take turns shuffling and picking, and compare totals after five rounds.</li>
-<li><strong>Memory warm-up:</strong> look carefully at the numbers before the shuffle and try to recall which numbers are in play.</li>
-</ul>
-<p>For more activities, see <a href="/articles/games-with-random-numbers/">Games and Activities You Can Play with a Random Number Generator</a>.</p>
-
-<h3>More questions</h3>
-<h4>Does the game cheat?</h4>
-<p>No. The numbers are placed by a secure random draw after the shuffle, with no hidden pattern, and the result is never altered based on what you pick.</p>
-<h4>Can I use the same number more than once?</h4>
-<p>Yes. In Custom Numbers mode each box is independent, so you can repeat a number if you want to.</p>
-<h4>Does the tool store my numbers?</h4>
-<p>No. Your numbers stay in your browser and nothing is sent to a server.</p>
-<h4>Is this a gambling game?</h4>
-<p>No. It is a simple game of luck for fun, classrooms and group activities, and it is not intended for gambling or prizes.</p>
-
-<h3>Keep reading</h3>
-<ul>
-<li><a href="/articles/how-random-number-generators-work/">How Random Number Generators Work in Your Browser</a></li>
-<li><a href="/articles/random-number-ideas-for-teachers/">10 Ways Teachers Use a Random Number Generator in the Classroom</a></li>
-<li><a href="/dice/">Dice Roller</a> and <a href="/coin-flip/">Coin Flip</a></li>
-</ul>
 </div></article>
 <script>(function(){var L={"roll": "Roll", "dice": "Dice", "sides": "Sides", "total": "Total", "flip": "Flip", "heads": "Heads", "tails": "Tails", "flips": "Flips", "reset": "Reset", "cs_cups": "Number of cups", "cs_mode": "Numbers", "cs_quick": "Quick Pick", "cs_custom": "Custom Numbers", "cs_uses": "Numbers under the cups:", "cs_enter": "Enter a number for each cup.", "cs_err": "Please enter a whole number in every box.", "cs_start": "Hide numbers under cups", "cs_shuffle": "Shuffle", "cs_shuffling": "Shuffling…", "cs_pick": "Pick a cup", "cs_ready": "These are the numbers in play. Press Shuffle to cover and mix the cups.", "cs_result": "Your Number", "cs_again": "Shuffle Again", "cs_play": "Play Again", "cs_back": "Change setup", "cs_cup": "Cup", "hist": "Recent draws", "hclear": "Clear", "hcopyall": "Copy all", "hcopied": "Copied", "hcopy": "Copy", "rskip": "Skip / Reveal now", "qskip": "Skip animation", "opts": "Options", "ready": "Ready when you are", "sound": "Sound"};function rnd(n){var c=window.crypto||window.msCrypto;if(!c||!c.getRandomValues)return Math.floor(Math.random()*n);var m=Math.floor(4294967296/n)*n,a=new Uint32Array(1);do{c.getRandomValues(a)}while(a[0]>=m);return a[0]%n}
 
@@ -1039,7 +993,7 @@ function cupPick(){var K=sfxKit();if(!K)return;var d=RM?0:.52,g=RM?0:.9,i;
   for(i=0;i<n-1;i++)K.T({f:880*Math.pow(1.1225,i),t:d+g+i*.05,d:.5,v:.03,rv:.7,pan:cupPan(i)});
   K.N({f:3000,f2:800,t:d+g,d:.35,v:.04,q:1.2,a:.2,rv:.4})}
 var CUP='<svg class="cs-body" viewBox="0 0 100 110" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M20 4h60l14 98H6z" fill="url(#csg)"/><path d="M31 14l-9 74" stroke="rgba(255,255,255,.4)" stroke-width="7" stroke-linecap="round" fill="none"/><ellipse cx="50" cy="5" rx="30" ry="4" fill="rgba(255,255,255,.35)"/><rect x="2" y="93" width="96" height="15" rx="7.5" fill="rgba(255,255,255,.28)"/></svg>';
-var n=3,mode='quick',vals=['','','','','','',''],cups=[],slotCup=[],phase='ready',cw=90,ch=99,lift=70,sw=100,cols=3,rows=1,pitch=0,opened=false;
+var n=3,mode='quick',vals=['','','','','','','','','',''],cups=[],slotCup=[],phase='ready',cw=90,ch=99,lift=70,sw=100,cols=3,rows=1,pitch=0,opened=false;
 function quickNums(){var a=[],i;for(i=1;i<=n;i++)a.push(i);return a}
 function buildInputs(){inBox.innerHTML='';for(var i=0;i<n;i++){(function(i){var inp=document.createElement('input');inp.type='text';inp.setAttribute('inputmode','numeric');inp.maxLength=7;inp.autocomplete='off';inp.className='cs-in';inp.dir='ltr';inp.placeholder='#';inp.value=vals[i];inp.setAttribute('aria-label',L.cs_cup+' '+(i+1));
   inp.addEventListener('input',function(){var v=inp.value.replace(/[^0-9\-]/g,'');if(v!==inp.value)inp.value=v;vals[i]=v;inp.classList.remove('bad');say('');if(phase==='ready')showNums()});
@@ -1100,7 +1054,7 @@ function pickCup(i){if(phase!=='pick')return;phase='revealing';var c=cups[i];c.n
     var cr=c.el.getBoundingClientRect(),sr=stage.getBoundingClientRect();
     later(function(){cups.forEach(function(x){if(x!==c){x.numEl.textContent=String(x.num);fitNum(x);x.el.classList.add('ghost','open')}})},RM?0:900);
     setBig(c.num);setHint('');$('method').textContent=L.cs_cups+': '+n;histAdd(c.num,'\ud83e\udd64 \u00d7'+n);
-    pulse('flash');pulse('ring');sparks(36,cr.left-sr.left+cr.width/2,cr.top-sr.top+ch*.3);shake();
+    stage.style.setProperty('--rx',(cr.left-sr.left+cr.width/2)+'px');stage.style.setProperty('--ry',(cr.top-sr.top+cr.height*.55)+'px');pulse('flash');pulse('ring');sparks(36,cr.left-sr.left+cr.width/2,cr.top-sr.top+ch*.3);shake();
     phase='done';ui();unfocus()},RM?0:520)}
 bGo.addEventListener('click',function(){if(phase!=='ready'&&phase!=='done')return;var nm=getNumbers();if(!nm){say(L.cs_err,true);return}say('');
   cups.forEach(function(c,i){c.num=nm[i]});shuffle()});
@@ -1108,65 +1062,6 @@ document.querySelectorAll('input[name=cscount],input[name=csmode]').forEach(func
 window.addEventListener('resize',function(){layout(true)});
 setup();
 })();</script>
-
-<section class="card fbcta" aria-labelledby="fb-h">
-<canvas class="fbgl" aria-hidden="true"></canvas>
-<h2 id="fb-h" data-tr="fb_h">Help shape Randomly</h2>
-<p data-tr="fb_p">Have an idea, a feature you'd love to see, or found something that isn't working? Tell us. We read every message.</p>
-<div class="fbbtns">
-<button class="chip" type="button" data-modal="contact-modal" data-topic="suggestion" data-tr="fb_sug">💡 Suggest a feature</button>
-<button class="chip" type="button" data-modal="contact-modal" data-topic="feedback" data-tr="fb_fb">⭐ General feedback</button>
-<button class="chip" type="button" data-modal="contact-modal" data-topic="bug" data-tr="fb_bug">🐞 Report a problem</button>
-</div>
-</section>
-<script>(function(){
-var c=document.querySelector('.fbcta'),cv=c&&c.querySelector('.fbgl');if(!cv)return;
-var gl=cv.getContext('webgl',{antialias:false,alpha:false,powerPreference:'low-power'})||cv.getContext('experimental-webgl');if(!gl)return;
-var VS='attribute vec2 p;void main(){gl_Position=vec4(p,0.,1.);}';
-var FS=[
-'#ifdef GL_FRAGMENT_PRECISION_HIGH','precision highp float;','#else','precision mediump float;','#endif',
-'uniform vec2 R;uniform float T;uniform vec2 M;uniform float E;uniform float H;uniform float D;uniform float S;uniform vec3 A;uniform vec3 B;',
-'void main(){',
-' vec2 fc=gl_FragCoord.xy;vec2 uv=fc/R;',
-' float asp=R.x/R.y;vec2 p=vec2(uv.x*asp,uv.y);vec2 m=vec2(M.x*asp,M.y);',
-' float dm=length(p-m);float inf=exp(-dm*dm*5.);',
-' float h=.5*sin(p.x*2.6+T*.25+1.3*sin(p.y*3.1-T*.2))+.5*sin(p.y*3.4-T*.18+1.1*sin(p.x*2.2+T*.22))+.35*sin((p.x+p.y)*1.8+T*.15);',
-' h+=(H*.9+E*1.2)*inf*1.3;',
-' float n=h*3.4;float fr=abs(fract(n)-.5);',
-' float aa=10./R.y;float lw=.07+.03*inf*H;',
-' float ln=1.-smoothstep(lw-aa,lw+aa,fr);',
-' float k=clamp(uv.x*.65+(1.-uv.y)*.35+.07*sin(T*.35+uv.y*3.),0.,1.);',
-' vec3 base=mix(A,B,k)*mix(.9,.74,D);',
-' base*=1.+.06*sin(n*3.14159);',
-' vec3 lc=vec3(1.);',
-' vec3 col=mix(base,lc,ln*(.24+.2*inf*(H*.8+E*.6)));',
-' col+=vec3(1.)*inf*(.03+.04*H+.05*E);',
-' gl_FragColor=vec4(col,1.);}'].join('\n');
-function sh(t,src){var s=gl.createShader(t);gl.shaderSource(s,src);gl.compileShader(s);return gl.getShaderParameter(s,gl.COMPILE_STATUS)?s:null}
-var vs=sh(gl.VERTEX_SHADER,VS),fs=sh(gl.FRAGMENT_SHADER,FS);if(!vs||!fs)return;
-var pg=gl.createProgram();gl.attachShader(pg,vs);gl.attachShader(pg,fs);gl.linkProgram(pg);if(!gl.getProgramParameter(pg,gl.LINK_STATUS))return;
-gl.useProgram(pg);var bf=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,bf);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,3,-1,-1,3]),gl.STATIC_DRAW);
-var lp=gl.getAttribLocation(pg,'p');gl.enableVertexAttribArray(lp);gl.vertexAttribPointer(lp,2,gl.FLOAT,false,0,0);
-var U={};['R','T','M','E','H','D','S','A','B'].forEach(function(k){U[k]=gl.getUniformLocation(pg,k)});
-var rm=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
-var tx=.5,ty=.5,cx=.5,cy=.5,px=.5,py=.5,E=0,H=0,hv=0,raf=0,vis=true,t0=performance.now();
-function size(){var w=c.clientWidth,hh=c.clientHeight,d=Math.min(window.devicePixelRatio||1,window.innerWidth<600?1:1.5);while(w*hh*d*d>650000&&d>.5)d-=.1;cv.width=Math.max(1,Math.round(w*d));cv.height=Math.max(1,Math.round(hh*d));gl.viewport(0,0,cv.width,cv.height);readCols();draw((performance.now()-t0)/1000)}
-var ca=[.357,.357,.941],cb=[.541,.361,.965],dk=1;
-function hx(v,fb){v=(v||'').trim();var m;if(v.charAt(0)==='#'){if(v.length===4)v='#'+v[1]+v[1]+v[2]+v[2]+v[3]+v[3];if(v.length>=7)return[parseInt(v.substr(1,2),16)/255,parseInt(v.substr(3,2),16)/255,parseInt(v.substr(5,2),16)/255]}else if(m=v.match(/\d+(\.\d+)?/g)){if(m.length>=3)return[m[0]/255,m[1]/255,m[2]/255]}return fb}
-function readCols(){var de=document.documentElement,cs=getComputedStyle(de),th=de.getAttribute('data-theme');ca=hx(cs.getPropertyValue('--brand'),ca);cb=hx(cs.getPropertyValue('--brand2'),cb);dk=(th==='dark'||(th!=='light'&&window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches))?1:0}
-function draw(t){gl.uniform2f(U.R,cv.width,cv.height);gl.uniform1f(U.T,rm?12:t+12);gl.uniform2f(U.M,cx,cy);gl.uniform1f(U.E,E);gl.uniform1f(U.H,H);gl.uniform1f(U.D,dk);gl.uniform1f(U.S,cv.width/Math.max(1,c.clientWidth));gl.uniform3f(U.A,ca[0],ca[1],ca[2]);gl.uniform3f(U.B,cb[0],cb[1],cb[2]);gl.drawArrays(gl.TRIANGLES,0,3)}
-function frame(now){raf=0;if(!vis||document.hidden)return;cx+=(tx-cx)*.12;cy+=(ty-cy)*.12;E=Math.min(1.5,E*.93+Math.hypot(cx-px,cy-py)*4*(c.clientWidth/c.clientHeight>1?1:1));px=cx;py=cy;H+=(hv-H)*.08;draw((now-t0)/1000);raf=requestAnimationFrame(frame)}
-function go(){if(!raf&&!rm&&vis&&!document.hidden)raf=requestAnimationFrame(frame)}
-function aim(ev){var r=c.getBoundingClientRect();tx=(ev.clientX-r.left)/r.width;ty=1-(ev.clientY-r.top)/r.height;hv=1}
-c.addEventListener('pointerenter',function(ev){aim(ev);cx=tx;cy=ty;px=cx;py=cy});c.addEventListener('pointermove',aim);
-c.addEventListener('pointerdown',function(ev){aim(ev);E=Math.min(1.5,E+.8)});
-c.addEventListener('pointerleave',function(){hv=0});c.addEventListener('pointercancel',function(){hv=0});
-if('IntersectionObserver' in window)new IntersectionObserver(function(en){vis=en[0].isIntersecting;if(vis)go()}).observe(c);
-document.addEventListener('visibilitychange',function(){if(!document.hidden)go()});
-if('ResizeObserver' in window)new ResizeObserver(size).observe(c);else window.addEventListener('resize',size);
-new MutationObserver(function(){readCols();draw((performance.now()-t0)/1000)}).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
-if(window.matchMedia){var mq=matchMedia('(prefers-color-scheme: dark)');if(mq.addEventListener)mq.addEventListener('change',function(){readCols();draw((performance.now()-t0)/1000)})}
-size();go()})()</script>
 </main>
 </div>
 <footer class="site-footer">
@@ -1177,7 +1072,6 @@ size();go()})()</script>
 <a href="/" data-tr="f_home">Home</a>
 <a href="/about/" data-tr="f_about">About</a>
 <a href="/guide/" data-tr="f_guide">Guide</a>
-<a href="/articles/">Articles</a>
 <a href="/dice/" data-tr="t_dice_n">Dice Roller</a>
 <a href="/coin-flip/" data-tr="t_coin_n">Coin Flip</a>
 <a href="/cup-shuffle/" data-tr="t_cup_n">Number Cup Shuffle</a></nav>
@@ -1185,8 +1079,7 @@ size();go()})()</script>
 <a href="/terms/" data-tr="f_terms">Terms and Conditions</a>
 <a href="/privacy/" data-tr="f_privacy">Privacy Policy</a></nav>
 <nav class="ft-col" aria-label="Support"><h3 data-tr="ft_h_help">Support</h3>
-<a href="#" data-modal="contact-modal" data-topic="other" role="button" data-tr="f_contact">Contact us</a>
-<a href="/contact/">Contact details</a></nav>
+<a href="#" data-modal="contact-modal" data-topic="other" role="button" data-tr="f_contact">Contact us</a></nav>
 </div>
 <nav class="ft-langs" aria-label="Language" data-tra="aria-label:lang"><a href="/cup-shuffle/" hreflang="en" lang="en" aria-current="page">English</a><a href="/fr/cup-shuffle/" hreflang="fr" lang="fr">Français</a><a href="/ru/cup-shuffle/" hreflang="ru" lang="ru">Русский</a><a href="/ja/cup-shuffle/" hreflang="ja" lang="ja">日本語</a><a href="/fil/cup-shuffle/" hreflang="fil" lang="fil">Filipino</a><a href="/hi/cup-shuffle/" hreflang="hi" lang="hi">हिन्दी</a><a href="/de/cup-shuffle/" hreflang="de" lang="de">Deutsch</a><a href="/es/cup-shuffle/" hreflang="es" lang="es">Español</a><a href="/pt/cup-shuffle/" hreflang="pt" lang="pt">Português</a><a href="/id/cup-shuffle/" hreflang="id" lang="id">Bahasa Indonesia</a><a href="/ar/cup-shuffle/" hreflang="ar" lang="ar">العربية</a></nav>
 <div class="ft-bottom">
