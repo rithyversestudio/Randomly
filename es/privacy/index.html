@@ -185,6 +185,16 @@ html.theme-anim :where(*):not(.wheel):not(.clid):not(.cnum):not(.beam):not(.wfac
 h1,h2,h3,summary,.ft-col a,.ft-col h3,.ft-brand p{overflow-wrap:anywhere;hyphens:auto}
 .ft-top>*{min-width:0}
 @media(max-width:380px){h1{font-size:clamp(1.55rem,8vw,2.2rem)}.ft-top{grid-template-columns:repeat(2,minmax(0,1fr))}.ft-col h3{letter-spacing:.04em}}
+
+/* ===== WHEEL v5: purple-and-white wheel that matches the chosen range (labels get sparser as the range grows) ===== */
+.wrim{background:#4a3fc4!important}
+.whub{background:#2b2380!important}
+.wsvg .wr{fill:#4a3fc4}.wsvg .sa{fill:#6a5cf0}.wsvg .sb{fill:#fff}.wsvg .sw{fill:#fbc02d}
+.wsvg .ta{fill:#fff}.wsvg .tb{fill:#4a3fc4}.wsvg .tw{fill:#2b2380}.wsvg .wl{fill:none;stroke:rgba(74,63,196,.28);stroke-width:.35}
+.wsvg text{font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-weight:800;text-anchor:middle;dominant-baseline:central;font-variant-numeric:tabular-nums}
+.wsvg .wring{fill:none;stroke:#fff;stroke-width:1;opacity:.5}
+html[data-theme="dark"] .wsvg .sb{fill:#d9d5ff}
+@media(prefers-color-scheme:dark){html:not([data-theme="light"]) .wsvg .sb{fill:#d9d5ff}}
 .wspin.blur{filter:none!important} /* the blur clipped the left edge of the wheel while spinning */
 /* ===== clean minimal page background: faint dot grid + soft top glow ===== */
 :root{--dot:rgba(91,91,240,.18);--g2:rgba(91,91,240,.10)}
@@ -729,6 +739,7 @@ a.brand{text-decoration:none;color:inherit}
 <a href="/es/" data-tr="f_home">Inicio</a>
 <a href="/es/about/" data-tr="f_about">Acerca de</a>
 <a href="/es/guide/" data-tr="f_guide">Guía</a>
+<a href="/articles/">Artículos</a>
 <a href="/es/dice/" data-tr="t_dice_n">Tirar dados</a>
 <a href="/es/coin-flip/" data-tr="t_coin_n">Cara o cruz</a>
 <a href="/es/cup-shuffle/" data-tr="t_cup_n">Vasos con números</a></nav>
@@ -736,7 +747,8 @@ a.brand{text-decoration:none;color:inherit}
 <a href="/es/terms/" data-tr="f_terms">Términos y condiciones</a>
 <a href="/es/privacy/" data-tr="f_privacy">Política de privacidad</a></nav>
 <nav class="ft-col" aria-label="Support"><h3 data-tr="ft_h_help">Ayuda</h3>
-<a href="#" data-modal="contact-modal" data-topic="other" role="button" data-tr="f_contact">Contáctanos</a></nav>
+<a href="#" data-modal="contact-modal" data-topic="other" role="button" data-tr="f_contact">Contáctanos</a>
+<a href="/contact/">Datos de contacto</a></nav>
 </div>
 <nav class="ft-langs" aria-label="Idioma" data-tra="aria-label:lang"><a href="/es/privacy/" hreflang="en" lang="en">English</a><a href="/fr/privacy/" hreflang="fr" lang="fr">Français</a><a href="/ru/privacy/" hreflang="ru" lang="ru">Русский</a><a href="/ja/privacy/" hreflang="ja" lang="ja">日本語</a><a href="/fil/privacy/" hreflang="fil" lang="fil">Filipino</a><a href="/hi/privacy/" hreflang="hi" lang="hi">हिन्दी</a><a href="/de/privacy/" hreflang="de" lang="de">Deutsch</a><a href="/es/privacy/" hreflang="es" lang="es" aria-current="page">Español</a><a href="/pt/privacy/" hreflang="pt" lang="pt">Português</a><a href="/id/privacy/" hreflang="id" lang="id">Bahasa Indonesia</a><a href="/ar/privacy/" hreflang="ar" lang="ar">العربية</a></nav>
 <div class="ft-bottom">

@@ -186,6 +186,16 @@ html.theme-anim :where(*):not(.wheel):not(.clid):not(.cnum):not(.beam):not(.wfac
 h1,h2,h3,summary,.ft-col a,.ft-col h3,.ft-brand p{overflow-wrap:anywhere;hyphens:auto}
 .ft-top>*{min-width:0}
 @media(max-width:380px){h1{font-size:clamp(1.55rem,8vw,2.2rem)}.ft-top{grid-template-columns:repeat(2,minmax(0,1fr))}.ft-col h3{letter-spacing:.04em}}
+
+/* ===== WHEEL v5: purple-and-white wheel that matches the chosen range (labels get sparser as the range grows) ===== */
+.wrim{background:#4a3fc4!important}
+.whub{background:#2b2380!important}
+.wsvg .wr{fill:#4a3fc4}.wsvg .sa{fill:#6a5cf0}.wsvg .sb{fill:#fff}.wsvg .sw{fill:#fbc02d}
+.wsvg .ta{fill:#fff}.wsvg .tb{fill:#4a3fc4}.wsvg .tw{fill:#2b2380}.wsvg .wl{fill:none;stroke:rgba(74,63,196,.28);stroke-width:.35}
+.wsvg text{font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-weight:800;text-anchor:middle;dominant-baseline:central;font-variant-numeric:tabular-nums}
+.wsvg .wring{fill:none;stroke:#fff;stroke-width:1;opacity:.5}
+html[data-theme="dark"] .wsvg .sb{fill:#d9d5ff}
+@media(prefers-color-scheme:dark){html:not([data-theme="light"]) .wsvg .sb{fill:#d9d5ff}}
 .wspin.blur{filter:none!important} /* the blur clipped the left edge of the wheel while spinning */
 /* ===== clean minimal page background: faint dot grid + soft top glow ===== */
 :root{--dot:rgba(91,91,240,.18);--g2:rgba(91,91,240,.10)}
@@ -742,6 +752,39 @@ select.msel{min-height:42px}
 </style>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2564931903279308"
      crossorigin="anonymous"></script>
+<style id="fs-css">
+/* ---- FULL SCREEN v81 ---- */
+.fsbtn{position:absolute;top:10px;right:10px;z-index:6;width:42px;height:42px;padding:0;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--ink);display:grid;place-items:center;cursor:pointer;opacity:.9;transition:opacity .2s,transform .2s,background .2s,box-shadow .2s;box-shadow:0 4px 14px rgba(0,0,0,.12);-webkit-tap-highlight-color:transparent}
+[dir=rtl] .fsbtn{right:auto;left:10px}
+.fsbtn:hover{opacity:1;transform:scale(1.06);box-shadow:0 6px 20px var(--glow)}
+.fsbtn:focus-visible{outline:3px solid var(--brand);outline-offset:2px}
+.fsbtn svg{width:20px;height:20px;display:block}
+.fsbtn .i-out{display:none}
+.res.is-fs .fsbtn .i-in{display:none}
+.res.is-fs .fsbtn .i-out{display:block}
+html.fs-on,html.fs-on body{overflow:hidden!important;height:100%}
+.res.is-fs{position:fixed!important;inset:0;z-index:2147483000;margin:0!important;max-width:none!important;width:100%;height:100%;border-radius:0!important;border:0!important;display:flex!important;flex-direction:column;align-items:center;justify-content:center;gap:0;overflow:hidden;box-shadow:none!important;transform:none!important;
+  padding:max(14px,env(safe-area-inset-top)) max(18px,env(safe-area-inset-right)) max(14px,env(safe-area-inset-bottom)) max(18px,env(safe-area-inset-left));
+  background:radial-gradient(ellipse 80% 60% at 50% 36%,color-mix(in srgb,var(--brand) 20%,var(--bg)) 0,var(--bg) 72%)}
+.res.is-fs .fsbtn{position:fixed;top:max(14px,env(safe-area-inset-top));right:max(14px,env(safe-area-inset-right));width:48px;height:48px;z-index:20}
+[dir=rtl] .res.is-fs .fsbtn{right:auto;left:max(14px,env(safe-area-inset-left))}
+.res.is-fs .method{flex:0 0 auto;font-size:clamp(.8rem,1.8vh,1rem);margin-top:2px}
+.res.is-fs .sw{flex:1 1 auto;min-height:0;width:100%;max-width:1400px;display:flex}
+.res.is-fs .stage{flex:1 1 auto;height:auto!important;min-height:0;width:100%;max-width:none;margin:8px 0;border-radius:24px}
+.res.is-fs .stage>.s-wheel,.res.is-fs .stage>.s-crate,.res.is-fs .stage>.s-machine,.res.is-fs .stage>.s-card,.res.is-fs .stage>.s-dice,.res.is-fs .stage>.s-coin{zoom:var(--fsk,1)}
+.res.is-fs .stage>.s-machine{max-width:none;width:100%}
+.res.is-fs .cs-stage{max-width:min(100%,1600px)}
+.res.is-fs .big{flex:0 0 auto;font-size:clamp(3.4rem,13vh,9.5rem)}
+.res.is-fs .big.idle{height:auto!important;min-height:1.05em!important;overflow:visible!important;visibility:hidden;margin:0}
+.res.is-fs .hint{flex:0 0 auto;font-size:clamp(.9rem,2vh,1.1rem);min-height:1.2em}
+.res.is-fs #go{flex:0 0 auto;width:min(100%,460px);margin-top:12px}
+.res.is-fs .s-rain .rcloud{width:min(420px,62%);top:4%}
+.res.is-fs .msg{flex:0 0 auto;margin:6px 0 0}
+.res.is-fs .hist{display:none!important}
+.res.is-fs .rskip{bottom:14px}
+@media(max-height:520px){.res.is-fs #go{min-height:46px;margin-top:6px}.res.is-fs .hint{display:none}.res.is-fs .big{font-size:clamp(2.2rem,15vh,5rem)}.res.is-fs .stage{margin:4px 0}.res.is-fs .method{display:none}}
+@media(prefers-reduced-motion:reduce){.fsbtn{transition:none}}
+</style>
 </head>
 <body>
 <div class="bgfx" aria-hidden="true"><i class="orb o1"></i><i class="orb o2"></i><i class="orb o3"></i></div>
@@ -768,7 +811,7 @@ select.msel{min-height:42px}
     <div class="wbody">
       <div class="wspin" id="wspin">
         <div class="wrim"></div>
-        <div class="wface" id="wheel"><svg class="wsvg" viewBox="0 0 200 200" aria-hidden="true" focusable="false"><circle cx="100" cy="100" r="100" fill="#234463"/><path d="M100 100 L72.81 16.31 A88 88 0 0 1 127.19 16.31 Z" fill="#f44336"/><path d="M100 100 L127.19 16.31 A88 88 0 0 1 171.19 48.27 Z" fill="#ffc107"/><path d="M100 100 L171.19 48.27 A88 88 0 0 1 188.00 100.00 Z" fill="#00c864"/><path d="M100 100 L188.00 100.00 A88 88 0 0 1 171.19 151.73 Z" fill="#0a91e0"/><path d="M100 100 L171.19 151.73 A88 88 0 0 1 127.19 183.69 Z" fill="#ffc107"/><path d="M100 100 L127.19 183.69 A88 88 0 0 1 72.81 183.69 Z" fill="#0a91e0"/><path d="M100 100 L72.81 183.69 A88 88 0 0 1 28.81 151.73 Z" fill="#f44336"/><path d="M100 100 L28.81 151.73 A88 88 0 0 1 12.00 100.00 Z" fill="#ffc107"/><path d="M100 100 L12.00 100.00 A88 88 0 0 1 28.81 48.27 Z" fill="#00c864"/><path d="M100 100 L28.81 48.27 A88 88 0 0 1 72.81 16.31 Z" fill="#0a91e0"/><circle cx="100" cy="100" r="85" fill="none" stroke="#000" stroke-width="6" opacity=".14"/><line x1="100" y1="100" x2="72.81" y2="16.31" stroke="#fff" stroke-width="1.3" stroke-linecap="round"/><line x1="100" y1="100" x2="127.19" y2="16.31" stroke="#fff" stroke-width="1.3" stroke-linecap="round"/><line x1="100" y1="100" x2="171.19" y2="48.27" stroke="#fff" stroke-width="1.3" stroke-linecap="round"/><line x1="100" y1="100" x2="188.00" y2="100.00" stroke="#fff" stroke-width="1.3" stroke-linecap="round"/><line x1="100" y1="100" x2="171.19" y2="151.73" stroke="#fff" stroke-width="1.3" stroke-linecap="round"/><line x1="100" y1="100" x2="127.19" y2="183.69" stroke="#fff" stroke-width="1.3" stroke-linecap="round"/><line x1="100" y1="100" x2="72.81" y2="183.69" stroke="#fff" stroke-width="1.3" stroke-linecap="round"/><line x1="100" y1="100" x2="28.81" y2="151.73" stroke="#fff" stroke-width="1.3" stroke-linecap="round"/><line x1="100" y1="100" x2="12.00" y2="100.00" stroke="#fff" stroke-width="1.3" stroke-linecap="round"/><line x1="100" y1="100" x2="28.81" y2="48.27" stroke="#fff" stroke-width="1.3" stroke-linecap="round"/><polygon points="0.00,-5.20 1.51,-2.61 4.50,-2.60 3.02,-0.00 4.50,2.60 1.51,2.61 0.00,5.20 -1.51,2.61 -4.50,2.60 -3.02,0.00 -4.50,-2.60 -1.51,-2.61" transform="translate(100.00 50.00) rotate(0)" fill="#fff"/><polygon points="0.00,-5.20 1.51,-2.61 4.50,-2.60 3.02,-0.00 4.50,2.60 1.51,2.61 0.00,5.20 -1.51,2.61 -4.50,2.60 -3.02,0.00 -4.50,-2.60 -1.51,-2.61" transform="translate(129.39 59.55) rotate(36)" fill="#fff"/><polygon points="0.00,-5.20 1.51,-2.61 4.50,-2.60 3.02,-0.00 4.50,2.60 1.51,2.61 0.00,5.20 -1.51,2.61 -4.50,2.60 -3.02,0.00 -4.50,-2.60 -1.51,-2.61" transform="translate(147.55 84.55) rotate(72)" fill="#fff"/><polygon points="0.00,-5.20 1.51,-2.61 4.50,-2.60 3.02,-0.00 4.50,2.60 1.51,2.61 0.00,5.20 -1.51,2.61 -4.50,2.60 -3.02,0.00 -4.50,-2.60 -1.51,-2.61" transform="translate(147.55 115.45) rotate(108)" fill="#fff"/><polygon points="0.00,-5.20 1.51,-2.61 4.50,-2.60 3.02,-0.00 4.50,2.60 1.51,2.61 0.00,5.20 -1.51,2.61 -4.50,2.60 -3.02,0.00 -4.50,-2.60 -1.51,-2.61" transform="translate(129.39 140.45) rotate(144)" fill="#fff"/><polygon points="0.00,-5.20 1.51,-2.61 4.50,-2.60 3.02,-0.00 4.50,2.60 1.51,2.61 0.00,5.20 -1.51,2.61 -4.50,2.60 -3.02,0.00 -4.50,-2.60 -1.51,-2.61" transform="translate(100.00 150.00) rotate(180)" fill="#fff"/><polygon points="0.00,-5.20 1.51,-2.61 4.50,-2.60 3.02,-0.00 4.50,2.60 1.51,2.61 0.00,5.20 -1.51,2.61 -4.50,2.60 -3.02,0.00 -4.50,-2.60 -1.51,-2.61" transform="translate(70.61 140.45) rotate(216)" fill="#fff"/><polygon points="0.00,-5.20 1.51,-2.61 4.50,-2.60 3.02,-0.00 4.50,2.60 1.51,2.61 0.00,5.20 -1.51,2.61 -4.50,2.60 -3.02,0.00 -4.50,-2.60 -1.51,-2.61" transform="translate(52.45 115.45) rotate(252)" fill="#fff"/><polygon points="0.00,-5.20 1.51,-2.61 4.50,-2.60 3.02,-0.00 4.50,2.60 1.51,2.61 0.00,5.20 -1.51,2.61 -4.50,2.60 -3.02,0.00 -4.50,-2.60 -1.51,-2.61" transform="translate(52.45 84.55) rotate(288)" fill="#fff"/><polygon points="0.00,-5.20 1.51,-2.61 4.50,-2.60 3.02,-0.00 4.50,2.60 1.51,2.61 0.00,5.20 -1.51,2.61 -4.50,2.60 -3.02,0.00 -4.50,-2.60 -1.51,-2.61" transform="translate(70.61 59.55) rotate(324)" fill="#fff"/><circle class="wbulb" style="animation-delay:0.00s" cx="100.00" cy="6.00" r="2.6"/><circle class="wbulb" style="animation-delay:0.22s" cx="147.00" cy="18.59" r="2.6"/><circle class="wbulb" style="animation-delay:0.00s" cx="181.41" cy="53.00" r="2.6"/><circle class="wbulb" style="animation-delay:0.22s" cx="194.00" cy="100.00" r="2.6"/><circle class="wbulb" style="animation-delay:0.00s" cx="181.41" cy="147.00" r="2.6"/><circle class="wbulb" style="animation-delay:0.22s" cx="147.00" cy="181.41" r="2.6"/><circle class="wbulb" style="animation-delay:0.00s" cx="100.00" cy="194.00" r="2.6"/><circle class="wbulb" style="animation-delay:0.22s" cx="53.00" cy="181.41" r="2.6"/><circle class="wbulb" style="animation-delay:0.00s" cx="18.59" cy="147.00" r="2.6"/><circle class="wbulb" style="animation-delay:0.22s" cx="6.00" cy="100.00" r="2.6"/><circle class="wbulb" style="animation-delay:0.00s" cx="18.59" cy="53.00" r="2.6"/><circle class="wbulb" style="animation-delay:0.22s" cx="53.00" cy="18.59" r="2.6"/></svg></div>
+        <div class="wface" id="wheel"><svg class="wsvg" id="wsvg" viewBox="0 0 200 200" aria-hidden="true" focusable="false"></svg></div>
       </div>
       <div class="whub" id="whub"></div>
     </div>
@@ -815,7 +858,7 @@ select.msel{min-height:42px}
 <section class="card setcard" aria-label="Ajustes de rango y revelación" data-tra="aria-label:settings"><div class="setbox tset">
 <div class="row">
 <div><label for="min" data-tr="min">Mínimo</label><input id="min" type="number" inputmode="numeric" min="1" max="1000000" step="1" value="1"></div>
-<div><label for="max" data-tr="max">Máximo</label><input id="max" type="number" inputmode="numeric" min="1" max="1000000" step="1" value="100"></div>
+<div><label for="max" data-tr="max">Máximo</label><input id="max" type="number" inputmode="numeric" min="1" max="1000000" step="1" value="12"></div>
 </div>
 <div class="orow">
 <div class="selw"><label for="modesel" data-tr="modelbl">Modo de revelación</label>
@@ -983,6 +1026,7 @@ size();go()})()</script>
 <a href="/es/" data-tr="f_home">Inicio</a>
 <a href="/es/about/" data-tr="f_about">Acerca de</a>
 <a href="/es/guide/" data-tr="f_guide">Guía</a>
+<a href="/articles/">Artículos</a>
 <a href="/es/dice/" data-tr="t_dice_n">Tirar dados</a>
 <a href="/es/coin-flip/" data-tr="t_coin_n">Cara o cruz</a>
 <a href="/es/cup-shuffle/" data-tr="t_cup_n">Vasos con números</a></nav>
@@ -990,7 +1034,8 @@ size();go()})()</script>
 <a href="/es/terms/" data-tr="f_terms">Términos y condiciones</a>
 <a href="/es/privacy/" data-tr="f_privacy">Política de privacidad</a></nav>
 <nav class="ft-col" aria-label="Support"><h3 data-tr="ft_h_help">Ayuda</h3>
-<a href="#" data-modal="contact-modal" data-topic="other" role="button" data-tr="f_contact">Contáctanos</a></nav>
+<a href="#" data-modal="contact-modal" data-topic="other" role="button" data-tr="f_contact">Contáctanos</a>
+<a href="/contact/">Datos de contacto</a></nav>
 </div>
 <nav class="ft-langs" aria-label="Idioma" data-tra="aria-label:lang"><a href="/" hreflang="en" lang="en">English</a><a href="/fr/" hreflang="fr" lang="fr">Français</a><a href="/ru/" hreflang="ru" lang="ru">Русский</a><a href="/ja/" hreflang="ja" lang="ja">日本語</a><a href="/fil/" hreflang="fil" lang="fil">Filipino</a><a href="/hi/" hreflang="hi" lang="hi">हिन्दी</a><a href="/de/" hreflang="de" lang="de">Deutsch</a><a href="/es/" hreflang="es" lang="es" aria-current="page">Español</a><a href="/pt/" hreflang="pt" lang="pt">Português</a><a href="/id/" hreflang="id" lang="id">Bahasa Indonesia</a><a href="/ar/" hreflang="ar" lang="ar">العربية</a></nav>
 <div class="ft-bottom">
@@ -1138,7 +1183,7 @@ function sfxKit(){
 function sfxWheel(){
   var K=sfxKit();if(!K)return;var T=K.T,N=K.N;
   // ---- timeline: matches runWheel() (spin starts ~0.70s, eases out over 3.15s)
-  var T0=.70,DUR=3.15,TI=T0+DUR;
+  var T0=.70,DUR=WDUR/1000,TI=T0+DUR;
 
   // 1) anticipation: charge-up swell + bulb power-up pings
   T({f:80,f2:240,t:0,d:.72,v:.10,type:'sawtooth',lp:500,at:.5});
@@ -1157,11 +1202,11 @@ function sfxWheel(){
   T({f:260,f2:70,t:T0+.05,d:DUR-.2,v:.045,type:'triangle',lp:700,at:.3});
 
   // 4) peg clicks locked to the wheel's cubic-bezier(.15,.02,.08,1) easing
-  function bez(u){var x1=.15,y1=.02,x2=.08,y2=1,m=1-u;
+  function bez(u){var x1=WEASE[0],y1=WEASE[1],x2=WEASE[2],y2=WEASE[3],m=1-u;
     return {x:3*m*m*u*x1+3*m*u*u*x2+u*u*u, y:3*m*m*u*y1+3*m*u*u*y2+u*u*u}}
   function prog(t){var lo=0,hi=1;for(var i=0;i<28;i++){var mid=(lo+hi)/2;if(bez(mid).x<t)lo=mid;else hi=mid}return bez((lo+hi)/2).y}
   function timeFor(p){var lo=0,hi=1;for(var i=0;i<28;i++){var mid=(lo+hi)/2;if(prog(mid)<p)lo=mid;else hi=mid}return (lo+hi)/2}
-  var PEGS=88,ticks=[],last=-1;
+  var PEGS=230,ticks=[],last=-1;
   for(var k=1;k<=PEGS;k++){var tt=T0+DUR*timeFor(k/PEGS/1.0*0.9985);if(tt-last>=.016){ticks.push(tt);last=tt}}
   var nT=ticks.length;
   ticks.forEach(function(tt,i){
@@ -1433,8 +1478,45 @@ function sparks(n,soft){fit();for(var i=0;i<n;i++){var a=Math.random()*6.283,v=s
 function dust(n){fit();for(var i=0;i<n;i++){P.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.3,vy:-.2-Math.random()*.3,g:0,l:0,L:150+Math.random()*100,s:.8+Math.random()*1.4,c:dk()?'#fff':'#8a5cf6',a:dk()?.55:.4})}go()}
 function pulse(id){var e=$(id);e.classList.remove('go');void e.offsetWidth;e.classList.add('go')}
 function shake(){var s=$('stage');s.classList.remove('shk');void s.offsetWidth;s.classList.add('shk')}
-async function runWheel(){
+
+/* ---- wheel: segments + number labels depend on the range size ----
+   1-50 numbers: one segment per number, every number labelled (font shrinks as the wheel gets fuller)
+   above 50: 60 segments, about 8-10 reference labels at nice round numbers.
+   A number's spot is the middle of its share of the circle, so the pointer always ends on the winner. */
+var WH={min:0,max:0};
+// spin feel: bursts away at full speed, then slows more and more for ~6.8s (shared by the animation and its sound)
+var WDUR=6800,WEASE=[.09,.8,.12,1];
+function wheelSegs(span){return span<=50?span:60}
+function niceStep(span){var raw=span/9,pw=Math.pow(10,Math.floor(Math.log(raw)/Math.LN10)),f=raw/pw;return (f<=1.5?1:f<=3.5?2:f<=7.5?5:10)*pw}
+function wPt(a,r){var t=a*Math.PI/180;return [100+r*Math.sin(t),100-r*Math.cos(t)]}
+function wWedge(a0,a1,r){var p0=wPt(a0,r),p1=wPt(a1,r);return 'M100 100L'+p0[0].toFixed(2)+' '+p0[1].toFixed(2)+'A'+r+' '+r+' 0 '+(a1-a0>180?1:0)+' 1 '+p1[0].toFixed(2)+' '+p1[1].toFixed(2)+'Z'}
+function wLabel(v,a,fs,cls){return '<text class="'+cls+'" data-v="'+v+'" font-size="'+fs+'" transform="rotate('+(a-90).toFixed(2)+' 100 100)" x="'+(100+(fs>=11?64:67))+'" y="100">'+v+'</text>'}
+function wheelDraw(min,max,win){
+  var svg=$('wsvg');if(!svg)return;var span=max-min+1;
+  if(win==null&&WH.win==null&&WH.min===min&&WH.max===max&&svg.firstChild)return;
+  WH.min=min;WH.max=max;WH.win=win==null?null:win;
+  var S=wheelSegs(span),seg=360/S,h='<circle class="wr" cx="100" cy="100" r="100"/>',i,a;
+  for(i=0;i<24;i++){var q=wPt(i*15,94);h+='<circle class="wbulb" cx="'+q[0].toFixed(2)+'" cy="'+q[1].toFixed(2)+'" r="1.7"/>'}
+  var wi=win==null?-1:(S===span?win-min:Math.min(S-1,Math.floor((win-min+.5)/span*S)));
+  for(i=0;i<S;i++)h+='<path class="'+(i===wi&&span<=50?'sw':(i%2?'sb':'sa'))+'" data-i="'+i+'" d="'+wWedge(i*seg,(i+1)*seg,88)+'"/>';
+  if(true){for(i=0;i<S;i++){var e=wPt(i*seg,88);h+='<line class="wl" x1="100" y1="100" x2="'+e[0].toFixed(2)+'" y2="'+e[1].toFixed(2)+'"/>'}}
+  var labels='';
+  if(span<=50){var fs=Math.max(6.5,Math.min(span<=12?15:13,2*Math.PI*66/span*.78));fs=Math.round(fs*10)/10;
+    for(i=0;i<span;i++){var v=min+i;labels+=wLabel(v,(i+.5)*seg,fs,(i===wi?'tw':(i%2?'tb':'ta')))}}
+  else{var ns=niceStep(span),v3=Math.ceil(min/ns)*ns;
+    for(;v3<=max;v3+=ns){var a3=(v3-min+.5)/span*360,sj=Math.min(S-1,Math.floor((v3-min+.5)/span*S));labels+=wLabel(v3,a3,String(v3).length>5?7:(String(v3).length>3?8:9),sj%2?'tb':'ta')}}
+  h+=labels+'<circle class="wring" cx="100" cy="100" r="30" style="opacity:0"/>';
+  svg.innerHTML=h}
+// spin target: add whole turns, then stop with the winner's spot under the pointer (top)
+function wheelAim(n){WH.aimed=n;var span=WH.max-WH.min+1,w=360/span,a=(n-WH.min+.5)/span*360+(Math.random()-.5)*w*.5;
+  var cur=((rot%360)+360)%360,need=((360-a-cur)%360+360)%360;return rot+360*(8+Math.floor(Math.random()*3))+need}
+function wheelLand(n,min,max){wheelDraw(min,max);var span=max-min+1,a=(n-min+.5)/span*360,cur=((rot%360)+360)%360;rot=rot+(((360-a-cur)%360)+360)%360}
+function wheelWin(n){wheelDraw(WH.min,WH.max,n)}
+// jump straight to the finished wheel (Skip, quick mode, reduced motion): winner under the pointer, winner shown
+function wheelFinish(n){var q=WH.req;if(q&&WH.aimed!==n){wheelLand(n,q.min,q.max);WH.aimed=n}wheelWin(n)}
+async function runWheel(n,min,max){
   var sc=$('wscene'), spin=$('wspin'), hub=$('whub'), ptr=$('ptr');
+  wheelDraw(min,max);
   // reset
   sc.className='wscene';spin.className='wspin';hub.className='whub';ptr.className='ptr';
   spin.style.transition='none';spin.style.transform='rotate('+rot+'deg)';
@@ -1453,26 +1535,23 @@ async function runWheel(){
   await sleep(320);
   // accelerate into full spin
   sc.classList.add('spinning');
-  rot += 360*5 + 120 + Math.random()*240;
-  rot = Math.round(rot/36)*36; // land with the pointer in the middle of a wedge
-  spin.style.transition='transform 3.15s cubic-bezier(.15,.02,.08,1)';
+  rot = wheelAim(n); // lands with the winner's spot under the pointer
+  spin.style.transition='transform '+WDUR+'ms cubic-bezier('+WEASE.join(',')+')';
   spin.style.transform='rotate('+rot+'deg)';
   spin.classList.add('blur');
-  setTimeout(function(){spin.classList.remove('blur')},2100);
-  // mid-spin camera push
-  await sleep(1600);
+  setTimeout(function(){spin.classList.remove('blur')},WDUR*.5);
+  // mid-spin camera push: full speed, then the wheel slows and the pointer starts to flick over the pegs
+  await sleep(WDUR*.3);
   sc.classList.remove('spinning');sc.classList.add('slowing');
-  // pointer reacts during slowdown
-  setTimeout(function(){ptr.classList.add('nudge')},900);
-  setTimeout(function(){ptr.classList.remove('nudge')},1100);
-  setTimeout(function(){ptr.classList.add('nudge')},1400);
-  setTimeout(function(){ptr.classList.remove('nudge')},1550);
-  await sleep(1550);
+  [.6,.7,.78,.84,.89,.93,.965].forEach(function(f){
+    setTimeout(function(){ptr.classList.add('nudge')},WDUR*f-WDUR*.3);
+    setTimeout(function(){ptr.classList.remove('nudge')},WDUR*f-WDUR*.3+130)});
+  await sleep(WDUR*.7);
   // final stop impact
   sc.classList.remove('slowing');sc.classList.add('final');
   hub.classList.add('impact');
   ptr.classList.add('bounce');
-  pulse('flash');pulse('ring');sparks(28);shake();
+  pulse('flash');pulse('ring');sparks(28);shake();wheelWin(n);
   await sleep(450);
   hub.classList.remove('lit','impact');
   await sleep(200);
@@ -1814,7 +1893,7 @@ function snapEnd(m,n){
   P.length=0;cx.clearRect(0,0,W,H);
   if(m==='crate'){$('scene').className='scene open c3 fade';$('cnum').textContent=fmt(n);$('cnum').className='cnum up'}
   else if(m==='machine'){$('mdisp').textContent=fmt(n);$('mach').classList.add('locked');$('mscene').className='mscene lock'}
-  else if(m==='wheel'){var sp=$('wspin');$('wscene').className='wscene final';sp.className='wspin';$('whub').className='whub';$('ptr').className='ptr';sp.style.transition='none';sp.style.transform='rotate('+rot+'deg)'}
+  else if(m==='wheel'){wheelFinish(n);var sp=$('wspin');$('wscene').className='wscene final';sp.className='wspin';$('whub').className='whub';$('ptr').className='ptr';sp.style.transition='none';sp.style.transform='rotate('+rot+'deg)'}
   else if(m==='card'){cardReset();$('cscene').classList.remove('idle');$('cscene').classList.add('s1','s2','final');$('cflip').classList.add('done');cardShow(n)}
 }
 function finishSkip(m,n,skippable){
@@ -1865,7 +1944,7 @@ $('qskip').addEventListener('change',function(){if(!busy)$('modesel').disabled=t
 async function reveal(){
   if(busy)return;
   var r=readRange();if(!r)return;
-  var m=mode(),n=pickNum(r.min,r.max),skipped=false,quick=$('qskip').checked&&!reduce.matches;
+  var m=mode(),n=pickNum(r.min,r.max),skipped=false,wq=(WH.req=r,WH.aimed=null),quick=$('qskip').checked&&!reduce.matches;
   if(NR.reset)say(RL.t('nrdone'));
   setStage();
   $('stage').classList.remove('snap');
@@ -1882,7 +1961,7 @@ async function reveal(){
     else if(m==='card')sfxCard();
     else if(m==='rain'){/* sound starts inside runRain so Skip can silence it */}
     else sfxMachine();
-    if(m==='wheel')await runWheel();
+    if(m==='wheel')await runWheel(n,r.min,r.max);
     else if(m==='crate')await runCrate(n);
     else if(m==='card')n=await runCard(r.min,r.max,n);
     else if(m==='rain')await runRain(n);
@@ -1893,7 +1972,7 @@ async function reveal(){
   }else{
     if(m==='crate'){$('scene').className='scene open c3 fade';$('cnum').textContent=fmt(n);$('cnum').className='cnum up'}
     if(m==='machine'){$('mdisp').textContent=fmt(n);$('mach').classList.add('locked');$('mscene').className='mscene lock'}
-    if(m==='wheel'){$('wscene').className='wscene final';$('wspin').style.transform='rotate('+rot+'deg)'}
+    if(m==='wheel'){wheelFinish(n);$('wscene').className='wscene final';$('wspin').style.transform='rotate('+rot+'deg)'}
     if(m==='rain'){rainReset();rainShow(n)}
     if(m==='card'){cardReset();$('cscene').classList.remove('idle');$('cscene').classList.add('s1','s2','final');$('cflip').classList.add('done');cardShow(n)}
   }
@@ -1923,6 +2002,11 @@ $('go').addEventListener('click',reveal);
 })});
 
 build();setStage();
+function wheelPreview(){if(busy)return;var x=Math.floor(Number($('min').value)),y=Math.floor(Number($('max').value));if(!isFinite(x)||!isFinite(y)||$('min').value.trim()===''||$('max').value.trim()==='')return;
+  x=Math.min(MAX,Math.max(MIN,x));y=Math.min(MAX,Math.max(MIN,y));if(x>y){var t=x;x=y;y=t}wheelDraw(x,y)}
+['min','max'].forEach(function(i){$(i).addEventListener('input',wheelPreview)});
+document.querySelectorAll('.chip').forEach(function(c){c.addEventListener('click',function(){setTimeout(wheelPreview,0)})});
+wheelPreview();
 var root=document.documentElement,tb=$('theme');
 function cur(){return root.getAttribute('data-theme')==='dark'?'dark':'light'}
 function paint(){var d=cur()==='dark',l=RL.t(d?'tolight':'todark');
@@ -2050,6 +2134,59 @@ RL.onChange();
     .then(function(){busy=false;btn.disabled=false;btn.textContent=T(btn.getAttribute('data-tr')||'cf_send')});
   });
   document.addEventListener('click',function(e){var c=e.target.closest&&e.target.closest('[data-modal="contact-modal"]');if(!c)return;say('');var sel=document.getElementById('cf-topic');if(sel){sel.value=c.getAttribute('data-topic')||'other';sel.dispatchEvent(new Event('change'))}});
+})();
+</script>
+<script id="fs-js">
+(function(){
+var L={"en": ["Full screen", "Exit full screen"], "fr": ["Plein écran", "Quitter le plein écran"], "ru": ["На весь экран", "Выйти из полноэкранного режима"], "ja": ["全画面表示", "全画面表示を終了"], "fil": ["Full screen", "Lumabas sa full screen"], "hi": ["फ़ुल स्क्रीन", "फ़ुल स्क्रीन से बाहर निकलें"], "de": ["Vollbild", "Vollbild beenden"], "es": ["Pantalla completa", "Salir de pantalla completa"], "pt": ["Tela cheia", "Sair da tela cheia"], "id": ["Layar penuh", "Keluar dari layar penuh"], "ar": ["ملء الشاشة", "الخروج من ملء الشاشة"]};
+var card=document.querySelector('.card.res'),stage=document.getElementById('stage'),sw=card&&card.querySelector('.sw');
+if(!card||!stage||!sw)return;
+var lang=(document.documentElement.lang||'en').toLowerCase().split('-')[0];
+var t=L[lang]||L.en,html=document.documentElement,on=false,native=false;
+var btn=document.createElement('button');btn.type='button';btn.className='fsbtn';
+btn.innerHTML='<svg class="i-in" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg><svg class="i-out" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 4v5H4M15 4v5h5M9 20v-5H4M15 20v-5h5"/></svg>';
+sw.appendChild(btn);
+function label(){var l=on?t[1]:t[0];btn.setAttribute('aria-label',l);btn.title=l+' (F)';btn.setAttribute('aria-pressed',on?'true':'false')}
+function fit(){
+  if(!on){stage.style.removeProperty('--fsk');return}
+  var w=stage.clientWidth,h=stage.clientHeight,m=stage.getAttribute('data-m')||'wheel';
+  var D={wheel:[230,285],crate:[340,400],machine:[w<600?400:520,190],card:[220,275],dice:[190,210],coin:[190,210]},d=D[m];
+  var k=d?Math.max(.45,Math.min(6,Math.min(w/d[0],h/d[1]))):1;
+  stage.style.setProperty('--fsk',k.toFixed(3));
+  if(m==='cups'){var kc=Math.max(.5,Math.min(4.5,(h-70)/1.892/104));if(Math.abs((window.FSK||1)-kc)>.02){window.FSK=kc;try{window.dispatchEvent(new Event('resize'))}catch(e){}}}
+}
+function kick(){fit();try{window.dispatchEvent(new Event('resize'))}catch(e){}}
+function after(){requestAnimationFrame(function(){kick();setTimeout(kick,250)})}
+function enter(){
+  if(on)return;on=true;card.classList.add('is-fs');html.classList.add('fs-on');label();
+  var f=card.requestFullscreen||card.webkitRequestFullscreen;
+  if(f){try{var p=f.call(card,{navigationUI:'hide'});native=true;if(p&&p.catch)p.catch(function(){native=false})}catch(e){native=false}}
+  after();
+}
+function leave(){
+  if(!on)return;on=false;
+  var fe=document.fullscreenElement||document.webkitFullscreenElement;
+  if(fe){try{(document.exitFullscreen||document.webkitExitFullscreen).call(document)}catch(e){}}
+  native=false;card.classList.remove('is-fs');html.classList.remove('fs-on');stage.style.removeProperty('--fsk');window.FSK=1;label();after();
+}
+function toggle(){on?leave():enter()}
+btn.addEventListener('click',toggle);
+function fsChange(){var fe=document.fullscreenElement||document.webkitFullscreenElement;if(on&&native&&!fe)leave();else if(on)after()}
+document.addEventListener('fullscreenchange',fsChange);document.addEventListener('webkitfullscreenchange',fsChange);
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape'&&on){leave();return}
+  if((e.key==='f'||e.key==='F')&&!e.ctrlKey&&!e.metaKey&&!e.altKey){
+    var a=document.activeElement,tg=a&&a.tagName;
+    if(tg==='INPUT'||tg==='TEXTAREA'||tg==='SELECT'||(a&&a.isContentEditable))return;
+    if(document.querySelector('.modal-overlay:not([hidden])'))return;
+    e.preventDefault();toggle();
+  }
+});
+window.addEventListener('resize',function(){if(on)fit()});
+window.addEventListener('orientationchange',function(){if(on)after()});
+if(window.MutationObserver){try{new MutationObserver(function(){if(on)fit()}).observe(stage,{attributes:true,attributeFilter:['data-m']})}catch(e){}}
+if(window.ResizeObserver){try{new ResizeObserver(function(){if(on)fit()}).observe(stage)}catch(e){}}
+label();
 })();
 </script>
 </body>
