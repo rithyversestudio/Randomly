@@ -186,6 +186,16 @@ html.theme-anim :where(*):not(.wheel):not(.clid):not(.cnum):not(.beam):not(.wfac
 h1,h2,h3,summary,.ft-col a,.ft-col h3,.ft-brand p{overflow-wrap:anywhere;hyphens:auto}
 .ft-top>*{min-width:0}
 @media(max-width:380px){h1{font-size:clamp(1.55rem,8vw,2.2rem)}.ft-top{grid-template-columns:repeat(2,minmax(0,1fr))}.ft-col h3{letter-spacing:.04em}}
+
+/* ===== WHEEL v5: purple-and-white wheel that matches the chosen range (labels get sparser as the range grows) ===== */
+.wrim{background:#4a3fc4!important}
+.whub{background:#2b2380!important}
+.wsvg .wr{fill:#4a3fc4}.wsvg .sa{fill:#6a5cf0}.wsvg .sb{fill:#fff}.wsvg .sw{fill:#fbc02d}
+.wsvg .ta{fill:#fff}.wsvg .tb{fill:#4a3fc4}.wsvg .tw{fill:#2b2380}.wsvg .wl{fill:none;stroke:rgba(74,63,196,.28);stroke-width:.35}
+.wsvg text{font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-weight:800;text-anchor:middle;dominant-baseline:central;font-variant-numeric:tabular-nums}
+.wsvg .wring{fill:none;stroke:#fff;stroke-width:1;opacity:.5}
+html[data-theme="dark"] .wsvg .sb{fill:#d9d5ff}
+@media(prefers-color-scheme:dark){html:not([data-theme="light"]) .wsvg .sb{fill:#d9d5ff}}
 .wspin.blur{filter:none!important} /* the blur clipped the left edge of the wheel while spinning */
 /* ===== clean minimal page background: faint dot grid + soft top glow ===== */
 :root{--dot:rgba(91,91,240,.18);--g2:rgba(91,91,240,.10)}
@@ -685,6 +695,39 @@ a.brand{text-decoration:none;color:inherit}
 </style>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2564931903279308"
      crossorigin="anonymous"></script>
+<style id="fs-css">
+/* ---- FULL SCREEN v81 ---- */
+.fsbtn{position:absolute;top:10px;right:10px;z-index:6;width:42px;height:42px;padding:0;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--ink);display:grid;place-items:center;cursor:pointer;opacity:.9;transition:opacity .2s,transform .2s,background .2s,box-shadow .2s;box-shadow:0 4px 14px rgba(0,0,0,.12);-webkit-tap-highlight-color:transparent}
+[dir=rtl] .fsbtn{right:auto;left:10px}
+.fsbtn:hover{opacity:1;transform:scale(1.06);box-shadow:0 6px 20px var(--glow)}
+.fsbtn:focus-visible{outline:3px solid var(--brand);outline-offset:2px}
+.fsbtn svg{width:20px;height:20px;display:block}
+.fsbtn .i-out{display:none}
+.res.is-fs .fsbtn .i-in{display:none}
+.res.is-fs .fsbtn .i-out{display:block}
+html.fs-on,html.fs-on body{overflow:hidden!important;height:100%}
+.res.is-fs{position:fixed!important;inset:0;z-index:2147483000;margin:0!important;max-width:none!important;width:100%;height:100%;border-radius:0!important;border:0!important;display:flex!important;flex-direction:column;align-items:center;justify-content:center;gap:0;overflow:hidden;box-shadow:none!important;transform:none!important;
+  padding:max(14px,env(safe-area-inset-top)) max(18px,env(safe-area-inset-right)) max(14px,env(safe-area-inset-bottom)) max(18px,env(safe-area-inset-left));
+  background:radial-gradient(ellipse 80% 60% at 50% 36%,color-mix(in srgb,var(--brand) 20%,var(--bg)) 0,var(--bg) 72%)}
+.res.is-fs .fsbtn{position:fixed;top:max(14px,env(safe-area-inset-top));right:max(14px,env(safe-area-inset-right));width:48px;height:48px;z-index:20}
+[dir=rtl] .res.is-fs .fsbtn{right:auto;left:max(14px,env(safe-area-inset-left))}
+.res.is-fs .method{flex:0 0 auto;font-size:clamp(.8rem,1.8vh,1rem);margin-top:2px}
+.res.is-fs .sw{flex:1 1 auto;min-height:0;width:100%;max-width:1400px;display:flex}
+.res.is-fs .stage{flex:1 1 auto;height:auto!important;min-height:0;width:100%;max-width:none;margin:8px 0;border-radius:24px}
+.res.is-fs .stage>.s-wheel,.res.is-fs .stage>.s-crate,.res.is-fs .stage>.s-machine,.res.is-fs .stage>.s-card,.res.is-fs .stage>.s-dice,.res.is-fs .stage>.s-coin{zoom:var(--fsk,1)}
+.res.is-fs .stage>.s-machine{max-width:none;width:100%}
+.res.is-fs .cs-stage{max-width:min(100%,1600px)}
+.res.is-fs .big{flex:0 0 auto;font-size:clamp(3.4rem,13vh,9.5rem)}
+.res.is-fs .big.idle{height:auto!important;min-height:1.05em!important;overflow:visible!important;visibility:hidden;margin:0}
+.res.is-fs .hint{flex:0 0 auto;font-size:clamp(.9rem,2vh,1.1rem);min-height:1.2em}
+.res.is-fs #go{flex:0 0 auto;width:min(100%,460px);margin-top:12px}
+.res.is-fs .s-rain .rcloud{width:min(420px,62%);top:4%}
+.res.is-fs .msg{flex:0 0 auto;margin:6px 0 0}
+.res.is-fs .hist{display:none!important}
+.res.is-fs .rskip{bottom:14px}
+@media(max-height:520px){.res.is-fs #go{min-height:46px;margin-top:6px}.res.is-fs .hint{display:none}.res.is-fs .big{font-size:clamp(2.2rem,15vh,5rem)}.res.is-fs .stage{margin:4px 0}.res.is-fs .method{display:none}}
+@media(prefers-reduced-motion:reduce){.fsbtn{transition:none}}
+</style>
 </head>
 <body>
 <div class="bgfx" aria-hidden="true"><i class="orb o1"></i><i class="orb o2"></i><i class="orb o3"></i></div>
@@ -830,6 +873,61 @@ html[dir=rtl] .s-dice,html[dir=rtl] .s-coin,html[dir=rtl] .s-cups{direction:ltr}
 <p>No. Every flip is independent, so a streak of the same side doesn't make the other side any more likely next time.</p>
 <p><a href="/">Try the random number generator →</a></p>
 <p>Each result uses your browser's secure random generator, so every outcome has the same chance and earlier results never affect the next one. Nothing is sent to a server. <a href="/guide/">Random Number Generator Guide: How It Works and How to Use It</a></p>
+</div></article>
+<article class="card doc"><div class="modal-body">
+
+<h3>How to use the coin flip</h3>
+<ol>
+<li>Decide what heads and tails stand for before you flip, for example heads for pizza and tails for tacos.</li>
+<li>Press <strong>Flip</strong>. The 3D coin is tossed into the air, spins and lands on one side.</li>
+<li>Read the result on the coin and in the result card. The tiles keep a running count of <strong>Heads</strong>, <strong>Tails</strong> and total <strong>Flips</strong>.</li>
+<li>Press <strong>Skip / Reveal now</strong> for an instant answer, or turn on <strong>Skip animation</strong> in Options.</li>
+<li>Use <strong>Reset</strong> in Options to set the counters back to zero, and <strong>Recent draws</strong> to review your latest flips.</li>
+</ol>
+
+<h3>Why this coin flip is fair</h3>
+<p>Each flip is decided by your browser's cryptographic random source. Heads and tails each have a 50 percent chance, every time. The result is picked before the coin starts to spin, so the animation only reveals it and cannot influence it. A real coin can have a very slight bias depending on how it is tossed and how it is weighted, but a digital flip does not have that physical effect. You can read more about this in <a href="/articles/coin-flip-odds-and-myths/">Coin Flip Odds: Fairness, Streaks and the Gambler's Fallacy</a>.</p>
+
+<h3>Good uses for a coin flip</h3>
+<ul>
+<li>Choosing who goes first in a game or who kicks off a match.</li>
+<li>Breaking a tie between two equally good options.</li>
+<li>Making a small everyday decision, such as where to eat.</li>
+<li>Teaching probability: flip fifty or a hundred times and compare the counts with what you predicted.</li>
+<li>Settling a friendly disagreement without anyone feeling cheated.</li>
+</ul>
+
+<h3>Tips for a clean decision</h3>
+<ul>
+<li><strong>Call it first.</strong> Say which side means what before the flip so nobody changes the rules afterwards.</li>
+<li><strong>Flip once.</strong> Repeating until you get the answer you want defeats the purpose.</li>
+<li><strong>Notice your reaction.</strong> Many people discover what they really wanted by how they feel while the coin is in the air.</li>
+<li><strong>For bigger choices,</strong> use the coin only to break a true tie. Important decisions deserve real thought.</li>
+</ul>
+
+<h3>Try these flip challenges</h3>
+<ul>
+<li><strong>Best of three or five:</strong> the first to win most flips takes the round, which makes the result feel more decisive.</li>
+<li><strong>Streak hunt:</strong> flip 100 times and see how long your longest run of the same side is. Runs of five or six are common.</li>
+<li><strong>Prediction game:</strong> each player guesses before every flip and scores a point for each correct call.</li>
+</ul>
+
+<h3>More questions</h3>
+<h4>Can I flip several coins at once?</h4>
+<p>The tool flips one coin at a time. For several coins, flip repeatedly and keep count with the Heads and Tails tiles.</p>
+<h4>Why do I sometimes get many heads in a row?</h4>
+<p>Streaks are a normal part of random sequences. In 100 fair flips you should expect a run of five or six identical results somewhere. A streak does not mean the coin is biased, and it does not make the other side due.</p>
+<h4>Is my history stored?</h4>
+<p>No. The counts and recent flips are shown on the page for your visit, and nothing is sent to a server.</p>
+<h4>Can I use it to decide a prize winner?</h4>
+<p>For friendly choices between two people, yes. For prize draws, read <a href="/articles/pick-a-fair-winner-for-a-giveaway/">How to Pick a Fair Winner for a Giveaway</a>. Randomly is not intended for gambling or regulated draws.</p>
+
+<h3>Keep reading</h3>
+<ul>
+<li><a href="/articles/coin-flip-odds-and-myths/">Coin Flip Odds and Myths</a></li>
+<li><a href="/articles/birthday-paradox-and-surprising-chance/">The Birthday Paradox and Other Surprising Facts About Chance</a></li>
+<li><a href="/dice/">Dice Roller</a> and <a href="/cup-shuffle/">Number Cup Shuffle</a></li>
+</ul>
 </div></article>
 <script>(function(){var L={"roll": "Roll", "dice": "Dice", "sides": "Sides", "total": "Total", "flip": "Flip", "heads": "Heads", "tails": "Tails", "flips": "Flips", "reset": "Reset", "cs_cups": "Number of cups", "cs_norep": "No repeats", "cs_left": "Cups left:", "cs_last": "Last number drawn! Shuffle again to start over.", "cs_mode": "Numbers", "cs_quick": "Quick Pick", "cs_custom": "Custom Numbers", "cs_uses": "Numbers under the cups:", "cs_enter": "Enter a number for each cup.", "cs_err": "Please enter a whole number in every box.", "cs_start": "Hide numbers under cups", "cs_shuffle": "Shuffle", "cs_shuffling": "Shuffling…", "cs_pick": "Pick a cup", "cs_ready": "These are the numbers in play. Press Shuffle to cover and mix the cups.", "cs_result": "Your Number", "cs_again": "Shuffle Again", "cs_play": "Play Again", "cs_back": "Change setup", "cs_cup": "Cup", "hist": "Recent draws", "hclear": "Clear", "hcopyall": "Copy all", "hcopied": "Copied", "hcopy": "Copy", "rskip": "Skip / Reveal now", "qskip": "Skip animation", "opts": "Options", "ready": "Ready when you are", "sound": "Sound"};function rnd(n){var c=window.crypto||window.msCrypto;if(!c||!c.getRandomValues)return Math.floor(Math.random()*n);var m=Math.floor(4294967296/n)*n,a=new Uint32Array(1);do{c.getRandomValues(a)}while(a[0]>=m);return a[0]%n}
 
@@ -1031,6 +1129,65 @@ function flip(){if(busy)return;busy=true;lock(true);say('');var r=rnd(2);faces(f
 $('go').addEventListener('click',flip);
 faces(true);rest(0);$('method').textContent=L.ready;
 })();</script>
+
+<section class="card fbcta" aria-labelledby="fb-h">
+<canvas class="fbgl" aria-hidden="true"></canvas>
+<h2 id="fb-h" data-tr="fb_h">Help shape Randomly</h2>
+<p data-tr="fb_p">Have an idea, a feature you'd love to see, or found something that isn't working? Tell us. We read every message.</p>
+<div class="fbbtns">
+<button class="chip" type="button" data-modal="contact-modal" data-topic="suggestion" data-tr="fb_sug">💡 Suggest a feature</button>
+<button class="chip" type="button" data-modal="contact-modal" data-topic="feedback" data-tr="fb_fb">⭐ General feedback</button>
+<button class="chip" type="button" data-modal="contact-modal" data-topic="bug" data-tr="fb_bug">🐞 Report a problem</button>
+</div>
+</section>
+<script>(function(){
+var c=document.querySelector('.fbcta'),cv=c&&c.querySelector('.fbgl');if(!cv)return;
+var gl=cv.getContext('webgl',{antialias:false,alpha:false,powerPreference:'low-power'})||cv.getContext('experimental-webgl');if(!gl)return;
+var VS='attribute vec2 p;void main(){gl_Position=vec4(p,0.,1.);}';
+var FS=[
+'#ifdef GL_FRAGMENT_PRECISION_HIGH','precision highp float;','#else','precision mediump float;','#endif',
+'uniform vec2 R;uniform float T;uniform vec2 M;uniform float E;uniform float H;uniform float D;uniform float S;uniform vec3 A;uniform vec3 B;',
+'void main(){',
+' vec2 fc=gl_FragCoord.xy;vec2 uv=fc/R;',
+' float asp=R.x/R.y;vec2 p=vec2(uv.x*asp,uv.y);vec2 m=vec2(M.x*asp,M.y);',
+' float dm=length(p-m);float inf=exp(-dm*dm*5.);',
+' float h=.5*sin(p.x*2.6+T*.25+1.3*sin(p.y*3.1-T*.2))+.5*sin(p.y*3.4-T*.18+1.1*sin(p.x*2.2+T*.22))+.35*sin((p.x+p.y)*1.8+T*.15);',
+' h+=(H*.9+E*1.2)*inf*1.3;',
+' float n=h*3.4;float fr=abs(fract(n)-.5);',
+' float aa=10./R.y;float lw=.07+.03*inf*H;',
+' float ln=1.-smoothstep(lw-aa,lw+aa,fr);',
+' float k=clamp(uv.x*.65+(1.-uv.y)*.35+.07*sin(T*.35+uv.y*3.),0.,1.);',
+' vec3 base=mix(A,B,k)*mix(.9,.74,D);',
+' base*=1.+.06*sin(n*3.14159);',
+' vec3 lc=vec3(1.);',
+' vec3 col=mix(base,lc,ln*(.24+.2*inf*(H*.8+E*.6)));',
+' col+=vec3(1.)*inf*(.03+.04*H+.05*E);',
+' gl_FragColor=vec4(col,1.);}'].join('\n');
+function sh(t,src){var s=gl.createShader(t);gl.shaderSource(s,src);gl.compileShader(s);return gl.getShaderParameter(s,gl.COMPILE_STATUS)?s:null}
+var vs=sh(gl.VERTEX_SHADER,VS),fs=sh(gl.FRAGMENT_SHADER,FS);if(!vs||!fs)return;
+var pg=gl.createProgram();gl.attachShader(pg,vs);gl.attachShader(pg,fs);gl.linkProgram(pg);if(!gl.getProgramParameter(pg,gl.LINK_STATUS))return;
+gl.useProgram(pg);var bf=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,bf);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,3,-1,-1,3]),gl.STATIC_DRAW);
+var lp=gl.getAttribLocation(pg,'p');gl.enableVertexAttribArray(lp);gl.vertexAttribPointer(lp,2,gl.FLOAT,false,0,0);
+var U={};['R','T','M','E','H','D','S','A','B'].forEach(function(k){U[k]=gl.getUniformLocation(pg,k)});
+var rm=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+var tx=.5,ty=.5,cx=.5,cy=.5,px=.5,py=.5,E=0,H=0,hv=0,raf=0,vis=true,t0=performance.now();
+function size(){var w=c.clientWidth,hh=c.clientHeight,d=Math.min(window.devicePixelRatio||1,window.innerWidth<600?1:1.5);while(w*hh*d*d>650000&&d>.5)d-=.1;cv.width=Math.max(1,Math.round(w*d));cv.height=Math.max(1,Math.round(hh*d));gl.viewport(0,0,cv.width,cv.height);readCols();draw((performance.now()-t0)/1000)}
+var ca=[.357,.357,.941],cb=[.541,.361,.965],dk=1;
+function hx(v,fb){v=(v||'').trim();var m;if(v.charAt(0)==='#'){if(v.length===4)v='#'+v[1]+v[1]+v[2]+v[2]+v[3]+v[3];if(v.length>=7)return[parseInt(v.substr(1,2),16)/255,parseInt(v.substr(3,2),16)/255,parseInt(v.substr(5,2),16)/255]}else if(m=v.match(/\d+(\.\d+)?/g)){if(m.length>=3)return[m[0]/255,m[1]/255,m[2]/255]}return fb}
+function readCols(){var de=document.documentElement,cs=getComputedStyle(de),th=de.getAttribute('data-theme');ca=hx(cs.getPropertyValue('--brand'),ca);cb=hx(cs.getPropertyValue('--brand2'),cb);dk=(th==='dark'||(th!=='light'&&window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches))?1:0}
+function draw(t){gl.uniform2f(U.R,cv.width,cv.height);gl.uniform1f(U.T,rm?12:t+12);gl.uniform2f(U.M,cx,cy);gl.uniform1f(U.E,E);gl.uniform1f(U.H,H);gl.uniform1f(U.D,dk);gl.uniform1f(U.S,cv.width/Math.max(1,c.clientWidth));gl.uniform3f(U.A,ca[0],ca[1],ca[2]);gl.uniform3f(U.B,cb[0],cb[1],cb[2]);gl.drawArrays(gl.TRIANGLES,0,3)}
+function frame(now){raf=0;if(!vis||document.hidden)return;cx+=(tx-cx)*.12;cy+=(ty-cy)*.12;E=Math.min(1.5,E*.93+Math.hypot(cx-px,cy-py)*4*(c.clientWidth/c.clientHeight>1?1:1));px=cx;py=cy;H+=(hv-H)*.08;draw((now-t0)/1000);raf=requestAnimationFrame(frame)}
+function go(){if(!raf&&!rm&&vis&&!document.hidden)raf=requestAnimationFrame(frame)}
+function aim(ev){var r=c.getBoundingClientRect();tx=(ev.clientX-r.left)/r.width;ty=1-(ev.clientY-r.top)/r.height;hv=1}
+c.addEventListener('pointerenter',function(ev){aim(ev);cx=tx;cy=ty;px=cx;py=cy});c.addEventListener('pointermove',aim);
+c.addEventListener('pointerdown',function(ev){aim(ev);E=Math.min(1.5,E+.8)});
+c.addEventListener('pointerleave',function(){hv=0});c.addEventListener('pointercancel',function(){hv=0});
+if('IntersectionObserver' in window)new IntersectionObserver(function(en){vis=en[0].isIntersecting;if(vis)go()}).observe(c);
+document.addEventListener('visibilitychange',function(){if(!document.hidden)go()});
+if('ResizeObserver' in window)new ResizeObserver(size).observe(c);else window.addEventListener('resize',size);
+new MutationObserver(function(){readCols();draw((performance.now()-t0)/1000)}).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
+if(window.matchMedia){var mq=matchMedia('(prefers-color-scheme: dark)');if(mq.addEventListener)mq.addEventListener('change',function(){readCols();draw((performance.now()-t0)/1000)})}
+size();go()})()</script>
 </main>
 </div>
 <footer class="site-footer">
@@ -1041,6 +1198,7 @@ faces(true);rest(0);$('method').textContent=L.ready;
 <a href="/" data-tr="f_home">Home</a>
 <a href="/about/" data-tr="f_about">About</a>
 <a href="/guide/" data-tr="f_guide">Guide</a>
+<a href="/articles/">Articles</a>
 <a href="/dice/" data-tr="t_dice_n">Dice Roller</a>
 <a href="/coin-flip/" data-tr="t_coin_n">Coin Flip</a>
 <a href="/cup-shuffle/" data-tr="t_cup_n">Number Cup Shuffle</a></nav>
@@ -1048,7 +1206,8 @@ faces(true);rest(0);$('method').textContent=L.ready;
 <a href="/terms/" data-tr="f_terms">Terms and Conditions</a>
 <a href="/privacy/" data-tr="f_privacy">Privacy Policy</a></nav>
 <nav class="ft-col" aria-label="Support"><h3 data-tr="ft_h_help">Support</h3>
-<a href="#" data-modal="contact-modal" data-topic="other" role="button" data-tr="f_contact">Contact us</a></nav>
+<a href="#" data-modal="contact-modal" data-topic="other" role="button" data-tr="f_contact">Contact us</a>
+<a href="/contact/">Contact details</a></nav>
 </div>
 <nav class="ft-langs" aria-label="Language" data-tra="aria-label:lang"><a href="/coin-flip/" hreflang="en" lang="en" aria-current="page">English</a><a href="/fr/coin-flip/" hreflang="fr" lang="fr">Français</a><a href="/ru/coin-flip/" hreflang="ru" lang="ru">Русский</a><a href="/ja/coin-flip/" hreflang="ja" lang="ja">日本語</a><a href="/fil/coin-flip/" hreflang="fil" lang="fil">Filipino</a><a href="/hi/coin-flip/" hreflang="hi" lang="hi">हिन्दी</a><a href="/de/coin-flip/" hreflang="de" lang="de">Deutsch</a><a href="/es/coin-flip/" hreflang="es" lang="es">Español</a><a href="/pt/coin-flip/" hreflang="pt" lang="pt">Português</a><a href="/id/coin-flip/" hreflang="id" lang="id">Bahasa Indonesia</a><a href="/ar/coin-flip/" hreflang="ar" lang="ar">العربية</a></nav>
 <div class="ft-bottom">
@@ -1171,6 +1330,59 @@ window.addEventListener('pageshow',function(){ls.value=RL.cur()});
     .then(function(){busy=false;btn.disabled=false;btn.textContent=T(btn.getAttribute('data-tr')||'cf_send')});
   });
   document.addEventListener('click',function(e){var c=e.target.closest&&e.target.closest('[data-modal="contact-modal"]');if(!c)return;say('');var sel=document.getElementById('cf-topic');if(sel){sel.value=c.getAttribute('data-topic')||'other';sel.dispatchEvent(new Event('change'))}});
+})();
+</script>
+<script id="fs-js">
+(function(){
+var L={"en": ["Full screen", "Exit full screen"], "fr": ["Plein écran", "Quitter le plein écran"], "ru": ["На весь экран", "Выйти из полноэкранного режима"], "ja": ["全画面表示", "全画面表示を終了"], "fil": ["Full screen", "Lumabas sa full screen"], "hi": ["फ़ुल स्क्रीन", "फ़ुल स्क्रीन से बाहर निकलें"], "de": ["Vollbild", "Vollbild beenden"], "es": ["Pantalla completa", "Salir de pantalla completa"], "pt": ["Tela cheia", "Sair da tela cheia"], "id": ["Layar penuh", "Keluar dari layar penuh"], "ar": ["ملء الشاشة", "الخروج من ملء الشاشة"]};
+var card=document.querySelector('.card.res'),stage=document.getElementById('stage'),sw=card&&card.querySelector('.sw');
+if(!card||!stage||!sw)return;
+var lang=(document.documentElement.lang||'en').toLowerCase().split('-')[0];
+var t=L[lang]||L.en,html=document.documentElement,on=false,native=false;
+var btn=document.createElement('button');btn.type='button';btn.className='fsbtn';
+btn.innerHTML='<svg class="i-in" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg><svg class="i-out" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 4v5H4M15 4v5h5M9 20v-5H4M15 20v-5h5"/></svg>';
+sw.appendChild(btn);
+function label(){var l=on?t[1]:t[0];btn.setAttribute('aria-label',l);btn.title=l+' (F)';btn.setAttribute('aria-pressed',on?'true':'false')}
+function fit(){
+  if(!on){stage.style.removeProperty('--fsk');return}
+  var w=stage.clientWidth,h=stage.clientHeight,m=stage.getAttribute('data-m')||'wheel';
+  var D={wheel:[230,285],crate:[340,400],machine:[w<600?400:520,190],card:[220,275],dice:[190,210],coin:[190,210]},d=D[m];
+  var k=d?Math.max(.45,Math.min(6,Math.min(w/d[0],h/d[1]))):1;
+  stage.style.setProperty('--fsk',k.toFixed(3));
+  if(m==='cups'){var kc=Math.max(.5,Math.min(4.5,(h-70)/1.892/104));if(Math.abs((window.FSK||1)-kc)>.02){window.FSK=kc;try{window.dispatchEvent(new Event('resize'))}catch(e){}}}
+}
+function kick(){fit();try{window.dispatchEvent(new Event('resize'))}catch(e){}}
+function after(){requestAnimationFrame(function(){kick();setTimeout(kick,250)})}
+function enter(){
+  if(on)return;on=true;card.classList.add('is-fs');html.classList.add('fs-on');label();
+  var f=card.requestFullscreen||card.webkitRequestFullscreen;
+  if(f){try{var p=f.call(card,{navigationUI:'hide'});native=true;if(p&&p.catch)p.catch(function(){native=false})}catch(e){native=false}}
+  after();
+}
+function leave(){
+  if(!on)return;on=false;
+  var fe=document.fullscreenElement||document.webkitFullscreenElement;
+  if(fe){try{(document.exitFullscreen||document.webkitExitFullscreen).call(document)}catch(e){}}
+  native=false;card.classList.remove('is-fs');html.classList.remove('fs-on');stage.style.removeProperty('--fsk');window.FSK=1;label();after();
+}
+function toggle(){on?leave():enter()}
+btn.addEventListener('click',toggle);
+function fsChange(){var fe=document.fullscreenElement||document.webkitFullscreenElement;if(on&&native&&!fe)leave();else if(on)after()}
+document.addEventListener('fullscreenchange',fsChange);document.addEventListener('webkitfullscreenchange',fsChange);
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape'&&on){leave();return}
+  if((e.key==='f'||e.key==='F')&&!e.ctrlKey&&!e.metaKey&&!e.altKey){
+    var a=document.activeElement,tg=a&&a.tagName;
+    if(tg==='INPUT'||tg==='TEXTAREA'||tg==='SELECT'||(a&&a.isContentEditable))return;
+    if(document.querySelector('.modal-overlay:not([hidden])'))return;
+    e.preventDefault();toggle();
+  }
+});
+window.addEventListener('resize',function(){if(on)fit()});
+window.addEventListener('orientationchange',function(){if(on)after()});
+if(window.MutationObserver){try{new MutationObserver(function(){if(on)fit()}).observe(stage,{attributes:true,attributeFilter:['data-m']})}catch(e){}}
+if(window.ResizeObserver){try{new ResizeObserver(function(){if(on)fit()}).observe(stage)}catch(e){}}
+label();
 })();
 </script>
 </body>
