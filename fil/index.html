@@ -785,6 +785,9 @@ html.fs-on,html.fs-on body{overflow:hidden!important;height:100%}
 @media(max-height:520px){.res.is-fs #go{min-height:46px;margin-top:6px}.res.is-fs .hint{display:none}.res.is-fs .big{font-size:clamp(2.2rem,15vh,5rem)}.res.is-fs .stage{margin:4px 0}.res.is-fs .method{display:none}}
 @media(prefers-reduced-motion:reduce){.fsbtn{transition:none}}
 </style>
+<style id="pop-fast">/* v90: the big result shows at once (it used to fade in from invisible + blurred over ~0.5 s) */
+@keyframes popq{0%{transform:scale(.8)}60%{transform:scale(1.07)}100%{transform:none}}
+.big.pop{animation:popq .3s cubic-bezier(.2,1.2,.4,1)}</style>
 </head>
 <body>
 <div class="bgfx" aria-hidden="true"><i class="orb o1"></i><i class="orb o2"></i><i class="orb o3"></i></div>
@@ -1139,19 +1142,26 @@ var WREV=null,SFXM=[];
 function sfxTrack(g){SFXM.push(g);if(SFXM.length>8)SFXM.shift()}
 function sfxStop(){var a=AC;if(!a)return;var t=a.currentTime;
   SFXM.forEach(function(g){try{g.gain.cancelScheduledValues(t);g.gain.setValueAtTime(g.gain.value,t);g.gain.linearRampToValueAtTime(0,t+.08)}catch(e){}});
-  SFXM=[]}
+  SFXM=[];BUS=null;setTimeout(sfxWarm,250)}
+var BUS=null;
+function sfxWarm(){if(!soundOn)return;try{sfxKit()}catch(e){}}
+function after(f){requestAnimationFrame(function(){setTimeout(f,0)})}
+['pointerdown','touchstart','keydown'].forEach(function(ev){window.addEventListener(ev,function(){
+  if(window.requestIdleCallback)requestIdleCallback(sfxWarm,{timeout:400});else setTimeout(sfxWarm,60)},{once:true,capture:true,passive:true})});
 function sfxKit(){
   var a=ac();if(!a)return;
   if(!NB){NB=a.createBuffer(1,a.sampleRate,a.sampleRate);var q=NB.getChannelData(0);for(var i=0;i<q.length;i++)q[i]=Math.random()*2-1}
   var now=a.currentTime;
   // ---- master bus: compressor -> master, plus a short reverb send
+  if(!BUS||BUS.a!==a){
   var comp=a.createDynamicsCompressor();comp.threshold.value=-14;comp.knee.value=10;comp.ratio.value=4;comp.attack.value=.003;comp.release.value=.2;
   var mst=a.createGain();mst.gain.value=.9;comp.connect(mst);mst.connect(a.destination);sfxTrack(mst);
   var dry=a.createGain();dry.connect(comp);
   if(!WREV||WREV.sampleRate!==a.sampleRate){var L=Math.floor(a.sampleRate*1.7);WREV=a.createBuffer(2,L,a.sampleRate);
-    for(var c=0;c<2;c++){var d=WREV.getChannelData(c);for(var k=0;k<L;k++)d[k]=(Math.random()*2-1)*Math.pow(1-k/L,2.6)}}
+    for(var c=0;c<2;c++){var d=WREV.getChannelData(c),e=1;for(var k=0;k<L;k++){if(!(k&63))e=Math.pow(1-k/L,2.6);d[k]=(Math.random()*2-1)*e}}}
   var cv=a.createConvolver();cv.buffer=WREV;var wet=a.createGain();wet.gain.value=.3;cv.connect(wet);wet.connect(comp);
-  var send=a.createGain();send.gain.value=1;send.connect(cv);
+  var send=a.createGain();send.gain.value=1;send.connect(cv);BUS={a:a,dry:dry,send:send}}
+  var dry=BUS.dry,send=BUS.send;
   function out(g,rv,pan){var n=g;if(pan&&a.createStereoPanner){n=a.createStereoPanner();n.pan.value=pan;g.connect(n)}n.connect(dry);if(rv){var r=a.createGain();r.gain.value=rv;n.connect(r);r.connect(send)}}
   // tonal voice with attack/decay, optional pitch glide, lowpass and reverb send
   function T(o){var t=now+o.t,os=a.createOscillator(),g=a.createGain(),n=os;
@@ -1469,7 +1479,7 @@ function build(){
 }
 var cv=$('fx'),cx=cv.getContext('2d'),P=[],W=0,H=0,ticking=false,cols=['#ffffff','#ffe9a8','#c9b8ff'],lcols=['#5b5bf0','#8a5cf6','#12b5a6','#f59e0b'];
 function dk(){return document.documentElement.getAttribute('data-theme')==='dark'}
-function fit(){var r=cv.getBoundingClientRect(),d=Math.min(window.devicePixelRatio||1,2);W=r.width;H=r.height;cv.width=W*d;cv.height=H*d;cx.setTransform(d,0,0,d,0,0)}
+function fit(){var r=cv.getBoundingClientRect(),d=Math.min(window.devicePixelRatio||1,2);W=r.width;H=r.height;var pw=Math.round(W*d),ph=Math.round(H*d);if(cv.width!==pw||cv.height!==ph){cv.width=pw;cv.height=ph}cx.setTransform(d,0,0,d,0,0)}
 function tick(){cx.clearRect(0,0,W,H);
   for(var i=P.length-1;i>=0;i--){var p=P[i];if(++p.l>p.L){P.splice(i,1);continue}p.vy+=p.g;p.x+=p.vx;p.y+=p.vy;cx.globalAlpha=(p.a||1)*(1-p.l/p.L);cx.fillStyle=p.c;cx.beginPath();cx.arc(p.x,p.y,p.s,0,6.283);cx.fill()}
   cx.globalAlpha=1;if(P.length)requestAnimationFrame(tick);else ticking=false}
@@ -1552,9 +1562,7 @@ async function runWheel(n,min,max){
   hub.classList.add('impact');
   ptr.classList.add('bounce');
   pulse('flash');pulse('ring');sparks(28);shake();wheelWin(n);
-  await sleep(450);
-  hub.classList.remove('lit','impact');
-  await sleep(200);
+  setTimeout(function(){hub.classList.remove('lit','impact')},450);
 }
 async function runCrate(n){
   var sc=$('scene'),cn=$('cnum'),a=function(){for(var i=0;i<arguments.length;i++)sc.classList.add(arguments[i])};
@@ -1567,7 +1575,7 @@ async function runCrate(n){
   a('rat');await sleep(120);
   a('open','c2');pulse('flash');pulse('ring');sparks(46);shake();await sleep(650);
   cn.textContent=fmt(n);cn.classList.add('up');await sleep(650);
-  cn.classList.add('land');a('c3','fade');sparks(10,1);await sleep(450);
+  cn.classList.add('land');a('c3','fade');sparks(10,1);
 }
 async function runMachine(n,min,max){
   var m=$('mach'), sc=$('mscene'), d=$('mdisp');
@@ -1619,7 +1627,6 @@ async function runMachine(n,min,max){
   // all lights solid
   lights.forEach(function(l){l.classList.add('on')});
   panels.forEach(function(p){p.classList.add('lit')});
-  await sleep(550);
 }
 var cardEls=[];
 function cardReset(){
@@ -1673,7 +1680,6 @@ async function runCard(min,max,pre){
   cardShow(n);
   sc.classList.add('final');
   pulse('ring');sparks(12,1);
-  await sleep(700);
   return n;
 }
 
@@ -1877,7 +1883,6 @@ async function runRain(n){
   $('rskip').classList.remove('on');
   rainShow(n);                                           // soft glow once the number has landed
   rainState='shown';rainSkip=null;rainSnd=null;
-  await sleep(700);
 }
 $('rskip').addEventListener('click',function(){if(rainSkip)rainSkip();else if(skipFn)skipFn()});
 document.addEventListener('keydown',function(e){if(e.key!=='Escape')return;if(rainState==='run'&&rainSkip)rainSkip();else if(skipFn)skipFn()});
@@ -1956,11 +1961,8 @@ async function reveal(){
   var skippable=!reduce.matches&&!quick&&m!=='rain';
   if(skippable){SK.on=false;SK.w.length=0;skipFn=doSkip;$('rskip').classList.add('on')}
   if(!reduce.matches&&!quick){
-    if(m==='wheel')sfxWheel();
-    else if(m==='crate')sfxCrate();
-    else if(m==='card')sfxCard();
-    else if(m==='rain'){/* sound starts inside runRain so Skip can silence it */}
-    else sfxMachine();
+    /* sound starts just after the first frame is painted; for rain it starts inside runRain so Skip can silence it */
+    after(function(){if(m==='wheel')sfxWheel();else if(m==='crate')sfxCrate();else if(m==='card')sfxCard();else if(m!=='rain')sfxMachine()});
     if(m==='wheel')await runWheel(n,r.min,r.max);
     else if(m==='crate')await runCrate(n);
     else if(m==='card')n=await runCard(r.min,r.max,n);
@@ -1980,7 +1982,7 @@ async function reveal(){
   histAdd(n,m,r.min,r.max);
   $('method').textContent=names[m];
   big.className='big';void big.offsetWidth;big.classList.add('pop');
-  big.textContent=fmt(n);if(m==='rain')sfxReveal(0,true);else if(m!=='crate'||reduce.matches||quick||skipped)sfxReveal(0);
+  big.textContent=fmt(n);after(function(){if(m==='rain')sfxReveal(0,true);else if(m!=='crate'||reduce.matches||quick||skipped)sfxReveal(0)});
   setHint(function(){return RL.t('between',fmt(r.min),fmt(r.max))});
   lock(false);setTimeout(function(){$('stage').classList.remove('focus')},700);
 }
