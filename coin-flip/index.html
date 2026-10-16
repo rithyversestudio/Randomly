@@ -1092,11 +1092,12 @@ var KN=null;
 function coinToss(){var K=KN=sfxKit();if(!K)return;var T=K.T,N=K.N;
   K.ring({f:3100,d:.5,v:.05,rv:.6,pan:-.2});
   N({f:600,f2:3200,d:.18,v:.07,q:1.4,a:.3,pan:-.2});
-  K.M({f:2300,f2:1550,lf:10,lf2:8,t:.05,d:1.15,v:.026,at:.25,rv:.35});
-  K.M({f:3450,f2:2300,lf:10,lf2:8,t:.05,d:1.15,v:.014,at:.25,rv:.4,type:'sine',pan:.2});
-  T({f:50,f2:110,d:1.25,v:.13,type:'sawtooth',lp:260,at:1.1});
-  N({f:4000,f2:9000,t:.1,d:1.1,v:.03,type:'highpass',a:.95});
-  K.ring({f:4200,t:.55,d:.35,v:.018,rv:.8,pan:.4})}
+  var F=1.3;   /* flight is a bit shorter than the first long version - stretch the whirr and dread swell, the whirr slows as the spin does */
+  K.M({f:2300,f2:1100,lf:10,lf2:4,t:.05,d:1.15*F,v:.026,at:.25,rv:.35});
+  K.M({f:3450,f2:1700,lf:10,lf2:4,t:.05,d:1.15*F,v:.014,at:.25,rv:.4,type:'sine',pan:.2});
+  T({f:50,f2:110,d:1.25*F,v:.13,type:'sawtooth',lp:260,at:1.1*F});
+  N({f:4000,f2:9000,t:.1,d:1.1*F,v:.03,type:'highpass',a:.95});
+  K.ring({f:4200,t:.55,d:.35,v:.018,rv:.8,pan:.4});K.ring({f:4800,t:.85,d:.3,v:.012,rv:.8,pan:-.3})}
 // gold coin on a hard table: ringing strike + thunk; the last call (v<.3) is the spin-down chatter that speeds up and rises in pitch
 function clink(v){var K=KN;if(!K)return;var T=K.T,N=K.N,p=sfR(-.2,.2);
   K.ring({f:2250+sfR(0,350),d:.25+.7*v,v:.06*v+.012,rv:.5,pan:p});
@@ -1104,26 +1105,26 @@ function clink(v){var K=KN;if(!K)return;var T=K.T,N=K.N,p=sfR(-.2,.2);
   N({f:4200,d:.02,v:.1*v+.015,type:'highpass',pan:p});
   N({f:1400,f2:500,d:.07,v:.05*v,q:2,a:.1,rv:.2,pan:p});
   if(v>.8)T({f:75,f2:36,d:.4,v:.18,rv:.15});
-  if(v<.3){var t=.06,dt=.085,i=0;
-    while(i<12){var w=Math.max(.3,.8-i*.04);K.ring({f:2500+i*70,t:t,d:.12,v:.04*w,rv:.35,pan:sfR(-.1,.1)});T({f:210+i*5,f2:120,t:t,d:.035,v:.03*w,pan:p});t+=dt;dt*=.8;i++}
-    N({f:3000,f2:6500,t:.35,d:.25,v:.03,q:1.2,a:.4})}}
+  if(v<.3){var t=.06,dt=.12,i=0;
+    while(i<14){var w=Math.max(.3,.8-i*.04);K.ring({f:2500+i*70,t:t,d:.12,v:.04*w,rv:.35,pan:sfR(-.1,.1)});T({f:210+i*5,f2:120,t:t,d:.035,v:.03*w,pan:p});t+=dt;dt*=.86;i++}
+    N({f:3000,f2:6500,t:.65,d:.3,v:.03,q:1.2,a:.4})}}
 function flip(){if(busy)return;busy=true;lock(true);say('');var r=rnd(2);faces(false);bigIdle();setHint('');
   if(quick()){cur=r*180;rest(cur);land(r,false);return}
   stage.classList.add('focus');skipOn(function(){sfxStop();end(r)});
-  var turns=5+rnd(3),delta=((r*180-cur)%360+360)%360,amount=360*turns+delta,start=cur,
-      TF=1250,PH=72,dir=rnd(2)?1:-1,pr=(10+rnd(8))*dir,drift=(rnd(2)?1:-1)*(6+rnd(14)),
-      B1=300,B2=170,SET=520,TOT=TF+B1+B2+SET,wA=(16+rnd(10))*(rnd(2)?1:-1),t0=0,s1=0,s2=0,c1=0;
+  var turns=9+rnd(4),POST=700,delta=((r*180-cur)%360+360)%360,amount=360*turns+delta,start=cur,
+      TF=1500,PH=76,B1=480,B2=300,SET=1150,SPT=B1+B2+SET,TOT=TF+SPT,wA=(8+rnd(6))*(rnd(2)?1:-1),t0=0,s1=0,s2=0,c1=0;
   coinToss();
-  function frame(now){if(!t0)t0=now;var e=now-t0,y,a,ry,rz,x;
-    if(e<TF){var s=e/TF,sp=s+.035*Math.sin(s*Math.PI*2)*0;y=PH*4*s*(1-s);a=start+amount*sp;
-      ry=0;rz=0;x=0}
-    else{var q=e-TF,wob=0,yy=0;
-      if(q<B1){var u=q/B1;yy=26*4*u*(1-u);if(!c1){c1=1;clink(1)}}
-      else if(q<B1+B2){var u2=(q-B1)/B2;yy=8*4*u2*(1-u2);if(!s1){s1=1;clink(.55)}}
-      else if(!s2){s2=1;clink(.28)}
-      var sec=q/1000;wob=wA*Math.exp(-sec*5.2)*Math.cos(sec*2*Math.PI*5.2);
-      y=yy;a=start+amount+wob;ry=0;rz=0;x=0}
-    draw(y,a,ry,rz,x);
+  /* one toss: spins fast through the air, comes down, bounces twice while still spinning (spin keeps slowing), then settles on the chosen face */
+  function frame(now){if(!t0)t0=now;var e=now-t0,y,a,ry=0;
+    if(e<TF){var s=e/TF;y=PH*4*s*(1-s);a=start+(amount-POST)*s}
+    else{var q=e-TF,yy=0;
+      if(q<B1){var u=q/B1;yy=26*4*u*(1-u);if(!s1){s1=1;clink(1)}}
+      else if(q<B1+B2){var u2=(q-B1)/B2;yy=9*4*u2*(1-u2);if(!s2){s2=1;clink(.55)}}
+      else if(!c1){c1=1;clink(.28)}
+      var sq=Math.min(1,q/SPT);a=start+amount-POST*Math.pow(1-sq,2.2);
+      var sec=Math.max(0,q-B1-B2)/1000;ry=wA*Math.exp(-sec*4)*Math.cos(2*Math.PI*(4*sec+3*sec*sec));
+      y=yy}
+    draw(y,a,ry,0,0);
     if(e<TOT){raf=requestAnimationFrame(frame)}else{raf=0;end(r)}}
   raf=requestAnimationFrame(frame)}
 $('go').addEventListener('click',flip);
