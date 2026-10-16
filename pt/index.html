@@ -788,6 +788,18 @@ html.fs-on,html.fs-on body{overflow:hidden!important;height:100%}
 <style id="pop-fast">/* v90: the big result shows at once (it used to fade in from invisible + blurred over ~0.5 s) */
 @keyframes popq{0%{transform:scale(.8)}60%{transform:scale(1.07)}100%{transform:none}}
 .big.pop{animation:popq .3s cubic-bezier(.2,1.2,.4,1)}</style>
+<style id="perf92">/* v92: smoother animations on phones */
+/* the big background orbs were blurred (28-40px) AND animated all the time: the GPU redid that blur every frame. Their gradients already fade out, so the blur is dropped; they also pause while a reveal runs */
+.bgfx .orb{filter:none!important}
+body:has(.stage.focus) .bgfx .orb,body:has(.stage.focus) .bgfx .dg{animation-play-state:paused}
+.ring.go,.flash.go{will-change:transform,opacity}
+.stage.shk{will-change:transform}
+@media (hover:none),(max-width:820px){
+.wspin.blur{filter:none!important}
+.wbulb,.wscene.final .wbulb{filter:none!important;stroke:rgba(255,240,150,.5);stroke-width:1.5}
+.big,.big.pop,.cnumf,.cnumf.show,.rnum,.s-rain.peek .rnum,.s-rain.peek.show .rnum{filter:none!important}
+}
+</style>
 </head>
 <body>
 <div class="bgfx" aria-hidden="true"><i class="orb o1"></i><i class="orb o2"></i><i class="orb o3"></i></div>
@@ -1479,7 +1491,7 @@ function build(){
 }
 var cv=$('fx'),cx=cv.getContext('2d'),P=[],W=0,H=0,ticking=false,cols=['#ffffff','#ffe9a8','#c9b8ff'],lcols=['#5b5bf0','#8a5cf6','#12b5a6','#f59e0b'];
 function dk(){return document.documentElement.getAttribute('data-theme')==='dark'}
-function fit(){var r=cv.getBoundingClientRect(),d=Math.min(window.devicePixelRatio||1,2);W=r.width;H=r.height;var pw=Math.round(W*d),ph=Math.round(H*d);if(cv.width!==pw||cv.height!==ph){cv.width=pw;cv.height=ph}cx.setTransform(d,0,0,d,0,0)}
+function fit(){var r=cv.getBoundingClientRect(),d=Math.min(window.devicePixelRatio||1,(window.matchMedia&&matchMedia('(hover:none)').matches)?1.5:2);W=r.width;H=r.height;var pw=Math.round(W*d),ph=Math.round(H*d);if(cv.width!==pw||cv.height!==ph){cv.width=pw;cv.height=ph}cx.setTransform(d,0,0,d,0,0)}
 function tick(){cx.clearRect(0,0,W,H);
   for(var i=P.length-1;i>=0;i--){var p=P[i];if(++p.l>p.L){P.splice(i,1);continue}p.vy+=p.g;p.x+=p.vx;p.y+=p.vy;cx.globalAlpha=(p.a||1)*(1-p.l/p.L);cx.fillStyle=p.c;cx.beginPath();cx.arc(p.x,p.y,p.s,0,6.283);cx.fill()}
   cx.globalAlpha=1;if(P.length)requestAnimationFrame(tick);else ticking=false}
@@ -1775,7 +1787,7 @@ function sfxRain(){
   return {stop:function(){try{var n=a.currentTime;m.gain.cancelScheduledValues(n);m.gain.setValueAtTime(m.gain.value,n);m.gain.linearRampToValueAtTime(0,n+.2)}catch(e){}}};
 }
 function rainSize(){
-  var st=$('stage'),c=$('rcan'),d=Math.min(window.devicePixelRatio||1,2),w=st.clientWidth,h=st.clientHeight;
+  var st=$('stage'),c=$('rcan'),d=Math.min(window.devicePixelRatio||1,(window.matchMedia&&matchMedia('(hover:none)').matches)?1.5:2),w=st.clientWidth,h=st.clientHeight;
   c.width=Math.round(w*d);c.height=Math.round(h*d);R.w=w;R.h=h;R.dpr=d;
   var sr=st.getBoundingClientRect(),cr=$('rscene').querySelector('.rcloud').getBoundingClientRect();
   R.cx=cr.left-sr.left+cr.width/2;R.hw=cr.width*.25;R.by=cr.top-sr.top+cr.height*(138/170);
