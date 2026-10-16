@@ -1159,11 +1159,12 @@ var KD=null;
 // the die in the air: hand flick, whoosh that rises then falls (Doppler), sub swell building to the first impact
 function diceToss(){var K=KD=sfxKit();if(!K)return;var T=K.T,N=K.N;
   N({f:2600,f2:700,d:.14,v:.08,q:1.2,a:.1,pan:-.3});
-  N({f:300,f2:2400,t:.05,d:.55,v:.08,q:1.2,a:.9,rv:.3,pan:-.2});
-  N({f:2400,f2:380,t:.6,d:.4,v:.09,q:1.2,a:.15,rv:.3,pan:.2});
-  T({f:300,f2:950,d:.9,v:.03,at:.7,rv:.4});
-  T({f:48,f2:100,d:1,v:.15,type:'sawtooth',lp:240,at:.9});
-  N({f:3000,f2:9000,t:.2,d:.8,v:.03,type:'highpass',a:.95})}
+  var F=1.12;   /* flight a touch longer than the original - stretch the whoosh, Doppler pass and sub swell to match */
+  N({f:300,f2:2400,t:.05,d:.55*F,v:.08,q:1.2,a:.9,rv:.3,pan:-.2});
+  N({f:2400,f2:380,t:.6*F,d:.5,v:.09,q:1.2,a:.15,rv:.3,pan:.2});
+  T({f:300,f2:950,d:.9*F,v:.03,at:.7*F,rv:.4});
+  T({f:48,f2:100,d:1.1*F,v:.15,type:'sawtooth',lp:240,at:.9*F});
+  N({f:3000,f2:9000,t:.2,d:.8*F,v:.03,type:'highpass',a:.95})}
 // ivory die striking a wooden table; v = impact strength 0..1
 function clack(v){var K=KD;if(!K)return;var T=K.T,N=K.N,p=sfR(-.25,.25);
   T({f:175+sfR(0,40),f2:58,d:.14+.16*v,v:.2*v+.06,pan:p});
@@ -1185,31 +1186,28 @@ function roll(){if(busy)return;busy=true;lock(true);say('');
      shrinking height, skids to a stop. Spin and sideways speed fade out smoothly (no constant-speed spinning). */
   var room=Math.floor(stage.clientHeight/2-(dice[0].el.offsetWidth||100)/2-58),PH=Math.max(44,Math.min(100,room)),
       sw=Math.min(210,stage.clientWidth*.34),
-      TF=.64,B=[{d:.34,h:.40},{d:.22,h:.16},{d:.14,h:.055}],TS=.42,
-      tB=[TF,TF+B[0].d,TF+B[0].d+B[1].d],T3=TF+B[0].d+B[1].d+B[2].d,TOT=T3+TS,
-      SPIN=T3+.22,XD=T3+.1,t0=0,hit=[0,0,0,0];
-  var dir=sg(),plan=dice.map(function(d,k){var Rf=restM(faceFor(d,vals[k]));
-    return{d:d,Rf:Rf,a1:rv(),a2:rv(),T1:360*(2+Math.random()*1.4)*sg(),T2:360*(1+Math.random()*1.2)*sg(),
-      x0:rr(-12,12)+(k-(N-1)/2)*60,y0:PH*(.25+Math.random()*.2),rk:rv(),rka:rr(10,18)*sg()}});
+      TF=.72,B=[{d:.40,h:.39},{d:.30,h:.22},{d:.23,h:.13},{d:.18,h:.08},{d:.14,h:.047},{d:.11,h:.029},{d:.09,h:.02},{d:.07,h:.012}],TS=1.0,
+      tB=[TF],T3,TOT,SPIN,XD,t0=0,hit=[],IMP=[1,.62,.44,.32,.23,.16,.11,.08,.06];
+  B.forEach(function(b,j){tB.push(tB[j]+b.d)});T3=tB[B.length];TOT=T3+TS;SPIN=T3-.05;XD=T3+.55;
+  var AX=[1,0,0],SGN=sg(),plan=dice.map(function(d,k){var Rf=restM(faceFor(d,vals[k]));
+    return{d:d,Rf:Rf,a1:AX,T1:360*(4+Math.random()*1)*SGN,
+      x0:0,y0:0,rk:AX,rka:rr(6,11)*SGN}});
   diceToss();
   function frame(now){if(!t0)t0=now;var tt=(now-t0)/1000,live=false;
     plan.forEach(function(pl,i){var t=tt-i*.09;if(t<0){live=true;pl.d.el.style.visibility='hidden';return}
       pl.d.el.style.visibility='';if(t>=TOT){return}live=true;
       var y=0,s,x,p,ex,wob=0,kick=0;
       if(t<TF){s=t/TF;y=pl.y0*(1-s)+PH*4*s*(1-s)}
-      else if(t<T3){var j=t<tB[1]?0:(t<tB[2]?1:2),st=j?tB[j]:TF,u=(t-st)/B[j].d;y=PH*B[j].h*4*u*(1-u)}
-      if(t>=TF&&!hit[0]){hit[0]=1;clack(1)}
-      if(t>=tB[1]&&!hit[1]){hit[1]=1;clack(.6)}
-      if(t>=tB[2]&&!hit[2]){hit[2]=1;clack(.38)}
-      if(t>=T3&&!hit[3]){hit[3]=1;clack(.22)}
+      else if(t<T3){var j=0;while(j<B.length-1&&t>=tB[j+1])j++;var u=(t-tB[j])/B[j].d;y=PH*B[j].h*4*u*(1-u)}
+      for(var h=0;h<tB.length;h++)if(t>=tB[h]&&!hit[h*N+i]){hit[h*N+i]=1;if(i===0||h===0)clack(IMP[h])}
       /* sideways travel: fast in flight, braked by each bounce, gentle slide at the end */
-      s=Math.min(1,t/XD);ex=1-Math.pow(1-s,2.2);x=pl.x0*(1-ex);
+      s=Math.min(1,t/XD);ex=1-Math.pow(1-s,1.5);x=pl.x0*(1-ex);
       /* spin: angular speed decays smoothly to exactly zero -> lands on the chosen face */
       s=Math.min(1,t/SPIN);p=1-Math.pow(1-s,2.3);
       /* impact kicks: each landing rocks the die a little, then it damps out */
-      var k1=0;for(var q=0;q<3;q++){if(t>=tB[q]){var dt=t-tB[q];k1+=(q===0?1:q===1?.55:.3)*Math.exp(-dt*9)*Math.sin(dt*30)}}
-      if(t>=T3){var dd=t-T3;wob=Math.exp(-dd*7)*Math.cos(dd*26)*6}
-      var M=mmul(rotAxis(pl.rk,pl.rka*k1*.6+wob),mmul(rotAxis(pl.a2,pl.T2*(1-p)),mmul(rotAxis(pl.a1,pl.T1*(1-p)),pl.Rf)));
+      var k1=0;for(var q=0;q<B.length;q++){if(t>=tB[q]){var dt=t-tB[q];k1+=IMP[q]*Math.exp(-dt*7)*Math.sin(dt*30)}}
+      if(t>=T3){var dd=t-T3;wob=Math.exp(-dd*4)*Math.cos(dd*22)*3.5}
+      var M=mmul(rotAxis(pl.rk,pl.rka*k1*.6+wob),mmul(rotAxis(pl.a1,pl.T1*(1-p)),pl.Rf));
       draw(pl.d,M,x,y)});
     if(live)raf=requestAnimationFrame(frame);else{raf=0;done()}}
   raf=requestAnimationFrame(frame)}
