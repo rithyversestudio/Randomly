@@ -728,6 +728,9 @@ html.fs-on,html.fs-on body{overflow:hidden!important;height:100%}
 @media(max-height:520px){.res.is-fs #go{min-height:46px;margin-top:6px}.res.is-fs .hint{display:none}.res.is-fs .big{font-size:clamp(2.2rem,15vh,5rem)}.res.is-fs .stage{margin:4px 0}.res.is-fs .method{display:none}}
 @media(prefers-reduced-motion:reduce){.fsbtn{transition:none}}
 </style>
+<style id="pop-fast">/* v90: the big result shows at once (it used to fade in from invisible + blurred over ~0.5 s) */
+@keyframes popq{0%{transform:scale(.8)}60%{transform:scale(1.07)}100%{transform:none}}
+.big.pop{animation:popq .3s cubic-bezier(.2,1.2,.4,1)}</style>
 </head>
 <body>
 <div class="bgfx" aria-hidden="true"><i class="orb o1"></i><i class="orb o2"></i><i class="orb o3"></i></div>
@@ -896,15 +899,20 @@ var WREV=null,SFXM=[];
 function sfR(a,b){return a+Math.random()*(b-a)}
 function sfxTrack(g){SFXM.push(g);if(SFXM.length>12)SFXM.shift()}
 function sfxStop(){var a=AC;if(!a)return;var t=a.currentTime;
-  SFXM.forEach(function(g){try{g.gain.cancelScheduledValues(t);g.gain.setValueAtTime(g.gain.value,t);g.gain.linearRampToValueAtTime(0,t+.08)}catch(e){}});SFXM=[]}
-function sfxKit(){
-  var a=ac();if(!a)return null;
+  SFXM.forEach(function(g){try{g.gain.cancelScheduledValues(t);g.gain.setValueAtTime(g.gain.value,t);g.gain.linearRampToValueAtTime(0,t+.08)}catch(e){}});SFXM=[];KIT=null;setTimeout(sfxWarm,250)}
+var KIT=null;
+function sfxKit(){var a=ac();if(!a)return null;if(KIT&&KIT.a===a)return KIT;return KIT=sfxBuild(a)}
+function sfxWarm(){if(!soundOn)return;try{sfxKit()}catch(e){}}
+function after(f){requestAnimationFrame(function(){setTimeout(f,0)})}
+['pointerdown','touchstart','keydown'].forEach(function(ev){window.addEventListener(ev,function(){
+  if(window.requestIdleCallback)requestIdleCallback(sfxWarm,{timeout:400});else setTimeout(sfxWarm,60)},{once:true,capture:true,passive:true})});
+function sfxBuild(a){
   if(!NB){NB=a.createBuffer(1,a.sampleRate,a.sampleRate);var q=NB.getChannelData(0);for(var i=0;i<q.length;i++)q[i]=Math.random()*2-1}
   var comp=a.createDynamicsCompressor();comp.threshold.value=-14;comp.knee.value=10;comp.ratio.value=4;comp.attack.value=.003;comp.release.value=.2;
   var mst=a.createGain();mst.gain.value=.9;comp.connect(mst);mst.connect(a.destination);sfxTrack(mst);
   var dry=a.createGain();dry.connect(comp);
   if(!WREV||WREV.sampleRate!==a.sampleRate){var L=Math.floor(a.sampleRate*1.7);WREV=a.createBuffer(2,L,a.sampleRate);
-    for(var c=0;c<2;c++){var d=WREV.getChannelData(c);for(var k=0;k<L;k++)d[k]=(Math.random()*2-1)*Math.pow(1-k/L,2.6)}}
+    for(var c=0;c<2;c++){var d=WREV.getChannelData(c),e=1;for(var k=0;k<L;k++){if(!(k&63))e=Math.pow(1-k/L,2.6);d[k]=(Math.random()*2-1)*e}}}
   var cvb=a.createConvolver();cvb.buffer=WREV;var wet=a.createGain();wet.gain.value=.3;cvb.connect(wet);wet.connect(comp);
   var send=a.createGain();send.gain.value=1;send.connect(cvb);
   function out(g,rv,pan){var n=g;if(pan&&a.createStereoPanner){n=a.createStereoPanner();n.pan.value=Math.max(-1,Math.min(1,pan));g.connect(n)}n.connect(dry);if(rv){var r=a.createGain();r.gain.value=rv;n.connect(r);r.connect(send)}}
@@ -961,7 +969,7 @@ var TM=[];function later(f,ms){var t=setTimeout(f,ms);TM.push(t);return t}
 function clearTM(){TM.forEach(clearTimeout);TM=[]}
 var stage=$('stage'),cv=$('fx'),cx=cv.getContext('2d'),P=[],W=0,H=0,ticking=false;
 function dk(){return document.documentElement.getAttribute('data-theme')==='dark'}
-function fit(){var r=cv.getBoundingClientRect(),d=Math.min(window.devicePixelRatio||1,2);W=r.width;H=r.height;cv.width=W*d;cv.height=H*d;cx.setTransform(d,0,0,d,0,0)}
+function fit(){var r=cv.getBoundingClientRect(),d=Math.min(window.devicePixelRatio||1,2);W=r.width;H=r.height;var pw=Math.round(W*d),ph=Math.round(H*d);if(cv.width!==pw||cv.height!==ph){cv.width=pw;cv.height=ph}cx.setTransform(d,0,0,d,0,0)}
 function tick(){cx.clearRect(0,0,W,H);
   for(var i=P.length-1;i>=0;i--){var p=P[i];if(++p.l>p.L){P.splice(i,1);continue}p.vy+=p.g;p.x+=p.vx;p.y+=p.vy;cx.globalAlpha=(p.a||1)*(1-p.l/p.L);cx.fillStyle=p.c;cx.beginPath();cx.arc(p.x,p.y,p.s,0,6.283);cx.fill()}
   cx.globalAlpha=1;if(P.length)requestAnimationFrame(tick);else ticking=false}
@@ -1030,7 +1038,7 @@ function land(r,fx){skipOff();
   setBig(r?L.tails:L.heads,'word');setHint('');$('method').textContent=L.ready;
   histAdd(r?L.tails:L.heads,'');
   if(fx){pulse('flash');pulse('ring');sparks(34);shake()}
-  sfxHit('coin');unfocus();busy=false;lock(false)}
+  after(function(){sfxHit('coin')});unfocus();busy=false;lock(false)}
 function end(r){clearTM();skipOff();if(raf){cancelAnimationFrame(raf);raf=0}cur=r*180;rest(cur);land(r,true)}
 var KN=null;
 // thumb flick, the spin whirr in the air (flutters as the coin turns edge-on, falls in pitch), dread swell, glints at the top of the arc
@@ -1057,8 +1065,8 @@ function flip(){if(busy)return;busy=true;lock(true);say('');var r=rnd(2);faces(f
   if(quick()){cur=r*180;rest(cur);land(r,false);return}
   stage.classList.add('focus');skipOn(function(){sfxStop();end(r)});
   var turns=9+rnd(4),POST=700,delta=((r*180-cur)%360+360)%360,amount=360*turns+delta,start=cur,
-      TF=1500,PH=76,B1=480,B2=300,SET=1150,SPT=B1+B2+SET,TOT=TF+SPT,wA=(8+rnd(6))*(rnd(2)?1:-1),t0=0,s1=0,s2=0,c1=0;
-  coinToss();
+      TF=1500,PH=76,B1=480,B2=300,SET=800,SPT=B1+B2+SET,TOT=TF+SPT,wA=(8+rnd(6))*(rnd(2)?1:-1),t0=0,s1=0,s2=0,c1=0;
+  after(function(){if(busy&&raf)coinToss()});
   /* one toss: spins fast through the air, comes down, bounces twice while still spinning (spin keeps slowing), then settles on the chosen face */
   function frame(now){if(!t0)t0=now;var e=now-t0,y,a,ry=0;
     if(e<TF){var s=e/TF;y=PH*4*s*(1-s);a=start+(amount-POST)*s}
