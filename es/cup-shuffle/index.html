@@ -743,6 +743,11 @@ body:has(.stage.focus) .bgfx .orb,body:has(.stage.focus) .bgfx .dg{animation-pla
 .big,.big.pop,.cnumf,.cnumf.show,.rnum,.s-rain.peek .rnum,.s-rain.peek.show .rnum{filter:none!important}
 }
 </style>
+<style id="perf93">/* v93: lag fixes. The vignette over the stage faded with a full-stage repaint on every frame: it now lives on its own layer, so the fade is free. */
+.vig{will-change:opacity}
+/* no double-tap-zoom wait on taps (pinch zoom still works) */
+html{touch-action:manipulation}
+</style>
 </head>
 <body>
 <div class="bgfx" aria-hidden="true"><i class="orb o1"></i><i class="orb o2"></i><i class="orb o3"></i></div>
@@ -895,7 +900,7 @@ var $=function(i){return document.getElementById(i)};
 var RM=!!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches);
 var soundOn=true;try{soundOn=localStorage.getItem('randomly-sound')!=='off'}catch(e){}
 var AC=null,NB=null;
-function ac(){if(!soundOn)return null;if(!AC){var C=window.AudioContext||window.webkitAudioContext;if(!C)return null;AC=new C()}if(AC.state==='suspended')AC.resume();return AC}
+function ac(){if(!soundOn)return null;if(!AC){var C=window.AudioContext||window.webkitAudioContext;if(!C)return null;AC=new C()}if(AC.state==='suspended'){var ua=navigator.userActivation;if(!ua||ua.hasBeenActive)AC.resume()}return AC}
 function tone(o){var a=ac();if(!a)return;var t=a.currentTime+(o.t||0),os=a.createOscillator(),g=a.createGain();
   os.type=o.type||'sine';os.frequency.setValueAtTime(o.f,t);if(o.f2)os.frequency.exponentialRampToValueAtTime(o.f2,t+o.d);
   g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(o.v,t+Math.min(.02,o.d/4));g.gain.exponentialRampToValueAtTime(.0001,t+o.d);
@@ -910,12 +915,18 @@ function noise(o){var a=ac();if(!a)return;
 var WREV=null,SFXM=[];
 function sfR(a,b){return a+Math.random()*(b-a)}
 function sfxTrack(g){SFXM.push(g);if(SFXM.length>12)SFXM.shift()}
-function sfxStop(){var a=AC;if(!a)return;var t=a.currentTime;
-  SFXM.forEach(function(g){try{g.gain.cancelScheduledValues(t);g.gain.setValueAtTime(g.gain.value,t);g.gain.linearRampToValueAtTime(0,t+.08)}catch(e){}});SFXM=[];KIT=null;setTimeout(sfxWarm,250)}
+/* v93: Skip only silences the voices that are already scheduled (they hang on a per-roll "session" gain). The compressor and the reverb stay as they are,
+   so nothing has to be rebuilt right when the number should appear. */
+function sfxStop(){var a=AC;if(!a)return;try{if(KIT&&KIT.a===a)KIT.mute()}catch(e){}}
 var KIT=null;
 function sfxKit(){var a=ac();if(!a)return null;if(KIT&&KIT.a===a)return KIT;return KIT=sfxBuild(a)}
 function sfxWarm(){if(!soundOn)return;try{sfxKit()}catch(e){}}
 function after(f){requestAnimationFrame(function(){setTimeout(f,0)})}
+/* v93: set the sound engine up while the page is idle after loading (AudioContext first, the bus in a second step) so the first tap does not freeze the phone */
+function idleRun(f,ms){if(window.requestIdleCallback)requestIdleCallback(f,{timeout:ms||1500});else setTimeout(f,300)}
+var WU=0;function warmUp(){if(WU++)return;idleRun(function(){try{fit()}catch(e){}if(!soundOn)return;try{ac()}catch(e){}idleRun(sfxWarm,1500)},2500)}
+if(document.readyState==='complete')warmUp();else window.addEventListener('load',warmUp,{once:true});
+setTimeout(warmUp,4000);
 ['pointerdown','touchstart','keydown'].forEach(function(ev){window.addEventListener(ev,function(){
   if(window.requestIdleCallback)requestIdleCallback(sfxWarm,{timeout:400});else setTimeout(sfxWarm,60)},{once:true,capture:true,passive:true})});
 function sfxBuild(a){
@@ -927,6 +938,9 @@ function sfxBuild(a){
     for(var c=0;c<2;c++){var d=WREV.getChannelData(c),e=1;for(var k=0;k<L;k++){if(!(k&63))e=Math.pow(1-k/L,2.6);d[k]=(Math.random()*2-1)*e}}}
   var cvb=a.createConvolver();cvb.buffer=WREV;var wet=a.createGain();wet.gain.value=.3;cvb.connect(wet);wet.connect(comp);
   var send=a.createGain();send.gain.value=1;send.connect(cvb);
+  /* v93: fade out the current session (voices already scheduled) and start a fresh one on the same compressor / reverb */
+  function mute(){var t=a.currentTime;[dry,send].forEach(function(g){try{g.gain.cancelScheduledValues(t);g.gain.setValueAtTime(g.gain.value,t);g.gain.linearRampToValueAtTime(0,t+.08)}catch(e){}});
+    dry=a.createGain();dry.connect(comp);send=a.createGain();send.gain.value=1;send.connect(cvb)}
   function out(g,rv,pan){var n=g;if(pan&&a.createStereoPanner){n=a.createStereoPanner();n.pan.value=Math.max(-1,Math.min(1,pan));g.connect(n)}n.connect(dry);if(rv){var r=a.createGain();r.gain.value=rv;n.connect(r);r.connect(send)}}
   // tonal voice: attack / decay, optional pitch glide, lowpass, reverb send, pan
   function T(o){var t=a.currentTime+(o.t||0),os=a.createOscillator(),g=a.createGain(),n=os;
@@ -951,7 +965,7 @@ function sfxBuild(a){
   // struck metal: inharmonic partials, each one dying faster than the last
   function ring(o){[1,2.32,4.25,6.63,9.38].forEach(function(r,i){var f=o.f*r;if(f>15000)return;
     T({f:f,t:o.t,d:o.d/(1+i*.75),v:o.v/(1+i*.8),at:.002,rv:o.rv==null?.5:o.rv,pan:o.pan})})}
-  return {a:a,T:T,N:N,M:M,ring:ring};
+  return {a:a,T:T,N:N,M:M,ring:ring,mute:mute};
 }
 // big reveal at the end: kind = 'dice' (deep drum + ivory sparkle) | 'coin' (gold bell shimmer) | 'cup' (magic burst)
 function sfxReveal(K,kind,t0){t0=t0||0;var T=K.T,N=K.N,i;
@@ -1023,7 +1037,7 @@ function histDraw(){var box=$('hist'),ol=$('hlist');box.hidden=!HIST.length;ol.i
     var bt=document.createElement('button');bt.type='button';bt.className='hcp';bt.innerHTML=ICO_COPY;bt.title=L.hcopy;bt.setAttribute('aria-label',L.hcopy);
     bt.addEventListener('click',function(){copyText(h.n,function(){bt.classList.add('ok');bt.innerHTML=ICO_OK;bt.title=L.hcopied;setTimeout(function(){bt.classList.remove('ok');bt.innerHTML=ICO_COPY;bt.title=L.hcopy},1300)})});
     li.appendChild(ic);li.appendChild(nm);li.appendChild(rg);li.appendChild(bt);ol.appendChild(li)});ol.scrollTop=0}
-function histAdd(n,m){HIST.unshift({n:String(n),m:m||''});if(HIST.length>HMAX)HIST.length=HMAX;histDraw()}
+function histAdd(n,m){HIST.unshift({n:String(n),m:m||''});if(HIST.length>HMAX)HIST.length=HMAX;after(histDraw)}   /* v93: the list is drawn after the number has been painted (drawing it forces a page layout) */
 $('hclear').addEventListener('click',function(){HIST=[];histDraw()});
 $('hcopyall').addEventListener('click',function(){if(!HIST.length)return;var b=this;
   copyText(HIST.map(function(h){return h.n}).join(', '),function(){b.textContent=L.hcopied;setTimeout(function(){b.textContent=L.hcopyall},1300)})});
@@ -1049,7 +1063,7 @@ function cupSettle(){var K=sfxKit();if(!K)return;
   K.T({f:120,f2:40,d:.6,v:.3});K.N({f:1200,f2:200,d:.3,v:.14,type:'lowpass',a:.05,rv:.3});K.N({f:2500,d:.02,v:.06,type:'highpass'});
   K.ring({f:988,t:.1,d:.9,v:.04,rv:.7});K.ring({f:1319,t:.24,d:.9,v:.035,rv:.7,pan:.2})}
 // lifting the chosen cup: thud, air rush and a rising shimmer into the reveal; then the other cups give up their numbers
-function cupPick(){var K=sfxKit();if(!K)return;var d=RM?0:.22,g=RM?0:.9,i;
+function cupPick(){var K=sfxKit();if(!K)return;var d=RM?0:.12,g=RM?0:.9,i;
   K.T({f:170,f2:70,d:.25,v:.18});K.N({f:900,f2:300,d:.2,v:.1,type:'lowpass',rv:.2});
   if(d){K.N({f:400,f2:4200,d:d,v:.07,q:1.1,a:.92,rv:.3});K.T({f:200,f2:1000,d:d,v:.05,at:d*.85,rv:.5});K.T({f:55,f2:115,d:d,v:.12,at:d*.85})}
   sfxReveal(K,'cup',d);
@@ -1125,7 +1139,7 @@ function pickCup(i){if(phase!=='pick')return;phase='revealing';var c=cups[i];c.n
     later(function(){cups.forEach(function(x){if(x!==c){x.numEl.textContent=String(x.num);fitNum(x);x.el.classList.add('ghost','open')}})},RM?0:900);
     setBig(c.num);setHint('');$('method').textContent=L.cs_cups+': '+n;histAdd(c.num,'\ud83e\udd64 \u00d7'+n);
     stage.style.setProperty('--rx',(cr.left-sr.left+cr.width/2)+'px');stage.style.setProperty('--ry',(cr.top-sr.top+cr.height*.55)+'px');pulse('flash');pulse('ring');sparks(36,cr.left-sr.left+cr.width/2,cr.top-sr.top+ch*.3);shake();
-    phase='done';ui();if(norep()&&n===1)setHint(L.cs_last);else if(norep())setHint(L.cs_left+' '+(n-1));unfocus()},RM?0:220)}
+    phase='done';ui();if(norep()&&n===1)setHint(L.cs_last);else if(norep())setHint(L.cs_left+' '+(n-1));unfocus()},RM?0:120)}
 bGo.addEventListener('click',function(){if(phase!=='ready'&&phase!=='done')return;
   if(phase==='done'&&norep()){if(n>1){dropPicked();say('');shuffle();return}
     /* last cup was picked: start a fresh round with the full cup count */
@@ -1183,7 +1197,8 @@ var ca=[.357,.357,.941],cb=[.541,.361,.965],dk=1;
 function hx(v,fb){v=(v||'').trim();var m;if(v.charAt(0)==='#'){if(v.length===4)v='#'+v[1]+v[1]+v[2]+v[2]+v[3]+v[3];if(v.length>=7)return[parseInt(v.substr(1,2),16)/255,parseInt(v.substr(3,2),16)/255,parseInt(v.substr(5,2),16)/255]}else if(m=v.match(/\d+(\.\d+)?/g)){if(m.length>=3)return[m[0]/255,m[1]/255,m[2]/255]}return fb}
 function readCols(){var de=document.documentElement,cs=getComputedStyle(de),th=de.getAttribute('data-theme');ca=hx(cs.getPropertyValue('--brand'),ca);cb=hx(cs.getPropertyValue('--brand2'),cb);dk=(th==='dark'||(th!=='light'&&window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches))?1:0}
 function draw(t){gl.uniform2f(U.R,cv.width,cv.height);gl.uniform1f(U.T,rm?12:t+12);gl.uniform2f(U.M,cx,cy);gl.uniform1f(U.E,E);gl.uniform1f(U.H,H);gl.uniform1f(U.D,dk);gl.uniform1f(U.S,cv.width/Math.max(1,c.clientWidth));gl.uniform3f(U.A,ca[0],ca[1],ca[2]);gl.uniform3f(U.B,cb[0],cb[1],cb[2]);gl.drawArrays(gl.TRIANGLES,0,3)}
-function frame(now){raf=0;if(!vis||document.hidden)return;cx+=(tx-cx)*.12;cy+=(ty-cy)*.12;E=Math.min(1.5,E*.93+Math.hypot(cx-px,cy-py)*4*(c.clientWidth/c.clientHeight>1?1:1));px=cx;py=cy;H+=(hv-H)*.08;draw((now-t0)/1000);raf=requestAnimationFrame(frame)}
+var lf=0;
+function frame(now){raf=0;if(!vis||document.hidden)return;if(now-lf<30||document.querySelector('.stage.focus')){raf=requestAnimationFrame(frame);return}lf=now;cx+=(tx-cx)*.12;cy+=(ty-cy)*.12;E=Math.min(1.5,E*.93+Math.hypot(cx-px,cy-py)*4*(c.clientWidth/c.clientHeight>1?1:1));px=cx;py=cy;H+=(hv-H)*.08;draw((now-t0)/1000);raf=requestAnimationFrame(frame)}
 function go(){if(!raf&&!rm&&vis&&!document.hidden)raf=requestAnimationFrame(frame)}
 function aim(ev){var r=c.getBoundingClientRect();tx=(ev.clientX-r.left)/r.width;ty=1-(ev.clientY-r.top)/r.height;hv=1}
 c.addEventListener('pointerenter',function(ev){aim(ev);cx=tx;cy=ty;px=cx;py=cy});c.addEventListener('pointermove',aim);

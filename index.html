@@ -800,6 +800,11 @@ body:has(.stage.focus) .bgfx .orb,body:has(.stage.focus) .bgfx .dg{animation-pla
 .big,.big.pop,.cnumf,.cnumf.show,.rnum,.s-rain.peek .rnum,.s-rain.peek.show .rnum{filter:none!important}
 }
 </style>
+<style id="perf93">/* v93: lag fixes. The vignette over the stage faded with a full-stage repaint on every frame: it now lives on its own layer, so the fade is free. */
+.vig{will-change:opacity}
+/* no double-tap-zoom wait on taps (pinch zoom still works) */
+html{touch-action:manipulation}
+</style>
 </head>
 <body>
 <div class="bgfx" aria-hidden="true"><i class="orb o1"></i><i class="orb o2"></i><i class="orb o3"></i></div>
@@ -1026,7 +1031,8 @@ var ca=[.357,.357,.941],cb=[.541,.361,.965],dk=1;
 function hx(v,fb){v=(v||'').trim();var m;if(v.charAt(0)==='#'){if(v.length===4)v='#'+v[1]+v[1]+v[2]+v[2]+v[3]+v[3];if(v.length>=7)return[parseInt(v.substr(1,2),16)/255,parseInt(v.substr(3,2),16)/255,parseInt(v.substr(5,2),16)/255]}else if(m=v.match(/\d+(\.\d+)?/g)){if(m.length>=3)return[m[0]/255,m[1]/255,m[2]/255]}return fb}
 function readCols(){var de=document.documentElement,cs=getComputedStyle(de),th=de.getAttribute('data-theme');ca=hx(cs.getPropertyValue('--brand'),ca);cb=hx(cs.getPropertyValue('--brand2'),cb);dk=(th==='dark'||(th!=='light'&&window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches))?1:0}
 function draw(t){gl.uniform2f(U.R,cv.width,cv.height);gl.uniform1f(U.T,rm?12:t+12);gl.uniform2f(U.M,cx,cy);gl.uniform1f(U.E,E);gl.uniform1f(U.H,H);gl.uniform1f(U.D,dk);gl.uniform1f(U.S,cv.width/Math.max(1,c.clientWidth));gl.uniform3f(U.A,ca[0],ca[1],ca[2]);gl.uniform3f(U.B,cb[0],cb[1],cb[2]);gl.drawArrays(gl.TRIANGLES,0,3)}
-function frame(now){raf=0;if(!vis||document.hidden)return;cx+=(tx-cx)*.12;cy+=(ty-cy)*.12;E=Math.min(1.5,E*.93+Math.hypot(cx-px,cy-py)*4*(c.clientWidth/c.clientHeight>1?1:1));px=cx;py=cy;H+=(hv-H)*.08;draw((now-t0)/1000);raf=requestAnimationFrame(frame)}
+var lf=0;
+function frame(now){raf=0;if(!vis||document.hidden)return;if(now-lf<30||document.querySelector('.stage.focus')){raf=requestAnimationFrame(frame);return}lf=now;cx+=(tx-cx)*.12;cy+=(ty-cy)*.12;E=Math.min(1.5,E*.93+Math.hypot(cx-px,cy-py)*4*(c.clientWidth/c.clientHeight>1?1:1));px=cx;py=cy;H+=(hv-H)*.08;draw((now-t0)/1000);raf=requestAnimationFrame(frame)}
 function go(){if(!raf&&!rm&&vis&&!document.hidden)raf=requestAnimationFrame(frame)}
 function aim(ev){var r=c.getBoundingClientRect();tx=(ev.clientX-r.left)/r.width;ty=1-(ev.clientY-r.top)/r.height;hv=1}
 c.addEventListener('pointerenter',function(ev){aim(ev);cx=tx;cy=ty;px=cx;py=cy});c.addEventListener('pointermove',aim);
@@ -1145,7 +1151,7 @@ function lock(on){busy=on;$('go').disabled=on;
 function setStage(){$('stage').dataset.m=mode();$('method').textContent=last===null?RL.t('ready'):names[lastMode]}
 var AC=null,NB=null,soundOn=true;
 try{soundOn=localStorage.getItem('randomly-sound')!=='off'}catch(e){}
-function ac(){if(!soundOn)return null;if(!AC){var C=window.AudioContext||window.webkitAudioContext;if(!C)return null;AC=new C()}if(AC.state==='suspended')AC.resume();return AC}
+function ac(){if(!soundOn)return null;if(!AC){var C=window.AudioContext||window.webkitAudioContext;if(!C)return null;AC=new C()}if(AC.state==='suspended'){var ua=navigator.userActivation;if(!ua||ua.hasBeenActive)AC.resume()}return AC}
 function tone(o){var a=ac();if(!a)return;var t=a.currentTime+(o.t||0),os=a.createOscillator(),g=a.createGain();
   os.type=o.type||'sine';os.frequency.setValueAtTime(o.f,t);if(o.f2)os.frequency.exponentialRampToValueAtTime(o.f2,t+o.d);
   g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(o.v,t+Math.min(.02,o.d/4));g.gain.exponentialRampToValueAtTime(.0001,t+o.d);
@@ -1159,12 +1165,19 @@ function noise(o){var a=ac();if(!a)return;
 function chime(t){[1047,1319,1568].forEach(function(f,i){tone({f:f,t:(t||0)+i*.07,d:.9,v:.09})})}
 var WREV=null,SFXM=[];
 function sfxTrack(g){SFXM.push(g);if(SFXM.length>8)SFXM.shift()}
-function sfxStop(){var a=AC;if(!a)return;var t=a.currentTime;
-  SFXM.forEach(function(g){try{g.gain.cancelScheduledValues(t);g.gain.setValueAtTime(g.gain.value,t);g.gain.linearRampToValueAtTime(0,t+.08)}catch(e){}});
-  SFXM=[];BUS=null;setTimeout(sfxWarm,250)}
+/* v93: Skip silences the voices already scheduled (they hang on per-roll gain nodes) and keeps the compressor / reverb bus: no rebuild right at the reveal */
+function sfxStop(){var a=AC;if(!a)return;try{if(BUS&&BUS.a===a)BUS.mute()}catch(e){}}
 var BUS=null;
 function sfxWarm(){if(!soundOn)return;try{sfxKit()}catch(e){}}
 function after(f){requestAnimationFrame(function(){setTimeout(f,0)})}
+/* v93: everything the sound needs is made while the page is idle after loading, one small step at a time (AudioContext, bus, reveal reverb, rain buffers),
+   so neither the first tap nor the number reveal has to build it */
+function idleRun(f,ms){if(window.requestIdleCallback)requestIdleCallback(f,{timeout:ms||1500});else setTimeout(f,300)}
+function rainWarm(){if(!soundOn||!AC)return;idleRun(function(){try{brownBuf(AC)}catch(e){}idleRun(function(){try{thunderIR(AC)}catch(e){}},1500)},1500)}
+var WU=0;function warmUp(){if(WU++)return;idleRun(function(){try{fit()}catch(e){}if(!soundOn)return;try{ac()}catch(e){}idleRun(function(){try{sfxKit()}catch(e){}idleRun(function(){try{if(AC)revBus(AC)}catch(e){}
+  try{if(mode()==='rain')rainWarm()}catch(e){}},1500)},1500)},2500)}
+if(document.readyState==='complete')warmUp();else window.addEventListener('load',warmUp,{once:true});
+setTimeout(warmUp,4000);
 ['pointerdown','touchstart','keydown'].forEach(function(ev){window.addEventListener(ev,function(){
   if(window.requestIdleCallback)requestIdleCallback(sfxWarm,{timeout:400});else setTimeout(sfxWarm,60)},{once:true,capture:true,passive:true})});
 function sfxKit(){
@@ -1179,7 +1192,9 @@ function sfxKit(){
   if(!WREV||WREV.sampleRate!==a.sampleRate){var L=Math.floor(a.sampleRate*1.7);WREV=a.createBuffer(2,L,a.sampleRate);
     for(var c=0;c<2;c++){var d=WREV.getChannelData(c),e=1;for(var k=0;k<L;k++){if(!(k&63))e=Math.pow(1-k/L,2.6);d[k]=(Math.random()*2-1)*e}}}
   var cv=a.createConvolver();cv.buffer=WREV;var wet=a.createGain();wet.gain.value=.3;cv.connect(wet);wet.connect(comp);
-  var send=a.createGain();send.gain.value=1;send.connect(cv);BUS={a:a,dry:dry,send:send}}
+  var send=a.createGain();send.gain.value=1;send.connect(cv);BUS={a:a,dry:dry,send:send,mute:function(){var t=a.currentTime;
+    [BUS.dry,BUS.send].forEach(function(g){try{g.gain.cancelScheduledValues(t);g.gain.setValueAtTime(g.gain.value,t);g.gain.linearRampToValueAtTime(0,t+.08)}catch(e){}});
+    BUS.dry=a.createGain();BUS.dry.connect(comp);BUS.send=a.createGain();BUS.send.gain.value=1;BUS.send.connect(cv)}}}
   var dry=BUS.dry,send=BUS.send;
   function out(g,rv,pan){var n=g;if(pan&&a.createStereoPanner){n=a.createStereoPanner();n.pan.value=pan;g.connect(n)}n.connect(dry);if(rv){var r=a.createGain();r.gain.value=rv;n.connect(r);r.connect(send)}}
   // tonal voice with attack/decay, optional pitch glide, lowpass and reverb send
@@ -1737,6 +1752,14 @@ function thunder(a,out,t,vol,dur){
 }
 var HIR=null,RAINM=null;
 function hallIR(a){if(HIR&&HIR.sampleRate===a.sampleRate)return HIR;var sr=a.sampleRate,n=Math.floor(sr*3.4);HIR=a.createBuffer(2,n,sr);for(var c=0;c<2;c++){var x=HIR.getChannelData(c),lp=0;for(var i=0;i<n;i++){var p=i/n;lp+=(.6-.52*p)*((Math.random()*2-1)-lp);x[i]=lp*Math.pow(1-p,2.4)*Math.min(1,i/(sr*.015))*1.6}}return HIR}
+/* v93: the reveal bus (limiter + hall reverb) is built once per AudioContext; building the 3.4 s convolver on every reveal froze phones just as the number appeared */
+var RBUS=null;
+function revBus(a){if(RBUS&&RBUS.a===a)return RBUS;
+  var comp=a.createDynamicsCompressor();comp.threshold.value=-12;comp.knee.value=12;comp.ratio.value=5;comp.attack.value=.002;comp.release.value=.25;
+  var mst=a.createGain();mst.gain.value=.85;comp.connect(mst);mst.connect(a.destination);
+  var dry=a.createGain();dry.connect(comp);
+  var send=a.createGain(),cv=a.createConvolver(),wet=a.createGain();cv.buffer=hallIR(a);wet.gain.value=.5;send.connect(cv);cv.connect(wet);wet.connect(comp);
+  return RBUS={a:a,dry:dry,send:send}}
 // Cinematic number-reveal hit: sub impact + thump, air burst, warm Dadd9 pad bloom, bell sparkle, all through a hall reverb + limiter
 function sfxReveal(t0,duck){
   var a=ac();if(!a)return;
@@ -1744,10 +1767,7 @@ function sfxReveal(t0,duck){
   var t=a.currentTime+(t0||0);
   // duck the storm under the hit, then let it swell back
   if(duck&&RAINM&&RAINM.gain.value>.9){var g0=RAINM.gain;g0.cancelScheduledValues(t);g0.setValueAtTime(1,t);g0.linearRampToValueAtTime(.3,t+.1);g0.linearRampToValueAtTime(1,t+2.8)}
-  var comp=a.createDynamicsCompressor();comp.threshold.value=-12;comp.knee.value=12;comp.ratio.value=5;comp.attack.value=.002;comp.release.value=.25;
-  var mst=a.createGain();mst.gain.value=.85;comp.connect(mst);mst.connect(a.destination);sfxTrack(mst);
-  var dry=a.createGain();dry.connect(comp);
-  var send=a.createGain(),cv=a.createConvolver(),wet=a.createGain();cv.buffer=hallIR(a);wet.gain.value=.5;send.connect(cv);cv.connect(wet);wet.connect(comp);
+  var RB=revBus(a),dry=RB.dry,send=RB.send;   /* v93: shared reveal bus (compressor + 3.4 s hall reverb) - it used to be rebuilt on every reveal */
   function wire(n,pan,rv){var l=n;if(pan&&a.createStereoPanner){var p=a.createStereoPanner();p.pan.value=pan;n.connect(p);l=p}l.connect(dry);if(rv){var sg=a.createGain();sg.gain.value=rv;l.connect(sg);sg.connect(send)}}
   function V(type,f,st,d,v,pan,at,rv,f2){var o=a.createOscillator(),g=a.createGain();o.type=type;o.frequency.setValueAtTime(f,st);if(f2)o.frequency.exponentialRampToValueAtTime(f2,st+d);
     g.gain.setValueAtTime(.0001,st);g.gain.exponentialRampToValueAtTime(v,st+(at||.02));g.gain.exponentialRampToValueAtTime(.0001,st+d);o.connect(g);wire(g,pan,rv);o.start(st);o.stop(st+d+.05)}
@@ -1881,7 +1901,7 @@ async function runRain(n){
   function at(ms){return Promise.race([sleep(Math.max(0,ms-(performance.now()-t0))),skipP])}  // wait for a point on the timeline, or Skip
   $('rskip').classList.add('on');
   function hit(){if(!skipped)strike()}
-  rainStart();rainSnd=sfxRain();                         // one big cloud, then it starts to rain
+  rainStart();after(function(){if(!skipped&&rainState==='run')rainSnd=sfxRain()});   // one big cloud, then it starts to rain (sound starts one frame later so the cloud's first frame is not held up)
   await at(1200);sc.classList.add('storm');              // cloud darkens as the storm builds
   await at(2000);hit();                                  // lightning, strikes get closer together
   await at(2700);hit();
@@ -1946,7 +1966,7 @@ function histDraw(){
     bt.addEventListener('click',function(){copyText(String(h.n),function(){bt.classList.add('ok');bt.innerHTML=ICO_OK;bt.title=RL.t('hcopied');setTimeout(function(){bt.classList.remove('ok');bt.innerHTML=ICO_COPY;bt.title=RL.t('hcopy')},1300)})});
     li.appendChild(ic);li.appendChild(nm);li.appendChild(rg);li.appendChild(bt);ol.appendChild(li)});
   ol.scrollTop=0}
-function histAdd(n,m,a,b){HIST.unshift({n:n,m:m,a:a,b:b});if(HIST.length>HMAX)HIST.length=HMAX;histDraw()}
+function histAdd(n,m,a,b){HIST.unshift({n:n,m:m,a:a,b:b});if(HIST.length>HMAX)HIST.length=HMAX;after(histDraw)}
 $('hclear').addEventListener('click',function(){HIST=[];histDraw()});
 $('hcopyall').addEventListener('click',function(){
   if(!HIST.length)return;var b=this;
@@ -1963,7 +1983,7 @@ function pickNum(min,max){
   else{var rem=[];for(var v=min;v<=max;v++)if(!NR.used.has(v))rem.push(v);n=rem[rnd(0,rem.length-1)]}
   NR.used.add(n);return n}
 $('norep').addEventListener('change',function(){NR.on=this.checked;NR.key='';NR.used=new Set()});
-$('modesel').addEventListener('change',function(){try{localStorage.setItem('randomly-mode',this.value)}catch(e){}});
+$('modesel').addEventListener('change',function(){try{localStorage.setItem('randomly-mode',this.value)}catch(e){}if(this.value==='rain')rainWarm()});
 $('qskip').addEventListener('change',function(){if(!busy)$('modesel').disabled=this.checked});
 async function reveal(){
   if(busy)return;
