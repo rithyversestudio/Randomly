@@ -11,7 +11,7 @@
 <meta name="theme-color" content="#0e1020">
 <script>(function(){var t=null;try{t=localStorage.getItem('randomly-theme2')}catch(e){}if(t!=='light'&&t!=='dark')t='dark';document.documentElement.setAttribute('data-theme',t)})()</script>
 <title>रैंडम नंबर जनरेटर – व्हील और बहुत कुछ | RandomlyNumber</title>
-<meta name="description" content="मज़ेदार एनिमेशन के साथ रैंडम नंबर बनाएँ, जिसमें घूमता व्हील, क्रेट खोलना, पासा रोलर, सिक्का उछालना और कप शफल शामिल हैं। मुफ़्त और इस्तेमाल में आसान।">
+<meta name="description" content="मुफ़्त रैंडम नंबर जनरेटर। रेंज चुनें और व्हील, क्रेट, कार्ड ड्रा या क्लाउड रेन से एक निष्पक्ष संख्या जानें। साइन-अप की ज़रूरत नहीं।">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="hi_IN">
 <meta property="og:locale:alternate" content="en_US">
@@ -25,7 +25,7 @@
 <meta property="og:locale:alternate" content="id_ID">
 <meta property="og:locale:alternate" content="ar_AR">
 <meta property="og:title" content="रैंडम नंबर जनरेटर – व्हील और बहुत कुछ | RandomlyNumber">
-<meta property="og:description" content="मज़ेदार एनिमेशन के साथ रैंडम नंबर बनाएँ, जिसमें घूमता व्हील, क्रेट खोलना, पासा रोलर, सिक्का उछालना और कप शफल शामिल हैं। मुफ़्त और इस्तेमाल में आसान।">
+<meta property="og:description" content="मुफ़्त रैंडम नंबर जनरेटर। रेंज चुनें और व्हील, क्रेट, कार्ड ड्रा या क्लाउड रेन से एक निष्पक्ष संख्या जानें। साइन-अप की ज़रूरत नहीं।">
 <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
 <meta name="author" content="RithyVerse Studio">
 <meta name="application-name" content="RandomlyNumber">
@@ -51,7 +51,7 @@
 <meta property="og:image:alt" content="Randomly, a free random number generator from 1 to 1,000,000">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="रैंडम नंबर जनरेटर – व्हील और बहुत कुछ | RandomlyNumber">
-<meta name="twitter:description" content="मज़ेदार एनिमेशन के साथ रैंडम नंबर बनाएँ, जिसमें घूमता व्हील, क्रेट खोलना, पासा रोलर, सिक्का उछालना और कप शफल शामिल हैं। मुफ़्त और इस्तेमाल में आसान।">
+<meta name="twitter:description" content="मुफ़्त रैंडम नंबर जनरेटर। रेंज चुनें और व्हील, क्रेट, कार्ड ड्रा या क्लाउड रेन से एक निष्पक्ष संख्या जानें। साइन-अप की ज़रूरत नहीं।">
 <meta name="twitter:image" content="https://randomlynumber.com/og-image.png">
 <meta name="twitter:image:alt" content="Randomly, a free random number generator from 1 to 1,000,000">
 <style>
@@ -804,6 +804,30 @@ body:has(.stage.focus) .bgfx .orb,body:has(.stage.focus) .bgfx .dg{animation-pla
 .vig{will-change:opacity}
 /* no double-tap-zoom wait on taps (pinch zoom still works) */
 html{touch-action:manipulation}
+</style>
+<style id="ux94">/* v94: tap targets of 44 px on touch screens / phones, and the collapsible Settings card on phones */
+@media (hover:none),(max-width:820px){
+.theme,.tswitch,.chip,.mode span,.msel,.faq-toggle{min-height:44px!important}
+.tswitch{height:44px!important}
+#snd.theme{min-width:44px}
+.fsbtn{width:44px!important;height:44px!important}
+a[data-tr="ft_top"],a[href="/articles/"][href$="/"]:not(.toolcard):not([class]){display:inline-flex;align-items:center;min-height:44px}
+a.brand{display:inline-flex;align-items:center;min-height:44px}
+.tback a{display:inline-flex;align-items:center;min-height:44px}
+.site-footer .ft-col a{display:flex;align-items:center;min-height:44px;min-width:44px}
+.ft-langs a{display:inline-flex;align-items:center;justify-content:center;min-height:44px;min-width:44px;padding:0 8px}
+.doc p>a:only-child,.doc li>a:only-child,.toolsub a{display:inline-flex;align-items:center;min-height:44px}
+.msel{min-height:44px}
+}
+.sc-toggle{display:none}
+@media (max-width:560px){
+.sc-toggle{display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;min-height:48px;padding:0 16px;border:1px solid var(--line);border-radius:14px;background:var(--field);color:var(--ink);font:inherit;font-weight:700;cursor:pointer;-webkit-appearance:none;appearance:none}
+.sc-toggle:focus-visible{outline:3px solid var(--brand);outline-offset:2px}
+.sc-toggle svg{width:18px;height:18px;flex:none;transition:transform .2s}
+.sc-toggle[aria-expanded="true"] svg{transform:rotate(180deg)}
+.setcard .sc-toggle[aria-expanded="true"]{margin-bottom:14px}
+.setcard.sc-closed .setbox{display:none}
+}
 </style>
 </head>
 <body>
@@ -2223,5 +2247,18 @@ if(window.ResizeObserver){try{new ResizeObserver(function(){if(on)fit()}).observ
 label();
 })();
 </script>
+<script id="sc94">(function(){
+var c=document.querySelector('.setcard'),b=c&&c.querySelector('.setbox');if(!c||!b)return;
+var T={en:'Settings',fr:'Réglages',ru:'Настройки',ja:'設定',fil:'Mga Setting',hi:'सेटिंग्स',de:'Einstellungen',es:'Ajustes',pt:'Configurações',id:'Pengaturan',ar:'الإعدادات'},
+    lg=(document.documentElement.lang||'en').toLowerCase(),lab=T[lg]||T[lg.slice(0,2)]||T.en;
+if(!b.id)b.id='setbox';
+var bt=document.createElement('button');bt.type='button';bt.className='sc-toggle';bt.setAttribute('aria-controls',b.id);
+bt.innerHTML='<span></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>';
+bt.firstChild.textContent=lab;c.insertBefore(bt,c.firstChild);
+function set(o){c.classList.toggle('sc-closed',!o);bt.setAttribute('aria-expanded',o?'true':'false')}
+set(!!document.getElementById('modesel'));   /* home: open at first; tool pages: closed (only shows on phones, see CSS) */
+bt.addEventListener('click',function(){set(c.classList.contains('sc-closed'))});
+var m=document.getElementById('msg');if(m&&window.MutationObserver)new MutationObserver(function(){if(/(^|\s)err(\s|$)/.test(m.className))set(true)}).observe(m,{attributes:true,attributeFilter:['class']});
+})();</script>
 </body>
 </html>
