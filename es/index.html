@@ -829,6 +829,10 @@ a.brand{display:inline-flex;align-items:center;min-height:44px}
 .setcard.sc-closed .setbox{display:none}
 }
 </style>
+<style id="perf96">/* v96: the reveal "wave" (ring) and flash layers are promoted once, up front, instead of at the moment of the reveal; they play through the Web Animations API (no forced layout); sparks start on the next frame; no stage shake on touch screens */
+.ring,.flash{will-change:transform,opacity;backface-visibility:hidden}
+@media (hover:none){.stage.shk{animation:none!important}}
+</style>
 </head>
 <body>
 <div class="bgfx" aria-hidden="true"><i class="orb o1"></i><i class="orb o2"></i><i class="orb o3"></i></div>
@@ -1535,10 +1539,11 @@ function tick(){cx.clearRect(0,0,W,H);
   for(var i=P.length-1;i>=0;i--){var p=P[i];if(++p.l>p.L){P.splice(i,1);continue}p.vy+=p.g;p.x+=p.vx;p.y+=p.vy;cx.globalAlpha=(p.a||1)*(1-p.l/p.L);cx.fillStyle=p.c;cx.beginPath();cx.arc(p.x,p.y,p.s,0,6.283);cx.fill()}
   cx.globalAlpha=1;if(P.length)requestAnimationFrame(tick);else ticking=false}
 function go(){if(!ticking){ticking=true;requestAnimationFrame(tick)}}
-function sparks(n,soft){fit();for(var i=0;i<n;i++){var a=Math.random()*6.283,v=soft?.5+Math.random():2+Math.random()*4.5;P.push({x:W/2,y:H*.55,vx:Math.cos(a)*v,vy:Math.sin(a)*v-1.5,g:.07,l:0,L:40+Math.random()*30,s:1+Math.random()*2,c:dk()?cols[i%3]:lcols[i%4]})}go()}
+function sparks(){var a=arguments;requestAnimationFrame(function(){sparks0.apply(null,a)})}
+function sparks0(n,soft){fit();for(var i=0;i<n;i++){var a=Math.random()*6.283,v=soft?.5+Math.random():2+Math.random()*4.5;P.push({x:W/2,y:H*.55,vx:Math.cos(a)*v,vy:Math.sin(a)*v-1.5,g:.07,l:0,L:40+Math.random()*30,s:1+Math.random()*2,c:dk()?cols[i%3]:lcols[i%4]})}go()}
 function dust(n){fit();for(var i=0;i<n;i++){P.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.3,vy:-.2-Math.random()*.3,g:0,l:0,L:150+Math.random()*100,s:.8+Math.random()*1.4,c:dk()?'#fff':'#8a5cf6',a:dk()?.55:.4})}go()}
-function pulse(id){var e=$(id);e.classList.remove('go');void e.offsetWidth;e.classList.add('go')}
-function shake(){var s=$('stage');s.classList.remove('shk');void s.offsetWidth;s.classList.add('shk')}
+function pulse(id){var e=$(id);if((id==='ring'||id==='flash')&&e.animate){if(e._pa)e._pa.cancel();e._pa=id==='ring'?e.animate([{opacity:.9,transform:'scale(.3)'},{opacity:0,transform:'scale(2)'}],{duration:700,easing:'ease-out'}):e.animate([{opacity:0},{opacity:.95,offset:.18},{opacity:0}],{duration:550,easing:'ease-out'});return}e.classList.remove('go');void e.offsetWidth;e.classList.add('go')}
+function shake(){if(window.matchMedia&&matchMedia('(hover:none)').matches)return;var s=$('stage');s.classList.remove('shk');void s.offsetWidth;s.classList.add('shk')}
 
 /* ---- wheel: segments + number labels depend on the range size ----
    1-50 numbers: one segment per number, every number labelled (font shrinks as the wheel gets fuller)
