@@ -692,8 +692,6 @@ a.brand{text-decoration:none;color:inherit}
 .hn{flex:1;min-width:0;font-weight:800;font-size:1.05rem;font-variant-numeric:tabular-nums;color:var(--ink);word-break:break-all}
 .hm{flex:none;font-size:.78rem;color:var(--mute);font-variant-numeric:tabular-nums;white-space:nowrap}
 </style>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2564931903279308"
-     crossorigin="anonymous"></script>
 <style id="perf92">/* v92: smoother animations on phones */
 /* the big background orbs were blurred (28-40px) AND animated all the time: the GPU redid that blur every frame. Their gradients already fade out, so the blur is dropped; they also pause while a reveal runs */
 .bgfx .orb{filter:none!important}
@@ -735,13 +733,87 @@ a.brand{display:inline-flex;align-items:center;min-height:44px}
 .setcard.sc-closed .setbox{display:none}
 }
 </style>
+<style id="perf97">/* v97: mobile performance optimizations with 100% identical visuals + non-freezing background animations */
+/* 1. Keep background orbs (.bgfx .orb) and floating icons (.bgfx .dg) running smoothly during reveal animations
+      (overrides v92's body:has(.stage.focus) pause rule that made the background freeze when an animation started) */
+body:has(.stage.focus) .bgfx .orb,body:has(.stage.focus) .bgfx .dg,.bgfx .orb,.bgfx .dg{animation-play-state:running!important}
+/* 2. Convert Number Machine scanline (@keyframes scan) from layout property top:-40px..100% to GPU translate3d */
+.mscan{top:0!important;will-change:transform}
+@keyframes scan{from{transform:translate3d(0,-40px,0)}to{transform:translate3d(0,148px,0)}}
+/* 3. Promote strictly 2D leaf elements (never 3D preserve-3d containers) */
+.cs-cup,.cs-hop{will-change:transform}
+@media (hover:none),(max-width:820px){
+  /* Avoid full-viewport repaint on scroll/layout from background-attachment:fixed on mobile */
+  body{background-attachment:scroll,scroll!important}
+}
+</style>
+<style id="adsense98">/* v98: Top navigation bar + Cookie consent banner for AdSense compliance */
+.topnav{display:flex;align-items:center;gap:6px;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;padding:4px 0 12px;margin:-6px 0 6px;border-bottom:1px solid var(--line)}
+.topnav::-webkit-scrollbar{display:none}
+.topnav a{flex:none;display:inline-flex;align-items:center;min-height:36px;padding:0 12px;border-radius:999px;font-size:.86rem;font-weight:700;color:var(--mute);text-decoration:none;background:transparent;border:1px solid transparent;transition:color .15s,background .15s,border-color .15s;white-space:nowrap}
+.topnav a:hover{color:var(--brand);background:var(--field)}
+.topnav a[aria-current="page"]{color:var(--ink);background:var(--field);border-color:var(--line)}
+@media (hover:none),(max-width:820px){.topnav a{min-height:40px;padding:0 13px}}
+.ck-bar{position:fixed;left:16px;right:16px;bottom:16px;z-index:990;max-width:780px;margin:0 auto;padding:14px 18px;border-radius:18px;background:var(--card);border:1px solid var(--line);box-shadow:var(--shadow),0 14px 40px rgba(0,0,0,.28);display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 18px;font-size:.88rem;line-height:1.45;color:var(--mute)}
+.ck-bar[hidden]{display:none!important}
+.ck-bar p{margin:0;flex:1 1 320px}
+.ck-bar a{color:var(--ink);font-weight:700;text-decoration:underline}
+.ck-acts{display:flex;gap:8px;flex-wrap:wrap;flex:none}
+.ck-btn{min-height:38px;padding:0 16px;border-radius:999px;font:inherit;font-size:.85rem;font-weight:700;cursor:pointer;border:1px solid var(--line);background:var(--field);color:var(--ink);transition:transform .15s,border-color .15s}
+.ck-btn.pri{background:linear-gradient(135deg,var(--brand),var(--brand2));color:#fff;border-color:transparent}
+.ck-btn:hover{border-color:var(--brand)}
+@media(max-width:560px){.ck-bar{left:10px;right:10px;bottom:10px;padding:12px 14px}.ck-acts{width:100%}.ck-btn{flex:1 1 auto;text-align:center;min-height:42px}}
+</style>
+<style id="hdr99">/* v99: Proper full-width responsive site header + mobile navigation drawer */
+header.site-header{position:sticky;top:0;z-index:80;display:block!important;width:100%;padding:0!important;margin:0 0 10px;background:var(--card);border-bottom:1px solid var(--line);box-shadow:0 4px 20px rgba(15,18,50,.06)}
+:root[data-theme="dark"] header.site-header{background:rgba(22,25,46,.96);box-shadow:0 4px 24px rgba(0,0,0,.32)}
+.hdr-bar{width:100%;max-width:1200px;min-height:64px;margin:0 auto;padding:8px 24px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+a.brand{display:inline-flex;align-items:center;gap:10px;text-decoration:none;flex:0 0 auto;min-height:44px}
+.brand-ic{width:32px;height:32px;border-radius:8px;display:inline-flex;align-items:center;justify-content:center;box-shadow:0 4px 12px var(--glow);flex:none}
+.brand-ic svg{width:32px;height:32px;display:block}
+a.brand .logo{font-weight:800;font-size:1.32rem;letter-spacing:-.02em;background:linear-gradient(90deg,var(--brand),var(--brand2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hdr-nav{display:flex;align-items:center;gap:4px;flex:1 1 auto;justify-content:center;min-width:0}
+.hdr-nav a{display:inline-flex;align-items:center;gap:6px;min-height:36px;padding:0 12px;border-radius:999px;font-size:.86rem;font-weight:700;color:var(--mute);text-decoration:none;white-space:nowrap;border:1px solid transparent;transition:color .15s,background .15s,border-color .15s,box-shadow .15s}
+.hdr-nav a:hover{color:var(--ink);background:var(--field)}
+.hdr-nav a[aria-current="page"]{color:var(--ink);background:var(--field);border-color:var(--line)}
+.hdr-nav .nav-sep{width:1px;height:18px;background:var(--line);margin:0 4px;flex:none}
+.hbtns{display:flex;align-items:center;gap:8px;flex:0 0 auto}
+.hdr-menu-btn{display:none;width:44px;height:44px;padding:0;justify-content:center;align-items:center;border-radius:12px}
+.hdr-menu-btn svg{width:20px;height:20px;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;fill:none}
+.hdr-menu-btn .ic-close{display:none}
+.hdr-menu-btn[aria-expanded="true"]{border-color:var(--brand);color:var(--brand);background:var(--field)}
+.hdr-menu-btn[aria-expanded="true"] .ic-open{display:none}
+.hdr-menu-btn[aria-expanded="true"] .ic-close{display:block}
+.hdr-drawer{display:none;position:absolute;top:100%;left:0;right:0;width:100%;z-index:85;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--card);padding:16px 20px 20px;box-shadow:0 18px 40px rgba(0,0,0,.32)}
+.hdr-drawer.open{display:block}
+.hdr-drawer-in{max-width:820px;margin:0 auto;display:grid;gap:14px}
+.hdr-sec-lbl{font-size:.72rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);margin:0 0 6px}
+.hdr-tgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.hdr-tlink{display:flex;align-items:center;gap:10px;min-height:46px;padding:8px 12px;border-radius:14px;background:var(--field);border:1px solid var(--line);color:var(--ink);font-size:.9rem;font-weight:700;text-decoration:none;transition:border-color .15s,background .15s}
+.hdr-tlink svg{width:20px;height:20px;color:var(--brand);flex:none}
+.hdr-tlink:hover{border-color:var(--brand)}
+.hdr-tlink[aria-current="page"]{background:linear-gradient(135deg,var(--brand),var(--brand2));color:#fff;border-color:transparent;box-shadow:0 4px 12px var(--glow)}
+.hdr-tlink[aria-current="page"] svg{color:#fff}
+.hdr-ilinks{display:flex;flex-wrap:wrap;gap:8px}
+.hdr-ilinks a{display:inline-flex;align-items:center;min-height:40px;padding:0 14px;border-radius:999px;background:var(--field);border:1px solid var(--line);color:var(--mute);font-size:.86rem;font-weight:700;text-decoration:none}
+.hdr-ilinks a:hover,.hdr-ilinks a[aria-current="page"]{color:var(--ink);border-color:var(--brand)}
+@media(max-width:960px){
+  .hdr-nav{display:none}
+  .hdr-menu-btn{display:inline-flex}
+  .hdr-bar{min-height:58px;padding:6px 14px;gap:8px}
+}
+@media(max-width:420px){
+  a.brand .logo{font-size:1.15rem}
+  .brand-ic,.brand-ic svg{width:28px;height:28px}
+  .hdr-tgrid{grid-template-columns:1fr}
+}
+</style>
 </head>
 <body>
 <div class="bgfx" aria-hidden="true"><i class="orb o1"></i><i class="orb o2"></i><i class="orb o3"></i></div>
 <script>(function(){var b=document.querySelector('.bgfx'),sm=window.innerWidth<600,n=sm?7:10,k=3,D=sm?34:30,f=document.createDocumentFragment(),O=["<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linejoin=\"round\"><rect x=\"3\" y=\"3\" width=\"18\" height=\"18\" rx=\"4.5\"/><circle cx=\"8.5\" cy=\"8.5\" r=\"1.3\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"15.5\" cy=\"8.5\" r=\"1.3\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"12\" cy=\"12\" r=\"1.3\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"8.5\" cy=\"15.5\" r=\"1.3\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"15.5\" cy=\"15.5\" r=\"1.3\" fill=\"currentColor\" stroke=\"none\"/></svg>", "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\"><circle cx=\"12\" cy=\"12\" r=\"9.5\"/><circle cx=\"12\" cy=\"12\" r=\"4.6\"/><path d=\"M8 6.4a7 7 0 0 1 4-1.4\" stroke-linecap=\"round\"/></svg>", "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linejoin=\"round\"><path d=\"M12 2.8l2.7 5.6 6.1.9-4.4 4.3 1 6.1-5.4-2.9-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z\"/></svg>", "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linejoin=\"round\"><rect x=\"5\" y=\"2.5\" width=\"14\" height=\"19\" rx=\"3\"/><path d=\"M12 8l3 4-3 4-3-4z\" fill=\"currentColor\" stroke=\"none\"/></svg>", "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linejoin=\"round\"><path d=\"M12 2.5l8.2 4.75v9.5L12 21.5l-8.2-4.75v-9.5z\"/><path d=\"M12 2.5v19M3.8 7.25L12 12l8.2-4.75\" opacity=\".6\"/></svg>"];for(var i=0;i<n;i++){var e=document.createElement('span'),r=Math.random,slot=(i*k)%n,sz=sm?(24+r()*16):(28+r()*26);e.className='dg';e.innerHTML=O[i%O.length];e.style.cssText='--x:'+(((slot+.15+r()*.5)/n)*92).toFixed(1)+'%;--s:'+sz.toFixed(0)+'px;--d:'+D+'s;--dl:-'+((i/n)*D).toFixed(2)+'s;--o:'+(.10+r()*.08).toFixed(3)+';--dx:'+((r()-.5)*6).toFixed(1)+'vw;--r0:'+((r()-.5)*40).toFixed(0)+'deg;--r1:'+((r()-.5)*120).toFixed(0)+'deg';f.appendChild(e)}b.appendChild(f)})()</script>
+<header class="site-header"><div class="hdr-bar"><a class="brand" href="/pt/"><span class="brand-ic" aria-hidden="true"><svg viewBox="0 0 28 28" fill="none"><rect width="28" height="28" rx="8" fill="url(#bgrad)"/><defs><linearGradient id="bgrad" x1="0" y1="0" x2="28" y2="28" gradientUnits="userSpaceOnUse"><stop stop-color="var(--brand)"/><stop offset="1" stop-color="var(--brand2)"/></linearGradient></defs><circle cx="9.5" cy="9.5" r="2" fill="#fff"/><circle cx="18.5" cy="9.5" r="2" fill="#fff"/><circle cx="14" cy="14" r="2" fill="#fff"/><circle cx="9.5" cy="18.5" r="2" fill="#fff"/><circle cx="18.5" cy="18.5" r="2" fill="#fff"/></svg></span><span class="logo">Randomly</span></a><nav class="hdr-nav" aria-label="Navegação principal"><a href="/pt/dice/">Dados</a><a href="/pt/coin-flip/">Cara ou coroa</a><a href="/pt/cup-shuffle/">Copos</a><span class="nav-sep" aria-hidden="true"></span><a href="/pt/guide/">Guia</a><a href="/articles/">Artigos</a><a href="/pt/about/">Sobre</a><a href="/contact/">Contato</a></nav><div class="hbtns"><select class="theme lang" id="lang" autocomplete="off" aria-label="Idioma" title="Idioma" data-tra="aria-label:lang;title:lang"><option value="en">EN</option><option value="fr">FR</option><option value="ru">RU</option><option value="ja">JA</option><option value="fil">FIL</option><option value="hi">HI</option><option value="de">DE</option><option value="es">ES</option><option value="pt">PT</option><option value="id">ID</option><option value="ar">AR</option></select><button class="theme tswitch" id="theme" type="button" aria-label="Switch to light mode" title="Switch to light mode"><span class="tsw-track" aria-hidden="true"><svg class="tsun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><svg class="tmoon" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg><span class="tknob"></span></span><span class="sr" id="tlabel">Dark</span></button><button class="theme hdr-menu-btn" id="hdr-menu-btn" type="button" aria-expanded="false" aria-controls="hdr-drawer" aria-label="Menu" title="Menu"><svg class="ic-open" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg><svg class="ic-close" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div></div><div class="hdr-drawer" id="hdr-drawer" hidden><div class="hdr-drawer-in"><div><div class="hdr-sec-lbl">Ferramentas</div><div class="hdr-tgrid"><a class="hdr-tlink" href="/pt/dice/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="8.5" cy="8.5" r="1.2" fill="currentColor"/><circle cx="15.5" cy="8.5" r="1.2" fill="currentColor"/><circle cx="12" cy="12" r="1.2" fill="currentColor"/><circle cx="8.5" cy="15.5" r="1.2" fill="currentColor"/><circle cx="15.5" cy="15.5" r="1.2" fill="currentColor"/></svg><span>Dados</span></a><a class="hdr-tlink" href="/pt/coin-flip/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 6.5l1.6 3.3 3.6.5-2.6 2.5.6 3.6-3.2-1.7-3.2 1.7.6-3.6-2.6-2.5 3.6-.5z"/></svg><span>Cara ou coroa</span></a><a class="hdr-tlink" href="/pt/cup-shuffle/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 4h12l2 15H4L6 4z"/><path d="M3 19h18"/></svg><span>Copos</span></a></div></div><div><div class="hdr-sec-lbl">Recursos</div><div class="hdr-ilinks"><a href="/pt/guide/">Guia</a><a href="/articles/">Artigos</a><a href="/pt/about/">Sobre</a><a href="/contact/">Contato</a></div></div></div></div></header>
 <div class="wrap">
-<header><a class="brand" href="/pt/"><span class="logo">Randomly</span></a>
-<div class="hbtns"><select class="theme lang" id="lang" autocomplete="off" aria-label="Idioma" title="Idioma" data-tra="aria-label:lang;title:lang"><option value="en">EN</option><option value="fr">FR</option><option value="ru">RU</option><option value="ja">JA</option><option value="fil">FIL</option><option value="hi">HI</option><option value="de">DE</option><option value="es">ES</option><option value="pt">PT</option><option value="id">ID</option><option value="ar">AR</option></select><button class="theme tswitch" id="theme" type="button" aria-label="Switch to light mode" title="Switch to light mode"><span class="tsw-track" aria-hidden="true"><svg class="tsun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><svg class="tmoon" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg><span class="tknob"></span></span><span class="sr" id="tlabel">Dark</span></button></div></header>
 <main>
 <article class="card doc">
 <p class="doc-back"><a href="/pt/">← Voltar ao gerador</a></p>
@@ -786,9 +858,10 @@ a.brand{display:inline-flex;align-items:center;min-height:44px}
 <a href="/pt/cup-shuffle/" data-tr="t_cup_n">Copos com números</a></nav>
 <nav class="ft-col" aria-label="Legal"><h3 data-tr="ft_h_legal">Legal</h3>
 <a href="/pt/terms/" data-tr="f_terms">Termos e Condições</a>
-<a href="/pt/privacy/" data-tr="f_privacy">Política de Privacidade</a></nav>
+<a href="/pt/privacy/" data-tr="f_privacy">Política de Privacidade</a>
+<a href="#" id="ck-open" role="button">Configurações de cookies</a></nav>
 <nav class="ft-col" aria-label="Support"><h3 data-tr="ft_h_help">Suporte</h3>
-<a href="/contact/" data-modal="contact-modal" data-topic="other" role="button" data-tr="f_contact">Fale conosco</a>
+<a href="#" data-modal="contact-modal" data-topic="other" role="button" data-tr="f_contact">Fale conosco</a>
 <a href="/contact/">Dados de contato</a></nav>
 </div>
 <nav class="ft-langs" aria-label="Idioma" data-tra="aria-label:lang"><a href="/pt/privacy/" hreflang="en" lang="en">English</a><a href="/fr/privacy/" hreflang="fr" lang="fr">Français</a><a href="/ru/privacy/" hreflang="ru" lang="ru">Русский</a><a href="/ja/privacy/" hreflang="ja" lang="ja">日本語</a><a href="/fil/privacy/" hreflang="fil" lang="fil">Filipino</a><a href="/hi/privacy/" hreflang="hi" lang="hi">हिन्दी</a><a href="/de/privacy/" hreflang="de" lang="de">Deutsch</a><a href="/es/privacy/" hreflang="es" lang="es">Español</a><a href="/pt/privacy/" hreflang="pt" lang="pt" aria-current="page">Português</a><a href="/id/privacy/" hreflang="id" lang="id">Bahasa Indonesia</a><a href="/ar/privacy/" hreflang="ar" lang="ar">العربية</a></nav>
@@ -914,5 +987,7 @@ window.addEventListener('pageshow',function(){ls.value=RL.cur()});
   document.addEventListener('click',function(e){var c=e.target.closest&&e.target.closest('[data-modal="contact-modal"]');if(!c)return;say('');var sel=document.getElementById('cf-topic');if(sel){sel.value=c.getAttribute('data-topic')||'other';sel.dispatchEvent(new Event('change'))}});
 })();
 </script>
+<div class="ck-bar" id="cookie-banner" role="region" aria-label="Configurações de cookies" hidden><p>Usamos armazenamento local para lembrar suas preferências (tema, idioma, som) e cookies do Google AdSense para exibir e medir anúncios. Veja nossa <a href="/pt/privacy/">Política de Privacidade</a>.</p><div class="ck-acts"><button type="button" class="ck-btn" id="ck-ess">Apenas essenciais</button><button type="button" class="ck-btn pri" id="ck-acc">Aceitar tudo</button></div></div><script id="ck-js">(function(){var b=document.getElementById("cookie-banner"),a=document.getElementById("ck-acc"),e=document.getElementById("ck-ess"),o=document.getElementById("ck-open");if(!b)return;function set(v){try{localStorage.setItem("randomly-consent",v)}catch(x){}b.hidden=true}var c=null;try{c=localStorage.getItem("randomly-consent")}catch(x){}if(!c)b.hidden=false;if(a)a.addEventListener("click",function(){set("all")});if(e)e.addEventListener("click",function(){set("essential")});if(o)o.addEventListener("click",function(ev){ev.preventDefault();b.hidden=false});})();</script>
+<script id="hdr99-js">(function(){var b=document.getElementById("hdr-menu-btn"),d=document.getElementById("hdr-drawer"),h=document.querySelector(".site-header");if(!b||!d)return;function set(o){d.classList.toggle("open",o);d.hidden=!o;b.setAttribute("aria-expanded",o?"true":"false")}b.addEventListener("click",function(e){e.stopPropagation();set(!d.classList.contains("open"))});document.addEventListener("click",function(e){if(d.classList.contains("open")&&h&&!h.contains(e.target))set(false)});document.addEventListener("keydown",function(e){if(e.key==="Escape"&&d.classList.contains("open")){set(false);b.focus()}});})();</script>
 </body>
 </html>
